@@ -1,0 +1,49 @@
+{
+  "version": 2,
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ],
+  "routes": [
+    { "src": "^/privacy/?$", "dest": "/privacy.html" },
+    { "src": "^/privacy-policy/?$", "dest": "/privacy.html" },
+    { "src": "^/terms/?$", "dest": "/terms.html" },
+    { "src": "^/terms-of-service/?$", "dest": "/terms.html" },
+    { "src": "^/delete-account/?$", "dest": "/delete-account.html" },
+    { "src": "^/account-deletion/?$", "dest": "/delete-account.html" },
+    { "src": "^/support/?$", "dest": "/support.html" },
+    { "src": "^/help/?$", "dest": "/support.html" },
+    { "src": "^/auth/callback/?$", "dest": "/auth-callback.html" },
+    { "handle": "filesystem" }
+  ]
+}

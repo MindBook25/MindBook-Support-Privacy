@@ -1,0 +1,9 @@
+/privacy           /privacy.html        200
+/privacy-policy    /privacy.html        200
+/terms             /terms.html          200
+/terms-of-service  /terms.html          200
+/delete-account    /delete-account.html 200
+/account-deletion  /delete-account.html 200
+/support           /support.html        200
+/help              /support.html        200
+/auth/callback     /auth-callback.html  200

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us & FAQ — MindBook Help</title>
+  <meta name="description" content="Official MindBook Support Desk. Find answers, report safety violations, and get in touch with our engineering team.">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="../assets/favicon.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png" sizes="180x180">
+</head>
+<body>
+
+  <!-- Google Support Navigation Bar -->
+  <header class="google-nav">
+    <div class="container nav-container">
+      <div class="nav-left">
+        <a href="../index.html" class="brand-link">
+          <img src="../assets/mindbook_app_icon.png" alt="MindBook Icon" class="brand-icon">
+          <span>MindBook</span>
+          <span class="brand-hub-title">Help Center</span>
+        </a>
+      </div>
+
+      <ul class="nav-links">
+        <li class="nav-item"><a href="../index.html">Overview</a></li>
+        <li class="nav-item"><a href="../privacy.html">Privacy</a></li>
+        <li class="nav-item"><a href="../terms.html">Terms</a></li>
+        <li class="nav-item"><a href="../delete-account.html">Data Deletion</a></li>
+        <li class="nav-item"><a href="../support.html" class="active">Contact Us</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="index.html#app-download" class="btn-get-app">Get App</a>
+        <button class="mobile-nav-toggle" aria-label="Toggle navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <div class="container breadcrumb-bar">
+    <ul class="breadcrumb-list">
+      <li><a href="../index.html">MindBook Help</a></li>
+      <li class="breadcrumb-separator">&rsaquo;</li>
+      <li style="color: var(--text-primary); font-weight: 500;">Contact Us & FAQ</li>
+    </ul>
+  </div>
+
+  <!-- Main Container -->
+  <main class="container" style="max-width: 840px; padding-top: 24px; padding-bottom: 64px;">
+    <h1 style="margin-bottom: 8px;">MindBook Help & Contact Center</h1>
+    <p style="color: var(--text-muted); font-size: 0.98rem; margin-bottom: 32px;">
+      Find answers to common questions, report policy violations, or submit a support ticket to our team.
+    </p>
+
+    <!-- Direct Email Channels (Google Support Style) -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 36px;">
+      <div class="google-card" style="margin-bottom: 0; padding: 20px;">
+        <div style="font-size: 1.2rem; margin-bottom: 8px;">✉️ Technical & General Support</div>
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px;">For app bugs, login errors, and feature suggestions.</p>
+        <a href="mailto:support@mindbook.in" class="btn-google btn-google-outlined" style="width: 100%;">support@mindbook.in</a>
+      </div>
+
+      <div class="google-card" style="margin-bottom: 0; padding: 20px;">
+        <div style="font-size: 1.2rem; margin-bottom: 8px;">🚨 Safety & Policy Violations</div>
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px;">Report abusive users, harassment, or data privacy requests.</p>
+        <a href="mailto:privacy@mindbook.in" class="btn-google btn-google-outlined" style="width: 100%; border-color: var(--google-red); color: var(--google-red);">privacy@mindbook.in</a>
+      </div>
+    </div>
+
+    <!-- Frequently Asked Questions (Google Accordion) -->
+    <h2 style="font-size: 1.35rem; margin-bottom: 16px;">Frequently Asked Questions</h2>
+    <div class="google-accordion">
+      <div class="accordion-item open">
+        <button class="accordion-header" onclick="toggleGoogleAccordion(this)">
+          <span>1. How do I make my MindBook profile and reflections private?</span>
+          <svg class="accordion-chevron" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+        </button>
+        <div class="accordion-body">
+          Open the MindBook app &rarr; go to <strong>Settings</strong> &rarr; <strong>Privacy Boundaries</strong>. Toggle <em>"Private Account"</em> to ON. When enabled, only confirmed friends can view your posts, reflection history, and badges.
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header" onclick="toggleGoogleAccordion(this)">
+          <span>2. How do I reset my password if I forget it?</span>
+          <svg class="accordion-chevron" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+        </button>
+        <div class="accordion-body">
+          Tap <em>"Forgot Password?"</em> on the mobile sign-in screen and enter your registered email. You will receive an official recovery link. Clicking that link opens our secure <a href="../auth-callback.html">Account Recovery Portal</a> where you can enter a new password.
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header" onclick="toggleGoogleAccordion(this)">
+          <span>3. Can other users view my private journal and mood entries?</span>
+          <svg class="accordion-chevron" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+        </button>
+        <div class="accordion-body">
+          No. MindBook enforces strict Row-Level Security. Every prompt and diary post allows you to set your exact audience: <strong>Only Me (Private Journal)</strong>, <strong>Friends Only</strong>, or <strong>Public</strong>. Private reflections cannot be queried or viewed by anyone else.
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header" onclick="toggleGoogleAccordion(this)">
+          <span>4. How do I report harassment or abusive content?</span>
+          <svg class="accordion-chevron" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+        </button>
+        <div class="accordion-body">
+          Tap the three dots (<strong>•••</strong>) on any post or comment and select <em>"Report Post"</em>. Choose the violation reason. Our safety review team investigates reports within <strong>24 hours</strong>. Offending material is removed immediately.
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header" onclick="toggleGoogleAccordion(this)">
+          <span>5. How do I permanently delete my account and data?</span>
+          <svg class="accordion-chevron" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+        </button>
+        <div class="accordion-body">
+          Go to <em>Settings &rarr; Account Settings &rarr; Delete Account</em> inside the app. Alternatively, submit a request on our <a href="../delete-account.html">Account & Data Deletion Portal</a>. All credentials, posts, photos, and messages are permanently purged within 48 hours.
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Support Ticket Form -->
+    <div class="google-card" style="margin-top: 36px;">
+      <h2 style="font-size: 1.3rem; margin-bottom: 6px;">Submit a Support Request</h2>
+      <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 20px;">Our engineering and safety teams typically respond within 12 to 24 hours.</p>
+
+      <form id="google-support-form" onsubmit="handleGoogleSupportSubmit(event)">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label for="supp-name" class="form-label">Your Name *</label>
+            <input type="text" id="supp-name" class="form-control" placeholder="e.g. John Doe" required>
+          </div>
+          <div class="form-group">
+            <label for="supp-email" class="form-label">Email Address *</label>
+            <input type="email" id="supp-email" class="form-control" placeholder="e.g. john@example.com" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="supp-category" class="form-label">Inquiry Topic *</label>
+          <select id="supp-category" class="form-control" required>
+            <option value="account">Account & Login Issues</option>
+            <option value="safety">Report Safety Violation / Abuse</option>
+            <option value="bug">Technical Bug / Application Crash</option>
+            <option value="privacy">Privacy & Data Request</option>
+            <option value="feedback">Product Feedback & Suggestions</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="supp-subject" class="form-label">Subject *</label>
+          <input type="text" id="supp-subject" class="form-control" placeholder="Summary of your issue" required>
+        </div>
+
+        <div class="form-group">
+          <label for="supp-desc" class="form-label">Description *</label>
+          <textarea id="supp-desc" class="form-control" placeholder="Please provide details, device model, and screenshots if applicable..." required></textarea>
+        </div>
+
+        <button type="submit" id="btn-supp-submit" class="btn-google btn-google-primary">
+          Submit Support Ticket
+        </button>
+      </form>
+
+      <div id="google-supp-success" style="display: none; margin-top: 20px; padding: 20px; background: var(--google-green-surface); border: 1px solid var(--google-green); border-radius: var(--radius-xs);">
+        <h3 style="color: var(--google-green); font-size: 1.1rem; margin-bottom: 6px;">✓ Support Ticket Logged</h3>
+        <p style="margin: 0; color: var(--text-primary); font-size: 0.94rem;">
+          Thank you for reaching out. We have logged your request and our team will get in touch at your email address within 24 hours.
+        </p>
+      </div>
+    </div>
+
+    <!-- Google Helpful Feedback -->
+    <div class="helpful-widget">
+      <span class="helpful-text">Was this article helpful?</span>
+      <div class="helpful-buttons">
+        <button class="btn-feedback" onclick="submitHelpfulFeedback(this, true)">Yes</button>
+        <button class="btn-feedback" onclick="submitHelpfulFeedback(this, false)">No</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Google Support Minimal Footer -->
+  <footer class="google-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <img src="../assets/mindbook_app_icon.png" alt="MindBook" class="footer-brand-icon">
+          <span style="font-weight: 500; color: var(--text-primary);">MindBook</span>
+        </div>
+        <ul class="footer-nav">
+          <li><a href="../privacy.html">Privacy Policy</a></li>
+          <li><a href="../terms.html">Terms of Service</a></li>
+          <li><a href="../delete-account.html">Account Deletion</a></li>
+          <li><a href="../support.html">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="language-selector">
+          <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.46z"/></svg>
+          <span>English</span>
+        </div>
+        <div>
+          &copy; 2026 MindBook Inc. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/main.js"></script>
+  <script>
+    function handleGoogleSupportSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('btn-supp-submit');
+      btn.disabled = true;
+      btn.textContent = 'Submitting...';
+
+      setTimeout(() => {
+        document.getElementById('google-support-form').style.display = 'none';
+        document.getElementById('google-supp-success').style.display = 'block';
+        showGoogleToast('Ticket received. Our team will contact you shortly.');
+      }, 700);
+    }
+  </script>
+</body>
+</html>

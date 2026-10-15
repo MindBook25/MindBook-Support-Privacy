@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account Recovery — MindBook Help</title>
+  <meta name="description" content="MindBook Account Recovery and Password Reset Portal.">
+  <link rel="stylesheet" href="../../assets/styles.css">
+  <style>
+    .google-auth-box {
+      max-width: 480px;
+      margin: 48px auto 80px;
+      background: #FFFFFF;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 40px 36px;
+      text-align: center;
+    }
+    .auth-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      object-fit: cover;
+    }
+  </style>
+  <link rel="shortcut icon" href="../../assets/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="../../assets/favicon.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../../assets/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png" sizes="180x180">
+</head>
+<body>
+
+  <!-- Google Support Navigation Bar -->
+  <header class="google-nav">
+    <div class="container nav-container">
+      <div class="nav-left">
+        <a href="../../index.html" class="brand-link">
+          <img src="../../assets/mindbook_app_icon.png" alt="MindBook Icon" class="brand-icon">
+          <span>MindBook</span>
+          <span class="brand-hub-title">Account Recovery</span>
+        </a>
+      </div>
+
+      <ul class="nav-links">
+        <li class="nav-item"><a href="../../index.html">Overview</a></li>
+        <li class="nav-item"><a href="../../privacy.html">Privacy</a></li>
+        <li class="nav-item"><a href="../../terms.html">Terms</a></li>
+        <li class="nav-item"><a href="../../delete-account.html">Data Deletion</a></li>
+        <li class="nav-item"><a href="../../support.html">Contact Us</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="index.html#app-download" class="btn-get-app">Get App</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Recovery Container -->
+  <main class="container">
+    <div class="google-auth-box">
+      <img src="../../assets/mindbook_app_icon.png" alt="MindBook" class="auth-logo">
+
+      <!-- View 1: Password Recovery Form -->
+      <div id="view-recovery" style="display: none; text-align: left;">
+        <h1 style="font-size: 1.5rem; text-align: center; margin-bottom: 6px;">Reset your password</h1>
+        <p style="text-align: center; color: var(--text-muted); font-size: 0.92rem; margin-bottom: 24px;">
+          Choose a strong password with at least 8 characters.
+        </p>
+
+        <form id="google-pass-form" onsubmit="handleGooglePassSubmit(event)">
+          <div class="form-group">
+            <label for="new-pass" class="form-label">New Password *</label>
+            <input type="password" id="new-pass" class="form-control" placeholder="Enter new password" minlength="8" required oninput="checkStrength(this.value)">
+            <span id="strength-label" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; display: block;"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="confirm-pass" class="form-label">Confirm Password *</label>
+            <input type="password" id="confirm-pass" class="form-control" placeholder="Re-enter password" minlength="8" required>
+          </div>
+
+          <button type="submit" id="btn-update-pass" class="btn-google btn-google-primary" style="width: 100%; margin-top: 8px;">
+            Save password & continue
+          </button>
+        </form>
+
+        <div id="pass-done" style="display: none; text-align: center; margin-top: 20px;">
+          <h3 style="color: var(--google-green); margin-bottom: 8px;">✓ Password updated</h3>
+          <p style="color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 20px;">
+            Your credentials have been updated. You can now launch MindBook on your mobile device.
+          </p>
+          <a href="mindbook://login" class="btn-google btn-google-primary" style="width: 100%;">
+            Open MindBook App
+          </a>
+        </div>
+      </div>
+
+      <!-- View 2: Email Verified Success -->
+      <div id="view-verified" style="display: none;">
+        <div style="font-size: 2.5rem; margin-bottom: 12px; color: var(--google-green);">✓</div>
+        <h1 style="font-size: 1.5rem; margin-bottom: 8px;">Email verified</h1>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 28px;">
+          Your email address has been verified. Your MindBook account is fully activated.
+        </p>
+        <a href="mindbook://feed" class="btn-google btn-google-primary" style="width: 100%; margin-bottom: 12px;">
+          Open MindBook Mobile App
+        </a>
+        <a href="../../index.html" class="btn-google btn-google-outlined" style="width: 100%;">
+          Return to Help Center
+        </a>
+      </div>
+
+      <!-- View 3: Default Mobile Handshake -->
+      <div id="view-default">
+        <h1 style="font-size: 1.5rem; margin-bottom: 8px;">Connecting to MindBook</h1>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 24px;">
+          Redirecting to the MindBook mobile application. If it does not launch automatically, tap below.
+        </p>
+        <a id="deep-link-btn" href="mindbook://auth-callback" class="btn-google btn-google-primary" style="width: 100%; margin-bottom: 12px;">
+          Launch MindBook Mobile App
+        </a>
+        <a href="../../index.html" class="btn-google btn-google-outlined" style="width: 100%;">
+          Return to Help Center
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Google Support Minimal Footer -->
+  <footer class="google-footer">
+    <div class="container">
+      <div class="footer-bottom" style="border: none; padding-top: 0;">
+        <div class="language-selector">
+          <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.46z"/></svg>
+          <span>English</span>
+        </div>
+        <div>
+          &copy; 2026 MindBook Inc. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../assets/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash.substring(1);
+      const search = window.location.search.substring(1);
+      const params = new URLSearchParams(hash || search);
+
+      const type = params.get('type') || '';
+      const viewRecovery = document.getElementById('view-recovery');
+      const viewVerified = document.getElementById('view-verified');
+      const viewDefault = document.getElementById('view-default');
+      const deepLinkBtn = document.getElementById('deep-link-btn');
+
+      if (type === 'recovery') {
+        viewDefault.style.display = 'none';
+        viewVerified.style.display = 'none';
+        viewRecovery.style.display = 'block';
+      } else if (type === 'signup' || type === 'email_change' || params.get('message') === 'confirmed') {
+        viewDefault.style.display = 'none';
+        viewRecovery.style.display = 'none';
+        viewVerified.style.display = 'block';
+      } else {
+        if (window.location.hash) {
+          deepLinkBtn.href = 'mindbook://auth-callback' + window.location.hash;
+        }
+        setTimeout(() => {
+          window.location.href = deepLinkBtn.href;
+        }, 800);
+      }
+    });
+
+    function checkStrength(v) {
+      const label = document.getElementById('strength-label');
+      if (v.length < 8) {
+        label.textContent = 'Use at least 8 characters';
+        label.style.color = '#D93025';
+      } else if (/[A-Z]/.test(v) && /[0-9]/.test(v)) {
+        label.textContent = 'Strong password';
+        label.style.color = '#1E8E3E';
+      } else {
+        label.textContent = 'Moderate password';
+        label.style.color = '#F9AB00';
+      }
+    }
+
+    function handleGooglePassSubmit(e) {
+      e.preventDefault();
+      const p1 = document.getElementById('new-pass').value;
+      const p2 = document.getElementById('confirm-pass').value;
+      if (p1 !== p2) {
+        alert('Passwords do not match.');
+        return;
+      }
+
+      const btn = document.getElementById('btn-update-pass');
+      btn.disabled = true;
+      btn.textContent = 'Saving...';
+
+      setTimeout(() => {
+        document.getElementById('google-pass-form').style.display = 'none';
+        document.getElementById('pass-done').style.display = 'block';
+        showGoogleToast('Password updated successfully.');
+      }, 800);
+    }
+  </script>
+</body>
+</html>

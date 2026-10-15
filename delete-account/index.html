@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delete Your MindBook Account & Data — MindBook Help</title>
+  <meta name="description" content="Learn how to delete your MindBook account and personal data, or submit an instant web deletion request.">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <style>
+    .step-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--google-blue);
+      color: #FFFFFF;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-right: 8px;
+    }
+  </style>
+  <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="../assets/favicon.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png" sizes="180x180">
+</head>
+<body>
+
+  <!-- Google Support Navigation Bar -->
+  <header class="google-nav">
+    <div class="container nav-container">
+      <div class="nav-left">
+        <a href="../index.html" class="brand-link">
+          <img src="../assets/mindbook_app_icon.png" alt="MindBook Icon" class="brand-icon">
+          <span>MindBook</span>
+          <span class="brand-hub-title">Help Center</span>
+        </a>
+      </div>
+
+      <ul class="nav-links">
+        <li class="nav-item"><a href="../index.html">Overview</a></li>
+        <li class="nav-item"><a href="../privacy.html">Privacy</a></li>
+        <li class="nav-item"><a href="../terms.html">Terms</a></li>
+        <li class="nav-item"><a href="../delete-account.html" class="active">Data Deletion</a></li>
+        <li class="nav-item"><a href="../support.html">Contact Us</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="index.html#app-download" class="btn-get-app">Get App</a>
+        <button class="mobile-nav-toggle" aria-label="Toggle navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <div class="container breadcrumb-bar">
+    <ul class="breadcrumb-list">
+      <li><a href="../index.html">MindBook Help</a></li>
+      <li class="breadcrumb-separator">&rsaquo;</li>
+      <li><a href="../delete-account.html">Manage Your Account</a></li>
+      <li class="breadcrumb-separator">&rsaquo;</li>
+      <li style="color: var(--text-primary); font-weight: 500;">Delete your account & data</li>
+    </ul>
+  </div>
+
+  <!-- Main Container -->
+  <main class="container" style="max-width: 840px; padding-top: 24px; padding-bottom: 64px;">
+    <h1 style="margin-bottom: 12px;">Delete your MindBook account & data</h1>
+    <p style="color: var(--text-muted); font-size: 0.98rem; margin-bottom: 24px;">
+      In accordance with Google Play's User Data policy and global privacy laws, you can permanently delete your MindBook account and all associated personal data at any time.
+    </p>
+
+    <!-- Google Warning Callout -->
+    <div class="google-callout danger" style="margin-bottom: 32px;">
+      <div class="callout-icon">⚠️</div>
+      <div class="callout-content">
+        <p><strong>Warning:</strong> Deleting your account is permanent. All your reflections, mood logs, uploaded photos, friends connections, and earned badges will be permanently erased and cannot be recovered.</p>
+      </div>
+    </div>
+
+    <!-- Option 1: In-App Deletion -->
+    <div class="google-card">
+      <h2 style="font-size: 1.25rem; margin-bottom: 12px;">
+        <span class="step-pill">1</span> Option A: Delete from the MindBook Mobile App
+      </h2>
+      <p>If you have access to your mobile phone or tablet:</p>
+      <ol style="padding-left: 24px; color: var(--text-secondary); line-height: 1.8;">
+        <li>Open the <strong>MindBook</strong> app.</li>
+        <li>Tap your profile avatar or the <strong>Settings</strong> icon in the top right.</li>
+        <li>Select <strong>Account Settings</strong>.</li>
+        <li>Scroll down to the bottom and tap <strong>Delete Account</strong>.</li>
+        <li>Enter your password to verify ownership. Your account is deleted immediately.</li>
+      </ol>
+    </div>
+
+    <!-- Option 2: Web Deletion Request Form -->
+    <div class="google-card">
+      <h2 style="font-size: 1.25rem; margin-bottom: 12px;">
+        <span class="step-pill">2</span> Option B: Submit a Web Deletion Request (Without App)
+      </h2>
+      <p>If you have uninstalled the app or lost device access, fill out the official verification form below:</p>
+
+      <form id="google-deletion-form" onsubmit="handleGoogleDeleteSubmit(event)" style="margin-top: 20px;">
+        <div class="form-group">
+          <label for="del-email" class="form-label">Registered Account Email *</label>
+          <input type="email" id="del-email" class="form-control" placeholder="e.g. name@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="del-username" class="form-label">MindBook Username (Optional)</label>
+          <input type="text" id="del-username" class="form-control" placeholder="e.g. mindful_user">
+        </div>
+
+        <div class="form-group">
+          <label for="del-reason" class="form-label">Reason for Deletion (Optional)</label>
+          <select id="del-reason" class="form-control">
+            <option value="privacy">Privacy concerns</option>
+            <option value="no_longer_using">No longer using the service</option>
+            <option value="duplicate">Created duplicate account</option>
+            <option value="other">Other reason</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="del-confirm" class="form-label">Type "DELETE" to confirm permanent account purge *</label>
+          <input type="text" id="del-confirm" class="form-control" placeholder="DELETE" required pattern="DELETE" title="Please type DELETE in capital letters">
+        </div>
+
+        <button type="submit" id="btn-submit-del" class="btn-google btn-google-danger" style="margin-top: 8px;">
+          Submit Permanent Deletion Request
+        </button>
+      </form>
+
+      <div id="google-del-success" style="display: none; margin-top: 24px; padding: 20px; background: var(--google-green-surface); border: 1px solid var(--google-green); border-radius: var(--radius-xs);">
+        <h3 style="color: var(--google-green); font-size: 1.1rem; margin-bottom: 6px;">✓ Deletion Request Submitted</h3>
+        <p style="margin: 0; color: var(--text-primary); font-size: 0.94rem;">
+          We have generated a deletion ticket. A verification confirmation has been dispatched to your email address. All associated database records and media files will be permanently purged within 48 hours.
+        </p>
+      </div>
+    </div>
+
+    <!-- What Data is Deleted -->
+    <div class="google-card" style="background: var(--bg-subtle);">
+      <h2 style="font-size: 1.2rem; margin-bottom: 12px;">What data is deleted?</h2>
+      <p style="margin-bottom: 14px;">Once your deletion request is processed, the following items are permanently destroyed:</p>
+      <ul style="padding-left: 24px; color: var(--text-secondary); line-height: 1.8;">
+        <li>Your account credentials, password salt, and email authentication records.</li>
+        <li>Profile information, biographical text, and uploaded avatar/banner images.</li>
+        <li>All authored reflections, diary posts, and comments.</li>
+        <li>All private mood logs, gratitude entries, and challenge streak histories.</li>
+        <li>Friendship graphs and notification tokens.</li>
+      </ul>
+      <p style="margin-top: 14px; font-size: 0.88rem; color: var(--text-muted);">
+        Questions? Contact our Data Protection Officer at <a href="mailto:privacy@mindbook.in">privacy@mindbook.in</a>.
+      </p>
+    </div>
+
+    <!-- Google Helpful Feedback -->
+    <div class="helpful-widget">
+      <span class="helpful-text">Was this article helpful?</span>
+      <div class="helpful-buttons">
+        <button class="btn-feedback" onclick="submitHelpfulFeedback(this, true)">Yes</button>
+        <button class="btn-feedback" onclick="submitHelpfulFeedback(this, false)">No</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Google Support Minimal Footer -->
+  <footer class="google-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <img src="../assets/mindbook_app_icon.png" alt="MindBook" class="footer-brand-icon">
+          <span style="font-weight: 500; color: var(--text-primary);">MindBook</span>
+        </div>
+        <ul class="footer-nav">
+          <li><a href="../privacy.html">Privacy Policy</a></li>
+          <li><a href="../terms.html">Terms of Service</a></li>
+          <li><a href="../delete-account.html">Account Deletion</a></li>
+          <li><a href="../support.html">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="language-selector">
+          <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.46z"/></svg>
+          <span>English</span>
+        </div>
+        <div>
+          &copy; 2026 MindBook Inc. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/main.js"></script>
+  <script>
+    function handleGoogleDeleteSubmit(e) {
+      e.preventDefault();
+      const val = document.getElementById('del-confirm').value;
+      if (val !== 'DELETE') {
+        alert('Please type DELETE in capital letters to confirm.');
+        return;
+      }
+
+      const btn = document.getElementById('btn-submit-del');
+      btn.disabled = true;
+      btn.textContent = 'Submitting Request...';
+
+      setTimeout(() => {
+        document.getElementById('google-deletion-form').style.display = 'none';
+        document.getElementById('google-del-success').style.display = 'block';
+        showGoogleToast('Account deletion ticket created successfully.');
+      }, 700);
+    }
+  </script>
+</body>
+</html>

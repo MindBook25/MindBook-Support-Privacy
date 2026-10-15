@@ -1,0 +1,204 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+viewBox="0 0 512 512"
+width="100%"
+height="100%">
+
+  <defs>
+
+    <!-- Background -->
+    <linearGradient id="iconBg"
+                    x1="0%" y1="0%"
+                    x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F1F5F9"/>
+    </linearGradient>
+
+    <!-- Left Wing -->
+    <linearGradient id="leftWing"
+                    x1="0%" y1="0%"
+                    x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#1D4ED8"/>
+    </linearGradient>
+
+    <!-- Left Fold -->
+    <linearGradient id="leftFold"
+                    x1="0%" y1="100%"
+                    x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1E40AF"/>
+      <stop offset="100%" stop-color="#60A5FA"/>
+    </linearGradient>
+
+    <!-- Right Wing -->
+    <linearGradient id="rightWing"
+                    x1="0%" y1="0%"
+                    x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#0284C7"/>
+    </linearGradient>
+
+    <!-- Right Fold -->
+    <linearGradient id="rightFold"
+                    x1="100%" y1="100%"
+                    x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#0369A1"/>
+      <stop offset="100%" stop-color="#7DD3FC"/>
+    </linearGradient>
+
+    <!-- Bottom Spine -->
+    <linearGradient id="baseShadow"
+                    x1="0%" y1="0%"
+                    x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1E3A8A"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+
+    <!-- Soft Shadow -->
+    <filter id="softShadow"
+            x="-15%" y="-15%"
+            width="130%" height="135%">
+      <feDropShadow
+          dx="0"
+          dy="14"
+          stdDeviation="18"
+          flood-color="#0F172A"
+          flood-opacity="0.12"/>
+    </filter>
+
+    <!-- Emblem Shadow -->
+    <filter id="emblemShadow"
+            x="-20%" y="-20%"
+            width="140%"
+            height="140%">
+      <feDropShadow
+          dx="0"
+          dy="10"
+          stdDeviation="12"
+          flood-color="#1E293B"
+          flood-opacity="0.18"/>
+    </filter>
+
+  </defs>
+
+
+  <!-- ======================================================
+       SQUIRCLE BASE
+       ====================================================== -->
+
+  <rect
+      x="28"
+      y="28"
+      width="456"
+      height="456"
+      rx="116"
+      fill="url(#iconBg)"
+      stroke="#E2E8F0"
+      stroke-width="2"
+      filter="url(#softShadow)"/>
+
+
+  <!-- ======================================================
+       MINDBOOK GEOMETRIC M EMBLEM
+       ====================================================== -->
+
+  <g filter="url(#emblemShadow)">
+
+    <!-- Outer Book Pages -->
+
+    <path
+        d="M120 200
+           L148 180
+           L148 340
+           L120 348 Z"
+        fill="#93C5FD"
+        opacity="0.6"/>
+
+    <path
+        d="M392 200
+           L364 180
+           L364 340
+           L392 348 Z"
+        fill="#38BDF8"
+        opacity="0.6"/>
+
+
+    <!-- LEFT WING -->
+
+    <path
+        d="M148 350
+           L148 175
+           L210 128
+           L256 265
+           L210 376 Z"
+        fill="url(#leftWing)"/>
+
+    <!-- Left Inner Facet -->
+
+    <path
+        d="M210 128
+           L256 265
+           L210 230 Z"
+        fill="url(#leftFold)"/>
+
+    <!-- Left Outer Facet -->
+
+    <path
+        d="M148 175
+           L210 128
+           L178 360
+           L148 350 Z"
+        fill="#2563EB"
+        opacity="0.85"/>
+
+
+    <!-- RIGHT WING -->
+
+    <path
+        d="M364 350
+           L364 175
+           L302 128
+           L256 265
+           L302 376 Z"
+        fill="url(#rightWing)"/>
+
+    <!-- Right Inner Facet -->
+
+    <path
+        d="M302 128
+           L256 265
+           L302 230 Z"
+        fill="url(#rightFold)"/>
+
+    <!-- Right Outer Facet -->
+
+    <path
+        d="M364 175
+           L302 128
+           L334 360
+           L364 350 Z"
+        fill="#0EA5E9"
+        opacity="0.85"/>
+
+
+    <!-- Bottom Curved Book Spine -->
+
+    <path
+        d="M148 350
+           C190 372, 230 380, 256 392
+           C282 380, 322 372, 364 350
+           L364 368
+           C322 390, 282 398, 256 410
+           C230 398, 190 390, 148 368 Z"
+        fill="url(#baseShadow)"/>
+
+
+    <!-- Center Valley Highlight -->
+
+    <polygon
+        points="256,265 240,240 256,232 272,240"
+        fill="#FFFFFF"
+        opacity="0.7"/>
+
+  </g>
+
+</svg>
