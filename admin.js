@@ -644,17 +644,46 @@ function renderProfilesTable(thead, tbody, rows, totalCount) {
   }).join('');
 }
 
-// 2. POSTS TABLE MONITOR
+// 2. POSTS TABLE MONITOR (Supports .png, .jpeg, .jpg images and .mp4 videos)
+let currentActiveMediaUrl = '';
+let currentActivePostId = '';
+
+function getPostMediaList(post) {
+  if (!post) return [];
+  let list = [];
+  if (Array.isArray(post.media_urls)) {
+    list = post.media_urls;
+  } else if (typeof post.media_urls === 'string') {
+    try {
+      const parsed = JSON.parse(post.media_urls);
+      if (Array.isArray(parsed)) list = parsed;
+      else list = [post.media_urls];
+    } catch (_) {
+      if (post.media_urls.includes(',')) list = post.media_urls.split(',').map(s => s.trim());
+      else list = [post.media_urls];
+    }
+  } else if (post.media_url) {
+    list = [post.media_url];
+  }
+  return list.filter(u => typeof u === 'string' && u.trim().length > 0);
+}
+
+function isVideoUrl(url) {
+  if (!url) return false;
+  const clean = url.split('?')[0].toLowerCase();
+  return clean.endsWith('.mp4') || clean.endsWith('.mov') || clean.endsWith('.webm') || clean.endsWith('.m4v') || clean.endsWith('.ogg');
+}
+
 function renderPostsTable(thead, tbody, rows, totalCount) {
   thead.innerHTML = `
     <tr>
-      <th style="width: 140px;">POST ID</th>
-      <th style="width: 200px;">AUTHOR</th>
-      <th>CONTENT & MEDIA</th>
-      <th>ENGAGEMENT</th>
-      <th>VISIBILITY</th>
-      <th>CREATED AT</th>
-      <th style="text-align: right; width: 140px;">DATABASE ACTIONS</th>
+      <th style="width: 130px;">POST ID</th>
+      <th style="width: 180px;">AUTHOR</th>
+      <th>CONTENT & MEDIA (.PNG, .JPG, .MP4)</th>
+      <th style="width: 110px;">ENGAGEMENT</th>
+      <th style="width: 100px;">VISIBILITY</th>
+      <th style="width: 140px;">CREATED AT</th>
+      <th style="text-align: right; width: 170px;">DATABASE ACTIONS</th>
     </tr>
   `;
 
@@ -680,7 +709,38 @@ function renderPostsTable(thead, tbody, rows, totalCount) {
       month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
     }) : '—';
 
-    const mediaCount = Array.isArray(p.media_urls) ? p.media_urls.length : (p.media_url ? 1 : 0);
+    const mediaList = getPostMediaList(p);
+    const hasMedia = mediaList.length > 0;
+    const hasVideo = mediaList.some(isVideoUrl);
+
+    // Build inline media preview chips
+    let mediaHtml = '';
+    if (hasMedia) {
+      mediaHtml = `
+        <div class="post-media-strip">
+          ${mediaList.map((url, idx) => {
+            const isVid = isVideoUrl(url);
+            const ext = (url.split('?')[0].split('.').pop() || (isVid ? 'mp4' : 'img')).toUpperCase();
+            if (isVid) {
+              return `
+                <div class="post-video-chip" onclick="openMediaViewer('${escapeHtml(p.id)}', '${escapeHtml(url)}')" title="Click to play ${ext} video in cyber inspector">
+                  <span class="video-play-triangle">▶</span>
+                  <span class="video-format-text">${escapeHtml(ext)} VIDEO</span>
+                  <span class="video-chip-hint">STREAM</span>
+                </div>
+              `;
+            } else {
+              return `
+                <div class="post-media-thumb-wrap" onclick="openMediaViewer('${escapeHtml(p.id)}', '${escapeHtml(url)}')" title="Click to inspect high-resolution ${ext} image">
+                  <img src="${escapeHtml(url)}" class="post-media-thumb" loading="lazy" onerror="this.onerror=null; this.parentElement.innerHTML='<span style=\\'font-size:0.65rem; color:var(--text-muted);\\'>📷 [ATTACHMENT]</span>';">
+                  <span class="media-type-tag">.${escapeHtml(ext)}</span>
+                </div>
+              `;
+            }
+          }).join('')}
+        </div>
+      `;
+    }
 
     return `
       <tr>
@@ -701,13 +761,14 @@ function renderPostsTable(thead, tbody, rows, totalCount) {
           </div>
         </td>
         <td>
-          <div style="max-width: 380px;">
+          <div style="max-width: 440px;">
             <div style="color: #e2e8f0; font-size: 0.85rem; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-              ${escapeHtml(p.content || '(Media Attachment Only)')}
+              ${escapeHtml(p.content && p.content.trim().length > 0 ? p.content : '(Visual Media Post)')}
             </div>
-            <div style="display: flex; gap: 6px; margin-top: 4px; font-size: 0.7rem; font-family: var(--font-mono);">
+            ${mediaHtml}
+            <div style="display: flex; gap: 8px; margin-top: 4px; font-size: 0.7rem; font-family: var(--font-mono); flex-wrap: wrap;">
               ${p.mood ? `<span style="color:#38bdf8;">mood: ${escapeHtml(p.mood)}</span>` : ''}
-              ${mediaCount > 0 ? `<span style="color:#34d399;">📷 ${mediaCount} media</span>` : ''}
+              ${hasMedia ? `<span style="color:#34d399; font-weight:700;">📂 ${mediaList.length} attachment(s) ${hasVideo ? '🎬 [VIDEO]' : '🖼️ [IMAGE]'}</span>` : ''}
             </div>
           </div>
         </td>
@@ -728,7 +789,12 @@ function renderPostsTable(thead, tbody, rows, totalCount) {
           </div>
         </td>
         <td style="text-align: right;">
-          <div class="table-actions" style="justify-content: flex-end;">
+          <div class="table-actions" style="justify-content: flex-end; gap: 4px; flex-wrap: wrap;">
+            ${hasMedia ? `
+              <button class="btn-tactical-toggle" onclick="openMediaViewer('${escapeHtml(p.id)}')" title="Inspect and stream .mp4, .png, .jpg media" style="border-color: #38bdf8; color: #38bdf8; font-weight: 700;">
+                ${hasVideo ? '🎬 PLAY MP4' : '🖼️ VIEW MEDIA'}
+              </button>
+            ` : ''}
             <button class="btn-tactical-toggle" onclick="inspectRowJson('posts', '${escapeHtml(p.id)}')" title="Inspect Record JSON">
               🔍 JSON
             </button>
@@ -740,6 +806,185 @@ function renderPostsTable(thead, tbody, rows, totalCount) {
       </tr>
     `;
   }).join('');
+}
+
+// Open Multimedia Inspector Modal (Supports .png, .jpeg, .jpg, .webp, .gif and .mp4 videos)
+function openMediaViewer(postId, mediaUrl) {
+  playCyberSound('blip');
+  const post = (socState.dbData.posts || []).find(p => p.id === postId);
+  if (!post) {
+    alert("Post record not found in active session memory.");
+    return;
+  }
+
+  const mediaList = getPostMediaList(post);
+  const targetUrl = mediaUrl || (mediaList.length > 0 ? mediaList[0] : null);
+
+  if (!targetUrl) {
+    alert("This post does not contain any media attachments.");
+    return;
+  }
+
+  currentActivePostId = postId;
+  currentActiveMediaUrl = targetUrl;
+
+  const modal = document.getElementById('modalMediaViewer');
+  const stage = document.getElementById('mediaDisplayArea');
+  const badge = document.getElementById('mediaFormatBadge');
+  const title = document.getElementById('mediaModalTitle');
+
+  const authorProfile = (socState.dbData.profiles || []).find(u => u.id === post.author_id);
+  const isOfficial = post.author_id === 'mindbook_official';
+  const authorName = isOfficial ? 'MindBook Official 👑' : (authorProfile ? (authorProfile.display_name || authorProfile.username) : post.author_id);
+  const authorHandle = isOfficial ? '@mindbook' : (authorProfile ? `@${authorProfile.username}` : '');
+
+  // Update Author & Post Meta
+  const authorAvatarEl = document.getElementById('mediaAuthorAvatar');
+  const authorNameEl = document.getElementById('mediaAuthorName');
+  const authorHandleEl = document.getElementById('mediaAuthorHandle');
+  const postVisibilityEl = document.getElementById('mediaPostVisibility');
+  const postDateEl = document.getElementById('mediaPostDate');
+  const postContentEl = document.getElementById('mediaPostContent');
+  const metaPillsEl = document.getElementById('mediaPostMetaPills');
+  const directUrlInput = document.getElementById('mediaDirectUrlInput');
+  const externalLink = document.getElementById('mediaExternalLink');
+
+  if (authorAvatarEl) {
+    if (authorProfile && authorProfile.avatar_url) {
+      authorAvatarEl.innerHTML = `<img src="${escapeHtml(authorProfile.avatar_url)}" style="width:100%; height:100%; border-radius:50%; object-fit:cover;">`;
+    } else {
+      authorAvatarEl.textContent = (authorName || 'MB').substring(0, 2).toUpperCase();
+    }
+  }
+
+  if (authorNameEl) authorNameEl.textContent = authorName;
+  if (authorHandleEl) authorHandleEl.textContent = authorHandle;
+  if (postVisibilityEl) postVisibilityEl.textContent = (post.visibility || 'public').toUpperCase();
+  if (postDateEl) {
+    postDateEl.textContent = post.created_at ? new Date(post.created_at).toLocaleString() : '—';
+  }
+  if (postContentEl) {
+    postContentEl.textContent = post.content && post.content.trim().length > 0 ? post.content : '(Visual media reflection — No caption text)';
+  }
+
+  if (metaPillsEl) {
+    let pills = [];
+    if (post.mood) pills.push(`<span class="media-meta-tag mood">🌿 MOOD: ${escapeHtml(post.mood)}</span>`);
+    if (post.likes_count !== undefined) pills.push(`<span class="media-meta-tag like">❤️ ${post.likes_count} LIKES</span>`);
+    if (post.comments_count !== undefined) pills.push(`<span class="media-meta-tag comment">💬 ${post.comments_count} COMMENTS</span>`);
+    if (Array.isArray(post.tags)) {
+      post.tags.forEach(t => pills.push(`<span class="media-meta-tag tag">#${escapeHtml(t)}</span>`));
+    }
+    metaPillsEl.innerHTML = pills.join('');
+  }
+
+  if (directUrlInput) directUrlInput.value = targetUrl;
+  if (externalLink) externalLink.href = targetUrl;
+
+  const isVid = isVideoUrl(targetUrl);
+  const ext = (targetUrl.split('?')[0].split('.').pop() || (isVid ? 'mp4' : 'img')).toUpperCase();
+
+  if (isVid) {
+    if (badge) {
+      badge.textContent = `🎬 VIDEO STREAM // .${ext}`;
+      badge.className = 'role-tag-pill admin';
+    }
+    if (title) title.textContent = 'CYBER VIDEO INSPECTOR';
+    if (stage) {
+      stage.innerHTML = `
+        <div class="video-player-container">
+          <video src="${escapeHtml(targetUrl)}" controls autoplay loop playsinline class="media-video-player">
+            <p>Your browser does not support HTML5 MP4 video playback. <a href="${escapeHtml(targetUrl)}" target="_blank">Download video file</a></p>
+          </video>
+          <div class="media-codec-hud">
+            <span>● CONTAINER: ${ext}</span>
+            <span>● PROTOCOL: HTTPS / SUPABASE STORAGE</span>
+            <span>● PLAYBACK: NATIVE HARDWARE ACCELERATED</span>
+          </div>
+        </div>
+      `;
+    }
+  } else {
+    if (badge) {
+      badge.textContent = `🖼️ IMAGE // .${ext}`;
+      badge.className = 'role-tag-pill verified';
+    }
+    if (title) title.textContent = 'CYBER IMAGE INSPECTOR';
+    if (stage) {
+      stage.innerHTML = `
+        <div class="image-preview-container">
+          <img src="${escapeHtml(targetUrl)}" alt="Post image attachment" class="media-lightbox-img" onclick="window.open('${escapeHtml(targetUrl)}', '_blank')">
+          <div class="media-codec-hud">
+            <span>● FORMAT: ${ext}</span>
+            <span>● TAP / CLICK IMAGE TO OPEN ORIGINAL HIGH-RES</span>
+          </div>
+        </div>
+      `;
+    }
+  }
+
+  // If there are multiple media attachments, show multi-switcher
+  if (mediaList.length > 1 && stage) {
+    const multiSelector = document.createElement('div');
+    multiSelector.className = 'media-multi-selector';
+    multiSelector.innerHTML = `
+      <span style="font-size:0.7rem; color:var(--text-muted); font-family:var(--font-mono); margin-right:6px;">ATTACHMENTS:</span>
+      ${mediaList.map((mUrl, i) => {
+        const isMvid = isVideoUrl(mUrl);
+        const isSelected = mUrl === targetUrl;
+        const mExt = (mUrl.split('?')[0].split('.').pop() || (isMvid ? 'mp4' : 'img')).toUpperCase();
+        return `
+          <button type="button" class="media-multi-thumb-btn ${isSelected ? 'active' : ''}" onclick="openMediaViewer('${escapeHtml(postId)}', '${escapeHtml(mUrl)}')" title="Switch attachment">
+            ${isMvid ? `🎬 VIDEO ${i+1} (.${mExt})` : `🖼️ ATTACHMENT ${i+1} (.${mExt})`}
+          </button>
+        `;
+      }).join('')}
+    `;
+    stage.appendChild(multiSelector);
+  }
+
+  if (modal) modal.style.display = 'flex';
+  appendTelemetryLog('sys', `Operator inspected media on post [${postId}] (${ext})`);
+}
+
+function closeMediaModal() {
+  playCyberSound('blip');
+  const modal = document.getElementById('modalMediaViewer');
+  if (modal) {
+    // Stop any video playback
+    const vid = modal.querySelector('video');
+    if (vid) {
+      try { vid.pause(); vid.src = ''; } catch (_) {}
+    }
+    modal.style.display = 'none';
+  }
+}
+
+function copyMediaDirectUrl() {
+  if (!currentActiveMediaUrl) return;
+  copyTextToClipboard(currentActiveMediaUrl);
+  appendTelemetryLog('sys', `Media storage URL copied to operator clipboard`);
+}
+
+function downloadCurrentMedia() {
+  if (!currentActiveMediaUrl) return;
+  playCyberSound('confirm');
+  const a = document.createElement('a');
+  a.href = currentActiveMediaUrl;
+  a.download = currentActiveMediaUrl.split('/').pop().split('?')[0] || 'mindbook_attachment';
+  a.target = '_blank';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
+async function deleteCurrentMediaPost() {
+  if (!currentActivePostId) return;
+  const conf = confirm(`⚠️ PERMANENT DATABASE DELETION\n\nAre you sure you want to permanently delete post [${currentActivePostId}] and purge its media from the database?`);
+  if (!conf) return;
+
+  closeMediaModal();
+  await deleteDbRow('posts', currentActivePostId, `Post [${currentActivePostId}]`);
 }
 
 // 3. COMMENTS TABLE MONITOR

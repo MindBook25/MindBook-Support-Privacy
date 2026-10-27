@@ -900,6 +900,77 @@ WHERE id = '3409ebfa-2162-4981-bd6f-ee6c71071e63' OR username = 'midhun777';</pr
     </div>
   </div>
 
+  <!-- ================= MODAL: CYBER MULTIMEDIA & VIDEO INSPECTOR ================= -->
+  <div id="modalMediaViewer" class="cyber-modal-overlay" style="display: none;">
+    <div class="cyber-modal-card media-modal-card">
+      <div class="corner-bracket top-left"></div>
+      <div class="corner-bracket top-right"></div>
+      <div class="corner-bracket bottom-left"></div>
+      <div class="corner-bracket bottom-right"></div>
+
+      <div class="modal-head">
+        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+          <span style="font-size: 1.2rem;">🎬</span>
+          <h3 id="mediaModalTitle">POST MULTIMEDIA INSPECTOR</h3>
+          <span id="mediaFormatBadge" class="role-tag-pill verified">FORMAT: DETECTING</span>
+        </div>
+        <button class="modal-close-x" onclick="closeMediaModal()" title="Close Viewer">✕</button>
+      </div>
+
+      <div class="media-modal-body">
+        <!-- Media Container (Image or Video) -->
+        <div id="mediaDisplayArea" class="cyber-media-stage">
+          <!-- Injected dynamically: <img> or <video> -->
+        </div>
+
+        <!-- Post Metadata & Details -->
+        <div class="media-post-details">
+          <div class="media-author-bar">
+            <div id="mediaAuthorAvatar" class="user-avatar-tag" style="width: 38px; height: 38px; font-size: 0.85rem;">MB</div>
+            <div>
+              <div id="mediaAuthorName" style="font-weight: 700; color: #fff; font-size: 0.95rem;">Author Name</div>
+              <div id="mediaAuthorHandle" style="font-size: 0.75rem; color: var(--neon-cyan); font-family: var(--font-mono);">@username</div>
+            </div>
+            <div style="margin-left: auto; text-align: right;">
+              <span id="mediaPostVisibility" class="status-badge active" style="font-size: 0.7rem;">PUBLIC</span>
+              <div id="mediaPostDate" style="font-size: 0.7rem; color: var(--text-muted); font-family: var(--font-mono); margin-top: 2px;">Date</div>
+            </div>
+          </div>
+
+          <!-- Post Content -->
+          <div id="mediaPostContent" class="media-post-text">
+            Post content caption here...
+          </div>
+
+          <!-- Post Tags & Mood -->
+          <div id="mediaPostMetaPills" class="media-meta-pills">
+            <!-- Mood and tag pills -->
+          </div>
+
+          <!-- Direct Storage URL Box -->
+          <div class="media-url-box">
+            <span class="media-url-label">STORAGE URL:</span>
+            <input type="text" id="mediaDirectUrlInput" readonly onclick="this.select()">
+            <button type="button" class="btn-cyber-micro" onclick="copyMediaDirectUrl()" title="Copy URL">📋 COPY</button>
+            <a id="mediaExternalLink" href="#" target="_blank" class="btn-cyber-micro" title="Open media in new tab">↗ OPEN</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-foot-actions" style="margin-top: 18px; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+        <button type="button" class="btn-tactical-toggle danger" id="btnDeletePostFromMedia" onclick="deleteCurrentMediaPost()">
+          🗑️ DELETE POST FROM DATABASE
+        </button>
+        <div style="display: flex; gap: 8px;">
+          <button type="button" class="btn-cyber-secondary" onclick="closeMediaModal()">CLOSE</button>
+          <button type="button" class="btn-cyber-primary micro" id="btnDownloadMedia" onclick="downloadCurrentMedia()">
+            💾 DOWNLOAD FILE
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="/admin/admin.js"></script>
 </body>
 </html>
