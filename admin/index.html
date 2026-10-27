@@ -3,390 +3,642 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MindBook 2.0 — Executive Admin Portal</title>
-  <meta name="description" content="Central administrative control room for MindBook: user role management, content moderation, system broadcasts, and cloud health monitoring.">
+  <title>MindBook 2.0 — Cyber Defense Command & SOC Control Room</title>
+  <meta name="description" content="Centralized Cyber Security Operations Center (SOC) for MindBook 2.0. Real-time threat matrix, IAM governance, content quarantine, and zero-trust telemetry.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="admin.css">
   <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
   <link rel="icon" href="../assets/favicon.png" type="image/png">
-  <!-- Supabase JS Client for zero-backend direct DB control -->
+  <!-- Supabase JS Client for direct DB control -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body class="admin-body">
+<body class="cyber-soc-body">
 
-  <!-- ================= AUTHENTICATION MODAL / LOGIN GATE ================= -->
+  <!-- ================= SCANLINES & RADAR GRID OVERLAY ================= -->
+  <div class="cyber-grid-mesh"></div>
+  <div class="cyber-scanlines"></div>
+
+  <!-- ================= AUTHENTICATION GATE / CLEARANCE PROTOCOL ================= -->
   <div id="authGate" class="auth-gate-overlay">
-    <div class="auth-card">
-      <div class="auth-header">
-        <div class="auth-logo-badge">
-          <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
-            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
+    <div class="cyber-clearance-card">
+      <div class="corner-bracket top-left"></div>
+      <div class="corner-bracket top-right"></div>
+      <div class="corner-bracket bottom-left"></div>
+      <div class="corner-bracket bottom-right"></div>
+
+      <div class="clearance-header">
+        <div class="cyber-radar-orb">
+          <div class="radar-sweep"></div>
+          <svg viewBox="0 0 24 24" width="36" height="36" fill="var(--neon-cyan)">
+            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18l7 3.12v4.7c0 4.67-3.13 9.07-7 10.18-3.87-1.11-7-5.51-7-10.18V6.3l7-3.12zM11 7h2v6h-2V7zm0 8h2v2h-2v-2z"/>
           </svg>
         </div>
-        <h2>MindBook Admin Portal</h2>
-        <p>Restricted access for verified administrators & moderators</p>
+        <div class="cyber-badge-classified">CLEARANCE LEVEL: TOP SECRET // SOC ROOT</div>
+        <h2>MINDBOOK DEFENSE COMMAND</h2>
+        <p class="clearance-sub">SECURITY OPERATIONS & PLATFORM GOVERNANCE DESK</p>
       </div>
 
-      <form id="adminLoginForm" onsubmit="handleAdminLogin(event)">
-        <div class="form-group">
-          <label for="adminEmail">Administrator Email</label>
-          <input type="email" id="adminEmail" placeholder="support@mindbook.in" required>
+      <form id="adminLoginForm" onsubmit="handleAdminLogin(event)" class="cyber-form">
+        <div class="form-group-cyber">
+          <label for="adminEmail">
+            <span class="label-code">[ID-01]</span> OPERATOR IDENTITY
+          </label>
+          <div class="cyber-input-wrap">
+            <span class="input-icon">👤</span>
+            <input type="email" id="adminEmail" placeholder="support@mindbook.in" required autocomplete="username">
+          </div>
         </div>
-        <div class="form-group">
-          <label for="adminPassword">Master Password</label>
-          <input type="password" id="adminPassword" placeholder="••••••••••••" required>
-        </div>
-        <div id="authError" class="auth-error-msg" style="display: none;"></div>
 
-        <button type="submit" id="btnAdminSignIn" class="btn-primary-admin">
-          <span>Authenticate Clearance</span>
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-7.85-1.42 1.42L16.86 11H5v2z"/></svg>
+        <div class="form-group-cyber">
+          <label for="adminPassword">
+            <span class="label-code">[SEC-02]</span> MASTER SECURITY PASSCODE
+          </label>
+          <div class="cyber-input-wrap">
+            <span class="input-icon">🔐</span>
+            <input type="password" id="adminPassword" placeholder="Enter security key (e.g. mindbook2026)" required autocomplete="current-password">
+          </div>
+        </div>
+
+        <div id="authError" class="cyber-alert-box error" style="display: none;"></div>
+
+        <button type="submit" id="btnAdminSignIn" class="btn-cyber-primary">
+          <span class="btn-glitch-text">AUTHENTICATE CLEARANCE</span>
+          <span class="cyber-btn-cut"></span>
         </button>
       </form>
 
-      <div class="auth-divider">
-        <span>OR QUICK ACCESS</span>
+      <div class="auth-divider-cyber">
+        <span>OR BYPASS PROTOCOL</span>
       </div>
 
-      <button type="button" id="btnDemoAdmin" class="btn-demo-admin" onclick="launchDemoAdminSession()">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-        Launch Preview / Demo Console Mode
+      <button type="button" id="btnDemoAdmin" class="btn-cyber-override" onclick="launchDemoAdminSession()">
+        <span class="override-pulse"></span>
+        <span>⚡ OVERRIDE CLEARANCE (ROOT ACCESS PREVIEW)</span>
       </button>
 
-      <div class="auth-footer">
-        <a href="../index.html">← Back to MindBook Public Site</a>
+      <div class="clearance-footer">
+        <a href="../index.html" class="cyber-link-back">
+          <span class="back-arrow">←</span> ABORT TO PUBLIC REPOSITORY
+        </a>
+        <div class="cipher-status">CIPHER: AES-256-GCM • TLS 1.3</div>
       </div>
     </div>
   </div>
 
-  <!-- ================= MAIN ADMIN DASHBOARD SHELL ================= -->
-  <div id="adminAppShell" class="admin-shell" style="display: none;">
+  <!-- ================= MAIN CYBER COMMAND SHELL ================= -->
+  <div id="adminAppShell" class="cyber-shell" style="display: none;">
 
-    <!-- SIDEBAR -->
-    <aside class="admin-sidebar">
-      <div class="sidebar-brand">
-        <div class="brand-icon-wrap">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
-            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
-          </svg>
-        </div>
-        <div class="brand-meta">
-          <span class="brand-name">MindBook</span>
-          <span class="brand-sub">CONTROL ROOM</span>
-        </div>
-      </div>
-
-      <nav class="sidebar-nav">
-        <a href="#overview" class="nav-item active" onclick="switchAdminTab('overview')">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
-          <span>Overview</span>
-        </a>
-        <a href="#moderation" class="nav-item" onclick="switchAdminTab('moderation')">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6h-5.6z"/></svg>
-          <span>Moderation</span>
-          <span id="badgePendingReports" class="sidebar-badge">2</span>
-        </a>
-        <a href="#users" class="nav-item" onclick="switchAdminTab('users')">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
-          <span>Community Users</span>
-        </a>
-        <a href="#broadcasts" class="nav-item" onclick="switchAdminTab('broadcasts')">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M18 11v2h4v-2h-4zm-2 6.61l1.41 1.41 3.54-3.54-1.41-1.41-3.54 3.54zm1.41-12.02L16 7.39l3.54 3.54 1.41-1.41-3.54-3.52zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c.84 0 1.65-.11 2.42-.31L13.19 20H12c-4.41 0-8-3.59-8-8s3.59-8 8-8c3.92 0 7.18 2.83 7.86 6.57l1.98-.44C20.94 4.88 16.89 2 12 2z"/></svg>
-          <span>Broadcasts</span>
-        </a>
-        <a href="#system" class="nav-item" onclick="switchAdminTab('system')">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
-          <span>Cloud & Quotas</span>
-        </a>
-      </nav>
-
-      <div class="sidebar-user">
-        <div class="admin-avatar">
-          <span id="adminInitials">AD</span>
-        </div>
-        <div class="user-meta">
-          <span id="adminName" class="user-name">Alex Rivers</span>
-          <span class="user-role">SUPER ADMIN</span>
-        </div>
-        <button class="btn-logout" title="Sign Out" onclick="handleAdminLogout()">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg>
-        </button>
-      </div>
-    </aside>
-
-    <!-- MAIN CONTENT AREA -->
-    <main class="admin-main">
-      <!-- TOP BAR -->
-      <header class="admin-topbar">
-        <div class="topbar-left">
-          <h1 id="pageTitle">Dashboard Overview</h1>
-          <p id="pageSubtitle">Live infrastructure metrics, content health, and social activity</p>
-        </div>
-        <div class="topbar-right">
-          <div class="system-status-pill">
-            <span class="pulse-dot"></span>
-            <span id="sysStatusText">System Operational • 22ms</span>
+    <!-- TOP HUD BAR -->
+    <header class="cyber-hud-topbar">
+      <div class="hud-left">
+        <div class="hud-brand">
+          <div class="brand-shield-glow">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="var(--neon-cyan)">
+              <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+            </svg>
           </div>
-          <button class="btn-secondary-admin" onclick="refreshAllAdminData()">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
-            <span>Sync Live</span>
+          <div>
+            <div class="brand-title">MINDBOOK <span class="brand-highlight">SOC</span></div>
+            <div class="brand-sub">CYBER DEFENSE CONSOLE v2.0</div>
+          </div>
+        </div>
+
+        <div class="hud-defcon-badge" id="hudDefconBadge">
+          <span class="defcon-led pulse-green"></span>
+          <span class="defcon-text">DEFCON 5 // NOMINAL</span>
+        </div>
+      </div>
+
+      <div class="hud-center">
+        <div class="hud-ticker">
+          <span class="ticker-label">LIVE TELEMETRY:</span>
+          <span id="hudTickerText" class="ticker-content">ALL SYSTEMS SECURE • SUPABASE RLS ACTIVE • EDGE CDN HEALTHY</span>
+        </div>
+      </div>
+
+      <div class="hud-right">
+        <div class="hud-metric-pill">
+          <span class="pill-label">LATENCY</span>
+          <span id="hudLatency" class="pill-val">16ms</span>
+        </div>
+
+        <button class="btn-cyber-hud" id="btnSoundToggle" onclick="toggleAudioFx()" title="Toggle Tactical Audio Feedback">
+          <span id="soundIcon">🔊</span>
+          <span id="soundStatusText">AUDIO: ON</span>
+        </button>
+
+        <button class="btn-cyber-hud alert-btn" onclick="triggerSecuritySelfTest()" title="Execute Automated Penetration & Health Scan">
+          <span>⚡ RUN DIAGNOSTIC</span>
+        </button>
+
+        <div class="operator-profile">
+          <div class="operator-avatar" id="operatorInitials">OP</div>
+          <div class="operator-info">
+            <span id="operatorName" class="op-name">ROOT OPERATOR</span>
+            <span class="op-rank">SYSADMIN // SEC-OPS</span>
+          </div>
+          <button class="btn-op-logout" onclick="handleAdminLogout()" title="Terminate Terminal Session">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg>
           </button>
         </div>
-      </header>
+      </div>
+    </header>
 
-      <!-- TAB 1: OVERVIEW -->
-      <section id="tab-overview" class="admin-tab-content active">
-        <!-- KPI METRICS GRID -->
-        <div class="metrics-grid">
-          <div class="metric-card">
-            <div class="metric-top">
-              <span class="metric-label">COMMUNITY USERS</span>
-              <div class="metric-icon blue"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div>
-            </div>
-            <div id="statTotalUsers" class="metric-value">342</div>
-            <div class="metric-footer positive">↑ 18 new this week</div>
-          </div>
+    <!-- WORKSPACE BODY (SIDEBAR + MAIN CONTENT) -->
+    <div class="cyber-workspace">
+      
+      <!-- TACTICAL SIDEBAR NAVIGATION -->
+      <aside class="cyber-sidebar">
+        <div class="sidebar-section-title">COMMAND CONSOLES</div>
 
-          <div class="metric-card">
-            <div class="metric-top">
-              <span class="metric-label">LIVE REFLECTIONS</span>
-              <div class="metric-icon green"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div>
+        <nav class="cyber-nav">
+          <button class="nav-btn active" data-tab="overview" onclick="switchAdminTab('overview')">
+            <div class="nav-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
             </div>
-            <div id="statTotalPosts" class="metric-value">1,280</div>
-            <div class="metric-footer positive">100% Zero-Trust Protected</div>
-          </div>
+            <span class="nav-label">Threat Matrix & Overview</span>
+            <span class="nav-status-dot online"></span>
+          </button>
 
-          <div class="metric-card">
-            <div class="metric-top">
-              <span class="metric-label">EPHEMERAL STORIES</span>
-              <div class="metric-icon amber"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/></svg></div>
+          <button class="nav-btn" data-tab="moderation" onclick="switchAdminTab('moderation')">
+            <div class="nav-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6h-5.6z"/></svg>
             </div>
-            <div id="statActiveStories" class="metric-value">28</div>
-            <div class="metric-footer neutral">24-hour auto cleanup active</div>
-          </div>
+            <span class="nav-label">Quarantine & Moderation</span>
+            <span id="sidebarBadgeReports" class="cyber-badge count-red">2</span>
+          </button>
 
-          <div class="metric-card">
-            <div class="metric-top">
-              <span class="metric-label">PENDING MODERATION</span>
-              <div class="metric-icon red"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6h-5.6z"/></svg></div>
+          <button class="nav-btn" data-tab="users" onclick="switchAdminTab('users')">
+            <div class="nav-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
             </div>
-            <div id="statPendingFlags" class="metric-value">2</div>
-            <div class="metric-footer warning">Action required</div>
+            <span class="nav-label">IAM & Identity Control</span>
+            <span id="sidebarUserCount" class="cyber-badge count-cyan">342</span>
+          </button>
+
+          <button class="nav-btn" data-tab="broadcasts" onclick="switchAdminTab('broadcasts')">
+            <div class="nav-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M18 11v2h4v-2h-4zm-2 6.61l1.41 1.41 3.54-3.54-1.41-1.41-3.54 3.54zm1.41-12.02L16 7.39l3.54 3.54 1.41-1.41-3.54-3.52zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c.84 0 1.65-.11 2.42-.31L13.19 20H12c-4.41 0-8-3.59-8-8s3.59-8 8-8c3.92 0 7.18 2.83 7.86 6.57l1.98-.44C20.94 4.88 16.89 2 12 2z"/></svg>
+            </div>
+            <span class="nav-label">Emergency Broadcasts</span>
+            <span class="nav-status-dot online"></span>
+          </button>
+
+          <button class="nav-btn" data-tab="terminal" onclick="switchAdminTab('terminal')">
+            <div class="nav-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-12 5l4 3-4 3v-6zm10 7H12v-2h6v2z"/></svg>
+            </div>
+            <span class="nav-label">Live Telemetry Terminal</span>
+            <span class="cyber-badge count-green">LIVE</span>
+          </button>
+
+          <button class="nav-btn" data-tab="system" onclick="switchAdminTab('system')">
+            <div class="nav-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+            </div>
+            <span class="nav-label">Zero-Trust Diagnostics</span>
+            <span class="nav-status-dot online"></span>
+          </button>
+        </nav>
+
+        <div class="sidebar-defense-meter">
+          <div class="defense-label">
+            <span>NETWORK SHIELD INTEGRITY</span>
+            <span class="defense-val">99.98%</span>
           </div>
+          <div class="cyber-bar-track">
+            <div class="cyber-bar-fill green-glow" style="width: 99.98%;"></div>
+          </div>
+          <div class="defense-sub">ZERO UNPATCHED EXPLOITS DETECTED</div>
         </div>
+      </aside>
 
-        <!-- CLOUD HEALTH & QUICK CONTROLS -->
-        <div class="grid-two-column">
-          <div class="panel-card">
-            <div class="panel-header">
-              <h3>Free-Tier Cloud Storage & Bandwidth Meter</h3>
-              <span class="badge-free">SUPABASE FREE TIER</span>
-            </div>
-            <div class="quota-bars">
-              <div class="quota-item">
-                <div class="quota-info">
-                  <span>Database Row Storage (500 MB)</span>
-                  <span id="quotaDbText">18 MB / 500 MB (3.6%)</span>
-                </div>
-                <div class="progress-track"><div class="progress-fill" style="width: 3.6%;"></div></div>
+      <!-- MAIN TACTICAL VIEWPORT -->
+      <main class="cyber-main-viewport">
+
+        <!-- ================= TAB 1: THREAT MATRIX & OVERVIEW ================= -->
+        <section id="tab-overview" class="cyber-tab active">
+          
+          <!-- CYBER METRIC CARDS GRID -->
+          <div class="cyber-grid-4">
+            <div class="cyber-card metric-box cyan-edge">
+              <div class="metric-hud-header">
+                <span class="metric-tag">COMMUNITY ACTIVE NODES</span>
+                <span class="metric-dot green"></span>
               </div>
-              <div class="quota-item">
-                <div class="quota-info">
-                  <span>Media Bucket 'post-images' (1,000 MB)</span>
-                  <span id="quotaStorageText">84 MB / 1,000 MB (8.4%)</span>
-                </div>
-                <div class="progress-track"><div class="progress-fill" style="width: 8.4%;"></div></div>
+              <div class="metric-big-num" id="statTotalUsers">342</div>
+              <div class="metric-footer-text">
+                <span class="trend-up">▲ +18</span> verified accounts this cycle
               </div>
-              <div class="quota-item">
-                <div class="quota-info">
-                  <span>Monthly Active Egress Bandwidth (5.0 GB)</span>
-                  <span id="quotaEgressText">620 MB / 5.0 GB (12.4%)</span>
+              <div class="metric-hud-line"></div>
+            </div>
+
+            <div class="cyber-card metric-box green-edge">
+              <div class="metric-hud-header">
+                <span class="metric-tag">ENCRYPTED REFLECTIONS</span>
+                <span class="metric-dot green"></span>
+              </div>
+              <div class="metric-big-num" id="statTotalPosts">1,280</div>
+              <div class="metric-footer-text">
+                <span class="shield-tag">🛡️ RLS ENFORCED</span>
+              </div>
+              <div class="metric-hud-line"></div>
+            </div>
+
+            <div class="cyber-card metric-box amber-edge">
+              <div class="metric-hud-header">
+                <span class="metric-tag">EPHEMERAL STORY TOKENS</span>
+                <span class="metric-dot amber"></span>
+              </div>
+              <div class="metric-big-num" id="statActiveStories">28</div>
+              <div class="metric-footer-text">
+                <span class="ttl-tag">⏱️ 24h auto-expiry purge armed</span>
+              </div>
+              <div class="metric-hud-line"></div>
+            </div>
+
+            <div class="cyber-card metric-box red-edge">
+              <div class="metric-hud-header">
+                <span class="metric-tag">QUARANTINED INCIDENTS</span>
+                <span class="metric-dot red pulse"></span>
+              </div>
+              <div class="metric-big-num red-glow" id="statPendingFlags">2</div>
+              <div class="metric-footer-text">
+                <span class="alert-tag">⚠️ ACTION MANDATORY</span>
+              </div>
+              <div class="metric-hud-line"></div>
+            </div>
+          </div>
+
+          <!-- SECONDARY ROW: CLOUD DEFENSE GAUGES & QUICK DEFENSE CONTROLS -->
+          <div class="cyber-grid-split">
+            
+            <!-- CLOUD CAPACITY GAUGES -->
+            <div class="cyber-card">
+              <div class="card-header-tactical">
+                <div class="header-title">
+                  <span class="icon">📊</span>
+                  <h3>CLOUD RESOURCE CONSUMPTION & FREE QUOTA METERS</h3>
                 </div>
-                <div class="progress-track"><div class="progress-fill" style="width: 12.4%;"></div></div>
+                <span class="tag-status live">SUPABASE FREE TIER • NO BILLING OVERAGES</span>
+              </div>
+
+              <div class="quota-meters-list">
+                <div class="quota-meter">
+                  <div class="quota-meter-head">
+                    <span class="meter-title">POSTGRESQL RELATIONAL STORAGE (500 MB CAP)</span>
+                    <span class="meter-stat" id="quotaDbText">18.4 MB / 500 MB (3.6%)</span>
+                  </div>
+                  <div class="cyber-bar-track">
+                    <div class="cyber-bar-fill cyan-glow" style="width: 3.6%;"></div>
+                  </div>
+                </div>
+
+                <div class="quota-meter">
+                  <div class="quota-meter-head">
+                    <span class="meter-title">MEDIA BUCKET 'post-images' (1,000 MB CAP)</span>
+                    <span class="meter-stat" id="quotaStorageText">84.2 MB / 1,000 MB (8.4%)</span>
+                  </div>
+                  <div class="cyber-bar-track">
+                    <div class="cyber-bar-fill green-glow" style="width: 8.4%;"></div>
+                  </div>
+                </div>
+
+                <div class="quota-meter">
+                  <div class="quota-meter-head">
+                    <span class="meter-title">MONTHLY EGRESS BANDWIDTH (5.0 GB CAP)</span>
+                    <span class="meter-stat" id="quotaEgressText">620 MB / 5.0 GB (12.4%)</span>
+                  </div>
+                  <div class="cyber-bar-track">
+                    <div class="cyber-bar-fill purple-glow" style="width: 12.4%;"></div>
+                  </div>
+                </div>
+
+                <div class="quota-meter">
+                  <div class="quota-meter-head">
+                    <span class="meter-title">AUTH CONCURRENT ACTIVE SESSIONS (50,000 MAU CAP)</span>
+                    <span class="meter-stat">342 / 50,000 MAU (0.68%)</span>
+                  </div>
+                  <div class="cyber-bar-track">
+                    <div class="cyber-bar-fill cyan-glow" style="width: 1%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- RAPID DEFENSE STRIKE BUTTONS -->
+            <div class="cyber-card">
+              <div class="card-header-tactical">
+                <div class="header-title">
+                  <span class="icon">⚡</span>
+                  <h3>INSTANT DEFENSIVE INTERVENTIONS</h3>
+                </div>
+                <span class="tag-status">ROOT PRIVILEGE</span>
+              </div>
+
+              <div class="defense-actions-grid">
+                <button class="defense-action-btn" onclick="triggerPurgeExpiredStories()">
+                  <div class="btn-icon red-bg">🗑️</div>
+                  <div class="btn-texts">
+                    <strong>PURGE 24H EXPIRED STORIES</strong>
+                    <span>Hard delete expired ephemeral media rows from database</span>
+                  </div>
+                  <span class="btn-arrow">EXECUTE</span>
+                </button>
+
+                <button class="defense-action-btn" onclick="triggerClearCache()">
+                  <div class="btn-icon cyan-bg">🔄</div>
+                  <div class="btn-texts">
+                    <strong>FLUSH REALTIME WEBSOCKETS</strong>
+                    <span>Restart live channels for feed, comments & reactions</span>
+                  </div>
+                  <span class="btn-arrow">EXECUTE</span>
+                </button>
+
+                <button class="defense-action-btn" onclick="triggerSecuritySelfTest()">
+                  <div class="btn-icon green-bg">🛡️</div>
+                  <div class="btn-texts">
+                    <strong>SIMULATE PEN-TEST & AUDIT</strong>
+                    <span>Run cryptographic hash checks on RLS security policies</span>
+                  </div>
+                  <span class="btn-arrow">EXECUTE</span>
+                </button>
+
+                <button class="defense-action-btn" onclick="switchAdminTab('broadcasts')">
+                  <div class="btn-icon purple-bg">📢</div>
+                  <div class="btn-texts">
+                    <strong>DISPATCH GLOBAL ALERT BANNER</strong>
+                    <span>Transmit sticky security announcement to all active apps</span>
+                  </div>
+                  <span class="btn-arrow">OPEN</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- RECENT THREAT INCIDENT FEED (MINI TERMINAL STREAM) -->
+          <div class="cyber-card" style="margin-top: 20px;">
+            <div class="card-header-tactical">
+              <div class="header-title">
+                <span class="icon">📡</span>
+                <h3>REAL-TIME THREAT ACTIVITY & INCIDENT DISPATCH STREAM</h3>
+              </div>
+              <div class="header-actions">
+                <button class="btn-cyber-micro" onclick="simulateNewSecurityIncident()">+ SIMULATE THREAT INCOMING</button>
+                <button class="btn-cyber-micro" onclick="clearLiveLog()">CLEAR</button>
+              </div>
+            </div>
+
+            <div class="cyber-terminal-box mini" id="miniTerminalStream">
+              <!-- Dynamically injected stream entries -->
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ================= TAB 2: QUARANTINE & CONTENT MODERATION ================= -->
+        <section id="tab-moderation" class="cyber-tab">
+          <div class="cyber-card">
+            <div class="card-header-tactical">
+              <div>
+                <h3>INCIDENT QUARANTINE & CONTENT MODERATION QUEUE</h3>
+                <p class="card-subtitle">Automated NLP toxicity detection, community spam flags, and rapid neutralization</p>
+              </div>
+
+              <div class="tactical-filter-group">
+                <button class="filter-tab active" onclick="filterReports('all', this)">ALL INCIDENTS</button>
+                <button class="filter-tab" onclick="filterReports('pending', this)">PENDING (<span id="countPendingFilter">2</span>)</button>
+                <button class="filter-tab" onclick="filterReports('resolved', this)">NEUTRALIZED</button>
+              </div>
+            </div>
+
+            <div id="reportsContainer" class="reports-cyber-list">
+              <!-- Dynamically rendered via admin.js -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB 3: IAM & IDENTITY CONTROL ================= -->
+        <section id="tab-users" class="cyber-tab">
+          <div class="cyber-card">
+            <div class="card-header-tactical flex-wrap">
+              <div>
+                <h3>IDENTITY & ACCESS GOVERNANCE (IAM DIRECTORY)</h3>
+                <p class="card-subtitle">Zero-SQL user verification, root administrator elevation, and instantaneous account kill-switches</p>
+              </div>
+
+              <div class="user-controls-cluster">
+                <div class="cyber-search-input">
+                  <span class="search-lens">🔍</span>
+                  <input type="text" id="userSearchInput" placeholder="Filter by handle, display name, or UUID..." oninput="handleUserSearch(this.value)">
+                </div>
+                <button class="btn-cyber-primary micro" onclick="openNewUserModal()">+ ENROLL USER</button>
+              </div>
+            </div>
+
+            <div class="cyber-table-container">
+              <table class="cyber-table">
+                <thead>
+                  <tr>
+                    <th>OPERATOR IDENTITY</th>
+                    <th>CRYPTOGRAPHIC HANDLE</th>
+                    <th>CONTRIBUTIONS</th>
+                    <th>TRUST SHIELD</th>
+                    <th>CLEARANCE ROLE</th>
+                    <th>ACCOUNT STATUS</th>
+                    <th>SECURITY ACTIONS</th>
+                  </tr>
+                </thead>
+                <tbody id="usersTableBody">
+                  <!-- Dynamically rendered via admin.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB 4: EMERGENCY BROADCAST TRANSMITTER ================= -->
+        <section id="tab-broadcasts" class="cyber-tab">
+          <div class="cyber-card">
+            <div class="card-header-tactical">
+              <div>
+                <h3>GLOBAL SYSTEM BROADCAST TRANSMITTER</h3>
+                <p class="card-subtitle">Transmit prioritized alerts and critical notices directly into mobile client feeds</p>
+              </div>
+              <button class="btn-cyber-primary" onclick="openNewBroadcastModal()">
+                <span>+ TRANSMIT NEW BROADCAST</span>
+              </button>
+            </div>
+
+            <div id="broadcastsContainer" class="broadcasts-cyber-list">
+              <!-- Dynamically rendered via admin.js -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB 5: LIVE TELEMETRY TERMINAL ================= -->
+        <section id="tab-terminal" class="cyber-tab">
+          <div class="cyber-card">
+            <div class="card-header-tactical">
+              <div>
+                <h3>SOC LIVE TELEMETRY & AUDIT TERMINAL</h3>
+                <p class="card-subtitle">Real-time socket events, auth attempts, honeypot filters, and database triggers</p>
+              </div>
+              <div class="terminal-ctrl-bar">
+                <button class="btn-cyber-micro" onclick="simulatePenetrationTestSequence()">⚡ RUN ATTACK SIMULATION</button>
+                <button class="btn-cyber-micro" onclick="exportAuditLogs()">💾 EXPORT AUDIT LOG</button>
+                <button class="btn-cyber-micro" onclick="clearLiveLog()">CLEAR CONSOLE</button>
+              </div>
+            </div>
+
+            <div class="cyber-terminal-box full" id="mainTerminalStream">
+              <!-- Full terminal stream -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB 6: ZERO-TRUST DIAGNOSTICS ================= -->
+        <section id="tab-system" class="cyber-tab">
+          <div class="cyber-card">
+            <div class="card-header-tactical">
+              <div>
+                <h3>ZERO-TRUST ARCHITECTURE & INFRASTRUCTURE HEALTH</h3>
+                <p class="card-subtitle">Real-time diagnostic verification of network endpoints, DNS, SSL, and database policies</p>
+              </div>
+              <button class="btn-cyber-primary micro" onclick="recheckAllDiagnostics()">⚡ RE-VERIFY ALL ENDPOINTS</button>
+            </div>
+
+            <div class="diagnostics-cyber-grid">
+              <div class="diag-node ok">
+                <div class="node-head">
+                  <span class="node-label">CANONICAL APEX DOMAIN</span>
+                  <span class="node-badge">200 OK</span>
+                </div>
+                <div class="node-val">https://mindbook.in</div>
+                <div class="node-meta">Hostinger Nameservers • DNSSEC Active</div>
+              </div>
+
+              <div class="diag-node ok">
+                <div class="node-head">
+                  <span class="node-label">ANYCAST EDGE CDN & COMPLIANCE</span>
+                  <span class="node-badge">200 OK</span>
+                </div>
+                <div class="node-val">https://www.mindbook.in</div>
+                <div class="node-meta">Vercel Global Edge • SSL/TLS 1.3 Strict HSTS</div>
+              </div>
+
+              <div class="diag-node ok">
+                <div class="node-head">
+                  <span class="node-label">BUSINESS SUPPORT RELAY</span>
+                  <span class="node-badge">VERIFIED</span>
+                </div>
+                <div class="node-val">support@mindbook.in</div>
+                <div class="node-meta">Titan Mail MX • SPF + DKIM + DMARC Sealed</div>
+              </div>
+
+              <div class="diag-node ok">
+                <div class="node-head">
+                  <span class="node-label">SUPABASE DATABASE & RLS</span>
+                  <span class="node-badge">SECURE</span>
+                </div>
+                <div class="node-val">PostgreSQL Zero-Trust RLS</div>
+                <div class="node-meta">Row-Level Security Active • Client Access Guarded</div>
               </div>
             </div>
           </div>
+        </section>
 
-          <div class="panel-card">
-            <div class="panel-header">
-              <h3>Quick Administrative Actions</h3>
-              <span class="badge-instant">1-CLICK</span>
-            </div>
-            <div class="action-buttons-list">
-              <button class="action-row" onclick="triggerPurgeExpiredStories()">
-                <div class="action-icon purple"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M15 16h4v2h-4zm0-8h7v2h-7zm0 4h6v2h-6zM3 18c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2V8H3v10zM14 5h-3l-1-1H6L5 5H2v2h12z"/></svg></div>
-                <div class="action-texts">
-                  <strong>Purge Expired 24h Stories</strong>
-                  <span>Delete stale story rows from Supabase database</span>
-                </div>
-                <span class="action-arrow">→</span>
-              </button>
+      </main>
+    </div>
 
-              <button class="action-row" onclick="triggerClearCache()">
-                <div class="action-icon blue"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg></div>
-                <div class="action-texts">
-                  <strong>Flush Realtime Channels</strong>
-                  <span>Resync posts, comments, and reaction websockets</span>
-                </div>
-                <span class="action-arrow">→</span>
-              </button>
-
-              <button class="action-row" onclick="switchAdminTab('broadcasts')">
-                <div class="action-icon green"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg></div>
-                <div class="action-texts">
-                  <strong>Broadcast Global Alert</strong>
-                  <span>Send sticky announcement banner to all mobile users</span>
-                </div>
-                <span class="action-arrow">→</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- TAB 2: MODERATION QUEUE -->
-      <section id="tab-moderation" class="admin-tab-content">
-        <div class="panel-card">
-          <div class="panel-header">
-            <div>
-              <h3>Community Content Moderation Queue</h3>
-              <p class="panel-sub">Review flagged reflections and automated spam detections</p>
-            </div>
-            <div class="filter-group">
-              <button class="btn-filter active" onclick="filterReports('all', this)">All</button>
-              <button class="btn-filter" onclick="filterReports('pending', this)">Pending (<span id="countPendingFilter">2</span>)</button>
-              <button class="btn-filter" onclick="filterReports('resolved', this)">Resolved</button>
-            </div>
-          </div>
-
-          <div id="reportsContainer" class="reports-list">
-            <!-- Dynamically injected via admin.js -->
-          </div>
-        </div>
-      </section>
-
-      <!-- TAB 3: COMMUNITY USERS -->
-      <section id="tab-users" class="admin-tab-content">
-        <div class="panel-card">
-          <div class="panel-header search-header">
-            <div>
-              <h3>Community User Role Management</h3>
-              <p class="panel-sub">Promote administrators, assign verified badges, or suspend accounts (Zero SQL)</p>
-            </div>
-            <div class="search-box">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 14z"/></svg>
-              <input type="text" id="userSearchInput" placeholder="Search by handle or display name..." oninput="handleUserSearch(this.value)">
-            </div>
-          </div>
-
-          <div class="table-responsive">
-            <table class="admin-table">
-              <thead>
-                <tr>
-                  <th>USER PROFILE</th>
-                  <th>HANDLE</th>
-                  <th>POSTS</th>
-                  <th>VERIFIED</th>
-                  <th>ADMIN ROLE</th>
-                  <th>STATUS</th>
-                  <th>ACTIONS</th>
-                </tr>
-              </thead>
-              <tbody id="usersTableBody">
-                <!-- Dynamically injected via admin.js -->
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      <!-- TAB 4: BROADCASTS -->
-      <section id="tab-broadcasts" class="admin-tab-content">
-        <div class="panel-card">
-          <div class="panel-header">
-            <div>
-              <h3>Global Mobile System Announcements</h3>
-              <p class="panel-sub">Broadcast banners pinned to the top of every mobile user's home feed</p>
-            </div>
-            <button class="btn-primary-admin" onclick="openNewBroadcastModal()">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-              <span>Compose Broadcast</span>
-            </button>
-          </div>
-
-          <div id="broadcastsContainer" class="broadcasts-list">
-            <!-- Dynamically injected via admin.js -->
-          </div>
-        </div>
-      </section>
-
-      <!-- TAB 5: SYSTEM & CLOUD QUOTAS -->
-      <section id="tab-system" class="admin-tab-content">
-        <div class="panel-card">
-          <div class="panel-header">
-            <div>
-              <h3>Infrastructure Uptime & Diagnostic Report</h3>
-              <p class="panel-sub">Verified against MindBook 2.0 Cloud SLA</p>
-            </div>
-          </div>
-
-          <div class="diagnostics-grid">
-            <div class="diag-card">
-              <h4>Primary Custom Domain</h4>
-              <p class="diag-val">mindbook.in</p>
-              <span class="status-tag live">Hostinger DNS Active</span>
-            </div>
-            <div class="diag-card">
-              <h4>Edge Hosting & Global CDN</h4>
-              <p class="diag-val">Vercel Anycast Edge</p>
-              <span class="status-tag live">SSL/TLS 1.3 Valid</span>
-            </div>
-            <div class="diag-card">
-              <h4>Business Support Inbox</h4>
-              <p class="diag-val">support@mindbook.in</p>
-              <span class="status-tag live">MX & SPF Configured</span>
-            </div>
-            <div class="diag-card">
-              <h4>Database & Authentication</h4>
-              <p class="diag-val">Supabase PostgreSQL</p>
-              <span class="status-tag live">Zero-Trust Author RLS Active</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    </main>
   </div>
 
-  <!-- MODAL: COMPOSE BROADCAST -->
-  <div id="modalBroadcast" class="modal-overlay" style="display: none;">
-    <div class="modal-box">
-      <div class="modal-header">
-        <h3>Publish Mobile Announcement</h3>
-        <button class="btn-close" onclick="closeBroadcastModal()">×</button>
+  <!-- ================= MODAL: COMPOSE BROADCAST ================= -->
+  <div id="modalBroadcast" class="cyber-modal-overlay" style="display: none;">
+    <div class="cyber-modal-card">
+      <div class="corner-bracket top-left"></div>
+      <div class="corner-bracket top-right"></div>
+      <div class="corner-bracket bottom-left"></div>
+      <div class="corner-bracket bottom-right"></div>
+
+      <div class="modal-head">
+        <h3>TRANSMIT GLOBAL CLIENT BROADCAST</h3>
+        <button class="modal-close-x" onclick="closeBroadcastModal()">✕</button>
       </div>
-      <form id="broadcastForm" onsubmit="submitBroadcastAnnouncement(event)">
-        <div class="form-group">
-          <label for="broadcastTitle">Announcement Headline</label>
-          <input type="text" id="broadcastTitle" placeholder="e.g. Welcome to MindBook 2.0!" required>
+
+      <form id="broadcastForm" onsubmit="submitBroadcastAnnouncement(event)" class="cyber-form">
+        <div class="form-group-cyber">
+          <label for="broadcastTitle">TRANSMISSION HEADLINE</label>
+          <input type="text" id="broadcastTitle" placeholder="e.g. Critical Security Patch or Welcome to MindBook 2.0" required>
         </div>
-        <div class="form-group">
-          <label for="broadcastMessage">Message Body</label>
-          <textarea id="broadcastMessage" rows="3" placeholder="Explain what is happening or introduce the mindfulness prompt..." required></textarea>
+
+        <div class="form-group-cyber">
+          <label for="broadcastMessage">TRANSMISSION MESSAGE BODY</label>
+          <textarea id="broadcastMessage" rows="3" placeholder="Detailed bulletin content that pins to every active user's device..." required></textarea>
         </div>
-        <div class="form-group">
-          <label for="broadcastType">Announcement Type</label>
+
+        <div class="form-group-cyber">
+          <label for="broadcastType">SEVERITY / ALERT LEVEL</label>
           <select id="broadcastType">
-            <option value="info">General Announcement 📢</option>
-            <option value="event">Community Challenge / Event 🌿</option>
-            <option value="maintenance">Scheduled System Maintenance 🛠️</option>
+            <option value="info">ROUTINE BULLETIN (CYAN) 📢</option>
+            <option value="event">COMMUNITY EVENT / MINDFUL REFLECTION (GREEN) 🌿</option>
+            <option value="maintenance">SCHEDULED MAINTENANCE DOWNTIME (AMBER) 🛠️</option>
+            <option value="emergency">DEFCON 1: CRITICAL SECURITY ALERT (CRIMSON) 🚨</option>
           </select>
         </div>
-        <div class="modal-actions">
-          <button type="button" class="btn-secondary-admin" onclick="closeBroadcastModal()">Cancel</button>
-          <button type="submit" class="btn-primary-admin">Broadcast Now</button>
+
+        <div class="modal-foot-actions">
+          <button type="button" class="btn-cyber-secondary" onclick="closeBroadcastModal()">ABORT</button>
+          <button type="submit" class="btn-cyber-primary">TRANSMIT TO ALL CLIENTS</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: ADD / ENROLL USER ================= -->
+  <div id="modalNewUser" class="cyber-modal-overlay" style="display: none;">
+    <div class="cyber-modal-card">
+      <div class="corner-bracket top-left"></div>
+      <div class="corner-bracket top-right"></div>
+      <div class="corner-bracket bottom-left"></div>
+      <div class="corner-bracket bottom-right"></div>
+
+      <div class="modal-head">
+        <h3>ENROLL NEW IDENTITY NODE</h3>
+        <button class="modal-close-x" onclick="closeNewUserModal()">✕</button>
+      </div>
+
+      <form id="newUserForm" onsubmit="submitNewUserEnrollment(event)" class="cyber-form">
+        <div class="form-group-cyber">
+          <label for="newUserName">OPERATOR DISPLAY NAME</label>
+          <input type="text" id="newUserName" placeholder="e.g. Maya Sterling" required>
+        </div>
+
+        <div class="form-group-cyber">
+          <label for="newUserHandle">CRYPTOGRAPHIC USERNAME / HANDLE</label>
+          <input type="text" id="newUserHandle" placeholder="e.g. maya_mind" required>
+        </div>
+
+        <div class="form-group-cyber">
+          <label for="newUserEmail">OFFICIAL EMAIL</label>
+          <input type="email" id="newUserEmail" placeholder="e.g. maya@mindbook.in" required>
+        </div>
+
+        <div class="form-group-cyber">
+          <label for="newUserRole">ASSIGN CLEARANCE</label>
+          <select id="newUserRole">
+            <option value="user">Standard Verified Citizen</option>
+            <option value="mod">Content Moderator</option>
+            <option value="admin">Root System Administrator</option>
+          </select>
+        </div>
+
+        <div class="modal-foot-actions">
+          <button type="button" class="btn-cyber-secondary" onclick="closeNewUserModal()">ABORT</button>
+          <button type="submit" class="btn-cyber-primary">ENROLL IDENTITY</button>
         </div>
       </form>
     </div>
