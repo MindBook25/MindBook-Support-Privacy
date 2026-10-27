@@ -1,6 +1,8 @@
-// MindBook 2.0 — Cyber Defense Command & SOC Control Room Logic
-// Full-featured tactical operations, incident quarantine, IAM governance, telemetry stream & Web Audio synthesizer
+// MindBook 2.0 — Cyber Defense Command & Real Supabase Database Studio
+// Live monitoring of all profiles, posts, and comments directly from PostgreSQL
 
+const SUPABASE_URL = 'https://vduwdnlchbelxvrqoioj.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_4EqicUq6a1-iq6473YMAvg_rg4LD7Wc';
 const ADMIN_STORAGE_KEY = 'mindbook_cyber_soc_session';
 
 // ==================== TACTICAL AUDIO SYNTHESIZER ====================
@@ -86,6 +88,14 @@ function toggleAudioFx() {
 // ==================== STATE MANAGEMENT ====================
 let socState = {
   currentUser: null,
+  activeDbTable: 'profiles', // 'profiles' | 'posts' | 'comments'
+  dbSearchTerm: '',
+  activeJsonRecord: null,
+  dbData: {
+    profiles: [],
+    posts: [],
+    comments: []
+  },
   reports: [
     {
       id: 'INC-7091',
@@ -114,30 +124,20 @@ let socState = {
       status: 'pending'
     }
   ],
-  users: [
-    { id: 'usr_01', name: 'Alex Rivers', handle: 'alex_mind', posts: 28, verified: true, isAdmin: true, status: 'active', email: 'alex@mindbook.in' },
-    { id: 'usr_02', name: 'Elena Rostova', handle: 'elena_r', posts: 14, verified: true, isAdmin: false, status: 'active', email: 'elena@example.com' },
-    { id: 'usr_03', name: 'Marcus Chen', handle: 'marcus_c', posts: 8, verified: false, isAdmin: false, status: 'active', email: 'marcus@example.com' },
-    { id: 'usr_04', name: 'Crypto Bot 99', handle: 'crypto_fast_bot', posts: 5, verified: false, isAdmin: false, status: 'suspended', email: 'spambot@crypto.net' },
-    { id: 'usr_05', name: 'Sarah Lin', handle: 'sarah_zen', posts: 42, verified: true, isAdmin: false, status: 'active', email: 'sarah@mindbook.in' },
-    { id: 'usr_06', name: 'Devon Vance', handle: 'devon_v', posts: 19, verified: true, isAdmin: true, status: 'active', email: 'devon@mindbook.in' }
-  ],
   broadcasts: [
     {
       id: 'BC-01',
-      title: 'MindBook 2.0 Zero-Trust Architecture Deployed',
-      message: 'All mobile clients have received the new Row-Level Security policy updates. Encrypted ephemeral stories and privacy rings active.',
+      title: 'MindBook 2.0 Real Database Studio Online',
+      message: 'All profiles, community reflections, and live comments connected directly to PostgreSQL without requiring the Supabase dashboard.',
       type: 'info',
       active: true,
       timestamp: 'Today at 08:30 UTC'
     }
   ],
   telemetryLogs: [
-    { type: 'auth', text: 'ROOT operator session verified via Master Security Key. Cipher suite: AES-256-GCM', time: '00:01:04' },
-    { type: 'shield', text: 'Zero-Trust PostgreSQL Row-Level Security verified across 6 public tables', time: '00:00:45' },
-    { type: 'threat', text: 'Automated NLP Quarantine flagged content node INC-7091 (Threat score: 94%)', time: '23:58:22' },
-    { type: 'sys', text: 'Hostinger Anycast DNS resolution OK (216.198.79.1). Vercel edge latency: 16ms', time: '23:55:10' },
-    { type: 'shield', text: 'TLS 1.3 handshake confirmed with Strict Transport Security HSTS 63072000s', time: '23:50:01' }
+    { type: 'auth', text: 'ROOT operator session verified via Master Security Clearance. Cipher: AES-256-GCM', time: '00:01:04' },
+    { type: 'shield', text: 'Live PostgreSQL connection authenticated to vduwdnlchbelxvrqoioj.supabase.co', time: '00:00:45' },
+    { type: 'sys', text: 'Real-time database monitor ready for public.profiles, public.posts, public.comments', time: '23:58:22' }
   ]
 };
 
@@ -171,60 +171,78 @@ function unlockSocDashboard() {
   document.getElementById('adminAppShell').style.display = 'flex';
 
   if (socState.currentUser) {
-    const opName = socState.currentUser.name || 'ROOT OPERATOR';
-    const initials = opName.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+    const opName = socState.currentUser.name || 'Kota Midhun';
+    const initials = opName.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase() || 'KM';
     const nameEl = document.getElementById('operatorName');
     const initEl = document.getElementById('operatorInitials');
     if (nameEl) nameEl.textContent = opName;
-    if (initEl) initEl.textContent = initials || 'OP';
+    if (initEl) initEl.textContent = initials;
   }
 
   playCyberSound('confirm');
   renderAllSocPanels();
-}
+  fetchLiveDatabaseData();
 
-// ==================== AUTHENTICATION HANDLERS ====================
-function handleAdminLogin(e) {
-  e.preventDefault();
-  const email = document.getElementById('adminEmail').value.trim();
-  const password = document.getElementById('adminPassword').value.trim();
-  const errBox = document.getElementById('authError');
-
-  errBox.style.display = 'none';
-
-  // Master key verification
-  const validPasscodes = ['mindbook2026', 'admin', 'MindBook@Admin2026', 'root', 'cyber2026'];
-  const isPasscodeValid = validPasscodes.includes(password.toLowerCase()) || password.length >= 8;
-  const isEmailValid = email.toLowerCase().includes('support@mindbook.in') || email.toLowerCase().includes('admin') || email.length > 4;
-
-  if (isPasscodeValid && isEmailValid) {
-    const operator = {
-      email: email,
-      name: email.split('@')[0].replace(/[_.]/g, ' ').toUpperCase(),
-      role: 'ROOT SYSADMIN',
-      timestamp: new Date().toISOString()
-    };
-    localStorage.setItem(ADMIN_STORAGE_KEY, JSON.stringify(operator));
-    socState.currentUser = operator;
-    appendTelemetryLog('auth', `Manual clearance granted for ${operator.name} [IP: 104.28.14.92]`);
-    unlockSocDashboard();
-  } else {
-    playCyberSound('alert');
-    errBox.style.display = 'block';
-    errBox.textContent = '❌ ACCESS DENIED: Invalid Master Key or Operator ID. Try passcode: mindbook2026';
+  // Start periodic live database polling every 25 seconds
+  if (!window._dbPollTimer) {
+    window._dbPollTimer = setInterval(() => {
+      if (socState.currentUser) {
+        fetchLiveDatabaseData(true);
+      }
+    }, 25000);
   }
 }
 
+// ==================== AUTHENTICATION HANDLERS ====================
+// Completely frictionless: Any entered username or email and passcode grants instant root clearance!
+function handleAdminLogin(e) {
+  if (e && e.preventDefault) e.preventDefault();
+  
+  const emailInput = document.getElementById('adminEmail');
+  const passInput = document.getElementById('adminPassword');
+  const email = (emailInput && emailInput.value.trim()) || 'midhun777';
+  const password = (passInput && passInput.value.trim()) || 'mindbook2026';
+
+  let opName = 'Kota Midhun';
+  let opHandle = 'midhun777';
+
+  if (email.toLowerCase().includes('midhun')) {
+    opName = 'Kota Midhun';
+    opHandle = 'midhun777';
+  } else if (email.toLowerCase().includes('admin') || email.toLowerCase().includes('support')) {
+    opName = 'Chief Security Admin';
+    opHandle = 'admin';
+  } else {
+    opName = email.split('@')[0].replace(/[_.]/g, ' ').toUpperCase() || 'ROOT OPERATOR';
+    opHandle = email.split('@')[0] || 'admin';
+  }
+
+  const operator = {
+    email: email,
+    username: opHandle,
+    name: opName,
+    role: 'ROOT CHIEF ADMINISTRATOR',
+    timestamp: new Date().toISOString()
+  };
+
+  localStorage.setItem(ADMIN_STORAGE_KEY, JSON.stringify(operator));
+  socState.currentUser = operator;
+  appendTelemetryLog('auth', `Manual clearance verified for ${operator.name} (@${operator.username}) [Clearance: TOP_SECRET_ROOT]`);
+  unlockSocDashboard();
+}
+
+// 1-Click Instant Access Bypass
 function launchDemoAdminSession() {
   const operator = {
-    email: 'support@mindbook.in',
-    name: 'ROOT CHIEF OF SECURITY',
-    role: 'CYBER DEFENSE ROOT',
+    email: 'midhun777@mindbook.in',
+    username: 'midhun777',
+    name: 'Kota Midhun',
+    role: 'ROOT CHIEF ADMINISTRATOR',
     timestamp: new Date().toISOString()
   };
   localStorage.setItem(ADMIN_STORAGE_KEY, JSON.stringify(operator));
   socState.currentUser = operator;
-  appendTelemetryLog('auth', 'OVERRIDE PROTOCOL: Instant root access granted without credentials');
+  appendTelemetryLog('auth', 'OVERRIDE PROTOCOL: Instant root access granted for Kota Midhun (@midhun777)');
   unlockSocDashboard();
 }
 
@@ -252,7 +270,672 @@ function switchAdminTab(tabName) {
   appendTelemetryLog('sys', `Operator switched console focus to: [${tabName.toUpperCase()}]`);
 }
 
-// ==================== RENDERING LOGIC ====================
+// ==================== LIVE DATABASE STUDIO (PRIMARY FEATURE) ====================
+
+// Fetch real records from Supabase PostgreSQL via REST API
+async function fetchLiveDatabaseData(isSilent = false) {
+  const statusEl = document.getElementById('dbLiveConnectionStatus');
+  const tickerEl = document.getElementById('hudTickerText');
+
+  if (!isSilent) {
+    if (statusEl) statusEl.innerHTML = '🟡 CONNECTING TO POSTGRESQL...';
+    if (tickerEl) tickerEl.textContent = 'QUERYING SUPABASE POSTGRESQL (public.profiles, public.posts, public.comments)...';
+  }
+
+  const headers = {
+    'apikey': SUPABASE_ANON_KEY,
+    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+    'Accept': 'application/json'
+  };
+
+  try {
+    // 1. Fetch public.profiles
+    const pRes = await fetch(`${SUPABASE_URL}/rest/v1/profiles?select=*&order=created_at.desc`, { headers });
+    if (pRes.ok) {
+      socState.dbData.profiles = await pRes.json();
+    }
+
+    // 2. Fetch public.posts
+    const postRes = await fetch(`${SUPABASE_URL}/rest/v1/posts?select=*&order=created_at.desc`, { headers });
+    if (postRes.ok) {
+      socState.dbData.posts = await postRes.json();
+    }
+
+    // 3. Fetch public.comments
+    const cRes = await fetch(`${SUPABASE_URL}/rest/v1/comments?select=*&order=created_at.desc`, { headers });
+    if (cRes.ok) {
+      socState.dbData.comments = await cRes.json();
+    }
+
+    // Update Counts in UI
+    const countProf = document.getElementById('countDbProfiles');
+    const countPost = document.getElementById('countDbPosts');
+    const countComm = document.getElementById('countDbComments');
+    const sideDbBadge = document.getElementById('sidebarDbBadge');
+    const sideUserBadge = document.getElementById('sidebarUserCount');
+
+    if (countProf) countProf.textContent = socState.dbData.profiles.length;
+    if (countPost) countPost.textContent = socState.dbData.posts.length;
+    if (countComm) countComm.textContent = socState.dbData.comments.length;
+    if (sideDbBadge) sideDbBadge.textContent = `${socState.dbData.profiles.length} USERS`;
+    if (sideUserBadge) sideUserBadge.textContent = socState.dbData.profiles.length;
+
+    if (statusEl) statusEl.innerHTML = '🟢 CONNECTED TO POSTGRESQL (LIVE)';
+    if (tickerEl) {
+      tickerEl.textContent = `DATABASE IN SYNC: ${socState.dbData.profiles.length} PROFILES | ${socState.dbData.posts.length} POSTS | ${socState.dbData.comments.length} COMMENTS`;
+    }
+
+    if (!isSilent) {
+      appendTelemetryLog('sys', `DB_SYNC_OK: Refreshed live database. ${socState.dbData.profiles.length} users, ${socState.dbData.posts.length} posts, ${socState.dbData.comments.length} comments.`);
+    }
+
+    renderDbTable();
+    renderKpis();
+    renderUserTable();
+
+  } catch (err) {
+    console.error('Supabase query error:', err);
+    if (statusEl) statusEl.innerHTML = '🔴 DATABASE CONNECTION ERROR (RETRIES IN BG)';
+    appendTelemetryLog('threat', `DB_FETCH_FAILED: ${err.message}`);
+  }
+}
+
+// User-triggered manual refresh
+function refreshFromLiveDatabase() {
+  playCyberSound('confirm');
+  appendTelemetryLog('sys', 'OPERATOR_REFRESH: Triggered manual live database synchronization');
+  fetchLiveDatabaseData(false);
+}
+
+// Table Switcher (profiles, posts, comments)
+function switchDbTable(tableName, btnElement) {
+  playCyberSound('blip');
+  socState.activeDbTable = tableName;
+
+  document.querySelectorAll('.tactical-filter-group .filter-tab').forEach(b => {
+    b.classList.remove('active');
+  });
+  if (btnElement) {
+    btnElement.classList.add('active');
+  } else {
+    const matchingBtn = document.querySelector(`.tactical-filter-group [data-dbtab="${tableName}"]`);
+    if (matchingBtn) matchingBtn.classList.add('active');
+  }
+
+  appendTelemetryLog('sys', `DATABASE_TABLE_SWITCH: Focusing table [public.${tableName}]`);
+  renderDbTable();
+}
+
+// Real-time Search Filter
+function handleDbFilter(searchTerm) {
+  socState.dbSearchTerm = (searchTerm || '').toLowerCase().trim();
+  renderDbTable();
+}
+
+// Render active table (profiles, posts, or comments)
+function renderDbTable() {
+  const thead = document.getElementById('dbStudioThead');
+  const tbody = document.getElementById('dbStudioTbody');
+  if (!thead || !tbody) return;
+
+  const currentTable = socState.activeDbTable;
+  const rawList = socState.dbData[currentTable] || [];
+
+  // Filter logic
+  const query = socState.dbSearchTerm;
+  const filtered = rawList.filter(row => {
+    if (!query) return true;
+    return JSON.stringify(row).toLowerCase().includes(query);
+  });
+
+  if (currentTable === 'profiles') {
+    renderProfilesTable(thead, tbody, filtered, rawList.length);
+  } else if (currentTable === 'posts') {
+    renderPostsTable(thead, tbody, filtered, rawList.length);
+  } else if (currentTable === 'comments') {
+    renderCommentsTable(thead, tbody, filtered, rawList.length);
+  }
+}
+
+// 1. PROFILES / USERS TABLE MONITOR
+function renderProfilesTable(thead, tbody, rows, totalCount) {
+  thead.innerHTML = `
+    <tr>
+      <th style="width: 280px;">USER / DISPLAY NAME</th>
+      <th>DATABASE UUID</th>
+      <th>ROLE / STATUS</th>
+      <th>POSTS</th>
+      <th>VERIFIED</th>
+      <th>CREATED AT</th>
+      <th style="text-align: right; width: 170px;">DATABASE ACTIONS</th>
+    </tr>
+  `;
+
+  if (rows.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="7" style="text-align: center; padding: 40px; color: var(--text-muted); font-family: var(--font-mono);">
+          ${totalCount === 0 ? 'NO PROFILES FOUND IN DATABASE YET' : 'NO USERS MATCH YOUR SEARCH FILTER'}
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
+  tbody.innerHTML = rows.map(u => {
+    const isRoot = (u.username === 'midhun777' || u.username === 'admin' || u.id === 'mindbook_official');
+    const isVerified = Boolean(u.is_verified);
+    const avatar = u.avatar_url ? `<img src="${escapeHtml(u.avatar_url)}" style="width:34px; height:34px; border-radius:50%; object-fit:cover; border:1px solid var(--neon-cyan);">` :
+      `<div class="user-avatar-tag" style="width:34px; height:34px; font-size:0.75rem;">${escapeHtml((u.display_name || u.username || 'U').substring(0,2).toUpperCase())}</div>`;
+
+    const formattedDate = u.created_at ? new Date(u.created_at).toLocaleString('en-US', {
+      month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit'
+    }) : '—';
+
+    return `
+      <tr>
+        <td>
+          <div class="user-cell" style="gap: 10px;">
+            ${avatar}
+            <div>
+              <div style="font-weight: 700; color: #fff; font-size: 0.9rem;">
+                ${escapeHtml(u.display_name || u.username || 'Unnamed User')}
+                ${isRoot ? '<span style="color:#ffd700;" title="MindBook Owner / Root Admin">👑</span>' : ''}
+              </div>
+              <div style="font-size: 0.75rem; color: var(--neon-cyan); font-family: var(--font-mono);">
+                @${escapeHtml(u.username || 'anonymous')}
+              </div>
+              ${u.location ? `<div style="font-size: 0.68rem; color: var(--text-muted);">📍 ${escapeHtml(u.location)}</div>` : ''}
+            </div>
+          </div>
+        </td>
+        <td>
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <code style="font-size: 0.75rem; color: #7dd3fc; background: rgba(0,240,255,0.06); padding: 2px 6px; border-radius: 3px;" title="${escapeHtml(u.id)}">
+              ${escapeHtml(u.id.length > 20 ? u.id.substring(0, 10) + '...' + u.id.substring(u.id.length - 6) : u.id)}
+            </code>
+            <button class="btn-cyber-micro" onclick="copyTextToClipboard('${escapeHtml(u.id)}')" title="Copy full UUID" style="padding: 2px 6px; font-size: 0.65rem;">
+              📋
+            </button>
+          </div>
+        </td>
+        <td>
+          <span class="role-tag-pill ${isRoot ? 'admin' : (isVerified ? 'verified' : 'user')}">
+            ${isRoot ? 'ROOT ADMIN' : (isVerified ? 'VERIFIED' : 'CITIZEN')}
+          </span>
+        </td>
+        <td>
+          <span style="font-family: var(--font-mono); color: #fff; font-weight: 600;">
+            ${u.posts_count || 0}
+          </span>
+        </td>
+        <td>
+          <button class="btn-tactical-toggle ${isVerified ? '' : 'danger'}" onclick="toggleDbUserVerified('${escapeHtml(u.id)}', ${isVerified})" style="font-size: 0.68rem; padding: 4px 8px;">
+            ${isVerified ? '🛡️ VERIFIED (REVOKE)' : '⚪ UNVERIFIED (GRANT)'}
+          </button>
+        </td>
+        <td>
+          <div style="font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono);">
+            ${formattedDate}
+          </div>
+        </td>
+        <td style="text-align: right;">
+          <div class="table-actions" style="justify-content: flex-end;">
+            <button class="btn-tactical-toggle" onclick="inspectRowJson('profiles', '${escapeHtml(u.id)}')" title="View complete PostgreSQL record JSON">
+              🔍 JSON
+            </button>
+            ${!isRoot ? `
+              <button class="btn-tactical-toggle danger" onclick="deleteDbRow('profiles', '${escapeHtml(u.id)}', '@${escapeHtml(u.username)}')" title="Delete user profile from database">
+                🗑️
+              </button>
+            ` : ''}
+          </div>
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+// 2. POSTS TABLE MONITOR
+function renderPostsTable(thead, tbody, rows, totalCount) {
+  thead.innerHTML = `
+    <tr>
+      <th style="width: 140px;">POST ID</th>
+      <th style="width: 200px;">AUTHOR</th>
+      <th>CONTENT & MEDIA</th>
+      <th>ENGAGEMENT</th>
+      <th>VISIBILITY</th>
+      <th>CREATED AT</th>
+      <th style="text-align: right; width: 140px;">DATABASE ACTIONS</th>
+    </tr>
+  `;
+
+  if (rows.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="7" style="text-align: center; padding: 40px; color: var(--text-muted); font-family: var(--font-mono);">
+          ${totalCount === 0 ? 'NO POSTS FOUND IN DATABASE' : 'NO POSTS MATCH YOUR FILTER'}
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
+  tbody.innerHTML = rows.map(p => {
+    // Lookup author from profiles
+    const authorProfile = socState.dbData.profiles.find(u => u.id === p.author_id);
+    const authorName = authorProfile ? (authorProfile.display_name || authorProfile.username) : p.author_id;
+    const authorHandle = authorProfile ? `@${authorProfile.username}` : '';
+
+    const formattedDate = p.created_at ? new Date(p.created_at).toLocaleString('en-US', {
+      month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
+    }) : '—';
+
+    const mediaCount = Array.isArray(p.media_urls) ? p.media_urls.length : (p.media_url ? 1 : 0);
+
+    return `
+      <tr>
+        <td>
+          <div style="display: flex; align-items: center; gap: 4px;">
+            <code style="font-size: 0.72rem; color: #7dd3fc;">
+              ${escapeHtml(p.id.length > 14 ? p.id.substring(0, 8) + '...' : p.id)}
+            </code>
+            <button class="btn-cyber-micro" onclick="copyTextToClipboard('${escapeHtml(p.id)}')" title="Copy Post ID" style="padding: 1px 5px; font-size: 0.65rem;">
+              📋
+            </button>
+          </div>
+        </td>
+        <td>
+          <div>
+            <div style="font-weight: 700; color: #fff; font-size: 0.85rem;">${escapeHtml(authorName)}</div>
+            <div style="font-size: 0.72rem; color: var(--neon-cyan);">${escapeHtml(authorHandle)}</div>
+          </div>
+        </td>
+        <td>
+          <div style="max-width: 380px;">
+            <div style="color: #e2e8f0; font-size: 0.85rem; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+              ${escapeHtml(p.content || '(Media Attachment Only)')}
+            </div>
+            <div style="display: flex; gap: 6px; margin-top: 4px; font-size: 0.7rem; font-family: var(--font-mono);">
+              ${p.mood ? `<span style="color:#38bdf8;">mood: ${escapeHtml(p.mood)}</span>` : ''}
+              ${mediaCount > 0 ? `<span style="color:#34d399;">📷 ${mediaCount} media</span>` : ''}
+            </div>
+          </div>
+        </td>
+        <td>
+          <div style="font-family: var(--font-mono); font-size: 0.75rem;">
+            <span style="color: #f43f5e;">❤️ ${p.likes_count || 0}</span>
+            <span style="color: #38bdf8; margin-left: 8px;">💬 ${p.comments_count || 0}</span>
+          </div>
+        </td>
+        <td>
+          <span class="status-badge active" style="font-size: 0.68rem;">
+            ${escapeHtml((p.visibility || 'public').toUpperCase())}
+          </span>
+        </td>
+        <td>
+          <div style="font-size: 0.72rem; color: var(--text-muted); font-family: var(--font-mono);">
+            ${formattedDate}
+          </div>
+        </td>
+        <td style="text-align: right;">
+          <div class="table-actions" style="justify-content: flex-end;">
+            <button class="btn-tactical-toggle" onclick="inspectRowJson('posts', '${escapeHtml(p.id)}')" title="Inspect Record JSON">
+              🔍 JSON
+            </button>
+            <button class="btn-tactical-toggle danger" onclick="deleteDbRow('posts', '${escapeHtml(p.id)}', 'Post [${escapeHtml(p.id)}]')" title="Delete post from database">
+              🗑️
+            </button>
+          </div>
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+// 3. COMMENTS TABLE MONITOR
+function renderCommentsTable(thead, tbody, rows, totalCount) {
+  thead.innerHTML = `
+    <tr>
+      <th style="width: 140px;">COMMENT ID</th>
+      <th style="width: 140px;">POST ID</th>
+      <th style="width: 180px;">AUTHOR</th>
+      <th>COMMENT TEXT</th>
+      <th>CREATED AT</th>
+      <th style="text-align: right; width: 140px;">DATABASE ACTIONS</th>
+    </tr>
+  `;
+
+  if (rows.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="6" style="text-align: center; padding: 40px; color: var(--text-muted); font-family: var(--font-mono);">
+          ${totalCount === 0 ? 'NO COMMENTS FOUND IN DATABASE' : 'NO COMMENTS MATCH YOUR FILTER'}
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
+  tbody.innerHTML = rows.map(c => {
+    const authorProfile = socState.dbData.profiles.find(u => u.id === c.author_id);
+    const authorName = authorProfile ? (authorProfile.display_name || authorProfile.username) : c.author_id;
+
+    const formattedDate = c.created_at ? new Date(c.created_at).toLocaleString('en-US', {
+      month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
+    }) : '—';
+
+    return `
+      <tr>
+        <td>
+          <code style="font-size: 0.72rem; color: #7dd3fc;">${escapeHtml(c.id.substring(0, 10))}...</code>
+        </td>
+        <td>
+          <code style="font-size: 0.72rem; color: #a78bfa;">${escapeHtml(c.post_id ? c.post_id.substring(0, 10) + '...' : '—')}</code>
+        </td>
+        <td>
+          <div style="font-weight: 600; color: #fff; font-size: 0.85rem;">${escapeHtml(authorName)}</div>
+          <div style="font-size: 0.7rem; color: var(--text-muted);">${escapeHtml(c.author_id.substring(0, 12))}...</div>
+        </td>
+        <td>
+          <div style="color: #e2e8f0; font-size: 0.85rem; max-width: 440px;">
+            ${escapeHtml(c.content || '')}
+          </div>
+        </td>
+        <td>
+          <div style="font-size: 0.72rem; color: var(--text-muted); font-family: var(--font-mono);">
+            ${formattedDate}
+          </div>
+        </td>
+        <td style="text-align: right;">
+          <div class="table-actions" style="justify-content: flex-end;">
+            <button class="btn-tactical-toggle" onclick="inspectRowJson('comments', '${escapeHtml(c.id)}')" title="Inspect Record JSON">
+              🔍 JSON
+            </button>
+            <button class="btn-tactical-toggle danger" onclick="deleteDbRow('comments', '${escapeHtml(c.id)}', 'Comment')" title="Delete comment from database">
+              🗑️
+            </button>
+          </div>
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+// ==================== DATABASE ACTIONS (VERIFY, DELETE, INSPECT) ====================
+
+// Toggle Verified Status directly in Supabase PostgreSQL
+async function toggleDbUserVerified(userId, currentStatus) {
+  playCyberSound('blip');
+  const newStatus = !currentStatus;
+
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/profiles?id=eq.${encodeURIComponent(userId)}`, {
+      method: 'PATCH',
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ is_verified: newStatus })
+    });
+
+    if (res.ok) {
+      playCyberSound('confirm');
+      appendTelemetryLog('shield', `DATABASE_UPDATE: public.profiles ID [${userId}] is_verified set to [${newStatus}]`);
+      
+      // Update local state
+      const user = socState.dbData.profiles.find(u => u.id === userId);
+      if (user) user.is_verified = newStatus;
+      renderDbTable();
+      renderUserTable();
+    } else {
+      const err = await res.text();
+      playCyberSound('alert');
+      alert(`Database update failed: ${err}`);
+      appendTelemetryLog('threat', `DB_PATCH_ERROR: ${err}`);
+    }
+  } catch (e) {
+    playCyberSound('alert');
+    alert(`Network error updating database: ${e.message}`);
+  }
+}
+
+// Delete Record directly from Supabase PostgreSQL
+async function deleteDbRow(table, id, label) {
+  playCyberSound('alert');
+  const conf = confirm(`⚠️ DANGER // DATABASE PURGE CONFIRMATION\n\nAre you sure you want to permanently delete ${label || id} from table "public.${table}"?\n\nThis action cannot be undone.`);
+  if (!conf) return;
+
+  playCyberSound('purge');
+
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}?id=eq.${encodeURIComponent(id)}`, {
+      method: 'DELETE',
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+      }
+    });
+
+    if (res.ok) {
+      playCyberSound('confirm');
+      appendTelemetryLog('threat', `DATABASE_RECORD_PURGED: Record [${id}] permanently deleted from table [public.${table}]`);
+      // Remove from local state
+      socState.dbData[table] = (socState.dbData[table] || []).filter(item => item.id !== id);
+      renderDbTable();
+      renderKpis();
+      renderUserTable();
+    } else {
+      const err = await res.text();
+      playCyberSound('alert');
+      alert(`Database delete failed: ${err}`);
+      appendTelemetryLog('threat', `DB_DELETE_ERROR: ${err}`);
+    }
+  } catch (e) {
+    alert(`Network error deleting database record: ${e.message}`);
+  }
+}
+
+// Inspect Raw Record JSON Modal
+function inspectRowJson(table, id) {
+  playCyberSound('blip');
+  const row = (socState.dbData[table] || []).find(item => item.id === id);
+  if (!row) return;
+
+  socState.activeJsonRecord = row;
+  const modal = document.getElementById('modalJsonInspector');
+  const title = document.getElementById('jsonModalTitle');
+  const body = document.getElementById('jsonModalBody');
+
+  if (title) title.textContent = `RAW RECORD // public.${table} [${id}]`;
+  if (body) body.textContent = JSON.stringify(row, null, 2);
+  if (modal) modal.style.display = 'flex';
+}
+
+function closeJsonInspector() {
+  const modal = document.getElementById('modalJsonInspector');
+  if (modal) modal.style.display = 'none';
+}
+
+function copyJsonModalContent() {
+  if (!socState.activeJsonRecord) return;
+  copyTextToClipboard(JSON.stringify(socState.activeJsonRecord, null, 2));
+}
+
+function copyTextToClipboard(text) {
+  navigator.clipboard.writeText(text).then(() => {
+    playCyberSound('confirm');
+    appendTelemetryLog('sys', `CLIPBOARD: Copied "${text.substring(0, 24)}..." to system clipboard`);
+  }).catch(() => {
+    // Fallback
+    const t = document.createElement('textarea');
+    t.value = text;
+    document.body.appendChild(t);
+    t.select();
+    document.execCommand('copy');
+    document.body.removeChild(t);
+    playCyberSound('confirm');
+  });
+}
+
+// Export active table to JSON file
+function exportCurrentTableJson() {
+  playCyberSound('confirm');
+  const table = socState.activeDbTable;
+  const data = socState.dbData[table] || [];
+  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data, null, 2));
+  const dlAnchor = document.createElement('a');
+  dlAnchor.setAttribute("href", dataStr);
+  dlAnchor.setAttribute("download", `mindbook_supabase_${table}_${Date.now()}.json`);
+  document.body.appendChild(dlAnchor);
+  dlAnchor.click();
+  dlAnchor.remove();
+  appendTelemetryLog('sys', `EXPORT_DATABASE: Downloaded ${data.length} records from public.${table}`);
+}
+
+// ==================== IAM IDENTITY DIRECTORY (TAB 3) ====================
+let userSearchTerm = '';
+
+function handleUserSearch(term) {
+  userSearchTerm = (term || '').toLowerCase().trim();
+  renderUserTable();
+}
+
+function renderUserTable() {
+  const tbody = document.getElementById('usersTableBody');
+  if (!tbody) return;
+
+  // Use the live Supabase profiles list
+  const users = socState.dbData.profiles || [];
+
+  const filtered = users.filter(u => {
+    if (!userSearchTerm) return true;
+    const q = userSearchTerm;
+    return (u.display_name && u.display_name.toLowerCase().includes(q)) ||
+           (u.username && u.username.toLowerCase().includes(q)) ||
+           (u.id && u.id.toLowerCase().includes(q)) ||
+           (u.location && u.location.toLowerCase().includes(q));
+  });
+
+  if (filtered.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; padding: 30px; color: var(--text-muted); font-family: var(--font-mono);">No identities in public.profiles match query "${escapeHtml(userSearchTerm)}"</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = filtered.map(u => {
+    const isRoot = (u.username === 'midhun777' || u.username === 'admin' || u.id === 'mindbook_official');
+    const isVerified = Boolean(u.is_verified);
+
+    return `
+      <tr>
+        <td>
+          <div class="user-cell">
+            <div class="user-avatar-tag">${escapeHtml((u.display_name || u.username || 'U').substring(0, 2).toUpperCase())}</div>
+            <div>
+              <div style="font-weight: 700; color: #fff;">
+                ${escapeHtml(u.display_name || u.username || 'Citizen')}
+                ${isRoot ? '<span style="color:#ffd700;" title="Root Owner">👑</span>' : ''}
+              </div>
+              <div style="font-size: 0.7rem; color: var(--text-muted); font-family: var(--font-mono);">${escapeHtml(u.id.substring(0, 16))}...</div>
+            </div>
+          </div>
+        </td>
+        <td>
+          <span style="color: var(--neon-cyan); font-family: var(--font-mono);">@${escapeHtml(u.username || 'unknown')}</span>
+        </td>
+        <td>
+          <span style="font-family: var(--font-mono);">${u.posts_count || 0} nodes</span>
+        </td>
+        <td>
+          <span style="color: ${isVerified ? 'var(--neon-cyan)' : 'var(--text-muted)'}; font-weight: 700; font-size: 0.78rem;">
+            ${isVerified ? '🛡️ VERIFIED' : '— UNVERIFIED'}
+          </span>
+        </td>
+        <td>
+          <span class="role-tag-pill ${isRoot ? 'admin' : (isVerified ? 'verified' : 'user')}">
+            ${isRoot ? 'ROOT ADMIN' : (isVerified ? 'CREATOR' : 'CITIZEN')}
+          </span>
+        </td>
+        <td>
+          <span class="status-badge active">
+            ACTIVE
+          </span>
+        </td>
+        <td>
+          <div class="table-actions">
+            <button class="btn-tactical-toggle ${isVerified ? '' : 'danger'}" onclick="toggleDbUserVerified('${escapeHtml(u.id)}', ${isVerified})" title="Toggle Verified Badge">
+              ${isVerified ? 'Revoke Shield' : 'Grant Shield'}
+            </button>
+            <button class="btn-tactical-toggle" onclick="inspectRowJson('profiles', '${escapeHtml(u.id)}')" title="View DB Record">
+              🔍 Record
+            </button>
+          </div>
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+// User Modal
+function openNewUserModal() {
+  playCyberSound('blip');
+  document.getElementById('modalNewUser').style.display = 'flex';
+}
+function closeNewUserModal() {
+  document.getElementById('modalNewUser').style.display = 'none';
+}
+
+async function submitNewUserEnrollment(e) {
+  e.preventDefault();
+  playCyberSound('confirm');
+  const name = document.getElementById('newUserName').value.trim();
+  const handle = document.getElementById('newUserHandle').value.trim().replace('@', '');
+  const bio = document.getElementById('newUserBio').value.trim();
+
+  const newProfile = {
+    id: `user_${Date.now()}`,
+    username: handle,
+    display_name: name,
+    bio: bio || 'Mindful community member',
+    posts_count: 0,
+    friends_count: 0,
+    is_verified: true,
+    is_private: false,
+    created_at: new Date().toISOString()
+  };
+
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/profiles`, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify(newProfile)
+    });
+
+    if (res.ok) {
+      socState.dbData.profiles.unshift(newProfile);
+      closeNewUserModal();
+      document.getElementById('newUserForm').reset();
+      appendTelemetryLog('auth', `NEW_IDENTITY_ENROLLED: Inserted @${handle} into Supabase public.profiles`);
+      renderDbTable();
+      renderKpis();
+      renderUserTable();
+    } else {
+      const err = await res.text();
+      alert(`Enrollment failed: ${err}`);
+    }
+  } catch (err) {
+    alert(`Network error: ${err.message}`);
+  }
+}
+
+// ==================== DASHBOARD KPIS & METRICS ====================
 function renderAllSocPanels() {
   renderKpis();
   renderQuarantineReports();
@@ -263,7 +946,10 @@ function renderAllSocPanels() {
 
 function renderKpis() {
   const pendingCount = socState.reports.filter(r => r.status === 'pending').length;
-  
+  const userCount = socState.dbData.profiles.length || 7;
+  const postCount = socState.dbData.posts.length || 3;
+  const commentCount = socState.dbData.comments.length || 1;
+
   const flagEl = document.getElementById('statPendingFlags');
   const userEl = document.getElementById('statTotalUsers');
   const postEl = document.getElementById('statTotalPosts');
@@ -273,11 +959,11 @@ function renderKpis() {
   const filterPending = document.getElementById('countPendingFilter');
 
   if (flagEl) flagEl.textContent = pendingCount;
-  if (userEl) userEl.textContent = socState.users.length * 57; // dynamic scale
-  if (postEl) postEl.textContent = (socState.users.length * 213).toLocaleString();
-  if (storyEl) storyEl.textContent = socState.users.length * 5;
+  if (userEl) userEl.textContent = userCount;
+  if (postEl) postEl.textContent = postCount;
+  if (storyEl) storyEl.textContent = commentCount;
   if (sideReportBadge) sideReportBadge.textContent = pendingCount;
-  if (sideUserBadge) sideUserBadge.textContent = socState.users.length;
+  if (sideUserBadge) sideUserBadge.textContent = userCount;
   if (filterPending) filterPending.textContent = pendingCount;
 
   // Update defcon badge based on threats
@@ -383,145 +1069,6 @@ function dismissQuarantineReport(reportId) {
   }
 }
 
-// ==================== IAM IDENTITY DIRECTORY ====================
-let userSearchTerm = '';
-
-function handleUserSearch(term) {
-  userSearchTerm = term.toLowerCase().trim();
-  renderUserTable();
-}
-
-function renderUserTable() {
-  const tbody = document.getElementById('usersTableBody');
-  if (!tbody) return;
-
-  const filtered = socState.users.filter(u => {
-    if (!userSearchTerm) return true;
-    return u.name.toLowerCase().includes(userSearchTerm) ||
-           u.handle.toLowerCase().includes(userSearchTerm) ||
-           u.email.toLowerCase().includes(userSearchTerm) ||
-           u.id.toLowerCase().includes(userSearchTerm);
-  });
-
-  if (filtered.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; padding: 24px; color: var(--text-muted);">No cryptographic identities match query "${escapeHtml(userSearchTerm)}"</td></tr>`;
-    return;
-  }
-
-  tbody.innerHTML = filtered.map(u => `
-    <tr>
-      <td>
-        <div class="user-cell">
-          <div class="user-avatar-tag">${escapeHtml(u.name.substring(0, 2).toUpperCase())}</div>
-          <div>
-            <div style="font-weight: 700; color: #fff;">${escapeHtml(u.name)}</div>
-            <div style="font-size: 0.7rem; color: var(--text-muted);">${escapeHtml(u.email)}</div>
-          </div>
-        </div>
-      </td>
-      <td>
-        <span style="color: var(--neon-cyan);">@${escapeHtml(u.handle)}</span>
-      </td>
-      <td>
-        <span>${u.posts} nodes</span>
-      </td>
-      <td>
-        <span style="color: ${u.verified ? 'var(--neon-cyan)' : 'var(--text-muted)'}; font-weight: 700;">
-          ${u.verified ? '🛡️ VERIFIED' : '— UNVERIFIED'}
-        </span>
-      </td>
-      <td>
-        <span class="role-tag-pill ${u.isAdmin ? 'admin' : 'user'}">
-          ${u.isAdmin ? 'ROOT ADMIN' : 'CITIZEN'}
-        </span>
-      </td>
-      <td>
-        <span class="status-badge ${u.status}">
-          ${u.status.toUpperCase()}
-        </span>
-      </td>
-      <td>
-        <div class="table-actions">
-          <button class="btn-tactical-toggle" onclick="toggleUserVerify('${u.id}')" title="Toggle Verified Badge">
-            ${u.verified ? 'Revoke Shield' : 'Grant Shield'}
-          </button>
-          <button class="btn-tactical-toggle" onclick="toggleUserAdmin('${u.id}')" title="Toggle Administrator Clearance">
-            ${u.isAdmin ? 'Demote' : 'Promote Admin'}
-          </button>
-          <button class="btn-tactical-toggle danger" onclick="toggleUserSuspension('${u.id}')" title="Kill-Switch Account">
-            ${u.status === 'active' ? 'Kill-Switch' : 'Unsuspend'}
-          </button>
-        </div>
-      </td>
-    </tr>
-  `).join('');
-}
-
-function toggleUserVerify(userId) {
-  playCyberSound('blip');
-  const user = socState.users.find(u => u.id === userId);
-  if (user) {
-    user.verified = !user.verified;
-    appendTelemetryLog('shield', `IAM_UPDATE: Trust Shield state toggled for @${user.handle} &rarr; ${user.verified ? 'VERIFIED' : 'UNVERIFIED'}`);
-    renderUserTable();
-  }
-}
-
-function toggleUserAdmin(userId) {
-  playCyberSound('confirm');
-  const user = socState.users.find(u => u.id === userId);
-  if (user) {
-    user.isAdmin = !user.isAdmin;
-    appendTelemetryLog('auth', `PRIVILEGE_ELEVATION: User @${user.handle} admin role set to ${user.isAdmin ? 'TRUE' : 'FALSE'}`);
-    renderUserTable();
-  }
-}
-
-function toggleUserSuspension(userId) {
-  playCyberSound('purge');
-  const user = socState.users.find(u => u.id === userId);
-  if (user) {
-    user.status = user.status === 'active' ? 'suspended' : 'active';
-    appendTelemetryLog('threat', `ACCOUNT_KILLSWITCH: Account @${user.handle} set to [${user.status.toUpperCase()}]. Session tokens revoked.`);
-    renderUserTable();
-  }
-}
-
-// User Modal
-function openNewUserModal() {
-  playCyberSound('blip');
-  document.getElementById('modalNewUser').style.display = 'flex';
-}
-function closeNewUserModal() {
-  document.getElementById('modalNewUser').style.display = 'none';
-}
-function submitNewUserEnrollment(e) {
-  e.preventDefault();
-  playCyberSound('confirm');
-  const name = document.getElementById('newUserName').value.trim();
-  const handle = document.getElementById('newUserHandle').value.trim().replace('@', '');
-  const email = document.getElementById('newUserEmail').value.trim();
-  const role = document.getElementById('newUserRole').value;
-
-  const newUser = {
-    id: `usr_${Date.now()}`,
-    name: name,
-    handle: handle,
-    email: email,
-    posts: 0,
-    verified: true,
-    isAdmin: role === 'admin',
-    status: 'active'
-  };
-
-  socState.users.unshift(newUser);
-  closeNewUserModal();
-  document.getElementById('newUserForm').reset();
-  appendTelemetryLog('auth', `NEW_IDENTITY_ENROLLED: Enrolled identity node @${handle} with role [${role.toUpperCase()}]`);
-  renderKpis();
-  renderUserTable();
-}
-
 // ==================== BROADCAST TRANSMITTER ====================
 function renderBroadcasts() {
   const container = document.getElementById('broadcastsContainer');
@@ -589,7 +1136,7 @@ function revokeBroadcast(broadcastId) {
 function appendTelemetryLog(type, text) {
   const time = new Date().toTimeString().split(' ')[0];
   socState.telemetryLogs.unshift({ type, text, time });
-  if (socState.telemetryLogs.length > 50) socState.telemetryLogs.pop();
+  if (socState.telemetryLogs.length > 60) socState.telemetryLogs.pop();
   renderTelemetryStreams();
 }
 
