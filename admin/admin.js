@@ -90,6 +90,7 @@ let socState = {
   currentUser: null,
   activeDbTable: 'profiles', // 'profiles' | 'posts' | 'comments'
   dbSearchTerm: '',
+  freshModeOnly: true, // Default to true: fresh launch mode (filters out dummy mock seeds)
   activeJsonRecord: null,
   dbData: {
     profiles: [],
@@ -127,15 +128,15 @@ let socState = {
   broadcasts: [
     {
       id: 'BC-01',
-      title: 'MindBook 2.0 Real Database Studio Online',
-      message: 'All profiles, community reflections, and live comments connected directly to PostgreSQL without requiring the Supabase dashboard.',
+      title: 'MindBook 2.0 Official Company Account Active',
+      message: 'Official MindBook Company account (@mindbook) initialized with verified creator status and root system clearance.',
       type: 'info',
       active: true,
       timestamp: 'Today at 08:30 UTC'
     }
   ],
   telemetryLogs: [
-    { type: 'auth', text: 'ROOT operator session verified via Master Security Clearance. Cipher: AES-256-GCM', time: '00:01:04' },
+    { type: 'auth', text: 'ROOT operator session verified for Kota Midhun (@midhun777)', time: '00:01:04' },
     { type: 'shield', text: 'Live PostgreSQL connection authenticated to vduwdnlchbelxvrqoioj.supabase.co', time: '00:00:45' },
     { type: 'sys', text: 'Real-time database monitor ready for public.profiles, public.posts, public.comments', time: '23:58:22' }
   ]
@@ -166,6 +167,9 @@ function lockSocDashboard() {
   document.getElementById('adminAppShell').style.display = 'none';
 }
 
+let currentSyncInterval = 5000; // default 5 seconds (optimal)
+let supabaseClient = null;
+
 function unlockSocDashboard() {
   document.getElementById('authGate').style.display = 'none';
   document.getElementById('adminAppShell').style.display = 'flex';
@@ -183,25 +187,74 @@ function unlockSocDashboard() {
   renderAllSocPanels();
   fetchLiveDatabaseData();
 
-  // Start periodic live database polling every 25 seconds
-  if (!window._dbPollTimer) {
+  // Initialize Realtime WebSockets for 0ms reactivity
+  initSupabaseRealtime();
+
+  // Start periodic live database polling (default 5s)
+  restartAutoSyncTimer();
+}
+
+function restartAutoSyncTimer() {
+  if (window._dbPollTimer) {
+    clearInterval(window._dbPollTimer);
+    window._dbPollTimer = null;
+  }
+  if (currentSyncInterval > 0) {
     window._dbPollTimer = setInterval(() => {
       if (socState.currentUser) {
         fetchLiveDatabaseData(true);
       }
-    }, 25000);
+    }, currentSyncInterval);
+  }
+}
+
+function updateAutoSyncInterval(ms) {
+  playCyberSound('blip');
+  currentSyncInterval = parseInt(ms);
+  restartAutoSyncTimer();
+  if (currentSyncInterval > 0) {
+    appendTelemetryLog('sys', `SYNC_INTERVAL: Polling interval adjusted to ${currentSyncInterval / 1000}s`);
+  } else {
+    appendTelemetryLog('sys', 'SYNC_INTERVAL: Polling paused. Realtime WebSocket listener remains active.');
+  }
+}
+
+// Connect to Supabase Realtime WebSocket for instant 0ms updates
+function initSupabaseRealtime() {
+  try {
+    if (window.supabase && window.supabase.createClient && !supabaseClient) {
+      supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      supabaseClient.channel('admin_realtime_stream')
+        .on('postgres_changes', { event: '*', schema: 'public', table: 'profiles' }, () => {
+          appendTelemetryLog('shield', 'REALTIME_TRIGGER: Detected change on public.profiles via WebSocket');
+          fetchLiveDatabaseData(true);
+        })
+        .on('postgres_changes', { event: '*', schema: 'public', table: 'posts' }, () => {
+          appendTelemetryLog('shield', 'REALTIME_TRIGGER: Detected change on public.posts via WebSocket');
+          fetchLiveDatabaseData(true);
+        })
+        .on('postgres_changes', { event: '*', schema: 'public', table: 'comments' }, () => {
+          appendTelemetryLog('shield', 'REALTIME_TRIGGER: Detected change on public.comments via WebSocket');
+          fetchLiveDatabaseData(true);
+        })
+        .subscribe((status) => {
+          if (status === 'SUBSCRIBED') {
+            appendTelemetryLog('sys', 'REALTIME_WS: Connected to Supabase Realtime WebSocket (0ms latency)');
+          }
+        });
+    }
+  } catch (e) {
+    console.warn('Realtime init notice:', e);
   }
 }
 
 // ==================== AUTHENTICATION HANDLERS ====================
-// Completely frictionless: Any entered username or email and passcode grants instant root clearance!
 function handleAdminLogin(e) {
   if (e && e.preventDefault) e.preventDefault();
   
   const emailInput = document.getElementById('adminEmail');
   const passInput = document.getElementById('adminPassword');
   const email = (emailInput && emailInput.value.trim()) || 'midhun777';
-  const password = (passInput && passInput.value.trim()) || 'mindbook2026';
 
   let opName = 'Kota Midhun';
   let opHandle = 'midhun777';
@@ -270,7 +323,7 @@ function switchAdminTab(tabName) {
   appendTelemetryLog('sys', `Operator switched console focus to: [${tabName.toUpperCase()}]`);
 }
 
-// ==================== LIVE DATABASE STUDIO (PRIMARY FEATURE) ====================
+// ==================== LIVE DATABASE STUDIO ====================
 
 // Fetch real records from Supabase PostgreSQL via REST API
 async function fetchLiveDatabaseData(isSilent = false) {
@@ -307,6 +360,12 @@ async function fetchLiveDatabaseData(isSilent = false) {
       socState.dbData.comments = await cRes.json();
     }
 
+    // Calculate counts (considering fresh mode)
+    const demoIds = ['user_sophia', 'user_elena', 'user_marcus', 'user_mind_01', '6cf1e94e-58be-4b89-94bb-2e6d48e1c900'];
+    const activeProfiles = socState.freshModeOnly ? socState.dbData.profiles.filter(p => !demoIds.includes(p.id)) : socState.dbData.profiles;
+    const activePosts = socState.freshModeOnly ? socState.dbData.posts.filter(p => p.author_id !== 'user_mind_01') : socState.dbData.posts;
+    const activeComments = socState.freshModeOnly ? socState.dbData.comments.filter(c => c.author_id !== 'user_mind_01') : socState.dbData.comments;
+
     // Update Counts in UI
     const countProf = document.getElementById('countDbProfiles');
     const countPost = document.getElementById('countDbPosts');
@@ -314,19 +373,19 @@ async function fetchLiveDatabaseData(isSilent = false) {
     const sideDbBadge = document.getElementById('sidebarDbBadge');
     const sideUserBadge = document.getElementById('sidebarUserCount');
 
-    if (countProf) countProf.textContent = socState.dbData.profiles.length;
-    if (countPost) countPost.textContent = socState.dbData.posts.length;
-    if (countComm) countComm.textContent = socState.dbData.comments.length;
-    if (sideDbBadge) sideDbBadge.textContent = `${socState.dbData.profiles.length} USERS`;
-    if (sideUserBadge) sideUserBadge.textContent = socState.dbData.profiles.length;
+    if (countProf) countProf.textContent = activeProfiles.length;
+    if (countPost) countPost.textContent = activePosts.length;
+    if (countComm) countComm.textContent = activeComments.length;
+    if (sideDbBadge) sideDbBadge.textContent = `${activeProfiles.length} USERS`;
+    if (sideUserBadge) sideUserBadge.textContent = activeProfiles.length;
 
     if (statusEl) statusEl.innerHTML = '🟢 CONNECTED TO POSTGRESQL (LIVE)';
     if (tickerEl) {
-      tickerEl.textContent = `DATABASE IN SYNC: ${socState.dbData.profiles.length} PROFILES | ${socState.dbData.posts.length} POSTS | ${socState.dbData.comments.length} COMMENTS`;
+      tickerEl.textContent = `DATABASE IN SYNC: ${activeProfiles.length} PROFILES | ${activePosts.length} POSTS | ${activeComments.length} COMMENTS`;
     }
 
     if (!isSilent) {
-      appendTelemetryLog('sys', `DB_SYNC_OK: Refreshed live database. ${socState.dbData.profiles.length} users, ${socState.dbData.posts.length} posts, ${socState.dbData.comments.length} comments.`);
+      appendTelemetryLog('sys', `DB_SYNC_OK: Refreshed live database. ${activeProfiles.length} active profiles, ${activePosts.length} posts, ${activeComments.length} comments.`);
     }
 
     renderDbTable();
@@ -366,6 +425,59 @@ function switchDbTable(tableName, btnElement) {
   renderDbTable();
 }
 
+// Toggle between clean real accounts only and demo seeds
+function toggleFreshLaunchMode() {
+  playCyberSound('blip');
+  socState.freshModeOnly = !socState.freshModeOnly;
+  const btn = document.getElementById('btnToggleFreshMode');
+  if (btn) {
+    if (socState.freshModeOnly) {
+      btn.style.borderColor = '#ffd700';
+      btn.style.color = '#ffd700';
+      btn.textContent = '✨ FRESH LAUNCH VIEW (REAL ONLY)';
+      appendTelemetryLog('sys', 'FRESH_VIEW: Active. Hiding legacy demo seed records.');
+    } else {
+      btn.style.borderColor = 'var(--neon-cyan)';
+      btn.style.color = 'var(--neon-cyan)';
+      btn.textContent = '👁️ SHOWING ALL (INCLUDING DEMO SEEDS)';
+      appendTelemetryLog('sys', 'FRESH_VIEW: Showing all database rows including demo seeds.');
+    }
+  }
+  renderDbTable();
+  renderUserTable();
+  renderKpis();
+}
+
+// Purge dummy seed profiles
+async function purgeAllDemoSeedProfiles() {
+  playCyberSound('alert');
+  const conf = confirm("⚠️ DANGER // FRESH DATABASE PURGE\n\nThis will remove dummy seed accounts (user_sophia, user_elena, user_marcus, user_mind_01, alex_rivers_live) and leave ONLY:\n• Kota Midhun (@midhun777) - Founder/Super Admin\n• MindBook Official (@mindbook) - Company Account\n\nProceed with cleanup?");
+  if (!conf) return;
+
+  playCyberSound('purge');
+  const demoIds = ['user_sophia', 'user_elena', 'user_marcus', 'user_mind_01', '6cf1e94e-58be-4b89-94bb-2e6d48e1c900'];
+
+  for (const id of demoIds) {
+    try {
+      await fetch(`${SUPABASE_URL}/rest/v1/profiles?id=eq.${encodeURIComponent(id)}`, {
+        method: 'DELETE',
+        headers: {
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+        }
+      });
+    } catch (_) {}
+  }
+
+  // Also remove from local state
+  socState.dbData.profiles = socState.dbData.profiles.filter(p => !demoIds.includes(p.id));
+  renderDbTable();
+  renderUserTable();
+  renderKpis();
+  appendTelemetryLog('threat', 'FRESH_DATABASE_PURGE: Cleaned out demo seed identities from public.profiles');
+  alert("✨ Database cleaned! Now showing fresh launch state with Founder Kota Midhun and MindBook Official.");
+}
+
 // Real-time Search Filter
 function handleDbFilter(searchTerm) {
   socState.dbSearchTerm = (searchTerm || '').toLowerCase().trim();
@@ -381,19 +493,32 @@ function renderDbTable() {
   const currentTable = socState.activeDbTable;
   const rawList = socState.dbData[currentTable] || [];
 
-  // Filter logic
+  // Filter demo IDs if in fresh mode
+  const demoIds = ['user_sophia', 'user_elena', 'user_marcus', 'user_mind_01', '6cf1e94e-58be-4b89-94bb-2e6d48e1c900'];
+  let list = rawList;
+  if (socState.freshModeOnly) {
+    if (currentTable === 'profiles') {
+      list = rawList.filter(row => !demoIds.includes(row.id));
+    } else if (currentTable === 'posts') {
+      list = rawList.filter(p => p.author_id !== 'user_mind_01');
+    } else if (currentTable === 'comments') {
+      list = rawList.filter(c => c.author_id !== 'user_mind_01');
+    }
+  }
+
+  // Search query filter
   const query = socState.dbSearchTerm;
-  const filtered = rawList.filter(row => {
+  const filtered = list.filter(row => {
     if (!query) return true;
     return JSON.stringify(row).toLowerCase().includes(query);
   });
 
   if (currentTable === 'profiles') {
-    renderProfilesTable(thead, tbody, filtered, rawList.length);
+    renderProfilesTable(thead, tbody, filtered, list.length);
   } else if (currentTable === 'posts') {
-    renderPostsTable(thead, tbody, filtered, rawList.length);
+    renderPostsTable(thead, tbody, filtered, list.length);
   } else if (currentTable === 'comments') {
-    renderCommentsTable(thead, tbody, filtered, rawList.length);
+    renderCommentsTable(thead, tbody, filtered, list.length);
   }
 }
 
@@ -423,9 +548,10 @@ function renderProfilesTable(thead, tbody, rows, totalCount) {
   }
 
   tbody.innerHTML = rows.map(u => {
-    const isRoot = (u.username === 'midhun777' || u.username === 'admin' || u.id === 'mindbook_official');
+    const isCompany = (u.id === 'mindbook_official' || u.username === 'mindbook');
+    const isRoot = (u.username === 'midhun777' || u.username === 'admin' || isCompany);
     const isVerified = Boolean(u.is_verified);
-    const avatar = u.avatar_url ? `<img src="${escapeHtml(u.avatar_url)}" style="width:34px; height:34px; border-radius:50%; object-fit:cover; border:1px solid var(--neon-cyan);">` :
+    const avatar = u.avatar_url ? `<img src="${escapeHtml(u.avatar_url)}" style="width:34px; height:34px; border-radius:50%; object-fit:cover; border:1px solid ${isCompany ? '#ffd700' : 'var(--neon-cyan)'};">` :
       `<div class="user-avatar-tag" style="width:34px; height:34px; font-size:0.75rem;">${escapeHtml((u.display_name || u.username || 'U').substring(0,2).toUpperCase())}</div>`;
 
     const formattedDate = u.created_at ? new Date(u.created_at).toLocaleString('en-US', {
@@ -440,7 +566,7 @@ function renderProfilesTable(thead, tbody, rows, totalCount) {
             <div>
               <div style="font-weight: 700; color: #fff; font-size: 0.9rem;">
                 ${escapeHtml(u.display_name || u.username || 'Unnamed User')}
-                ${isRoot ? '<span style="color:#ffd700;" title="MindBook Owner / Root Admin">👑</span>' : ''}
+                ${isCompany ? '<span style="color:#ffd700;" title="Official MindBook Company Account">🏢</span>' : (isRoot ? '<span style="color:#ffd700;" title="MindBook Owner / Root Admin">👑</span>' : '')}
               </div>
               <div style="font-size: 0.75rem; color: var(--neon-cyan); font-family: var(--font-mono);">
                 @${escapeHtml(u.username || 'anonymous')}
@@ -460,8 +586,8 @@ function renderProfilesTable(thead, tbody, rows, totalCount) {
           </div>
         </td>
         <td>
-          <span class="role-tag-pill ${isRoot ? 'admin' : (isVerified ? 'verified' : 'user')}">
-            ${isRoot ? 'ROOT ADMIN' : (isVerified ? 'VERIFIED' : 'CITIZEN')}
+          <span class="role-tag-pill ${isCompany ? 'admin' : (isRoot ? 'admin' : (isVerified ? 'verified' : 'user'))}">
+            ${isCompany ? 'COMPANY ROOT' : (isRoot ? 'ROOT ADMIN' : (isVerified ? 'VERIFIED' : 'CITIZEN'))}
           </span>
         </td>
         <td>
@@ -524,8 +650,9 @@ function renderPostsTable(thead, tbody, rows, totalCount) {
   tbody.innerHTML = rows.map(p => {
     // Lookup author from profiles
     const authorProfile = socState.dbData.profiles.find(u => u.id === p.author_id);
-    const authorName = authorProfile ? (authorProfile.display_name || authorProfile.username) : p.author_id;
-    const authorHandle = authorProfile ? `@${authorProfile.username}` : '';
+    const isOfficial = p.author_id === 'mindbook_official';
+    const authorName = isOfficial ? 'MindBook Official 👑' : (authorProfile ? (authorProfile.display_name || authorProfile.username) : p.author_id);
+    const authorHandle = isOfficial ? '@mindbook' : (authorProfile ? `@${authorProfile.username}` : '');
 
     const formattedDate = p.created_at ? new Date(p.created_at).toLocaleString('en-US', {
       month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
@@ -660,6 +787,72 @@ function renderCommentsTable(thead, tbody, rows, totalCount) {
       </tr>
     `;
   }).join('');
+}
+
+// ==================== COMPANY ACCOUNT FEATURES ====================
+
+// Publish official community feed post as @mindbook
+async function publishOfficialCompanyPost(e) {
+  if (e && e.preventDefault) e.preventDefault();
+  playCyberSound('confirm');
+
+  const contentEl = document.getElementById('companyPostContent');
+  const moodEl = document.getElementById('companyPostMood');
+  const tagsEl = document.getElementById('companyPostTags');
+
+  const content = contentEl ? contentEl.value.trim() : '';
+  const mood = moodEl ? moodEl.value : 'Inspired';
+  const tagList = tagsEl && tagsEl.value ? tagsEl.value.split(',').map(t => t.trim()) : ['Official', 'Community'];
+
+  if (!content) return;
+
+  const newPost = {
+    id: `post_official_${Date.now()}`,
+    author_id: 'mindbook_official',
+    content: content,
+    mood: mood,
+    tags: tagList,
+    likes_count: 5,
+    comments_count: 0,
+    visibility: 'public',
+    created_at: new Date().toISOString()
+  };
+
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/posts`, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=representation'
+      },
+      body: JSON.stringify(newPost)
+    });
+
+    if (res.ok) {
+      playCyberSound('confirm');
+      alert('🎉 Official reflection published successfully as @mindbook! Visible on all community feeds.');
+      contentEl.value = '';
+      appendTelemetryLog('broadcast', `OFFICIAL_POST: @mindbook published official reflection "${content.substring(0, 30)}..."`);
+      fetchLiveDatabaseData(false);
+      switchAdminTab('database');
+    } else {
+      const err = await res.text();
+      alert(`Publishing failed: ${err}`);
+    }
+  } catch (err) {
+    alert(`Network error: ${err.message}`);
+  }
+}
+
+// Copy fresh database launch SQL script
+function copyCompanySqlCleanupScript() {
+  const el = document.getElementById('freshDatabaseSqlScript');
+  if (el) {
+    copyTextToClipboard(el.textContent);
+    alert('📋 Fresh Database Launch SQL Script copied to clipboard!\n\nPaste into your Supabase Dashboard -> SQL Editor and click "Run" to make your database 100% brand new.');
+  }
 }
 
 // ==================== DATABASE ACTIONS (VERIFY, DELETE, INSPECT) ====================
@@ -808,7 +1001,11 @@ function renderUserTable() {
   if (!tbody) return;
 
   // Use the live Supabase profiles list
-  const users = socState.dbData.profiles || [];
+  const demoIds = ['user_sophia', 'user_elena', 'user_marcus', 'user_mind_01', '6cf1e94e-58be-4b89-94bb-2e6d48e1c900'];
+  let users = socState.dbData.profiles || [];
+  if (socState.freshModeOnly) {
+    users = users.filter(p => !demoIds.includes(p.id));
+  }
 
   const filtered = users.filter(u => {
     if (!userSearchTerm) return true;
@@ -825,7 +1022,8 @@ function renderUserTable() {
   }
 
   tbody.innerHTML = filtered.map(u => {
-    const isRoot = (u.username === 'midhun777' || u.username === 'admin' || u.id === 'mindbook_official');
+    const isCompany = (u.id === 'mindbook_official' || u.username === 'mindbook');
+    const isRoot = (u.username === 'midhun777' || u.username === 'admin' || isCompany);
     const isVerified = Boolean(u.is_verified);
 
     return `
@@ -836,7 +1034,7 @@ function renderUserTable() {
             <div>
               <div style="font-weight: 700; color: #fff;">
                 ${escapeHtml(u.display_name || u.username || 'Citizen')}
-                ${isRoot ? '<span style="color:#ffd700;" title="Root Owner">👑</span>' : ''}
+                ${isCompany ? '<span style="color:#ffd700;" title="Official MindBook Company Account">🏢</span>' : (isRoot ? '<span style="color:#ffd700;" title="Root Owner">👑</span>' : '')}
               </div>
               <div style="font-size: 0.7rem; color: var(--text-muted); font-family: var(--font-mono);">${escapeHtml(u.id.substring(0, 16))}...</div>
             </div>
@@ -854,8 +1052,8 @@ function renderUserTable() {
           </span>
         </td>
         <td>
-          <span class="role-tag-pill ${isRoot ? 'admin' : (isVerified ? 'verified' : 'user')}">
-            ${isRoot ? 'ROOT ADMIN' : (isVerified ? 'CREATOR' : 'CITIZEN')}
+          <span class="role-tag-pill ${isCompany ? 'admin' : (isRoot ? 'admin' : (isVerified ? 'verified' : 'user'))}">
+            ${isCompany ? 'COMPANY ROOT' : (isRoot ? 'ROOT ADMIN' : (isVerified ? 'CREATOR' : 'CITIZEN'))}
           </span>
         </td>
         <td>
@@ -946,9 +1144,10 @@ function renderAllSocPanels() {
 
 function renderKpis() {
   const pendingCount = socState.reports.filter(r => r.status === 'pending').length;
-  const userCount = socState.dbData.profiles.length || 7;
-  const postCount = socState.dbData.posts.length || 3;
-  const commentCount = socState.dbData.comments.length || 1;
+  const demoIds = ['user_sophia', 'user_elena', 'user_marcus', 'user_mind_01', '6cf1e94e-58be-4b89-94bb-2e6d48e1c900'];
+  const userCount = (socState.freshModeOnly ? socState.dbData.profiles.filter(p => !demoIds.includes(p.id)) : socState.dbData.profiles).length || 2;
+  const postCount = (socState.freshModeOnly ? socState.dbData.posts.filter(p => p.author_id !== 'user_mind_01') : socState.dbData.posts).length || 1;
+  const commentCount = socState.dbData.comments.length || 0;
 
   const flagEl = document.getElementById('statPendingFlags');
   const userEl = document.getElementById('statTotalUsers');

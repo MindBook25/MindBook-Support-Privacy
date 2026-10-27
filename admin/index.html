@@ -124,6 +124,16 @@
       </div>
 
       <div class="hud-right">
+        <div class="hud-metric-pill" title="Real-time WebSocket & Polling Sync Interval" style="border-color: var(--neon-cyan);">
+          <span class="pill-label">SYNC:</span>
+          <select id="autoSyncIntervalSelect" onchange="updateAutoSyncInterval(this.value)" style="background:transparent; border:none; color:var(--neon-cyan); font-family:var(--font-mono); font-size:0.75rem; cursor:pointer; outline:none;">
+            <option value="2000" style="background:#040711; color:#fff;">2s (High Frequency)</option>
+            <option value="5000" selected style="background:#040711; color:#fff;">5s (Optimal Recommended)</option>
+            <option value="10000" style="background:#040711; color:#fff;">10s (Standard)</option>
+            <option value="0" style="background:#040711; color:#fff;">Manual Only</option>
+          </select>
+        </div>
+
         <div class="hud-metric-pill">
           <span class="pill-label">LATENCY</span>
           <span id="hudLatency" class="pill-val">16ms</span>
@@ -135,7 +145,7 @@
         </button>
 
         <button class="btn-cyber-hud alert-btn" onclick="refreshFromLiveDatabase()" title="Force Refresh Real Supabase Database">
-          <span>🔄 REFRESH DATABASE</span>
+          <span>🔄 SYNC NOW</span>
         </button>
 
         <div class="operator-profile">
@@ -189,6 +199,14 @@
             </div>
             <span class="nav-label">IAM & Identity Control</span>
             <span id="sidebarUserCount" class="cyber-badge count-cyan">7</span>
+          </button>
+
+          <button class="nav-btn" data-tab="company" onclick="switchAdminTab('company')">
+            <div class="nav-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg>
+            </div>
+            <span class="nav-label">Company Account HQ</span>
+            <span class="cyber-badge count-cyan">@mindbook</span>
           </button>
 
           <button class="nav-btn" data-tab="broadcasts" onclick="switchAdminTab('broadcasts')">
@@ -261,12 +279,22 @@
 
             <!-- Database Search & Filter Toolbar -->
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
-              <div class="cyber-search-input" style="width: 380px;">
-                <span class="search-lens">🔍</span>
-                <input type="text" id="dbSearchInput" placeholder="Filter records by UUID, username, or text..." oninput="handleDbFilter(this.value)">
+              <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                <div class="cyber-search-input" style="width: 320px;">
+                  <span class="search-lens">🔍</span>
+                  <input type="text" id="dbSearchInput" placeholder="Filter records by UUID, username, or text..." oninput="handleDbFilter(this.value)">
+                </div>
+
+                <!-- Fresh Launch View Toggle -->
+                <button type="button" class="btn-cyber-micro" id="btnToggleFreshMode" onclick="toggleFreshLaunchMode()" style="border-color: #ffd700; color: #ffd700;" title="Toggle between clean real accounts only and demo seed records">
+                  ✨ FRESH LAUNCH VIEW (REAL ONLY)
+                </button>
               </div>
 
-              <div style="display:flex; gap:8px;">
+              <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                <button class="btn-cyber-micro danger" onclick="purgeAllDemoSeedProfiles()" title="Purge dummy seed profiles (user_sophia, user_elena, user_marcus, user_mind_01) to make database brand new" style="border-color: var(--neon-red); color: #ff6699;">
+                  🧹 PURGE DEMO PROFILES
+                </button>
                 <button class="btn-cyber-micro" onclick="refreshFromLiveDatabase()">
                   🔄 SYNC DATABASE
                 </button>
@@ -534,6 +562,123 @@
                   <!-- Dynamically rendered via admin.js -->
                 </tbody>
               </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB: OFFICIAL MINDBOOK COMPANY ACCOUNT HQ ================= -->
+        <section id="tab-company" class="cyber-tab">
+          <div class="cyber-card" style="margin-bottom: 24px;">
+            <div class="card-header-tactical flex-wrap">
+              <div>
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <span style="font-size:1.4rem;">🏢</span>
+                  <h3>OFFICIAL MINDBOOK COMPANY ACCOUNT</h3>
+                  <span class="role-tag-pill admin">👑 COMPANY ROOT</span>
+                  <span class="role-tag-pill verified">🛡️ VERIFIED OFFICIAL</span>
+                </div>
+                <p class="card-subtitle">Official company identity maintained by Founder Kota Midhun (@midhun777) & Root Sysadmins</p>
+              </div>
+
+              <div style="display:flex; gap:10px;">
+                <button class="btn-cyber-micro" onclick="copyCompanySqlCleanupScript()">
+                  📋 COPY FRESH LAUNCH SQL
+                </button>
+              </div>
+            </div>
+
+            <!-- Company Profile Preview & Stats -->
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; margin-top: 14px;">
+              <div style="background: rgba(0, 240, 255, 0.04); border: 1px solid var(--border-cyan); padding: 18px; border-radius: 4px;">
+                <div style="display:flex; align-items:center; gap:14px; margin-bottom: 12px;">
+                  <img src="/assets/favicon.png" alt="MindBook Icon" style="width: 56px; height: 56px; border-radius: 50%; border: 2px solid var(--neon-cyan); box-shadow: 0 0 15px var(--neon-cyan-glow);">
+                  <div>
+                    <div style="font-weight: 700; color: #fff; font-size: 1.15rem; display:flex; align-items:center; gap:6px;">
+                      MindBook Official <span style="color:#ffd700;">👑</span>
+                    </div>
+                    <div style="color: var(--neon-cyan); font-family: var(--font-mono); font-size: 0.85rem;">
+                      @mindbook • ID: mindbook_official
+                    </div>
+                    <div style="color: var(--neon-green); font-size: 0.75rem; font-family: var(--font-mono); margin-top: 2px;">
+                      ✓ All Features & Root Access Active
+                    </div>
+                  </div>
+                </div>
+
+                <div style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 12px; background: rgba(0,0,0,0.3); padding: 10px; border-radius: 3px;">
+                  Official MindBook Platform & Community Account • System Announcements, Safety Guidelines & Mindful Community Governance 🌿
+                </div>
+
+                <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.75rem; color:var(--text-muted); border-top:1px solid var(--border-subtle); padding-top:8px;">
+                  <span>📍 MindBook HQ • Global</span>
+                  <span>🌐 <a href="https://www.mindbook.in" target="_blank" style="color:var(--neon-cyan); text-decoration:none;">mindbook.in</a></span>
+                  <span>👑 Managed by: @midhun777</span>
+                </div>
+              </div>
+
+              <!-- Quick Post as @mindbook -->
+              <div style="background: rgba(0, 240, 255, 0.04); border: 1px solid var(--border-cyan); padding: 18px; border-radius: 4px;">
+                <h4 style="color: var(--neon-cyan); font-family: var(--font-tactical); margin-bottom: 10px;">📢 POST TO COMMUNITY FEED AS @mindbook</h4>
+                <form id="companyPostForm" onsubmit="publishOfficialCompanyPost(event)">
+                  <textarea id="companyPostContent" rows="3" placeholder="Write an official community message, mindful prompt, or platform announcement..." style="width: 100%; background: #040817; border: 1px solid var(--border-cyan); color: #fff; padding: 10px; font-size: 0.85rem; border-radius: 3px; resize: vertical;" required></textarea>
+                  
+                  <div style="display:flex; gap: 8px; margin-top: 8px; flex-wrap:wrap;">
+                    <select id="companyPostMood" style="background: #040817; border: 1px solid var(--border-cyan); color: var(--neon-cyan); font-family: var(--font-mono); font-size: 0.75rem; padding: 6px 10px; border-radius: 2px;">
+                      <option value="Inspired">Mood: Inspired 🌟</option>
+                      <option value="Mindful">Mood: Mindful 🌿</option>
+                      <option value="Peaceful">Mood: Peaceful 🕊️</option>
+                      <option value="Official">Mood: Official 📢</option>
+                    </select>
+
+                    <input type="text" id="companyPostTags" placeholder="Tags (e.g. Welcome, Update)" style="flex:1; background: #040817; border: 1px solid var(--border-cyan); color: #fff; font-size: 0.75rem; padding: 6px 10px; border-radius: 2px;">
+
+                    <button type="submit" class="btn-cyber-primary micro" style="padding: 6px 14px;">
+                      TRANSMIT POST 🚀
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <!-- 1-Click Fresh Launch SQL Script Section -->
+            <div style="margin-top: 20px; background: rgba(2, 6, 23, 0.9); border: 1px dashed #ffd700; padding: 16px; border-radius: 4px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom: 8px;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <span style="color:#ffd700; font-size:1.1rem;">⚡</span>
+                  <strong style="color:#ffd700; font-family:var(--font-tactical);">FRESH DATABASE LAUNCH SQL SCRIPT</strong>
+                  <span style="font-size:0.75rem; color:var(--text-muted);">(Run once in Supabase SQL Editor to make database 100% brand new)</span>
+                </div>
+                <button type="button" class="btn-cyber-micro" onclick="copyCompanySqlCleanupScript()" style="border-color:#ffd700; color:#ffd700;">
+                  📋 COPY SQL SCRIPT
+                </button>
+              </div>
+              <p style="font-size: 0.78rem; color: #94a3b8; margin-bottom: 8px;">
+                This script clears all dummy mock profiles (<code>user_sophia</code>, <code>user_elena</code>, etc.), preserves <strong>Kota Midhun (@midhun777)</strong> as Founder/Super Admin, and initializes <strong>MindBook Official (@mindbook)</strong> as the verified company account.
+              </p>
+              <pre id="freshDatabaseSqlScript" style="background:#02040b; border:1px solid #1e293b; padding:12px; color:#38bdf8; font-family:var(--font-mono); font-size:0.75rem; max-height:180px; overflow-y:auto; border-radius:3px; white-space:pre-wrap;">-- 1. Remove test comments and reactions
+DELETE FROM public.reactions WHERE user_id NOT IN ('3409ebfa-2162-4981-bd6f-ee6c71071e63', 'mindbook_official');
+DELETE FROM public.comments WHERE author_id NOT IN ('3409ebfa-2162-4981-bd6f-ee6c71071e63', 'mindbook_official');
+
+-- 2. Remove test blank posts (keeps only official welcome post)
+DELETE FROM public.posts WHERE id != 'post_welcome';
+
+-- 3. Remove all dummy test profiles
+DELETE FROM public.profiles WHERE id NOT IN ('3409ebfa-2162-4981-bd6f-ee6c71071e63', 'mindbook_official');
+
+-- 4. Ensure MindBook Official company profile has full company features
+INSERT INTO public.profiles (
+    id, username, display_name, bio, avatar_url, banner_url, website, location, is_private, is_verified, is_admin, friends_count, posts_count, badges
+) VALUES (
+    'mindbook_official', 'mindbook', 'MindBook Official',
+    'Official MindBook Platform & Community Account • System Announcements, Safety Guidelines & Mindful Community Governance 🌿',
+    'https://www.mindbook.in/assets/mindbook_app_icon.png', 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
+    'https://www.mindbook.in', 'MindBook HQ', false, true, true, 1, 1, ARRAY['Official Company', 'System Admin', 'Platform Founder']
+) ON CONFLICT (id) DO UPDATE SET
+    display_name = 'MindBook Official', is_verified = true, is_admin = true;
+
+-- 5. Set Founder Kota Midhun (@midhun777) as Super Admin
+UPDATE public.profiles SET is_verified = true, is_admin = true, badges = ARRAY['Super Admin', 'Platform Founder', 'Verified']
+WHERE id = '3409ebfa-2162-4981-bd6f-ee6c71071e63' OR username = 'midhun777';</pre>
             </div>
           </div>
         </section>
