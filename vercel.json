@@ -44,6 +44,8 @@
     { "src": "^/support/?$", "dest": "/support.html" },
     { "src": "^/help/?$", "dest": "/support.html" },
     { "src": "^/auth/callback/?$", "dest": "/auth-callback.html" },
+    { "src": "^/admin\\.css$", "dest": "/admin/admin.css" },
+    { "src": "^/admin\\.js$", "dest": "/admin/admin.js" },
     { "src": "^/admin/?$", "dest": "/admin/index.html" },
     { "handle": "filesystem" }
   ]
