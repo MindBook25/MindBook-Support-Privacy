@@ -1479,32 +1479,385 @@ body.cyber-soc-body {
   color: var(--text-white);
 }
 
-/* Responsive adjustments */
-@media (max-width: 900px) {
+/* ==================== RESPONSIVE DESIGN SYSTEM ==================== */
+/* Flawless layout across 14-inch laptops, tablets, and mobile phones */
+
+/* Mobile Drawer Toggle & Overlay */
+.btn-sidebar-toggle {
+  display: none;
+  background: rgba(0, 240, 255, 0.1);
+  border: 1px solid var(--border-cyan);
+  color: var(--neon-cyan);
+  padding: 8px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s ease;
+}
+.btn-sidebar-toggle:hover {
+  background: rgba(0, 240, 255, 0.25);
+  box-shadow: 0 0 10px var(--neon-cyan-glow);
+}
+.btn-sidebar-toggle .hamburger-bar {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background-color: var(--neon-cyan);
+  border-radius: 1px;
+}
+
+.sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 7, 17, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.sidebar-backdrop.active {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sidebar-mobile-header {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 6px 14px 6px;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 12px;
+}
+.sidebar-mobile-title {
+  font-family: var(--font-tactical);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  color: var(--text-white);
+}
+.sidebar-close-btn {
+  background: rgba(255, 0, 85, 0.15);
+  border: 1px solid var(--neon-red);
+  color: #ff80aa;
+  width: 32px;
+  height: 32px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.sidebar-close-btn:hover {
+  background: var(--neon-red);
+  color: #fff;
+}
+
+.responsive-search {
+  width: 320px;
+  max-width: 100%;
+}
+
+/* ==================== 14-INCH LAPTOP & COMPACT DESKTOPS (1024px - 1440px) ==================== */
+@media (max-width: 1440px) {
   .cyber-hud-topbar {
+    padding: 10px 18px;
+  }
+  .hud-center {
+    max-width: 360px;
+    margin: 0 12px;
+  }
+  .hud-ticker {
+    font-size: 0.68rem;
+    padding: 5px 10px;
+  }
+  .hud-brand .brand-title {
+    font-size: 1.15rem;
+  }
+  .brand-sub {
+    font-size: 0.6rem;
+  }
+  .hud-defcon-badge {
+    padding: 4px 10px;
+  }
+  .defcon-text {
+    font-size: 0.72rem;
+  }
+  .hud-metric-pill {
+    padding: 4px 8px;
+    font-size: 0.7rem;
+  }
+  .btn-cyber-hud {
+    padding: 5px 10px;
+    font-size: 0.74rem;
+  }
+  .cyber-sidebar {
+    width: 220px;
+    padding: 16px 10px;
+  }
+  .cyber-main-viewport {
+    padding: 18px 20px;
+  }
+  .cyber-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  .cyber-grid-split {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .hud-center {
+    display: none; /* Hide long center ticker on 14-inch laptops with high DPI scaling to give space to controls */
+  }
+  .hud-left {
+    gap: 12px;
+  }
+  .hud-right {
+    gap: 8px;
+  }
+  .operator-info {
+    display: none; /* Icon-only avatar on compact screens */
+  }
+  .cyber-sidebar {
+    width: 200px;
+  }
+  .nav-btn {
+    padding: 10px 10px;
+    font-size: 0.82rem;
+    gap: 8px;
+  }
+  .nav-btn .nav-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* ==================== TABLETS & HYBRID DEVICES (769px - 992px) ==================== */
+@media (max-width: 992px) {
+  .btn-sidebar-toggle {
+    display: flex;
+  }
+  .cyber-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 280px;
+    max-width: 85vw;
+    z-index: 1000;
+    background: rgba(5, 9, 20, 0.98);
+    backdrop-filter: blur(24px);
+    border-right: 1px solid var(--neon-cyan);
+    box-shadow: 0 0 35px rgba(0, 240, 255, 0.25);
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+  }
+  .cyber-sidebar.mobile-open {
+    transform: translateX(0);
+  }
+  .sidebar-mobile-header {
+    display: flex;
+  }
+  .cyber-workspace {
+    display: block;
+    width: 100%;
+  }
+  .cyber-main-viewport {
+    width: 100%;
+    max-width: 100%;
+    padding: 16px 14px;
+  }
+  .cyber-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .cyber-table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    display: block;
+  }
+}
+
+/* ==================== MOBILE DEVICES (320px - 768px) ==================== */
+@media (max-width: 768px) {
+  .cyber-hud-topbar {
+    padding: 8px 12px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .hud-left {
+    gap: 8px;
+    flex: 1;
+  }
+  .hud-brand .brand-shield-glow {
+    width: 30px;
+    height: 30px;
+  }
+  .hud-brand .brand-shield-glow svg {
+    width: 18px;
+    height: 18px;
+  }
+  .brand-title {
+    font-size: 1rem;
+  }
+  .brand-sub {
+    display: none;
+  }
+  .hud-defcon-badge {
+    padding: 3px 8px;
+  }
+  .defcon-text {
+    font-size: 0.65rem;
+  }
+  .hud-right {
+    gap: 6px;
+    margin-left: auto;
+  }
+  .hud-metric-pill:has(#hudLatency),
+  #btnSoundToggle {
+    display: none; /* Hide latency pill & sound toggle on mobile to keep header clean */
+  }
+  .hud-metric-pill {
+    padding: 4px 6px;
+    font-size: 0.68rem;
+  }
+  #autoSyncIntervalSelect {
+    font-size: 0.68rem !important;
+  }
+  .btn-cyber-hud.alert-btn {
+    padding: 4px 8px;
+    font-size: 0.7rem;
+  }
+  .operator-profile {
+    padding-left: 6px;
+  }
+  .operator-avatar {
+    width: 28px;
+    height: 28px;
+    font-size: 0.75rem;
+  }
+
+  .cyber-main-viewport {
+    padding: 10px 8px;
+  }
+  .cyber-card {
+    padding: 16px 14px;
+    border-radius: 4px;
+  }
+  .card-header-tactical {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
+    margin-bottom: 14px;
   }
-  .hud-center {
-    margin: 0;
-    max-width: 100%;
+  .card-header-tactical h3 {
+    font-size: 1rem;
+  }
+  
+  /* Filter tabs horizontal scroll on mobile */
+  .tactical-filter-group {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     width: 100%;
+    padding-bottom: 4px;
+    gap: 6px;
   }
-  .hud-right {
-    width: 100%;
-    justify-content: space-between;
+  .filter-tab {
+    flex-shrink: 0;
+    white-space: nowrap;
+    padding: 6px 10px;
+    font-size: 0.72rem;
   }
-  .cyber-workspace {
-    flex-direction: column;
+
+  .responsive-search {
+    width: 100% !important;
   }
-  .cyber-sidebar {
-    width: 100%;
-    border-right: none;
-    border-bottom: 1px solid var(--border-cyan);
-  }
+
   .cyber-grid-4 {
     grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .metric-box {
+    padding: 14px 16px;
+  }
+  .metric-big-num {
+    font-size: 2rem;
+  }
+
+  /* Table touch scrolling */
+  .cyber-table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    border: 1px solid var(--border-cyan);
+    border-radius: 3px;
+  }
+  .cyber-table {
+    min-width: 600px;
+  }
+  .cyber-table th, .cyber-table td {
+    padding: 8px 10px;
+    font-size: 0.75rem;
+  }
+
+  /* Auth Gate Modal */
+  .auth-gate-card {
+    max-width: 95vw;
+    padding: 24px 16px;
+  }
+  .clearance-title {
+    font-size: 1.25rem;
+  }
+  .clearance-badge {
+    font-size: 0.65rem;
+  }
+  .btn-cyber-primary {
+    font-size: 0.85rem;
+    padding: 12px 16px;
+  }
+
+  /* Modals */
+  .cyber-modal-card {
+    max-width: 95vw;
+    padding: 20px 16px;
+  }
+
+  /* Diagnostics Grid */
+  .diagnostics-cyber-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  /* Company Tab */
+  .company-hero-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 14px;
+  }
+  #freshDatabaseSqlScript {
+    max-height: 140px;
+    font-size: 0.68rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hud-defcon-badge .defcon-text {
+    display: none; /* Just led icon on ultra-small screens */
+  }
+  .btn-cyber-hud.alert-btn span {
+    font-size: 0.68rem;
   }
 }
 

@@ -321,6 +321,28 @@ function switchAdminTab(tabName) {
   });
 
   appendTelemetryLog('sys', `Operator switched console focus to: [${tabName.toUpperCase()}]`);
+
+  // Auto close mobile drawer when navigating
+  if (window.innerWidth <= 992) {
+    toggleCyberSidebar(false);
+  }
+}
+
+// Tactical Mobile Drawer Toggle
+function toggleCyberSidebar(force) {
+  const sidebar = document.querySelector('.cyber-sidebar');
+  const backdrop = document.getElementById('sidebarBackdrop');
+  if (!sidebar) return;
+
+  const isOpen = sidebar.classList.contains('mobile-open');
+  const shouldOpen = (force !== undefined) ? force : !isOpen;
+
+  sidebar.classList.toggle('mobile-open', shouldOpen);
+  if (backdrop) backdrop.classList.toggle('active', shouldOpen);
+
+  if (shouldOpen) {
+    playCyberSound('blip');
+  }
 }
 
 // ==================== LIVE DATABASE STUDIO ====================

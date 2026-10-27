@@ -98,6 +98,13 @@
     <!-- TOP HUD BAR -->
     <header class="cyber-hud-topbar">
       <div class="hud-left">
+        <!-- Mobile Sidebar Drawer Toggle -->
+        <button class="btn-sidebar-toggle" id="btnSidebarToggle" onclick="toggleCyberSidebar()" title="Toggle Tactical Navigation" aria-label="Toggle navigation">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+
         <div class="hud-brand">
           <div class="brand-shield-glow">
             <svg viewBox="0 0 24 24" width="22" height="22" fill="var(--neon-cyan)">
@@ -161,11 +168,22 @@
       </div>
     </header>
 
+    <!-- MOBILE SIDEBAR BACKDROP OVERLAY -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="toggleCyberSidebar(false)"></div>
+
     <!-- WORKSPACE BODY (SIDEBAR + MAIN CONTENT) -->
     <div class="cyber-workspace">
       
       <!-- TACTICAL SIDEBAR NAVIGATION -->
       <aside class="cyber-sidebar">
+        <!-- Mobile Drawer Header -->
+        <div class="sidebar-mobile-header">
+          <div class="sidebar-mobile-brand">
+            <span class="brand-highlight">MINDBOOK</span> CONSOLES
+          </div>
+          <button class="sidebar-close-btn" onclick="toggleCyberSidebar(false)" title="Close Navigation Drawer">✕</button>
+        </div>
+
         <div class="sidebar-section-title">COMMAND CONSOLES</div>
 
         <nav class="cyber-nav">
@@ -280,7 +298,7 @@
             <!-- Database Search & Filter Toolbar -->
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
               <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
-                <div class="cyber-search-input" style="width: 320px;">
+                <div class="cyber-search-input responsive-search">
                   <span class="search-lens">🔍</span>
                   <input type="text" id="dbSearchInput" placeholder="Filter records by UUID, username, or text..." oninput="handleDbFilter(this.value)">
                 </div>

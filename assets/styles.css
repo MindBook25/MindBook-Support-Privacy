@@ -821,7 +821,14 @@ textarea.form-control {
   color: var(--text-secondary);
 }
 
-/* Responsive */
+/* ==================== RESPONSIVE ENHANCEMENTS ==================== */
+@media (max-width: 1200px) {
+  .container {
+    max-width: 95%;
+    padding: 0 20px;
+  }
+}
+
 @media (max-width: 860px) {
   .article-layout {
     grid-template-columns: 1fr;
@@ -834,5 +841,37 @@ textarea.form-control {
   }
   .mobile-nav-toggle {
     display: block;
+  }
+  .hero-search-section {
+    padding: 48px 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0 16px;
+  }
+  .hero-search-section h1 {
+    font-size: 1.65rem;
+  }
+  .topic-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .google-search-bar {
+    width: 100%;
+  }
+  .footer-top, .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .footer-nav {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .helpful-widget {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
