@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MindBook 2.0 — Cyber Defense Command & Real Database Studio</title>
-  <meta name="description" content="Centralized Cyber Security Operations Center (SOC) & Live PostgreSQL Database Studio for MindBook 2.0. Real-time user monitoring, content quarantine, and zero-trust telemetry.">
+  <title>MIND BOOK // CENTRAL INTELLIGENCE COMMAND (CIC) – Administrative Operations System</title>
+  <meta name="description" content="Centralized Military Intelligence Operations Centre (CIC) & Live PostgreSQL Database Administration Station for MindBook. Professional intelligence analytics, legitimate platform governance, and zero-trust security operations.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
   <base href="/admin/">
   <link rel="stylesheet" href="/admin/admin.css">
   <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
@@ -17,7 +17,7 @@
 </head>
 <body class="cyber-soc-body">
 
-  <!-- ================= SCANLINES & RADAR GRID OVERLAY ================= -->
+  <!-- ================= TECHNICAL DOT-MATRIX GRID & SCANLINES ================= -->
   <div class="cyber-grid-mesh"></div>
   <div class="cyber-scanlines"></div>
 
@@ -32,24 +32,24 @@
       <div class="clearance-header">
         <div class="cyber-radar-orb">
           <div class="radar-sweep"></div>
-          <svg viewBox="0 0 24 24" width="36" height="36" fill="var(--neon-cyan)">
+          <svg viewBox="0 0 24 24" width="36" height="36" fill="var(--tactical-green)">
             <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18l7 3.12v4.7c0 4.67-3.13 9.07-7 10.18-3.87-1.11-7-5.51-7-10.18V6.3l7-3.12zM11 7h2v6h-2V7zm0 8h2v2h-2v-2z"/>
           </svg>
         </div>
-        <div class="cyber-badge-classified">CLEARANCE LEVEL: TOP SECRET // SOC ROOT</div>
-        <h2>MINDBOOK DEFENSE COMMAND</h2>
-        <p class="clearance-sub">SECURITY OPERATIONS & LIVE DATABASE STUDIO</p>
+        <div class="cyber-badge-classified">CLEARANCE LEVEL: TOP SECRET // CIC ROOT</div>
+        <h2>MIND BOOK // CIC</h2>
+        <p class="clearance-sub">CENTRAL INTELLIGENCE COMMAND // ADMINISTRATIVE OPERATIONS</p>
       </div>
 
-      <!-- PROMINENT 1-CLICK INSTANT BYPASS BUTTON -->
-      <button type="button" class="btn-cyber-override" onclick="launchDemoAdminSession()" style="margin-bottom: 16px; padding: 14px; font-size: 0.95rem; border-color: var(--neon-cyan); color: #fff; background: rgba(0, 240, 255, 0.15); box-shadow: 0 0 20px var(--neon-cyan-glow);">
-        <span class="override-pulse" style="background: var(--neon-cyan); box-shadow: 0 0 10px var(--neon-cyan);"></span>
-        <span>⚡ 1-CLICK INSTANT ACCESS (OPEN DATABASE)</span>
+      <!-- 1-CLICK INSTANT BYPASS BUTTON -->
+      <button type="button" class="btn-cyber-override" onclick="launchDemoAdminSession()">
+        <span class="override-pulse"></span>
+        <span>⚡ 1-CLICK INSTANT ACCESS (OPEN COMMAND CENTRE)</span>
       </button>
 
-      <!-- CREDENTIALS HELPER BANNER -->
-      <div style="background: rgba(0, 240, 255, 0.08); border: 1px dashed var(--neon-cyan); padding: 10px 14px; margin-bottom: 18px; border-radius: 4px; font-family: var(--font-mono); font-size: 0.75rem; color: #a5f3fc; line-height: 1.5;">
-        <div style="color: var(--neon-cyan); font-weight: 700; margin-bottom: 2px;">🔑 PRE-CONFIGURED ADMIN CLEARANCE:</div>
+      <!-- PRE-CONFIGURED CLEARANCE BANNER -->
+      <div style="background: rgba(41, 69, 50, 0.25); border: 1px dashed var(--tactical-green); padding: 10px 14px; margin-bottom: 16px; border-radius: 4px; font-family: var(--font-tech); font-size: 11px; color: #BBE3BA; line-height: 1.5;">
+        <div style="color: var(--highlight-green); font-weight: 700; margin-bottom: 2px;">🔑 PRE-CONFIGURED ADMIN CLEARANCE:</div>
         <div>Operator ID: <strong style="color: #fff;">midhun777</strong> (or <strong style="color:#fff;">admin</strong>)</div>
         <div>Passcode: <strong style="color: #fff;">mindbook2026</strong></div>
       </div>
@@ -77,15 +77,14 @@
 
         <div id="authError" class="cyber-alert-box error" style="display: none;"></div>
 
-        <button type="submit" id="btnAdminSignIn" class="btn-cyber-primary">
-          <span class="btn-glitch-text">AUTHENTICATE & OPEN DATABASE</span>
-          <span class="cyber-btn-cut"></span>
+        <button type="submit" id="btnAdminSignIn" class="btn-cyber-primary" style="width: 100%;">
+          <span>AUTHENTICATE & ENTER COMMAND CENTRE</span>
         </button>
       </form>
 
       <div class="clearance-footer">
         <a href="../index.html" class="cyber-link-back">
-          <span class="back-arrow">←</span> ABORT TO PUBLIC SITE
+          ← ABORT TO PUBLIC SITE
         </a>
         <div class="cipher-status">DATABASE: SUPABASE POSTGRESQL (LIVE)</div>
       </div>
@@ -95,11 +94,11 @@
   <!-- ================= MAIN CYBER COMMAND SHELL ================= -->
   <div id="adminAppShell" class="cyber-shell" style="display: none;">
 
-    <!-- TOP COMMAND RIBBON (C4ISR SEGMENTED TELEMETRY HEADER) -->
+    <!-- ================= TOP COMMAND BAR (60px) ================= -->
     <header class="cyber-hud-topbar">
-      <!-- Segment 1: Brand & Nav Toggle -->
-      <div class="hud-cell hud-cell-brand">
-        <button class="btn-sidebar-toggle" id="btnSidebarToggle" onclick="toggleCyberSidebar()" title="Toggle Tactical Navigation" aria-label="Toggle navigation">
+      <!-- Left: MindBook Emblem & Command Title -->
+      <div class="hud-left">
+        <button class="btn-sidebar-toggle" id="btnSidebarToggle" onclick="toggleCyberSidebar()" title="Toggle Navigation" aria-label="Toggle navigation">
           <span class="hamburger-bar"></span>
           <span class="hamburger-bar"></span>
           <span class="hamburger-bar"></span>
@@ -107,78 +106,72 @@
 
         <div class="hud-brand">
           <div class="brand-shield-glow">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="var(--neon-cyan)">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="var(--tactical-green)">
               <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
             </svg>
           </div>
           <div>
-            <div class="brand-title">MINDBOOK <span class="brand-highlight">SOC</span></div>
-            <div class="brand-sub">LIVE DATABASE & DEFENSE CONSOLE</div>
+            <div class="brand-title">MIND BOOK <span class="brand-highlight">// CIC</span></div>
+            <div class="brand-sub">CENTRAL INTELLIGENCE COMMAND</div>
           </div>
+          <span class="env-indicator-pill">PRODUCTION // SEC-LEVEL 5</span>
         </div>
       </div>
 
-      <!-- Segment 2: DEFCON Alert Metric -->
-      <div class="hud-cell hud-cell-defcon">
-        <div class="hud-defcon-badge" id="hudDefconBadge">
-          <span class="defcon-led pulse-red" style="background:#FF2E4C; box-shadow:0 0 8px #FF2E4C;"></span>
-          <span class="defcon-text" style="color:#FF2E4C;">DEFCON 4 // 2 ANOMALIES</span>
+      <!-- Centre: Global Search & Command Launcher -->
+      <div class="hud-center">
+        <div class="hud-global-search" onclick="openCommandPalette()" title="Press Ctrl + K to open Command Launcher">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Filter personnel, records, incidents or commands..." readonly>
+          <span class="cmd-shortcut-key">Ctrl + K</span>
         </div>
       </div>
 
-      <!-- Segment 3: Live Database Sync Telemetry Ticker -->
-      <div class="hud-cell hud-cell-ticker">
-        <div class="hud-ticker">
-          <span class="ticker-label">DATABASE SYNC:</span>
-          <span id="hudTickerText" class="ticker-content">QUERYING SUPABASE POSTGRESQL (vduwdnlchbelxvrqoioj.supabase.co)...</span>
+      <!-- Right: Operational Status, Live Clock, Notifications, Profile -->
+      <div class="hud-right">
+        <!-- System Operational Status -->
+        <div class="hud-status-badge" id="hudSystemStatusIndicator">
+          <span class="status-dot pulse"></span>
+          <span id="hudSystemStatusText">SYSTEM STATUS: OPERATIONAL</span>
         </div>
-      </div>
 
-      <!-- Segment 4: Sync Interval Dropdown -->
-      <div class="hud-cell hud-cell-interval">
-        <div class="hud-metric-pill" title="Real-time WebSocket & Polling Sync Interval">
-          <span class="pill-label">SYNC:</span>
-          <select id="autoSyncIntervalSelect" onchange="updateAutoSyncInterval(this.value)">
-            <option value="2000">2s Interval</option>
-            <option value="5000" selected>5s Sync Interval</option>
-            <option value="10000">10s Interval</option>
-            <option value="0">Manual Only</option>
+        <!-- Live Digital Clock (Zulu + Local) -->
+        <div class="hud-clock-cell" id="hudLiveClock" title="Precision Real-Time Clock">
+          <span class="clock-label">ZULU:</span> <span class="clock-time">00:00:00Z</span>
+          <span class="clock-divider">|</span>
+          <span class="clock-label">LOC:</span> <span class="clock-time">00:00:00</span>
+        </div>
+
+        <!-- Notification Centre Beacon -->
+        <button class="btn-notification-beacon" onclick="switchAdminTab('moderation')" title="Active Incident Reports">
+          <span>🔔</span>
+          <span class="beacon-pill" id="hudNotificationCount">2</span>
+        </button>
+
+        <!-- Sync Dropdown -->
+        <div class="hud-status-badge" style="padding: 4px 8px; border-color: var(--border-color); background: var(--bg-panel);" title="Database Polling Interval">
+          <span style="color: var(--muted-text); font-size: 10px;">SYNC:</span>
+          <select id="autoSyncIntervalSelect" onchange="updateAutoSyncInterval(this.value)" style="background: transparent; border: none; color: var(--tactical-green); font-family: var(--font-tech); font-size: 11px; cursor: pointer; outline: none; margin-left: 4px;">
+            <option value="2000" style="background:#080C0A; color:#E5EDE6;">2s</option>
+            <option value="5000" selected style="background:#080C0A; color:#E5EDE6;">5s</option>
+            <option value="10000" style="background:#080C0A; color:#E5EDE6;">10s</option>
+            <option value="0" style="background:#080C0A; color:#E5EDE6;">Manual</option>
           </select>
         </div>
-      </div>
 
-      <!-- Segment 5: Latency Telemetry -->
-      <div class="hud-cell hud-cell-latency">
-        <div class="hud-metric-pill">
-          <span class="pill-label">LATENCY:</span>
-          <span id="hudLatency" class="pill-val">17ms</span>
-        </div>
-      </div>
-
-      <!-- Segment 6: Audio Synthesizer Status -->
-      <div class="hud-cell hud-cell-audio">
-        <button class="btn-cyber-hud" id="btnSoundToggle" onclick="toggleAudioFx()" title="Toggle Tactical Audio Feedback">
+        <!-- Audio FX Toggle -->
+        <button class="btn-notification-beacon" id="btnSoundToggle" onclick="toggleAudioFx()" title="Tactical Audio Feedback">
           <span id="soundIcon">🔊</span>
-          <span id="soundStatusText">AUDIO: ON</span>
         </button>
-      </div>
 
-      <!-- Segment 7: Tactical Sync Now Trigger -->
-      <div class="hud-cell hud-cell-sync-btn">
-        <button class="btn-cyber-hud alert-btn" onclick="refreshFromLiveDatabase()" title="Force Refresh Real Supabase Database">
-          <span>🔄 SYNC NOW</span>
-        </button>
-      </div>
-
-      <!-- Segment 8: Operator Credentials & Session Lock -->
-      <div class="hud-cell hud-cell-operator">
-        <div class="operator-profile">
-          <div class="operator-avatar" id="operatorInitials">OP</div>
-          <div class="operator-info">
-            <span id="operatorName" class="op-name">ROOT OPERATOR</span>
-            <span class="op-rank">SYSADMIN // SEC-OPS</span>
+        <!-- Admin Profile Card & Logout -->
+        <div class="operator-profile-card">
+          <div class="operator-avatar" id="operatorInitials">KM</div>
+          <div class="operator-meta">
+            <span class="operator-name" id="operatorName">KOTA MIDHUN</span>
+            <span class="operator-role">ROOT OPERATOR // TS/SCI</span>
           </div>
-          <button class="btn-op-logout" onclick="handleAdminLogout()" title="Terminate Terminal Session">
+          <button class="btn-op-logout" onclick="handleAdminLogout()" title="Secure Logout">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg>
           </button>
         </div>
@@ -188,120 +181,489 @@
     <!-- MOBILE SIDEBAR BACKDROP OVERLAY -->
     <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="toggleCyberSidebar(false)"></div>
 
-    <!-- WORKSPACE BODY (SIDEBAR + MAIN CONTENT) -->
+    <!-- WORKSPACE BODY (SIDEBAR + MAIN VIEWPORT) -->
     <div class="cyber-workspace">
-      
-      <!-- TACTICAL SIDEBAR NAVIGATION -->
+
+      <!-- ================= LEFT NAVIGATION SIDEBAR (245px) ================= -->
       <aside class="cyber-sidebar">
         <!-- Mobile Drawer Header -->
         <div class="sidebar-mobile-header">
-          <div class="sidebar-mobile-brand">
-            <span class="brand-highlight">MINDBOOK</span> CONSOLES
-          </div>
-          <button class="sidebar-close-btn" onclick="toggleCyberSidebar(false)" title="Close Navigation Drawer">✕</button>
+          <div class="sidebar-mobile-brand">MIND BOOK // CIC</div>
+          <button class="sidebar-close-btn" onclick="toggleCyberSidebar(false)">✕</button>
         </div>
 
-        <div class="sidebar-section-title">COMMAND CONSOLES</div>
-
-        <nav class="cyber-nav">
-          <button class="nav-btn active" data-tab="database" onclick="switchAdminTab('database')">
-            <div class="nav-icon">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 3C7.58 3 4 4.79 4 7v10c0 2.21 3.58 4 8 4s8-1.79 8-4V7c0-2.21-3.58-4-8-4zm0 2c3.87 0 6 1.5 6 2s-2.13 2-6 2-6-1.5-6-2 2.13-2 6-2zm6 5.1c-.8 1.13-3.15 1.9-6 1.9s-5.2-.77-6-1.9V9.7c1.37.78 3.55 1.3 6 1.3s4.63-.52 6-1.3v2.4zm0 4.1c-.8 1.13-3.15 1.9-6 1.9s-5.2-.77-6-1.9v-2.4c1.37.78 3.55 1.3 6 1.3s4.63-.52 6-1.3v2.4zm0 4.1c-.8 1.13-3.15 1.9-6 1.9s-5.2-.77-6-1.9v-2.4c1.37.78 3.55 1.3 6 1.3s4.63-.52 6-1.3v2.4z"/></svg>
-            </div>
-            <span class="nav-label">Live Database Studio</span>
-            <span class="cyber-badge count-green" id="sidebarDbBadge">LIVE</span>
-          </button>
-
-          <button class="nav-btn" data-tab="overview" onclick="switchAdminTab('overview')">
-            <div class="nav-icon">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
-            </div>
-            <span class="nav-label">Threat Matrix & Overview</span>
-            <span class="nav-status-dot online"></span>
-          </button>
-
-          <button class="nav-btn" data-tab="moderation" onclick="switchAdminTab('moderation')">
-            <div class="nav-icon">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6h-5.6z"/></svg>
-            </div>
-            <span class="nav-label">Quarantine & Moderation</span>
-            <span id="sidebarBadgeReports" class="cyber-badge count-red">2</span>
-          </button>
-
-          <button class="nav-btn" data-tab="users" onclick="switchAdminTab('users')">
-            <div class="nav-icon">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
-            </div>
-            <span class="nav-label">IAM & Identity Control</span>
-            <span id="sidebarUserCount" class="cyber-badge count-cyan">7</span>
-          </button>
-
-          <button class="nav-btn" data-tab="company" onclick="switchAdminTab('company')">
-            <div class="nav-icon">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg>
-            </div>
-            <span class="nav-label">Company Account HQ</span>
-            <span class="cyber-badge count-cyan">@mindbook</span>
-          </button>
-
-          <button class="nav-btn" data-tab="broadcasts" onclick="switchAdminTab('broadcasts')">
-            <div class="nav-icon">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M18 11v2h4v-2h-4zm-2 6.61l1.41 1.41 3.54-3.54-1.41-1.41-3.54 3.54zm1.41-12.02L16 7.39l3.54 3.54 1.41-1.41-3.54-3.52zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c.84 0 1.65-.11 2.42-.31L13.19 20H12c-4.41 0-8-3.59-8-8s3.59-8 8-8c3.92 0 7.18 2.83 7.86 6.57l1.98-.44C20.94 4.88 16.89 2 12 2z"/></svg>
-            </div>
-            <span class="nav-label">Emergency Broadcasts</span>
-            <span class="nav-status-dot online"></span>
-          </button>
-
-          <button class="nav-btn" data-tab="terminal" onclick="switchAdminTab('terminal')">
-            <div class="nav-icon">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-12 5l4 3-4 3v-6zm10 7H12v-2h6v2z"/></svg>
-            </div>
-            <span class="nav-label">Live Telemetry Terminal</span>
+        <!-- 01. COMMAND CENTRE -->
+        <div class="sidebar-nav-group">
+          <div class="sidebar-group-title">01. COMMAND CENTRE</div>
+          <button class="nav-btn active" data-tab="overview" onclick="switchAdminTab('overview')">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Executive Overview</span>
             <span class="cyber-badge count-green">LIVE</span>
           </button>
-
-          <button class="nav-btn" data-tab="system" onclick="switchAdminTab('system')">
-            <div class="nav-icon">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
-            </div>
-            <span class="nav-label">Zero-Trust Diagnostics</span>
-            <span class="nav-status-dot online"></span>
+          <button class="nav-btn" data-tab="live-ops" onclick="switchAdminTab('live-ops')">
+            <span class="nav-icon">📡</span>
+            <span class="nav-label">Live Operations</span>
+            <span class="cyber-badge count-cyan">STREAM</span>
           </button>
-        </nav>
+        </div>
 
-        <div class="sidebar-defense-meter">
-          <div class="defense-label">
-            <span>DATABASE GATEWAY</span>
-            <span class="defense-val" style="color:var(--neon-green)">ONLINE 🟢</span>
+        <!-- 02. INTELLIGENCE -->
+        <div class="sidebar-nav-group">
+          <div class="sidebar-group-title">02. INTELLIGENCE</div>
+          <button class="nav-btn" data-tab="database" onclick="switchAdminTab('database')">
+            <span class="nav-icon">🗄️</span>
+            <span class="nav-label">Personnel Database</span>
+            <span class="cyber-badge count-green" id="sidebarDbBadge">7 USERS</span>
+          </button>
+          <button class="nav-btn" data-tab="user-analytics" onclick="switchAdminTab('user-analytics')">
+            <span class="nav-icon">📈</span>
+            <span class="nav-label">User Analytics</span>
+          </button>
+          <button class="nav-btn" data-tab="relationships" onclick="switchAdminTab('relationships')">
+            <span class="nav-icon">🕸️</span>
+            <span class="nav-label">Relationship Analytics</span>
+          </button>
+        </div>
+
+        <!-- 03. ACTIVITY MONITORING -->
+        <div class="sidebar-nav-group">
+          <div class="sidebar-group-title">03. ACTIVITY MONITORING</div>
+          <button class="nav-btn" data-tab="activity" onclick="switchAdminTab('activity')">
+            <span class="nav-icon">⚡</span>
+            <span class="nav-label">Platform Activity</span>
+          </button>
+          <button class="nav-btn" data-tab="content-stream" onclick="switchAdminTab('content-stream')">
+            <span class="nav-icon">📝</span>
+            <span class="nav-label">Posts & Stories</span>
+          </button>
+          <button class="nav-btn" data-tab="moderation" onclick="switchAdminTab('moderation')">
+            <span class="nav-icon">🛡️</span>
+            <span class="nav-label">Content Moderation</span>
+            <span class="cyber-badge count-red" id="sidebarBadgeReports">2</span>
+          </button>
+          <button class="nav-btn" data-tab="reports" onclick="switchAdminTab('reports')">
+            <span class="nav-icon">⚠️</span>
+            <span class="nav-label">Reports & Complaints</span>
+          </button>
+        </div>
+
+        <!-- 04. SECURITY OPERATIONS -->
+        <div class="sidebar-nav-group">
+          <div class="sidebar-group-title">04. SECURITY OPERATIONS</div>
+          <button class="nav-btn" data-tab="security" onclick="switchAdminTab('security')">
+            <span class="nav-icon">🔐</span>
+            <span class="nav-label">Security Overview</span>
+            <span class="cyber-badge count-green">ACTIVE</span>
+          </button>
+          <button class="nav-btn" data-tab="auth-events" onclick="switchAdminTab('auth-events')">
+            <span class="nav-icon">🔑</span>
+            <span class="nav-label">Authentication Events</span>
+          </button>
+          <button class="nav-btn" data-tab="suspicious-activity" onclick="switchAdminTab('suspicious-activity')">
+            <span class="nav-icon">🚨</span>
+            <span class="nav-label">Suspicious Activity</span>
+          </button>
+          <button class="nav-btn" data-tab="iam" onclick="switchAdminTab('iam')">
+            <span class="nav-icon">👤</span>
+            <span class="nav-label">Access Management</span>
+          </button>
+        </div>
+
+        <!-- 05. COMMUNICATIONS -->
+        <div class="sidebar-nav-group">
+          <div class="sidebar-group-title">05. COMMUNICATIONS</div>
+          <button class="nav-btn" data-tab="support" onclick="switchAdminTab('support')">
+            <span class="nav-icon">💬</span>
+            <span class="nav-label">Support Requests</span>
+            <span class="cyber-badge count-amber">1 PENDING</span>
+          </button>
+          <button class="nav-btn" data-tab="broadcasts" onclick="switchAdminTab('broadcasts')">
+            <span class="nav-icon">📢</span>
+            <span class="nav-label">Announcements</span>
+          </button>
+          <button class="nav-btn" data-tab="company" onclick="switchAdminTab('company')">
+            <span class="nav-icon">🏢</span>
+            <span class="nav-label">Administrative Messages</span>
+            <span class="cyber-badge count-cyan">@mindbook</span>
+          </button>
+        </div>
+
+        <!-- 06. SYSTEM CONTROL -->
+        <div class="sidebar-nav-group">
+          <div class="sidebar-group-title">06. SYSTEM CONTROL</div>
+          <button class="nav-btn" data-tab="system" onclick="switchAdminTab('system')">
+            <span class="nav-icon">🖥️</span>
+            <span class="nav-label">Infrastructure Health</span>
+          </button>
+          <button class="nav-btn" data-tab="db-monitor" onclick="switchAdminTab('db-monitor')">
+            <span class="nav-icon">💾</span>
+            <span class="nav-label">Database Monitoring</span>
+          </button>
+          <button class="nav-btn" data-tab="api-monitor" onclick="switchAdminTab('api-monitor')">
+            <span class="nav-icon">🌐</span>
+            <span class="nav-label">API Monitoring</span>
+          </button>
+          <button class="nav-btn" data-tab="terminal" onclick="switchAdminTab('terminal')">
+            <span class="nav-icon">💻</span>
+            <span class="nav-label">System Logs</span>
+          </button>
+        </div>
+
+        <!-- 07. CONFIGURATION -->
+        <div class="sidebar-nav-group">
+          <div class="sidebar-group-title">07. CONFIGURATION</div>
+          <button class="nav-btn" data-tab="admin-accounts" onclick="switchAdminTab('admin-accounts')">
+            <span class="nav-icon">👑</span>
+            <span class="nav-label">Administrator Accounts</span>
+          </button>
+          <button class="nav-btn" data-tab="roles" onclick="switchAdminTab('roles')">
+            <span class="nav-icon">🏷️</span>
+            <span class="nav-label">Roles & Permissions</span>
+          </button>
+          <button class="nav-btn" data-tab="settings" onclick="switchAdminTab('settings')">
+            <span class="nav-icon">⚙️</span>
+            <span class="nav-label">Platform Settings</span>
+          </button>
+        </div>
+
+        <!-- Hardware Gateway Status Footer -->
+        <div class="sidebar-hardware-meter">
+          <div class="hardware-label">
+            <span>GATEWAY UPLINK</span>
+            <span class="hardware-val">ONLINE 🟢</span>
           </div>
           <div class="cyber-bar-track">
-            <div class="cyber-bar-fill green-glow" style="width: 100%;"></div>
+            <div class="cyber-bar-fill green" style="width: 100%;"></div>
           </div>
-          <div class="defense-sub">ENDPOINT: vduwdnlchbelxvrqoioj.supabase.co</div>
+          <div class="hardware-sub">vduwdnlchbelxvrqoioj.supabase.co</div>
         </div>
       </aside>
 
-      <!-- MAIN TACTICAL VIEWPORT -->
+      <!-- ================= MAIN WORKSPACE ================= -->
       <main class="cyber-main-viewport">
 
-        <!-- ================= TAB: LIVE DATABASE STUDIO (C4ISR OPERATIONS CONSOLE) ================= -->
-        <section id="tab-database" class="cyber-tab active">
-          <div class="cyber-card tactical-studio-card">
-            
-            <!-- Tactical 2-Row Control Bar -->
-            <div class="tactical-control-toolbar">
-              <!-- Row 1: Workspace Title + Table Selector Tabs -->
-              <div class="control-toolbar-row-1">
-                <div class="workspace-title-box">
-                  <div style="display:flex; align-items:center; gap:8px;">
-                    <span style="font-size:1.2rem;">🗄️</span>
-                    <h3 class="workspace-heading-title">LIVE DATABASE STUDIO & RECORD MONITOR</h3>
-                    <span class="tag-status live" id="dbLiveConnectionStatus">🟢 CONNECTED TO POSTGRESQL</span>
+        <!-- ================= TAB: COMMAND CENTRE – MAIN DASHBOARD (EXECUTIVE OVERVIEW) ================= -->
+        <section id="tab-overview" class="cyber-tab active">
+          <!-- Breadcrumb -->
+          <div class="workspace-breadcrumb">
+            <span>COMMAND CENTRE</span> &gt; <span class="crumb-active">EXECUTIVE OVERVIEW</span>
+          </div>
+
+          <!-- Page Header -->
+          <div class="workspace-page-header">
+            <div>
+              <h2 class="workspace-heading-title">COMMAND CENTRE // PLATFORM INTELLIGENCE OVERVIEW</h2>
+              <p class="card-subtitle">Centralized monitoring and administrative operations for MindBook.</p>
+            </div>
+            <div class="workspace-header-actions">
+              <span class="hud-status-badge" style="background: var(--bg-panel); border-color: var(--border-color); color: var(--secondary-text);">
+                <span id="overviewLastSync">LAST SYNC: JUST NOW</span>
+              </span>
+              <button class="btn-tactical-action" onclick="refreshFromLiveDatabase()">
+                🔄 SYNC NOW
+              </button>
+            </div>
+          </div>
+
+          <!-- A. KEY PERFORMANCE INDICATORS (8 COMPACT CARDS) -->
+          <div class="cyber-grid-8">
+            <!-- 1. TOTAL PERSONNEL -->
+            <div class="kpi-tactical-card">
+              <div class="kpi-header">
+                <span class="kpi-label">TOTAL PERSONNEL</span>
+                <span class="kpi-icon">👥</span>
+              </div>
+              <div class="kpi-value-row">
+                <div class="kpi-big-num" id="statTotalUsers">7</div>
+                <span class="kpi-badge positive">▲ 100% LIVE</span>
+              </div>
+              <div class="kpi-footer-meta">Queried live from public.profiles</div>
+            </div>
+
+            <!-- 2. ACTIVE PERSONNEL -->
+            <div class="kpi-tactical-card">
+              <div class="kpi-header">
+                <span class="kpi-label">ACTIVE PERSONNEL</span>
+                <span class="kpi-icon">🟢</span>
+              </div>
+              <div class="kpi-value-row">
+                <div class="kpi-big-num" id="statActiveUsers">5</div>
+                <span class="kpi-badge positive">71.4% RATIO</span>
+              </div>
+              <div class="kpi-footer-meta">Active during current reporting cycle</div>
+            </div>
+
+            <!-- 3. CURRENTLY ONLINE -->
+            <div class="kpi-tactical-card">
+              <div class="kpi-header">
+                <span class="kpi-label">CURRENTLY ONLINE</span>
+                <span class="kpi-icon">📶</span>
+              </div>
+              <div class="kpi-value-row">
+                <div class="kpi-big-num" id="statOnlineUsers">3</div>
+                <span class="kpi-badge neutral">ESTIMATED</span>
+              </div>
+              <div class="kpi-footer-meta">Active session & websocket presence</div>
+            </div>
+
+            <!-- 4. NEW REGISTRATIONS -->
+            <div class="kpi-tactical-card">
+              <div class="kpi-header">
+                <span class="kpi-label">NEW REGISTRATIONS</span>
+                <span class="kpi-icon">✨</span>
+              </div>
+              <div class="kpi-value-row">
+                <div class="kpi-big-num" id="statNewRegistrations">+2</div>
+                <span class="kpi-badge positive">+28.5%</span>
+              </div>
+              <div class="kpi-footer-meta">New user identities provisioned</div>
+            </div>
+
+            <!-- 5. TOTAL PUBLICATIONS -->
+            <div class="kpi-tactical-card">
+              <div class="kpi-header">
+                <span class="kpi-label">TOTAL PUBLICATIONS</span>
+                <span class="kpi-icon">📝</span>
+              </div>
+              <div class="kpi-value-row">
+                <div class="kpi-big-num" id="statTotalPosts">1</div>
+                <span class="kpi-badge neutral">RLS ENFORCED</span>
+              </div>
+              <div class="kpi-footer-meta">Total posts in public.posts</div>
+            </div>
+
+            <!-- 6. OPEN INCIDENTS -->
+            <div class="kpi-tactical-card">
+              <div class="kpi-header">
+                <span class="kpi-label">OPEN INCIDENTS</span>
+                <span class="kpi-icon">⚠️</span>
+              </div>
+              <div class="kpi-value-row">
+                <div class="kpi-big-num" id="statPendingFlags" style="color: var(--status-critical);">2</div>
+                <span class="kpi-badge alert">ACTION REQ</span>
+              </div>
+              <div class="kpi-footer-meta">Unresolved reports in queue</div>
+            </div>
+
+            <!-- 7. PENDING SUPPORT -->
+            <div class="kpi-tactical-card">
+              <div class="kpi-header">
+                <span class="kpi-label">PENDING SUPPORT</span>
+                <span class="kpi-icon">💬</span>
+              </div>
+              <div class="kpi-value-row">
+                <div class="kpi-big-num" id="statPendingTickets" style="color: var(--status-warning);">1</div>
+                <span class="kpi-badge neutral">IN QUEUE</span>
+              </div>
+              <div class="kpi-footer-meta">Open user assistance inquiries</div>
+            </div>
+
+            <!-- 8. PLATFORM HEALTH -->
+            <div class="kpi-tactical-card">
+              <div class="kpi-header">
+                <span class="kpi-label">PLATFORM HEALTH</span>
+                <span class="kpi-icon">🛡️</span>
+              </div>
+              <div class="kpi-value-row">
+                <div class="kpi-big-num" id="statPlatformHealth" style="color: var(--status-operational); font-size: 20px;">99.98%</div>
+                <span class="kpi-badge positive">OPTIMAL</span>
+              </div>
+              <div class="kpi-footer-meta">All services operational</div>
+            </div>
+          </div>
+
+          <!-- B. GLOBAL ACTIVITY ANALYTICS (INTERACTIVE CHART) -->
+          <div class="cyber-card">
+            <div class="card-header-tactical">
+              <div>
+                <h3>GLOBAL ACTIVITY ANALYTICS // PLATFORM CADENCE</h3>
+                <p class="card-subtitle">Real-time telemetry measuring user signups, publication frequency, and active platform utilization.</p>
+              </div>
+              <div class="chart-controls-group">
+                <button class="chart-btn-filter" onclick="filterActivityChart('24h', this)">24 Hours</button>
+                <button class="chart-btn-filter active" onclick="filterActivityChart('7d', this)">7 Days</button>
+                <button class="chart-btn-filter" onclick="filterActivityChart('30d', this)">30 Days</button>
+                <button class="chart-btn-filter" onclick="filterActivityChart('90d', this)">90 Days</button>
+              </div>
+            </div>
+
+            <!-- SVG Vector Activity Chart Stage -->
+            <div class="chart-stage-container" id="globalActivityChartStage">
+              <!-- Dynamically drawn SVG chart via admin.js -->
+            </div>
+          </div>
+
+          <!-- C & D. LIVE OPERATIONS FEED + SYSTEM HEALTH MONITOR SPLIT -->
+          <div class="cyber-grid-split">
+            <!-- C. LIVE OPERATIONS FEED -->
+            <div class="cyber-card">
+              <div class="card-header-tactical">
+                <div>
+                  <h3>LIVE OPERATIONS FEED</h3>
+                  <p class="card-subtitle">Real-time chronological dispatch of platform administrative events.</p>
+                </div>
+                <span class="cyber-badge count-green">REAL-TIME</span>
+              </div>
+
+              <div class="live-ops-stream" id="liveOpsStreamContainer">
+                <!-- Dynamically injected stream items -->
+              </div>
+            </div>
+
+            <!-- D. SYSTEM HEALTH MONITOR -->
+            <div class="cyber-card">
+              <div class="card-header-tactical">
+                <div>
+                  <h3>SYSTEM HEALTH MONITOR</h3>
+                  <p class="card-subtitle">Actual availability and performance of core platform infrastructure.</p>
+                </div>
+                <button class="btn-tactical-action" onclick="recheckAllDiagnostics()" style="height: 28px; font-size: 10px;">
+                  ⚡ RE-VERIFY
+                </button>
+              </div>
+
+              <div class="system-health-grid">
+                <div class="health-node-card">
+                  <div class="health-node-header">
+                    <span class="health-node-title">FRONTEND RUNTIME</span>
+                    <span class="health-node-status">OPERATIONAL</span>
                   </div>
-                  <p class="card-subtitle">Real-time inspection of every single user, feed post, and comment directly in your Supabase database</p>
+                  <div class="health-node-desc">Vercel Edge Network • Zero Cold Start</div>
                 </div>
 
-                <!-- Database Table Switcher Tabs -->
+                <div class="health-node-card">
+                  <div class="health-node-header">
+                    <span class="health-node-title">SUPABASE POSTGRESQL</span>
+                    <span class="health-node-status">OPERATIONAL</span>
+                  </div>
+                  <div class="health-node-desc">vduwdnlchbelxvrqoioj • 16ms Latency</div>
+                </div>
+
+                <div class="health-node-card">
+                  <div class="health-node-header">
+                    <span class="health-node-title">AUTHENTICATION SERVICE</span>
+                    <span class="health-node-status">OPERATIONAL</span>
+                  </div>
+                  <div class="health-node-desc">Supabase GoTrue Auth • TLS 1.3 Active</div>
+                </div>
+
+                <div class="health-node-card">
+                  <div class="health-node-header">
+                    <span class="health-node-title">STORAGE AVAILABILITY</span>
+                    <span class="health-node-status">OPERATIONAL</span>
+                  </div>
+                  <div class="health-node-desc">Buckets: post-images • 84.2 MB consumed</div>
+                </div>
+
+                <div class="health-node-card">
+                  <div class="health-node-header">
+                    <span class="health-node-title">APEX DOMAIN ROUTING</span>
+                    <span class="health-node-status">OPERATIONAL</span>
+                  </div>
+                  <div class="health-node-desc">mindbook.in • Hostinger DNSSEC Verified</div>
+                </div>
+
+                <div class="health-node-card">
+                  <div class="health-node-header">
+                    <span class="health-node-title">BACKGROUND SYNC</span>
+                    <span class="health-node-status">OPERATIONAL</span>
+                  </div>
+                  <div class="health-node-desc">Interval: 5s Poll + Realtime WebSockets</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- E. RAPID DEFENSIVE INTERVENTIONS -->
+          <div class="cyber-card">
+            <div class="card-header-tactical">
+              <div>
+                <h3>OPERATIONAL DEFENSIVE INTERVENTIONS</h3>
+                <p class="card-subtitle">Authorized administrator interventions for maintenance, security verification, and storage hygiene.</p>
+              </div>
+              <span class="cyber-badge count-green">ROOT PRIVILEGES ACTIVE</span>
+            </div>
+
+            <div class="defense-actions-grid">
+              <button class="defense-action-btn" onclick="triggerPurgeExpiredStories()">
+                <div class="btn-icon">🗑️</div>
+                <div class="btn-texts">
+                  <strong>PURGE 24H EXPIRED STORIES</strong>
+                  <span>Hard delete expired ephemeral media rows from database</span>
+                </div>
+              </button>
+
+              <button class="defense-action-btn" onclick="triggerClearCache()">
+                <div class="btn-icon">🔄</div>
+                <div class="btn-texts">
+                  <strong>FLUSH REALTIME WEBSOCKETS</strong>
+                  <span>Restart live channels for feed, comments & reactions</span>
+                </div>
+              </button>
+
+              <button class="defense-action-btn" onclick="triggerSecuritySelfTest()">
+                <div class="btn-icon">🛡️</div>
+                <div class="btn-texts">
+                  <strong>SIMULATE PEN-TEST & AUDIT</strong>
+                  <span>Run cryptographic hash checks on RLS security policies</span>
+                </div>
+              </button>
+
+              <button class="defense-action-btn" onclick="switchAdminTab('database')">
+                <div class="btn-icon">🗄️</div>
+                <div class="btn-texts">
+                  <strong>OPEN PERSONNEL DATABASE</strong>
+                  <span>Directly inspect records in profiles, posts, and comments</span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB: LIVE OPERATIONS CONSOLE ================= -->
+        <section id="tab-live-ops" class="cyber-tab">
+          <div class="workspace-breadcrumb">
+            <span>COMMAND CENTRE</span> &gt; <span class="crumb-active">LIVE OPERATIONS</span>
+          </div>
+          <div class="workspace-page-header">
+            <div>
+              <h2 class="workspace-heading-title">LIVE OPERATIONS COMMAND CONSOLE</h2>
+              <p class="card-subtitle">Real-time socket channel monitoring, live dispatch logs, and operator activity.</p>
+            </div>
+            <button class="btn-tactical-action" onclick="refreshFromLiveDatabase()">🔄 FORCE SYNC</button>
+          </div>
+
+          <div class="cyber-card">
+            <div class="card-header-tactical">
+              <h3>ACTIVE TELEMETRY STREAM & SOCKET SUBSCRIBERS</h3>
+              <span class="cyber-badge count-green">WEBSOCKETS CONNECTED</span>
+            </div>
+            <div class="cyber-terminal-box full" id="liveOpsFullStream">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB: PERSONNEL DATABASE & LIVE STUDIO ================= -->
+        <section id="tab-database" class="cyber-tab">
+          <div class="workspace-breadcrumb">
+            <span>INTELLIGENCE</span> &gt; <span class="crumb-active">PERSONNEL DATABASE</span>
+          </div>
+          <div class="workspace-page-header">
+            <div>
+              <h2 class="workspace-heading-title">PERSONNEL DATABASE & RECORD MONITOR</h2>
+              <p class="card-subtitle">Real-time inspection of every single user identity, publication, and comment directly in your Supabase database.</p>
+            </div>
+            <div class="workspace-header-actions">
+              <span class="tag-status live" id="dbLiveConnectionStatus">🟢 CONNECTED TO POSTGRESQL</span>
+            </div>
+          </div>
+
+          <div class="cyber-card" style="padding: 16px;">
+            <!-- 2-Row Control Toolbar -->
+            <div class="tactical-control-toolbar">
+              <!-- Row 1: Table Switcher Tabs -->
+              <div class="control-toolbar-row-1">
                 <div class="tactical-filter-group">
                   <button class="filter-tab active" data-dbtab="profiles" onclick="switchDbTable('profiles', this)">
                     👥 public.profiles (<span id="countDbProfiles">...</span>)
@@ -313,30 +675,30 @@
                     💬 public.comments (<span id="countDbComments">...</span>)
                   </button>
                 </div>
+
+                <div style="font-family: var(--font-tech); font-size: 11px; color: var(--secondary-text);">
+                  DATABASE ENDPOINT: <span style="color: var(--highlight-green);">vduwdnlchbelxvrqoioj.supabase.co</span>
+                </div>
               </div>
 
-              <!-- Row 2: Search Input + Safe Destructive Action Separation Buttons -->
+              <!-- Row 2: Search Input + Action Buttons -->
               <div class="control-toolbar-row-2">
-                <div class="cyber-search-input responsive-search">
+                <div class="cyber-search-input">
                   <span class="search-lens">🔍</span>
                   <input type="text" id="dbSearchInput" placeholder="Filter records by UUID, username, or text..." oninput="handleDbFilter(this.value)">
                 </div>
 
                 <div class="tactical-action-buttons-group">
-                  <!-- Tactical Cyan: Sync & Export -->
                   <button class="btn-tactical-action" onclick="refreshFromLiveDatabase()" title="Force Refresh Real Supabase Database">
                     🔄 SYNC DATABASE
                   </button>
                   <button class="btn-tactical-action" onclick="exportCurrentTableJson()" title="Export Filtered Table to JSON">
                     💾 EXPORT TABLE JSON
                   </button>
-
-                  <!-- Caution Amber: Fresh Launch View -->
                   <button type="button" class="btn-tactical-action btn-caution-launch" id="btnToggleFreshMode" onclick="toggleFreshLaunchMode()" title="Toggle between clean real accounts only and demo seed records">
                     ✨ FRESH LAUNCH VIEW (REAL ONLY)
                   </button>
 
-                  <!-- Isolated Tactical Crimson on Far Right: Purge -->
                   <div class="destructive-action-divider"></div>
                   <button class="btn-tactical-action btn-danger-purge" onclick="purgeAllDemoSeedProfiles()" title="Purge dummy seed profiles (user_sophia, user_elena, user_marcus, user_mind_01) to make database brand new">
                     🧹 PURGE DEMO PROFILES
@@ -345,7 +707,7 @@
               </div>
             </div>
 
-            <!-- Database Grid Viewport with 6px L-shaped Corner Reticles -->
+            <!-- Database Grid Container with Reticles -->
             <div class="table-viewport-reticle">
               <div class="reticle-bracket top-left"></div>
               <div class="reticle-bracket top-right"></div>
@@ -376,231 +738,276 @@
                 </table>
               </div>
             </div>
-
           </div>
         </section>
 
-        <!-- ================= TAB 1: THREAT MATRIX & OVERVIEW ================= -->
-        <section id="tab-overview" class="cyber-tab">
-          
-          <!-- CYBER METRIC CARDS GRID -->
-          <div class="cyber-grid-4">
-            <div class="cyber-card metric-box cyan-edge">
-              <div class="metric-hud-header">
-                <span class="metric-tag">COMMUNITY REGISTERED USERS</span>
-                <span class="metric-dot green"></span>
-              </div>
-              <div class="metric-big-num" id="statTotalUsers">7</div>
-              <div class="metric-footer-text">
-                <span class="trend-up">▲ 100% LIVE</span> queried from Supabase profiles
-              </div>
-              <div class="metric-hud-line"></div>
-            </div>
-
-            <div class="cyber-card metric-box green-edge">
-              <div class="metric-hud-header">
-                <span class="metric-tag">FEED CONTENT POSTS</span>
-                <span class="metric-dot green"></span>
-              </div>
-              <div class="metric-big-num" id="statTotalPosts">1</div>
-              <div class="metric-footer-text">
-                <span class="shield-tag">🛡️ RLS ENFORCED</span> in database
-              </div>
-              <div class="metric-hud-line"></div>
-            </div>
-
-            <div class="cyber-card metric-box amber-edge">
-              <div class="metric-hud-header">
-                <span class="metric-tag">EPHEMERAL STORY TOKENS</span>
-                <span class="metric-dot amber"></span>
-              </div>
-              <div class="metric-big-num" id="statActiveStories">28</div>
-              <div class="metric-footer-text">
-                <span class="ttl-tag">⏱️ 24h auto-expiry purge armed</span>
-              </div>
-              <div class="metric-hud-line"></div>
-            </div>
-
-            <div class="cyber-card metric-box red-edge">
-              <div class="metric-hud-header">
-                <span class="metric-tag">QUARANTINED INCIDENTS</span>
-                <span class="metric-dot red pulse"></span>
-              </div>
-              <div class="metric-big-num red-glow" id="statPendingFlags">2</div>
-              <div class="metric-footer-text">
-                <span class="alert-tag">⚠️ ACTION MANDATORY</span>
-              </div>
-              <div class="metric-hud-line"></div>
+        <!-- ================= TAB: USER ANALYTICS ================= -->
+        <section id="tab-user-analytics" class="cyber-tab">
+          <div class="workspace-breadcrumb">
+            <span>INTELLIGENCE</span> &gt; <span class="crumb-active">USER ANALYTICS</span>
+          </div>
+          <div class="workspace-page-header">
+            <div>
+              <h2 class="workspace-heading-title">USER ANALYTICS & DEMOGRAPHICS</h2>
+              <p class="card-subtitle">Identity verification breakdown, cohort retention, and user distribution metrics.</p>
             </div>
           </div>
 
-          <!-- SECONDARY ROW: CLOUD DEFENSE GAUGES & QUICK DEFENSE CONTROLS -->
           <div class="cyber-grid-split">
-            
-            <!-- CLOUD CAPACITY GAUGES -->
             <div class="cyber-card">
               <div class="card-header-tactical">
-                <div class="header-title">
-                  <span class="icon">📊</span>
-                  <h3>CLOUD RESOURCE CONSUMPTION & FREE QUOTA METERS</h3>
-                </div>
-                <span class="tag-status live">SUPABASE FREE TIER • NO OVERAGES</span>
+                <h3>ACCOUNT CLASSIFICATION BREAKDOWN</h3>
               </div>
-
-              <div class="quota-meters-list">
-                <div class="quota-meter">
-                  <div class="quota-meter-head">
-                    <span class="meter-title">POSTGRESQL RELATIONAL STORAGE (500 MB CAP)</span>
-                    <span class="meter-stat" id="quotaDbText">18.4 MB / 500 MB (3.6%)</span>
-                  </div>
-                  <div class="cyber-bar-track">
-                    <div class="cyber-bar-fill cyan-glow" style="width: 3.6%;"></div>
-                  </div>
-                </div>
-
-                <div class="quota-meter">
-                  <div class="quota-meter-head">
-                    <span class="meter-title">MEDIA BUCKET 'post-images' (1,000 MB CAP)</span>
-                    <span class="meter-stat" id="quotaStorageText">84.2 MB / 1,000 MB (8.4%)</span>
-                  </div>
-                  <div class="cyber-bar-track">
-                    <div class="cyber-bar-fill green-glow" style="width: 8.4%;"></div>
-                  </div>
-                </div>
-
-                <div class="quota-meter">
-                  <div class="quota-meter-head">
-                    <span class="meter-title">MONTHLY EGRESS BANDWIDTH (5.0 GB CAP)</span>
-                    <span class="meter-stat" id="quotaEgressText">620 MB / 5.0 GB (12.4%)</span>
-                  </div>
-                  <div class="cyber-bar-track">
-                    <div class="cyber-bar-fill purple-glow" style="width: 12.4%;"></div>
-                  </div>
-                </div>
-
-                <div class="quota-meter">
-                  <div class="quota-meter-head">
-                    <span class="meter-title">AUTH ACTIVE REGISTERED USERS</span>
-                    <span class="meter-stat" id="quotaUsersMetric">7 registered users in database</span>
-                  </div>
-                  <div class="cyber-bar-track">
-                    <div class="cyber-bar-fill cyan-glow" style="width: 2%;"></div>
-                  </div>
-                </div>
+              <div id="analyticsUserBreakdown" style="padding: 10px 0;">
+                <!-- Populated via admin.js -->
               </div>
             </div>
-
-            <!-- RAPID DEFENSE STRIKE BUTTONS -->
             <div class="cyber-card">
               <div class="card-header-tactical">
-                <div class="header-title">
-                  <span class="icon">⚡</span>
-                  <h3>INSTANT DEFENSIVE INTERVENTIONS</h3>
-                </div>
-                <span class="tag-status">ROOT PRIVILEGE</span>
+                <h3>ACTIVE SESSION PRESENCE</h3>
               </div>
-
-              <div class="defense-actions-grid">
-                <button class="defense-action-btn" onclick="triggerPurgeExpiredStories()">
-                  <div class="btn-icon red-bg">🗑️</div>
-                  <div class="btn-texts">
-                    <strong>PURGE 24H EXPIRED STORIES</strong>
-                    <span>Hard delete expired ephemeral media rows from database</span>
-                  </div>
-                  <span class="btn-arrow">EXECUTE</span>
-                </button>
-
-                <button class="defense-action-btn" onclick="triggerClearCache()">
-                  <div class="btn-icon cyan-bg">🔄</div>
-                  <div class="btn-texts">
-                    <strong>FLUSH REALTIME WEBSOCKETS</strong>
-                    <span>Restart live channels for feed, comments & reactions</span>
-                  </div>
-                  <span class="btn-arrow">EXECUTE</span>
-                </button>
-
-                <button class="defense-action-btn" onclick="triggerSecuritySelfTest()">
-                  <div class="btn-icon green-bg">🛡️</div>
-                  <div class="btn-texts">
-                    <strong>SIMULATE PEN-TEST & AUDIT</strong>
-                    <span>Run cryptographic hash checks on RLS security policies</span>
-                  </div>
-                  <span class="btn-arrow">EXECUTE</span>
-                </button>
-
-                <button class="defense-action-btn" onclick="switchAdminTab('database')">
-                  <div class="btn-icon purple-bg">🗄️</div>
-                  <div class="btn-texts">
-                    <strong>OPEN DATABASE STUDIO</strong>
-                    <span>Inspect raw rows in profiles, posts, and comments</span>
-                  </div>
-                  <span class="btn-arrow">OPEN</span>
-                </button>
+              <div id="analyticsSessionPresence" style="padding: 10px 0;">
+                <!-- Populated via admin.js -->
               </div>
-            </div>
-
-          </div>
-
-          <!-- RECENT THREAT INCIDENT FEED (MINI TERMINAL STREAM) -->
-          <div class="cyber-card" style="margin-top: 20px;">
-            <div class="card-header-tactical">
-              <div class="header-title">
-                <span class="icon">📡</span>
-                <h3>REAL-TIME THREAT ACTIVITY & INCIDENT DISPATCH STREAM</h3>
-              </div>
-              <div class="header-actions">
-                <button class="btn-cyber-micro" onclick="simulateNewSecurityIncident()">+ SIMULATE THREAT INCOMING</button>
-                <button class="btn-cyber-micro" onclick="clearLiveLog()">CLEAR</button>
-              </div>
-            </div>
-
-            <div class="cyber-terminal-box mini" id="miniTerminalStream">
-              <!-- Dynamically injected stream entries -->
             </div>
           </div>
-
         </section>
 
-        <!-- ================= TAB 2: QUARANTINE & CONTENT MODERATION ================= -->
-        <section id="tab-moderation" class="cyber-tab">
+        <!-- ================= TAB: RELATIONSHIP ANALYTICS ================= -->
+        <section id="tab-relationships" class="cyber-tab">
+          <div class="workspace-breadcrumb">
+            <span>INTELLIGENCE</span> &gt; <span class="crumb-active">RELATIONSHIP ANALYTICS</span>
+          </div>
+          <div class="workspace-page-header">
+            <div>
+              <h2 class="workspace-heading-title">RELATIONSHIP ANALYTICS & SOCIAL GRAPH</h2>
+              <p class="card-subtitle">Public connections, mutual engagements, and legitimate interaction density.</p>
+            </div>
+          </div>
+
           <div class="cyber-card">
             <div class="card-header-tactical">
-              <div>
-                <h3>INCIDENT QUARANTINE & CONTENT MODERATION QUEUE</h3>
-                <p class="card-subtitle">Automated NLP toxicity detection, community spam flags, and rapid neutralization</p>
-              </div>
-
-              <div class="tactical-filter-group">
-                <button class="filter-tab active" onclick="filterReports('all', this)">ALL INCIDENTS</button>
-                <button class="filter-tab" onclick="filterReports('pending', this)">PENDING (<span id="countPendingFilter">2</span>)</button>
-                <button class="filter-tab" onclick="filterReports('resolved', this)">NEUTRALIZED</button>
-              </div>
+              <h3>ENTITY CONNECTIVITY MATRIX</h3>
             </div>
+            <div id="relationshipGraphContainer" style="padding: 16px 0;">
+              <!-- Populated via admin.js -->
+            </div>
+          </div>
+        </section>
 
+        <!-- ================= TAB: PLATFORM ACTIVITY MONITORING ================= -->
+        <section id="tab-activity" class="cyber-tab">
+          <div class="workspace-breadcrumb">
+            <span>ACTIVITY MONITORING</span> &gt; <span class="crumb-active">PLATFORM ACTIVITY</span>
+          </div>
+          <div class="workspace-page-header">
+            <div>
+              <h2 class="workspace-heading-title">PLATFORM ACTIVITY INTELLIGENCE</h2>
+              <p class="card-subtitle">Real-time platform activity timeline, user actions, and publishing trends.</p>
+            </div>
+            <div class="chart-controls-group">
+              <button class="chart-btn-filter active" onclick="filterActivityLog('all', this)">ALL EVENTS</button>
+              <button class="chart-btn-filter" onclick="filterActivityLog('auth', this)">AUTH</button>
+              <button class="chart-btn-filter" onclick="filterActivityLog('content', this)">CONTENT</button>
+              <button class="chart-btn-filter" onclick="filterActivityLog('security', this)">SECURITY</button>
+            </div>
+          </div>
+
+          <div class="cyber-card">
+            <div class="card-header-tactical">
+              <h3>CHRONOLOGICAL ACTIVITY TIMELINE</h3>
+            </div>
+            <div class="timeline-container" id="activityTimelineList">
+              <!-- Populated via admin.js -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB: POSTS & CONTENT STREAM ================= -->
+        <section id="tab-content-stream" class="cyber-tab">
+          <div class="workspace-breadcrumb">
+            <span>ACTIVITY MONITORING</span> &gt; <span class="crumb-active">POSTS & STORIES</span>
+          </div>
+          <div class="workspace-page-header">
+            <div>
+              <h2 class="workspace-heading-title">PUBLICATIONS & CONTENT STREAM</h2>
+              <p class="card-subtitle">Audit and review public feed publications, attachments, and engagement.</p>
+            </div>
+            <button class="btn-tactical-action" onclick="switchDbTable('posts'); switchAdminTab('database');">
+              🗄️ OPEN IN DATABASE STUDIO
+            </button>
+          </div>
+
+          <div class="cyber-card">
+            <div class="card-header-tactical">
+              <h3>RECENT PUBLIC PUBLICATIONS</h3>
+            </div>
+            <div id="contentStreamContainer">
+              <!-- Populated via admin.js -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB: CONTENT MODERATION & INCIDENT MANAGEMENT ================= -->
+        <section id="tab-moderation" class="cyber-tab">
+          <div class="workspace-breadcrumb">
+            <span>ACTIVITY MONITORING</span> &gt; <span class="crumb-active">CONTENT MODERATION</span>
+          </div>
+          <div class="workspace-page-header">
+            <div>
+              <h2 class="workspace-heading-title">INCIDENT MANAGEMENT & CONTENT MODERATION QUEUE</h2>
+              <p class="card-subtitle">Automated NLP toxicity detection, community spam flags, and rapid neutralization.</p>
+            </div>
+            <div class="tactical-filter-group">
+              <button class="filter-tab active" onclick="filterReports('all', this)">ALL INCIDENTS</button>
+              <button class="filter-tab" onclick="filterReports('pending', this)">PENDING (<span id="countPendingFilter">2</span>)</button>
+              <button class="filter-tab" onclick="filterReports('resolved', this)">RESOLVED</button>
+            </div>
+          </div>
+
+          <div class="cyber-card">
             <div id="reportsContainer" class="reports-cyber-list">
               <!-- Dynamically rendered via admin.js -->
             </div>
           </div>
         </section>
 
-        <!-- ================= TAB 3: IAM & IDENTITY CONTROL ================= -->
-        <section id="tab-users" class="cyber-tab">
-          <div class="cyber-card">
-            <div class="card-header-tactical flex-wrap">
-              <div>
-                <h3>IDENTITY & ACCESS GOVERNANCE (IAM DIRECTORY)</h3>
-                <p class="card-subtitle">Monitoring all registered users from Supabase database with live role elevation</p>
-              </div>
+        <!-- ================= TAB: REPORTS & COMPLAINTS ================= -->
+        <section id="tab-reports" class="cyber-tab">
+          <div class="workspace-breadcrumb">
+            <span>ACTIVITY MONITORING</span> &gt; <span class="crumb-active">REPORTS & COMPLAINTS</span>
+          </div>
+          <div class="workspace-page-header">
+            <div>
+              <h2 class="workspace-heading-title">USER COMPLAINTS & SAFETY AUDIT</h2>
+              <p class="card-subtitle">Audit log of all registered community complaints and moderation actions taken.</p>
+            </div>
+          </div>
 
-              <div class="user-controls-cluster">
-                <div class="cyber-search-input">
-                  <span class="search-lens">🔍</span>
-                  <input type="text" id="userSearchInput" placeholder="Filter by handle, display name, or UUID..." oninput="handleUserSearch(this.value)">
-                </div>
-                <button class="btn-cyber-primary micro" onclick="openNewUserModal()">+ ENROLL USER</button>
-              </div>
+          <div class="cyber-card">
+            <div class="card-header-tactical">
+              <h3>SAFETY INCIDENT AUDIT TRAIL</h3>
+            </div>
+            <div id="reportsRegistryContainer">
+              <!-- Populated via admin.js -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB: SECURITY OPERATIONS CENTRE (SOC) ================= -->
+        <section id="tab-security" class="cyber-tab">
+          <div class="workspace-breadcrumb">
+            <span>SECURITY OPERATIONS</span> &gt; <span class="crumb-active">SECURITY OVERVIEW</span>
+          </div>
+          <div class="workspace-page-header">
+            <div>
+              <h2 class="workspace-heading-title">SECURITY OPERATIONS CENTRE (SOC)</h2>
+              <p class="card-subtitle">Zero-trust architecture monitoring, legitimate access verification, and perimeter security.</p>
+            </div>
+            <div class="workspace-header-actions">
+              <button class="btn-tactical-action" onclick="simulatePenetrationTestSequence()">⚡ SIMULATE AUDIT</button>
+              <button class="btn-tactical-action" onclick="exportAuditLogs()">💾 EXPORT LOG</button>
+            </div>
+          </div>
+
+          <div class="cyber-card">
+            <div class="card-header-tactical">
+              <h3>ZERO-TRUST SECURITY EVENT LOG</h3>
+              <span class="cyber-badge count-green">AES-256-GCM ENFORCED</span>
             </div>
 
+            <div class="cyber-table-container">
+              <table class="cyber-table">
+                <thead>
+                  <tr>
+                    <th>TIMESTAMP</th>
+                    <th>EVENT CLASSIFICATION</th>
+                    <th>SOURCE IP / ORIGIN</th>
+                    <th>IDENTITY NODE</th>
+                    <th>CIPHER / PROTOCOL</th>
+                    <th>ACTION STATUS</th>
+                  </tr>
+                </thead>
+                <tbody id="securityEventsTableBody">
+                  <!-- Populated via admin.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB: AUTHENTICATION EVENTS ================= -->
+        <section id="tab-auth-events" class="cyber-tab">
+          <div class="workspace-breadcrumb">
+            <span>SECURITY OPERATIONS</span> &gt; <span class="crumb-active">AUTHENTICATION EVENTS</span>
+          </div>
+          <div class="workspace-page-header">
+            <div>
+              <h2 class="workspace-heading-title">AUTHENTICATION & ACCESS AUDIT LOG</h2>
+              <p class="card-subtitle">Audit stream of administrator sessions, token exchanges, and authentication events.</p>
+            </div>
+          </div>
+
+          <div class="cyber-card">
+            <div class="cyber-table-container">
+              <table class="cyber-table">
+                <thead>
+                  <tr>
+                    <th>TIMESTAMP</th>
+                    <th>OPERATOR</th>
+                    <th>METHOD</th>
+                    <th>CLEARANCE</th>
+                    <th>RESULT</th>
+                  </tr>
+                </thead>
+                <tbody id="authAuditTableBody">
+                  <!-- Populated via admin.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB: SUSPICIOUS ACTIVITY ================= -->
+        <section id="tab-suspicious-activity" class="cyber-tab">
+          <div class="workspace-breadcrumb">
+            <span>SECURITY OPERATIONS</span> &gt; <span class="crumb-active">SUSPICIOUS ACTIVITY</span>
+          </div>
+          <div class="workspace-page-header">
+            <div>
+              <h2 class="workspace-heading-title">ANOMALOUS PATTERN & THREAT DETECTION</h2>
+              <p class="card-subtitle">Heuristic monitoring of automated rate-limit violations, anomalous tokens, and defense triggers.</p>
+            </div>
+            <button class="btn-tactical-action" onclick="simulateNewSecurityIncident()">+ SIMULATE ANOMALY</button>
+          </div>
+
+          <div class="cyber-card">
+            <div id="suspiciousActivityContainer">
+              <!-- Populated via admin.js -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB: IAM & IDENTITY ACCESS MANAGEMENT ================= -->
+        <section id="tab-iam" class="cyber-tab">
+          <div class="workspace-breadcrumb">
+            <span>SECURITY OPERATIONS</span> &gt; <span class="crumb-active">ACCESS MANAGEMENT</span>
+          </div>
+          <div class="workspace-page-header">
+            <div>
+              <h2 class="workspace-heading-title">IDENTITY & ACCESS GOVERNANCE (IAM DIRECTORY)</h2>
+              <p class="card-subtitle">Monitoring all registered users from Supabase database with live role elevation.</p>
+            </div>
+            <div class="user-controls-cluster">
+              <div class="cyber-search-input">
+                <span class="search-lens">🔍</span>
+                <input type="text" id="userSearchInput" placeholder="Filter by handle, display name, or UUID..." oninput="handleUserSearch(this.value)">
+              </div>
+              <button class="btn-cyber-primary micro" onclick="openNewUserModal()">+ ENROLL USER</button>
+            </div>
+          </div>
+
+          <div class="cyber-card">
             <div class="cyber-table-container">
               <table class="cyber-table">
                 <thead>
@@ -622,176 +1029,97 @@
           </div>
         </section>
 
-        <!-- ================= TAB: OFFICIAL MINDBOOK COMPANY ACCOUNT HQ ================= -->
-        <section id="tab-company" class="cyber-tab">
-          <div class="cyber-card" style="margin-bottom: 24px;">
-            <div class="card-header-tactical flex-wrap">
-              <div>
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <span style="font-size:1.4rem;">🏢</span>
-                  <h3>OFFICIAL MINDBOOK COMPANY ACCOUNT</h3>
-                  <span class="role-tag-pill admin">👑 COMPANY ROOT</span>
-                  <span class="role-tag-pill verified">🛡️ VERIFIED OFFICIAL</span>
-                </div>
-                <p class="card-subtitle">Official company identity maintained by Founder Kota Midhun (@midhun777) & Root Sysadmins</p>
-              </div>
-
-              <div style="display:flex; gap:10px;">
-                <button class="btn-cyber-micro" onclick="copyCompanySqlCleanupScript()">
-                  📋 COPY FRESH LAUNCH SQL
-                </button>
-              </div>
+        <!-- ================= TAB: SUPPORT REQUESTS ================= -->
+        <section id="tab-support" class="cyber-tab">
+          <div class="workspace-breadcrumb">
+            <span>COMMUNICATIONS</span> &gt; <span class="crumb-active">SUPPORT REQUESTS</span>
+          </div>
+          <div class="workspace-page-header">
+            <div>
+              <h2 class="workspace-heading-title">SUPPORT REQUEST & USER INQUIRY DESK</h2>
+              <p class="card-subtitle">Customer support tickets, technical inquiries, and resolution status.</p>
             </div>
+          </div>
 
-            <!-- Company Profile Preview & Stats -->
-            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; margin-top: 14px;">
-              <div style="background: rgba(0, 240, 255, 0.04); border: 1px solid var(--border-cyan); padding: 18px; border-radius: 4px;">
-                <div style="display:flex; align-items:center; gap:14px; margin-bottom: 12px;">
-                  <img src="/assets/favicon.png" alt="MindBook Icon" style="width: 56px; height: 56px; border-radius: 50%; border: 2px solid var(--neon-cyan); box-shadow: 0 0 15px var(--neon-cyan-glow);">
-                  <div>
-                    <div style="font-weight: 700; color: #fff; font-size: 1.15rem; display:flex; align-items:center; gap:6px;">
-                      MindBook Official <span style="color:#ffd700;">👑</span>
-                    </div>
-                    <div style="color: var(--neon-cyan); font-family: var(--font-mono); font-size: 0.85rem;">
-                      @mindbook • ID: mindbook_official
-                    </div>
-                    <div style="color: var(--neon-green); font-size: 0.75rem; font-family: var(--font-mono); margin-top: 2px;">
-                      ✓ All Features & Root Access Active
-                    </div>
-                  </div>
-                </div>
-
-                <div style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 12px; background: rgba(0,0,0,0.3); padding: 10px; border-radius: 3px;">
-                  Official MindBook Platform & Community Account • System Announcements, Safety Guidelines & Mindful Community Governance 🌿
-                </div>
-
-                <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.75rem; color:var(--text-muted); border-top:1px solid var(--border-subtle); padding-top:8px;">
-                  <span>📍 MindBook HQ • Global</span>
-                  <span>🌐 <a href="https://www.mindbook.in" target="_blank" style="color:var(--neon-cyan); text-decoration:none;">mindbook.in</a></span>
-                  <span>👑 Managed by: @midhun777</span>
-                </div>
-              </div>
-
-              <!-- Quick Post as @mindbook -->
-              <div style="background: rgba(0, 240, 255, 0.04); border: 1px solid var(--border-cyan); padding: 18px; border-radius: 4px;">
-                <h4 style="color: var(--neon-cyan); font-family: var(--font-tactical); margin-bottom: 10px;">📢 POST TO COMMUNITY FEED AS @mindbook</h4>
-                <form id="companyPostForm" onsubmit="publishOfficialCompanyPost(event)">
-                  <textarea id="companyPostContent" rows="3" placeholder="Write an official community message, mindful prompt, or platform announcement..." style="width: 100%; background: #040817; border: 1px solid var(--border-cyan); color: #fff; padding: 10px; font-size: 0.85rem; border-radius: 3px; resize: vertical;" required></textarea>
-                  
-                  <div style="display:flex; gap: 8px; margin-top: 8px; flex-wrap:wrap;">
-                    <select id="companyPostMood" style="background: #040817; border: 1px solid var(--border-cyan); color: var(--neon-cyan); font-family: var(--font-mono); font-size: 0.75rem; padding: 6px 10px; border-radius: 2px;">
-                      <option value="Inspired">Mood: Inspired 🌟</option>
-                      <option value="Mindful">Mood: Mindful 🌿</option>
-                      <option value="Peaceful">Mood: Peaceful 🕊️</option>
-                      <option value="Official">Mood: Official 📢</option>
-                    </select>
-
-                    <input type="text" id="companyPostTags" placeholder="Tags (e.g. Welcome, Update)" style="flex:1; background: #040817; border: 1px solid var(--border-cyan); color: #fff; font-size: 0.75rem; padding: 6px 10px; border-radius: 2px;">
-
-                    <button type="submit" class="btn-cyber-primary micro" style="padding: 6px 14px;">
-                      TRANSMIT POST 🚀
-                    </button>
-                  </div>
-                </form>
-              </div>
+          <div class="cyber-card">
+            <div class="card-header-tactical">
+              <h3>OPEN SUPPORT TICKETS QUEUE</h3>
+              <span class="cyber-badge count-amber">1 PENDING</span>
             </div>
-
-            <!-- 1-Click Fresh Launch SQL Script Section -->
-            <div style="margin-top: 20px; background: rgba(2, 6, 23, 0.9); border: 1px dashed #ffd700; padding: 16px; border-radius: 4px;">
-              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom: 8px;">
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <span style="color:#ffd700; font-size:1.1rem;">⚡</span>
-                  <strong style="color:#ffd700; font-family:var(--font-tactical);">FRESH DATABASE LAUNCH SQL SCRIPT</strong>
-                  <span style="font-size:0.75rem; color:var(--text-muted);">(Run once in Supabase SQL Editor to make database 100% brand new)</span>
-                </div>
-                <button type="button" class="btn-cyber-micro" onclick="copyCompanySqlCleanupScript()" style="border-color:#ffd700; color:#ffd700;">
-                  📋 COPY SQL SCRIPT
-                </button>
-              </div>
-              <p style="font-size: 0.78rem; color: #94a3b8; margin-bottom: 8px;">
-                This script clears all dummy mock profiles (<code>user_sophia</code>, <code>user_elena</code>, etc.), preserves <strong>Kota Midhun (@midhun777)</strong> as Founder/Super Admin, and initializes <strong>MindBook Official (@mindbook)</strong> as the verified company account.
-              </p>
-              <pre id="freshDatabaseSqlScript" style="background:#02040b; border:1px solid #1e293b; padding:12px; color:#38bdf8; font-family:var(--font-mono); font-size:0.75rem; max-height:180px; overflow-y:auto; border-radius:3px; white-space:pre-wrap;">-- 1. Remove test comments and reactions
-DELETE FROM public.reactions WHERE user_id NOT IN ('3409ebfa-2162-4981-bd6f-ee6c71071e63', 'mindbook_official');
-DELETE FROM public.comments WHERE author_id NOT IN ('3409ebfa-2162-4981-bd6f-ee6c71071e63', 'mindbook_official');
-
--- 2. Remove test blank posts (keeps only official welcome post)
-DELETE FROM public.posts WHERE id != 'post_welcome';
-
--- 3. Remove all dummy test profiles
-DELETE FROM public.profiles WHERE id NOT IN ('3409ebfa-2162-4981-bd6f-ee6c71071e63', 'mindbook_official');
-
--- 4. Ensure MindBook Official company profile has full company features
-INSERT INTO public.profiles (
-    id, username, display_name, bio, avatar_url, banner_url, website, location, is_private, is_verified, is_admin, friends_count, posts_count, badges
-) VALUES (
-    'mindbook_official', 'mindbook', 'MindBook Official',
-    'Official MindBook Platform & Community Account • System Announcements, Safety Guidelines & Mindful Community Governance 🌿',
-    'https://www.mindbook.in/assets/mindbook_app_icon.png', 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
-    'https://www.mindbook.in', 'MindBook HQ', false, true, true, 1, 1, ARRAY['Official Company', 'System Admin', 'Platform Founder']
-) ON CONFLICT (id) DO UPDATE SET
-    display_name = 'MindBook Official', is_verified = true, is_admin = true;
-
--- 5. Set Founder Kota Midhun (@midhun777) as Super Admin
-UPDATE public.profiles SET is_verified = true, is_admin = true, badges = ARRAY['Super Admin', 'Platform Founder', 'Verified']
-WHERE id = '3409ebfa-2162-4981-bd6f-ee6c71071e63' OR username = 'midhun777';</pre>
+            <div id="supportTicketsContainer">
+              <!-- Populated via admin.js -->
             </div>
           </div>
         </section>
 
-        <!-- ================= TAB 4: EMERGENCY BROADCAST TRANSMITTER ================= -->
+        <!-- ================= TAB: EMERGENCY BROADCAST TRANSMITTER ================= -->
         <section id="tab-broadcasts" class="cyber-tab">
-          <div class="cyber-card">
-            <div class="card-header-tactical">
-              <div>
-                <h3>GLOBAL SYSTEM BROADCAST TRANSMITTER</h3>
-                <p class="card-subtitle">Transmit prioritized alerts and critical notices directly into mobile client feeds</p>
-              </div>
-              <button class="btn-cyber-primary" onclick="openNewBroadcastModal()">
-                <span>+ TRANSMIT NEW BROADCAST</span>
-              </button>
+          <div class="workspace-breadcrumb">
+            <span>COMMUNICATIONS</span> &gt; <span class="crumb-active">ANNOUNCEMENTS</span>
+          </div>
+          <div class="workspace-page-header">
+            <div>
+              <h2 class="workspace-heading-title">GLOBAL SYSTEM BROADCAST TRANSMITTER</h2>
+              <p class="card-subtitle">Transmit prioritized alerts and critical notices directly into mobile client feeds.</p>
             </div>
+            <button class="btn-cyber-primary" onclick="openNewBroadcastModal()">
+              <span>+ TRANSMIT NEW BROADCAST</span>
+            </button>
+          </div>
 
+          <div class="cyber-card">
             <div id="broadcastsContainer" class="broadcasts-cyber-list">
               <!-- Dynamically rendered via admin.js -->
             </div>
           </div>
         </section>
 
-        <!-- ================= TAB 5: LIVE TELEMETRY TERMINAL ================= -->
-        <section id="tab-terminal" class="cyber-tab">
-          <div class="cyber-card">
-            <div class="card-header-tactical">
-              <div>
-                <h3>SOC LIVE TELEMETRY & AUDIT TERMINAL</h3>
-                <p class="card-subtitle">Real-time socket events, auth attempts, honeypot filters, and database triggers</p>
-              </div>
-              <div class="terminal-ctrl-bar">
-                <button class="btn-cyber-micro" onclick="simulatePenetrationTestSequence()">⚡ RUN ATTACK SIMULATION</button>
-                <button class="btn-cyber-micro" onclick="exportAuditLogs()">💾 EXPORT AUDIT LOG</button>
-                <button class="btn-cyber-micro" onclick="clearLiveLog()">CLEAR CONSOLE</button>
-              </div>
+        <!-- ================= TAB: ADMINISTRATIVE MESSAGES & COMPANY HQ ================= -->
+        <section id="tab-company" class="cyber-tab">
+          <div class="workspace-breadcrumb">
+            <span>COMMUNICATIONS</span> &gt; <span class="crumb-active">ADMINISTRATIVE MESSAGES</span>
+          </div>
+          <div class="workspace-page-header">
+            <div>
+              <h2 class="workspace-heading-title">OFFICIAL MINDBOOK COMPANY ACCOUNT HQ</h2>
+              <p class="card-subtitle">Official verified company account (@mindbook) maintained by Founder Kota Midhun & Root Sysadmins.</p>
             </div>
+            <button class="btn-tactical-action" onclick="copyCompanySqlCleanupScript()">
+              📋 COPY FRESH LAUNCH SQL
+            </button>
+          </div>
 
-            <div class="cyber-terminal-box full" id="mainTerminalStream">
-              <!-- Full terminal stream -->
+          <div class="cyber-card">
+            <div style="display:flex; align-items:center; gap:16px; margin-bottom:16px;">
+              <img src="/assets/favicon.png" alt="MindBook" style="width: 52px; height: 52px; border-radius: 50%; border: 2px solid var(--tactical-green);">
+              <div>
+                <h3 style="color: var(--primary-text); font-family: var(--font-display); font-size: 18px;">MindBook Official 👑</h3>
+                <div style="color: var(--highlight-green); font-family: var(--font-tech); font-size: 12px;">@mindbook • ID: mindbook_official</div>
+                <div style="color: var(--status-operational); font-size: 11px; font-family: var(--font-tech); margin-top: 2px;">✓ Verified Root Clearance Active</div>
+              </div>
             </div>
+            <p style="color: var(--secondary-text); font-size: 13px; line-height: 1.6;">
+              The Official MindBook Company account acts as the canonical creator node on the platform. All automated updates, feature disclosures, and community broadcasts originate from this identity.
+            </p>
           </div>
         </section>
 
-        <!-- ================= TAB 6: ZERO-TRUST DIAGNOSTICS ================= -->
+        <!-- ================= TAB: INFRASTRUCTURE HEALTH & ZERO-TRUST ================= -->
         <section id="tab-system" class="cyber-tab">
-          <div class="cyber-card">
-            <div class="card-header-tactical">
-              <div>
-                <h3>ZERO-TRUST ARCHITECTURE & INFRASTRUCTURE HEALTH</h3>
-                <p class="card-subtitle">Real-time diagnostic verification of network endpoints, DNS, SSL, and database policies</p>
-              </div>
-              <button class="btn-cyber-primary micro" onclick="recheckAllDiagnostics()">⚡ RE-VERIFY ALL ENDPOINTS</button>
+          <div class="workspace-breadcrumb">
+            <span>SYSTEM CONTROL</span> &gt; <span class="crumb-active">INFRASTRUCTURE HEALTH</span>
+          </div>
+          <div class="workspace-page-header">
+            <div>
+              <h2 class="workspace-heading-title">INFRASTRUCTURE HEALTH & ZERO-TRUST STATUS</h2>
+              <p class="card-subtitle">Real-time diagnostic verification of network endpoints, DNS, SSL, and database policies.</p>
             </div>
+            <button class="btn-tactical-action" onclick="recheckAllDiagnostics()">⚡ RE-VERIFY ALL ENDPOINTS</button>
+          </div>
 
+          <div class="cyber-card">
             <div class="diagnostics-cyber-grid">
-              <div class="diag-node ok">
+              <div class="diag-node">
                 <div class="node-head">
                   <span class="node-label">CANONICAL APEX DOMAIN</span>
                   <span class="node-badge">200 OK</span>
@@ -800,7 +1128,7 @@ WHERE id = '3409ebfa-2162-4981-bd6f-ee6c71071e63' OR username = 'midhun777';</pr
                 <div class="node-meta">Hostinger Nameservers • DNSSEC Active</div>
               </div>
 
-              <div class="diag-node ok">
+              <div class="diag-node">
                 <div class="node-head">
                   <span class="node-label">ANYCAST EDGE CDN & COMPLIANCE</span>
                   <span class="node-badge">200 OK</span>
@@ -809,7 +1137,7 @@ WHERE id = '3409ebfa-2162-4981-bd6f-ee6c71071e63' OR username = 'midhun777';</pr
                 <div class="node-meta">Vercel Global Edge • SSL/TLS 1.3 Strict HSTS</div>
               </div>
 
-              <div class="diag-node ok">
+              <div class="diag-node">
                 <div class="node-head">
                   <span class="node-label">BUSINESS SUPPORT RELAY</span>
                   <span class="node-badge">VERIFIED</span>
@@ -818,7 +1146,7 @@ WHERE id = '3409ebfa-2162-4981-bd6f-ee6c71071e63' OR username = 'midhun777';</pr
                 <div class="node-meta">Titan Mail MX • SPF + DKIM + DMARC Sealed</div>
               </div>
 
-              <div class="diag-node ok">
+              <div class="diag-node">
                 <div class="node-head">
                   <span class="node-label">SUPABASE DATABASE (POSTGRESQL)</span>
                   <span class="node-badge">LIVE 🟢</span>
@@ -830,27 +1158,241 @@ WHERE id = '3409ebfa-2162-4981-bd6f-ee6c71071e63' OR username = 'midhun777';</pr
           </div>
         </section>
 
+        <!-- ================= TAB: DATABASE MONITORING ================= -->
+        <section id="tab-db-monitor" class="cyber-tab">
+          <div class="workspace-breadcrumb">
+            <span>SYSTEM CONTROL</span> &gt; <span class="crumb-active">DATABASE MONITORING</span>
+          </div>
+          <div class="workspace-page-header">
+            <div>
+              <h2 class="workspace-heading-title">POSTGRESQL DATABASE & STORAGE CAPACITY</h2>
+              <p class="card-subtitle">Resource consumption, storage tiers, query performance, and free tier limits.</p>
+            </div>
+          </div>
+
+          <div class="cyber-card">
+            <div class="card-header-tactical">
+              <h3>SUPABASE FREE TIER CAPACITY METERS</h3>
+            </div>
+            <div id="dbMonitorQuotaMeters">
+              <!-- Rendered via admin.js -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB: API MONITORING ================= -->
+        <section id="tab-api-monitor" class="cyber-tab">
+          <div class="workspace-breadcrumb">
+            <span>SYSTEM CONTROL</span> &gt; <span class="crumb-active">API MONITORING</span>
+          </div>
+          <div class="workspace-page-header">
+            <div>
+              <h2 class="workspace-heading-title">REST & REALTIME API MONITORING</h2>
+              <p class="card-subtitle">Endpoint response latencies, error frequencies, and TLS cipher suites.</p>
+            </div>
+          </div>
+
+          <div class="cyber-card">
+            <div id="apiMonitoringContainer">
+              <!-- Rendered via admin.js -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB: SYSTEM LOGS & LIVE TERMINAL ================= -->
+        <section id="tab-terminal" class="cyber-tab">
+          <div class="workspace-breadcrumb">
+            <span>SYSTEM CONTROL</span> &gt; <span class="crumb-active">SYSTEM LOGS</span>
+          </div>
+          <div class="workspace-page-header">
+            <div>
+              <h2 class="workspace-heading-title">CENTRAL INTELLIGENCE COMMAND TELEMETRY LOGS</h2>
+              <p class="card-subtitle">Real-time socket events, auth attempts, honeypot filters, and database triggers.</p>
+            </div>
+            <div class="workspace-header-actions">
+              <button class="btn-tactical-action" onclick="simulatePenetrationTestSequence()">⚡ ATTACK SIMULATION</button>
+              <button class="btn-tactical-action" onclick="exportAuditLogs()">💾 EXPORT LOG</button>
+              <button class="btn-tactical-action" onclick="clearLiveLog()">CLEAR</button>
+            </div>
+          </div>
+
+          <div class="cyber-card">
+            <div class="cyber-terminal-box full" id="mainTerminalStream">
+              <!-- Injected dynamically via admin.js -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB: ADMINISTRATOR ACCOUNTS ================= -->
+        <section id="tab-admin-accounts" class="cyber-tab">
+          <div class="workspace-breadcrumb">
+            <span>CONFIGURATION</span> &gt; <span class="crumb-active">ADMINISTRATOR ACCOUNTS</span>
+          </div>
+          <div class="workspace-page-header">
+            <div>
+              <h2 class="workspace-heading-title">ADMINISTRATOR DIRECTORY & CLEARANCE</h2>
+              <p class="card-subtitle">Authorized administrator accounts and operational privilege tiers.</p>
+            </div>
+          </div>
+
+          <div class="cyber-card">
+            <div class="cyber-table-container">
+              <table class="cyber-table">
+                <thead>
+                  <tr>
+                    <th>ADMINISTRATOR</th>
+                    <th>HANDLE</th>
+                    <th>CLEARANCE LEVEL</th>
+                    <th>STATUS</th>
+                    <th>LAST ACTIVE</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Kota Midhun</strong></td>
+                    <td style="color: var(--highlight-green);">@midhun777</td>
+                    <td><span class="cyber-badge count-green">FOUNDER & SUPER ADMIN</span></td>
+                    <td><span class="status-dot green" style="display:inline-block; margin-right:4px;"></span>ONLINE</td>
+                    <td>ACTIVE SESSION</td>
+                  </tr>
+                  <tr>
+                    <td><strong>MindBook Official</strong></td>
+                    <td style="color: var(--highlight-green);">@mindbook</td>
+                    <td><span class="cyber-badge count-cyan">COMPANY ROOT NODE</span></td>
+                    <td><span class="status-dot green" style="display:inline-block; margin-right:4px;"></span>VERIFIED</td>
+                    <td>DAEMON UPLINK</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB: ROLES & PERMISSIONS ================= -->
+        <section id="tab-roles" class="cyber-tab">
+          <div class="workspace-breadcrumb">
+            <span>CONFIGURATION</span> &gt; <span class="crumb-active">ROLES & PERMISSIONS</span>
+          </div>
+          <div class="workspace-page-header">
+            <div>
+              <h2 class="workspace-heading-title">ROLE-BASED ACCESS CONTROL (RBAC)</h2>
+              <p class="card-subtitle">Granular capability matrix enforced across administrative endpoints.</p>
+            </div>
+          </div>
+
+          <div class="cyber-card">
+            <div class="cyber-table-container">
+              <table class="cyber-table">
+                <thead>
+                  <tr>
+                    <th>ROLE NAME</th>
+                    <th>USER DIRECTORY</th>
+                    <th>CONTENT STRIKE</th>
+                    <th>BROADCASTS</th>
+                    <th>PURGE PROFILES</th>
+                    <th>DIAGNOSTICS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>SUPER ADMIN (ROOT)</strong></td>
+                    <td style="color: var(--status-operational);">FULL ACCESS</td>
+                    <td style="color: var(--status-operational);">FULL ACCESS</td>
+                    <td style="color: var(--status-operational);">FULL ACCESS</td>
+                    <td style="color: var(--status-operational);">AUTHORIZED</td>
+                    <td style="color: var(--status-operational);">FULL ACCESS</td>
+                  </tr>
+                  <tr>
+                    <td><strong>SECURITY OFFICER</strong></td>
+                    <td style="color: var(--status-operational);">READ ONLY</td>
+                    <td style="color: var(--status-operational);">QUARANTINE</td>
+                    <td style="color: var(--muted-text);">RESTRICTED</td>
+                    <td style="color: var(--status-critical);">RESTRICTED</td>
+                    <td style="color: var(--status-operational);">FULL ACCESS</td>
+                  </tr>
+                  <tr>
+                    <td><strong>CONTENT MODERATOR</strong></td>
+                    <td style="color: var(--status-operational);">READ ONLY</td>
+                    <td style="color: var(--status-operational);">STRIKE / DISMISS</td>
+                    <td style="color: var(--muted-text);">RESTRICTED</td>
+                    <td style="color: var(--status-critical);">RESTRICTED</td>
+                    <td style="color: var(--muted-text);">RESTRICTED</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB: PLATFORM SETTINGS ================= -->
+        <section id="tab-settings" class="cyber-tab">
+          <div class="workspace-breadcrumb">
+            <span>CONFIGURATION</span> &gt; <span class="crumb-active">PLATFORM SETTINGS</span>
+          </div>
+          <div class="workspace-page-header">
+            <div>
+              <h2 class="workspace-heading-title">PLATFORM PARAMETERS & DEPLOYMENT CONFIGURATION</h2>
+              <p class="card-subtitle">Runtime configuration flags, telemetry verbosity, and system parameters.</p>
+            </div>
+          </div>
+
+          <div class="cyber-card">
+            <div style="display:flex; flex-direction:column; gap:16px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-subtle); padding-bottom:12px;">
+                <div>
+                  <div style="font-weight:700; color:var(--primary-text);">DEPLOYMENT VERSION</div>
+                  <div style="color:var(--secondary-text); font-size:12px;">MindBook CIC Production v2.4.0</div>
+                </div>
+                <span class="cyber-badge count-green">BUILD VERIFIED</span>
+              </div>
+
+              <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-subtle); padding-bottom:12px;">
+                <div>
+                  <div style="font-weight:700; color:var(--primary-text);">AUTOMATIC FRESH LAUNCH FILTER</div>
+                  <div style="color:var(--secondary-text); font-size:12px;">Hides legacy dummy seed records from operational views</div>
+                </div>
+                <span class="cyber-badge count-green">ENABLED</span>
+              </div>
+
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                  <div style="font-weight:700; color:var(--primary-text);">ZERO-TRUST ENCRYPTION POLICY</div>
+                  <div style="color:var(--secondary-text); font-size:12px;">Enforces TLS 1.3 and cryptographic key rotation</div>
+                </div>
+                <span class="cyber-badge count-green">ACTIVE</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </main>
     </div>
-
   </div>
 
-  <!-- ================= MODAL: RAW DATABASE RECORD JSON INSPECTOR ================= -->
-  <div id="modalJsonInspector" class="cyber-modal-overlay" style="display: none;">
-    <div class="cyber-modal-card" style="max-width: 680px;">
-      <div class="corner-bracket top-left"></div>
-      <div class="corner-bracket top-right"></div>
-      <div class="corner-bracket bottom-left"></div>
-      <div class="corner-bracket bottom-right"></div>
+  <!-- ================= COMMAND PALETTE MODAL (Ctrl + K) ================= -->
+  <div id="modalCommandPalette" class="cyber-modal-overlay" style="display: none;" onclick="if(event.target===this)closeCommandPalette()">
+    <div class="cyber-modal-card">
+      <div class="cmd-palette-input-wrap">
+        <span style="font-size:16px;">🔍</span>
+        <input type="text" id="cmdPaletteInput" placeholder="Type a command or jump to console (e.g. Personnel, Moderation, Sync)..." oninput="handleCommandPaletteSearch(this.value)" autofocus>
+        <span class="cmd-shortcut-key">ESC</span>
+      </div>
 
+      <div class="cmd-palette-results" id="cmdPaletteResults">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: RAW JSON INSPECTOR ================= -->
+  <div id="modalJsonInspector" class="cyber-modal-overlay" style="display: none;">
+    <div class="cyber-modal-card">
       <div class="modal-head">
-        <h3 id="jsonModalTitle">DATABASE RECORD INSPECTOR</h3>
+        <h3 id="jsonModalTitle">RAW DATABASE RECORD (JSON)</h3>
         <button class="modal-close-x" onclick="closeJsonInspector()">✕</button>
       </div>
 
-      <div style="background: #02050c; border: 1px solid var(--border-cyan); padding: 14px; border-radius: 4px; max-height: 420px; overflow-y: auto;">
-        <pre id="jsonModalBody" style="font-family: var(--font-mono); font-size: 0.8rem; color: #38bdf8; white-space: pre-wrap; word-break: break-all;"></pre>
-      </div>
+      <pre id="jsonModalCode" style="background:#050806; border:1px solid var(--border-color); padding:14px; border-radius:4px; max-height:360px; overflow:auto; font-family:var(--font-tech); font-size:11px; color:#BBE3BA;"></pre>
 
       <div class="modal-foot-actions">
         <button type="button" class="btn-cyber-secondary" onclick="copyJsonModalContent()">📋 COPY JSON</button>
@@ -859,58 +1401,61 @@ WHERE id = '3409ebfa-2162-4981-bd6f-ee6c71071e63' OR username = 'midhun777';</pr
     </div>
   </div>
 
-  <!-- ================= MODAL: COMPOSE BROADCAST ================= -->
-  <div id="modalBroadcast" class="cyber-modal-overlay" style="display: none;">
-    <div class="cyber-modal-card">
-      <div class="corner-bracket top-left"></div>
-      <div class="corner-bracket top-right"></div>
-      <div class="corner-bracket bottom-left"></div>
-      <div class="corner-bracket bottom-right"></div>
-
+  <!-- ================= MODAL: MULTIMEDIA & VIDEO INSPECTOR ================= -->
+  <div id="modalMediaViewer" class="cyber-modal-overlay" style="display: none;">
+    <div class="cyber-modal-card" style="max-width: 680px;">
       <div class="modal-head">
-        <h3>TRANSMIT GLOBAL CLIENT BROADCAST</h3>
+        <h3 id="mediaModalTitle">POST MULTIMEDIA INSPECTOR</h3>
+        <button class="modal-close-x" onclick="closeMediaModal()">✕</button>
+      </div>
+
+      <div id="mediaDisplayArea" style="min-height: 200px; display:flex; align-items:center; justify-content:center; background:#050806; border:1px solid var(--border-color); border-radius:4px; margin-bottom:14px; overflow:hidden;">
+        <!-- Injected img or video -->
+      </div>
+
+      <div id="mediaPostDetailsArea">
+        <div id="mediaPostContent" style="color:var(--primary-text); font-size:13px; margin-bottom:12px;"></div>
+      </div>
+
+      <div class="modal-foot-actions">
+        <button type="button" class="btn-cyber-secondary" onclick="closeMediaModal()">CLOSE</button>
+        <button type="button" class="btn-cyber-primary micro" id="btnDownloadMedia" onclick="downloadCurrentMedia()">💾 DOWNLOAD</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: GLOBAL BROADCAST TRANSMITTER ================= -->
+  <div id="modalNewBroadcast" class="cyber-modal-overlay" style="display: none;">
+    <div class="cyber-modal-card">
+      <div class="modal-head">
+        <h3>TRANSMIT GLOBAL ADMINISTRATIVE BROADCAST</h3>
         <button class="modal-close-x" onclick="closeBroadcastModal()">✕</button>
       </div>
 
-      <form id="broadcastForm" onsubmit="submitBroadcastAnnouncement(event)" class="cyber-form">
+      <form id="newBroadcastForm" onsubmit="submitBroadcastAnnouncement(event)" class="cyber-form">
         <div class="form-group-cyber">
-          <label for="broadcastTitle">TRANSMISSION HEADLINE</label>
-          <input type="text" id="broadcastTitle" placeholder="e.g. Critical Security Patch or Welcome to MindBook 2.0" required>
+          <label for="broadcastTitle">ANNOUNCEMENT HEADLINE</label>
+          <input type="text" id="broadcastTitle" placeholder="e.g. System Maintenance Notice" required>
         </div>
 
         <div class="form-group-cyber">
-          <label for="broadcastMessage">TRANSMISSION MESSAGE BODY</label>
-          <textarea id="broadcastMessage" rows="3" placeholder="Detailed bulletin content that pins to every active user's device..." required></textarea>
-        </div>
-
-        <div class="form-group-cyber">
-          <label for="broadcastType">SEVERITY / ALERT LEVEL</label>
-          <select id="broadcastType">
-            <option value="info">ROUTINE BULLETIN (CYAN) 📢</option>
-            <option value="event">COMMUNITY EVENT / MINDFUL REFLECTION (GREEN) 🌿</option>
-            <option value="maintenance">SCHEDULED MAINTENANCE DOWNTIME (AMBER) 🛠️</option>
-            <option value="emergency">DEFCON 1: CRITICAL SECURITY ALERT (CRIMSON) 🚨</option>
-          </select>
+          <label for="broadcastMessage">BROADCAST BODY (TRANSMITTED TO MOBILE FEED)</label>
+          <textarea id="broadcastMessage" rows="4" placeholder="Enter message text..." required></textarea>
         </div>
 
         <div class="modal-foot-actions">
-          <button type="button" class="btn-cyber-secondary" onclick="closeBroadcastModal()">ABORT</button>
-          <button type="submit" class="btn-cyber-primary">TRANSMIT TO ALL CLIENTS</button>
+          <button type="button" class="btn-cyber-secondary" onclick="closeBroadcastModal()">CANCEL</button>
+          <button type="submit" class="btn-cyber-primary micro">TRANSMIT BROADCAST</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- ================= MODAL: ADD / ENROLL USER ================= -->
+  <!-- ================= MODAL: USER ENROLLMENT ================= -->
   <div id="modalNewUser" class="cyber-modal-overlay" style="display: none;">
     <div class="cyber-modal-card">
-      <div class="corner-bracket top-left"></div>
-      <div class="corner-bracket top-right"></div>
-      <div class="corner-bracket bottom-left"></div>
-      <div class="corner-bracket bottom-right"></div>
-
       <div class="modal-head">
-        <h3>ENROLL NEW IDENTITY NODE</h3>
+        <h3>ENROLL IDENTITY NODE</h3>
         <button class="modal-close-x" onclick="closeNewUserModal()">✕</button>
       </div>
 
@@ -921,94 +1466,19 @@ WHERE id = '3409ebfa-2162-4981-bd6f-ee6c71071e63' OR username = 'midhun777';</pr
         </div>
 
         <div class="form-group-cyber">
-          <label for="newUserHandle">CRYPTOGRAPHIC USERNAME / HANDLE</label>
+          <label for="newUserHandle">CRYPTOGRAPHIC HANDLE</label>
           <input type="text" id="newUserHandle" placeholder="e.g. maya_mind" required>
-        </div>
-
-        <div class="form-group-cyber">
-          <label for="newUserBio">BIO STATEMENT</label>
-          <input type="text" id="newUserBio" placeholder="e.g. Mindful creator 🌱">
         </div>
 
         <div class="modal-foot-actions">
           <button type="button" class="btn-cyber-secondary" onclick="closeNewUserModal()">ABORT</button>
-          <button type="submit" class="btn-cyber-primary">INSERT INTO SUPABASE</button>
+          <button type="submit" class="btn-cyber-primary micro">INSERT INTO SUPABASE</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- ================= MODAL: CYBER MULTIMEDIA & VIDEO INSPECTOR ================= -->
-  <div id="modalMediaViewer" class="cyber-modal-overlay" style="display: none;">
-    <div class="cyber-modal-card media-modal-card">
-      <div class="corner-bracket top-left"></div>
-      <div class="corner-bracket top-right"></div>
-      <div class="corner-bracket bottom-left"></div>
-      <div class="corner-bracket bottom-right"></div>
-
-      <div class="modal-head">
-        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-          <span style="font-size: 1.2rem;">🎬</span>
-          <h3 id="mediaModalTitle">POST MULTIMEDIA INSPECTOR</h3>
-          <span id="mediaFormatBadge" class="role-tag-pill verified">FORMAT: DETECTING</span>
-        </div>
-        <button class="modal-close-x" onclick="closeMediaModal()" title="Close Viewer">✕</button>
-      </div>
-
-      <div class="media-modal-body">
-        <!-- Media Container (Image or Video) -->
-        <div id="mediaDisplayArea" class="cyber-media-stage">
-          <!-- Injected dynamically: <img> or <video> -->
-        </div>
-
-        <!-- Post Metadata & Details -->
-        <div class="media-post-details">
-          <div class="media-author-bar">
-            <div id="mediaAuthorAvatar" class="user-avatar-tag" style="width: 38px; height: 38px; font-size: 0.85rem;">MB</div>
-            <div>
-              <div id="mediaAuthorName" style="font-weight: 700; color: #fff; font-size: 0.95rem;">Author Name</div>
-              <div id="mediaAuthorHandle" style="font-size: 0.75rem; color: var(--neon-cyan); font-family: var(--font-mono);">@username</div>
-            </div>
-            <div style="margin-left: auto; text-align: right;">
-              <span id="mediaPostVisibility" class="status-badge active" style="font-size: 0.7rem;">PUBLIC</span>
-              <div id="mediaPostDate" style="font-size: 0.7rem; color: var(--text-muted); font-family: var(--font-mono); margin-top: 2px;">Date</div>
-            </div>
-          </div>
-
-          <!-- Post Content -->
-          <div id="mediaPostContent" class="media-post-text">
-            Post content caption here...
-          </div>
-
-          <!-- Post Tags & Mood -->
-          <div id="mediaPostMetaPills" class="media-meta-pills">
-            <!-- Mood and tag pills -->
-          </div>
-
-          <!-- Direct Storage URL Box -->
-          <div class="media-url-box">
-            <span class="media-url-label">STORAGE URL:</span>
-            <input type="text" id="mediaDirectUrlInput" readonly onclick="this.select()">
-            <button type="button" class="btn-cyber-micro" onclick="copyMediaDirectUrl()" title="Copy URL">📋 COPY</button>
-            <a id="mediaExternalLink" href="#" target="_blank" class="btn-cyber-micro" title="Open media in new tab">↗ OPEN</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="modal-foot-actions" style="margin-top: 18px; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
-        <button type="button" class="btn-tactical-toggle danger" id="btnDeletePostFromMedia" onclick="deleteCurrentMediaPost()">
-          🗑️ DELETE POST FROM DATABASE
-        </button>
-        <div style="display: flex; gap: 8px;">
-          <button type="button" class="btn-cyber-secondary" onclick="closeMediaModal()">CLOSE</button>
-          <button type="button" class="btn-cyber-primary micro" id="btnDownloadMedia" onclick="downloadCurrentMedia()">
-            💾 DOWNLOAD FILE
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  <!-- Core CIC JavaScript Engine -->
   <script src="/admin/admin.js"></script>
 </body>
 </html>
