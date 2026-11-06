@@ -186,6 +186,8 @@ document.addEventListener('DOMContentLoaded', () => {
   startLiveDigitalClock();
   initCommandPaletteKeyboardShortcut();
   initGraphCanvasInteraction();
+  initTacticalRadar();
+  initGlobalMap();
 });
 
 // ==================== 04. LIVE DIGITAL CLOCK (ZULU + LOCAL) ====================
@@ -198,9 +200,11 @@ function startLiveDigitalClock() {
     const zulu = now.toISOString().substring(11, 19) + 'Z';
     const local = now.toTimeString().substring(0, 8);
     clockEl.innerHTML = `
-      <span class="clock-label">ZULU</span> <span class="clock-time">${zulu}</span>
-      <span style="color: var(--atlas-border);">|</span>
-      <span class="clock-label">LOCAL</span> <span class="clock-time">${local}</span>
+      <span style="color:var(--c2-text-muted); font-size:10px; font-weight:700; margin-right:4px;">ZULU</span>
+      <span class="hud-clock-readout" style="color:var(--c2-radioactive); margin-right:8px;">${zulu}</span>
+      <span style="color:var(--c2-border); margin-right:8px;">|</span>
+      <span style="color:var(--c2-text-muted); font-size:10px; font-weight:700; margin-right:4px;">LOC</span>
+      <span class="hud-clock-readout" style="color:var(--c2-text-primary);">${local}</span>
     `;
   }
 
@@ -377,21 +381,35 @@ function switchAdminTab(tabName) {
   playCyberSound('blip');
   atlasState.activeTab = tabName;
 
-  // Update sidebar buttons
-  document.querySelectorAll('.atlas-sidebar .nav-item-btn').forEach(btn => {
+  // Update sidebar buttons across both c2-nav-btn and atlas-sidebar classes
+  document.querySelectorAll('.c2-nav-btn, .atlas-sidebar .nav-item-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.tab === tabName);
   });
 
+  // Resolve target tab id with fallback mappings
+  let targetTabId = `tab-${tabName}`;
+  let targetEl = document.getElementById(targetTabId);
+  if (!targetEl) {
+    if (tabName === 'activity' || tabName === 'live-ops' || tabName === 'timeline') targetTabId = 'tab-operations';
+    else if (tabName === 'content-stream' || tabName === 'comments') targetTabId = 'tab-content-intelligence';
+    targetEl = document.getElementById(targetTabId);
+  }
+
   // Update tabs
   document.querySelectorAll('.workspace-view-section').forEach(tab => {
-    tab.classList.toggle('active', tab.id === `tab-${tabName}`);
+    tab.classList.toggle('active', tab.id === targetTabId);
   });
 
   appendTelemetryLog('sys', `Operator switched console focus to: [${tabName.toUpperCase()}]`);
 
-  // If switched to intelligence graph, trigger a draw
+  // Redraw canvases on tab focus
   if (tabName === 'intelligence-graph') {
     setTimeout(renderIntelligenceGraph, 50);
+  } else if (tabName === 'overview') {
+    setTimeout(() => {
+      drawTacticalRadar();
+      drawGlobalMap();
+    }, 50);
   }
 
   // Auto close mobile drawer when navigating
@@ -1263,6 +1281,8 @@ function renderAllAtlasPanels() {
   renderApiMonitoring();
   renderTelemetryStreams();
   renderIntelligenceGraph();
+  drawTacticalRadar();
+  drawGlobalMap();
 }
 
 function renderKpis() {
@@ -1432,6 +1452,540 @@ function renderLiveOpsStream() {
       </div>
     </div>
   `).join('');
+}
+
+// ==================== TACTICAL RADAR RECONNAISSANCE ====================
+let radarState = {
+  canvas: null,
+  ctx: null,
+  animId: null,
+  sweepAngle: 0,
+  contacts: [
+    { id: 'TGT-01', distNorm: 0.28, angle: 1.15, type: 'ROOT', label: 'KM-777', color: '#A3E635', ping: 1.0 },
+    { id: 'TGT-02', distNorm: 0.62, angle: 2.70, type: 'RELAY', label: 'SIGINT-01', color: '#79A85B', ping: 0.8 },
+    { id: 'TGT-03', distNorm: 0.48, angle: 4.35, type: 'GATEWAY', label: 'EU-CENTRAL', color: '#79A85B', ping: 0.6 },
+    { id: 'TGT-04', distNorm: 0.82, angle: 5.50, type: 'USER', label: 'AP-SOUTH', color: '#79A85B', ping: 0.9 },
+    { id: 'TGT-05', distNorm: 0.72, angle: 3.40, type: 'SENSOR', label: 'MONITOR-05', color: '#E5AD47', ping: 0.7 }
+  ]
+};
+
+function initTacticalRadar() {
+  const canvas = document.getElementById('tacticalRadarCanvas');
+  if (!canvas) return;
+
+  radarState.canvas = canvas;
+  radarState.ctx = canvas.getContext('2d');
+
+  function resizeRadar() {
+    if (!canvas.parentElement) return;
+    const rect = canvas.parentElement.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    if (radarState.ctx) {
+      radarState.ctx.setTransform(1, 0, 0, 1, 0, 0);
+      radarState.ctx.scale(dpr, dpr);
+    }
+    drawTacticalRadar();
+  }
+
+  window.addEventListener('resize', resizeRadar);
+  setTimeout(resizeRadar, 80);
+
+  function loopRadar() {
+    radarState.sweepAngle = (radarState.sweepAngle + 0.02) % (Math.PI * 2);
+    drawTacticalRadar();
+    radarState.animId = requestAnimationFrame(loopRadar);
+  }
+  if (!radarState.animId) {
+    radarState.animId = requestAnimationFrame(loopRadar);
+  }
+}
+
+function drawTacticalRadar() {
+  const { canvas, ctx, sweepAngle, contacts } = radarState;
+  if (!canvas || !ctx) return;
+
+  const dpr = window.devicePixelRatio || 1;
+  const w = canvas.width / dpr;
+  const h = canvas.height / dpr;
+  const cx = w / 2;
+  const cy = h / 2;
+  const maxRadius = Math.min(cx, cy) - 16;
+  if (maxRadius <= 10) return;
+
+  ctx.clearRect(0, 0, w, h);
+
+  // Background radar screen radial vignette
+  const bgGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, maxRadius);
+  bgGrad.addColorStop(0, '#0B140E');
+  bgGrad.addColorStop(0.85, '#070B08');
+  bgGrad.addColorStop(1, '#050806');
+  ctx.fillStyle = bgGrad;
+  ctx.beginPath();
+  ctx.arc(cx, cy, maxRadius, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Radar outer boundary
+  ctx.strokeStyle = '#294532';
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+
+  // Range rings (25km, 50km, 75km, 100km)
+  const ringSteps = [0.25, 0.50, 0.75, 1.0];
+  const ringLabels = ['25KM', '50KM', '75KM', '100KM'];
+  ctx.lineWidth = 1;
+  ctx.setLineDash([3, 4]);
+
+  ringSteps.forEach((step, idx) => {
+    const r = maxRadius * step;
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.strokeStyle = idx === 3 ? '#394B31' : 'rgba(41, 69, 50, 0.6)';
+    ctx.stroke();
+
+    const labelX = cx + Math.cos(Math.PI / 4) * r;
+    const labelY = cy - Math.sin(Math.PI / 4) * r;
+    ctx.font = '8px "JetBrains Mono"';
+    ctx.fillStyle = '#64765E';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(ringLabels[idx], labelX, labelY);
+  });
+
+  ctx.setLineDash([]);
+
+  // Azimuth Crosshairs
+  ctx.strokeStyle = 'rgba(121, 168, 91, 0.25)';
+  ctx.lineWidth = 1;
+
+  // Vertical (000 - 180)
+  ctx.beginPath();
+  ctx.moveTo(cx, cy - maxRadius);
+  ctx.lineTo(cx, cy + maxRadius);
+  ctx.stroke();
+
+  // Horizontal (270 - 090)
+  ctx.beginPath();
+  ctx.moveTo(cx - maxRadius, cy);
+  ctx.lineTo(cx + maxRadius, cy);
+  ctx.stroke();
+
+  // Radial tick marks every 30 degrees
+  for (let a = 0; a < Math.PI * 2; a += Math.PI / 6) {
+    const r1 = maxRadius - 6;
+    const r2 = maxRadius;
+    ctx.beginPath();
+    ctx.moveTo(cx + Math.cos(a) * r1, cy + Math.sin(a) * r1);
+    ctx.lineTo(cx + Math.cos(a) * r2, cy + Math.sin(a) * r2);
+    ctx.strokeStyle = '#394B31';
+    ctx.stroke();
+  }
+
+  // Draw sweep sector with phosphor glow trail
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(cx, cy);
+  ctx.arc(cx, cy, maxRadius, sweepAngle - 0.45, sweepAngle);
+  ctx.closePath();
+  const sweepGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, maxRadius);
+  sweepGrad.addColorStop(0, 'rgba(163, 230, 53, 0.25)');
+  sweepGrad.addColorStop(1, 'rgba(121, 168, 91, 0.02)');
+  ctx.fillStyle = sweepGrad;
+  ctx.fill();
+
+  // Leading sweep beam
+  ctx.beginPath();
+  ctx.moveTo(cx, cy);
+  ctx.lineTo(cx + Math.cos(sweepAngle) * maxRadius, cy + Math.sin(sweepAngle) * maxRadius);
+  ctx.strokeStyle = 'rgba(163, 230, 53, 0.85)';
+  ctx.lineWidth = 1.5;
+  ctx.shadowColor = '#A3E635';
+  ctx.shadowBlur = 6;
+  ctx.stroke();
+  ctx.restore();
+
+  // Center radar hub reticle
+  ctx.beginPath();
+  ctx.arc(cx, cy, 3, 0, Math.PI * 2);
+  ctx.fillStyle = '#A3E635';
+  ctx.fill();
+
+  // Render tactical target blips
+  contacts.forEach(c => {
+    const contactX = cx + Math.cos(c.angle) * (maxRadius * c.distNorm);
+    const contactY = cy + Math.sin(c.angle) * (maxRadius * c.distNorm);
+
+    let angleDiff = sweepAngle - c.angle;
+    while (angleDiff < 0) angleDiff += Math.PI * 2;
+    while (angleDiff >= Math.PI * 2) angleDiff -= Math.PI * 2;
+
+    if (angleDiff < 0.2) {
+      c.ping = 1.0;
+    } else {
+      c.ping = Math.max(0.2, c.ping - 0.005);
+    }
+
+    if (c.ping > 0.4) {
+      const ringRadius = 4 + (1.0 - c.ping) * 14;
+      ctx.beginPath();
+      ctx.arc(contactX, contactY, ringRadius, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(163, 230, 53, ${c.ping * 0.7})`;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+
+    ctx.beginPath();
+    ctx.arc(contactX, contactY, 3, 0, Math.PI * 2);
+    ctx.fillStyle = c.color;
+    ctx.shadowColor = c.color;
+    ctx.shadowBlur = c.ping > 0.5 ? 8 : 2;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+
+    ctx.font = '8px "JetBrains Mono"';
+    ctx.fillStyle = c.ping > 0.6 ? '#E6EDE6' : '#9AA79C';
+    ctx.textAlign = 'left';
+    ctx.fillText(`${c.label} [${c.id}]`, contactX + 6, contactY - 3);
+
+    ctx.font = '7px "JetBrains Mono"';
+    ctx.fillStyle = '#64765E';
+    ctx.fillText(`BRG ${(c.angle * 180 / Math.PI).toFixed(0).padStart(3, '0')}° RNG ${(c.distNorm * 100).toFixed(0)}KM`, contactX + 6, contactY + 6);
+  });
+}
+
+// ==================== GLOBAL TACTICAL MAP ====================
+let globalMapState = {
+  canvas: null,
+  ctx: null,
+  scale: 1,
+  offsetX: 0,
+  offsetY: 0,
+  isDragging: false,
+  startX: 0,
+  startY: 0,
+  hoveredNode: null,
+  pulseTick: 0,
+  animId: null
+};
+
+const GLOBAL_TACTICAL_NODES = [
+  { id: 'HQ-HYDERABAD', name: 'HYDERABAD PRIMARY HQ', sub: 'FOUNDER KOTA MIDHUN // C4ISR', lat: 17.3850, lon: 78.4867, type: 'PRIMARY', color: '#A3E635', ping: '12ms', status: 'ACTIVE' },
+  { id: 'SIGINT-01', name: 'US-EAST (VIRGINIA)', sub: 'SUPABASE POSTGRESQL PRIMARY', lat: 38.9072, lon: -77.0369, type: 'RELAY', color: '#79A85B', ping: '38ms', status: 'SYNCHRONIZED' },
+  { id: 'SIGINT-02', name: 'EU-CENTRAL (FRANKFURT)', sub: 'CONTINENTAL GATEWAY RELAY', lat: 50.1109, lon: 8.6821, type: 'RELAY', color: '#79A85B', ping: '26ms', status: 'OPERATIONAL' },
+  { id: 'SIGINT-03', name: 'AP-SOUTHEAST (SINGAPORE)', sub: 'ASIA REALTIME EDGE CLUSTER', lat: 1.3521, lon: 103.8198, type: 'RELAY', color: '#79A85B', ping: '18ms', status: 'STREAMING' },
+  { id: 'SIGINT-04', name: 'US-WEST (CALIFORNIA)', sub: 'PACIFIC REALTIME EDGE', lat: 37.7749, lon: -122.4194, type: 'RELAY', color: '#79A85B', ping: '54ms', status: 'OPERATIONAL' },
+  { id: 'SIGINT-05', name: 'UK-LONDON (UK-SOUTH)', sub: 'ATLANTIC HIGH-SPEED DISPATCH', lat: 51.5074, lon: -0.1278, type: 'RELAY', color: '#79A85B', ping: '32ms', status: 'OPERATIONAL' },
+  { id: 'SIGINT-06', name: 'JP-TOKYO (ASIA-EAST)', sub: 'FAR-EAST REALTIME HUB', lat: 35.6762, lon: 139.6503, type: 'RELAY', color: '#79A85B', ping: '44ms', status: 'OPERATIONAL' }
+];
+
+const WORLD_CONTINENTS = [
+  // North America
+  [[-168, 65], [-140, 70], [-120, 72], [-90, 72], [-60, 60], [-55, 48], [-65, 44], [-75, 36], [-80, 26], [-90, 20], [-105, 20], [-117, 30], [-125, 48], [-140, 56], [-162, 58], [-168, 65]],
+  // South America
+  [[-80, 10], [-60, 10], [-35, -5], [-38, -15], [-42, -23], [-54, -34], [-66, -55], [-75, -45], [-81, -5], [-80, 10]],
+  // Europe
+  [[-10, 36], [-5, 43], [5, 43], [14, 40], [22, 40], [28, 45], [32, 58], [24, 70], [12, 62], [2, 54], [-5, 58], [-10, 36]],
+  // Scandinavia
+  [[5, 58], [15, 56], [22, 60], [28, 70], [18, 70], [6, 62], [5, 58]],
+  // Africa
+  [[-17, 32], [0, 36], [12, 38], [25, 32], [32, 32], [42, 14], [51, 12], [44, -12], [32, -34], [18, -34], [12, 5], [-15, 12], [-17, 32]],
+  // Asia
+  [[32, 32], [45, 40], [60, 42], [60, 68], [90, 74], [130, 72], [170, 65], [145, 52], [130, 42], [122, 30], [108, 18], [102, 5], [80, 14], [72, 24], [55, 24], [44, 14], [34, 30], [32, 32]],
+  // India Subcontinent
+  [[68, 24], [74, 32], [80, 32], [88, 26], [85, 20], [80, 10], [77, 8], [74, 15], [68, 24]],
+  // Australia
+  [[114, -22], [124, -15], [138, -12], [148, -20], [153, -28], [148, -38], [138, -36], [115, -34], [114, -22]],
+  // Japan
+  [[130, 32], [134, 34], [141, 41], [145, 44], [142, 45], [138, 38], [130, 32]],
+  // British Isles
+  [[-10, 51], [-2, 50], [2, 53], [-1, 58], [-6, 58], [-10, 51]]
+];
+
+function initGlobalMap() {
+  const canvas = document.getElementById('globalMapCanvas');
+  if (!canvas) return;
+
+  globalMapState.canvas = canvas;
+  globalMapState.ctx = canvas.getContext('2d');
+
+  function resizeMap() {
+    if (!canvas.parentElement) return;
+    const rect = canvas.parentElement.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    if (globalMapState.ctx) {
+      globalMapState.ctx.setTransform(1, 0, 0, 1, 0, 0);
+      globalMapState.ctx.scale(dpr, dpr);
+    }
+    drawGlobalMap();
+  }
+
+  window.addEventListener('resize', resizeMap);
+  setTimeout(resizeMap, 80);
+
+  canvas.addEventListener('mousedown', (e) => {
+    globalMapState.isDragging = true;
+    globalMapState.startX = e.clientX - globalMapState.offsetX;
+    globalMapState.startY = e.clientY - globalMapState.offsetY;
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    if (globalMapState.isDragging) {
+      globalMapState.offsetX = e.clientX - globalMapState.startX;
+      globalMapState.offsetY = e.clientY - globalMapState.startY;
+      drawGlobalMap();
+    } else {
+      const rect = canvas.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+      checkMapHover(mouseX, mouseY);
+    }
+  });
+
+  window.addEventListener('mouseup', () => {
+    globalMapState.isDragging = false;
+  });
+
+  canvas.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    const factor = e.deltaY < 0 ? 1.15 : 0.87;
+    zoomMap(factor);
+  });
+
+  function mapAnimLoop() {
+    globalMapState.pulseTick = (globalMapState.pulseTick + 1) % 1000;
+    if (globalMapState.pulseTick % 3 === 0) {
+      drawGlobalMap();
+    }
+    globalMapState.animId = requestAnimationFrame(mapAnimLoop);
+  }
+  if (!globalMapState.animId) {
+    globalMapState.animId = requestAnimationFrame(mapAnimLoop);
+  }
+}
+
+function zoomMap(factor) {
+  playCyberSound('blip');
+  globalMapState.scale = Math.max(0.6, Math.min(3.5, globalMapState.scale * factor));
+  drawGlobalMap();
+}
+
+function resetMap() {
+  playCyberSound('blip');
+  globalMapState.scale = 1;
+  globalMapState.offsetX = 0;
+  globalMapState.offsetY = 0;
+  drawGlobalMap();
+}
+
+function checkMapHover(mx, my) {
+  const { canvas, scale, offsetX, offsetY } = globalMapState;
+  if (!canvas) return;
+
+  const dpr = window.devicePixelRatio || 1;
+  const w = canvas.width / dpr;
+  const h = canvas.height / dpr;
+
+  let found = null;
+  GLOBAL_TACTICAL_NODES.forEach(node => {
+    const rawX = ((node.lon + 180) / 360) * w;
+    const rawY = ((90 - node.lat) / 180) * h;
+    const screenX = rawX * scale + offsetX;
+    const screenY = rawY * scale + offsetY;
+    const dist = Math.hypot(mx - screenX, my - screenY);
+    if (dist <= 14) {
+      found = { ...node, screenX, screenY };
+    }
+  });
+
+  if (found !== globalMapState.hoveredNode) {
+    globalMapState.hoveredNode = found;
+    drawGlobalMap();
+  }
+}
+
+function drawGlobalMap() {
+  const { canvas, ctx, scale, offsetX, offsetY, hoveredNode, pulseTick } = globalMapState;
+  if (!canvas || !ctx) return;
+
+  const dpr = window.devicePixelRatio || 1;
+  const w = canvas.width / dpr;
+  const h = canvas.height / dpr;
+  if (w <= 10 || h <= 10) return;
+
+  ctx.clearRect(0, 0, w, h);
+
+  ctx.fillStyle = '#070B08';
+  ctx.fillRect(0, 0, w, h);
+
+  ctx.save();
+  ctx.translate(offsetX, offsetY);
+  ctx.scale(scale, scale);
+
+  // Lat / Long Graticule Grid
+  ctx.lineWidth = 1;
+  ctx.setLineDash([2, 5]);
+
+  const parallels = [-60, -30, 0, 30, 60];
+  const parLabels = ['60°S', '30°S', '00°00\' EQUATOR', '30°N', '60°N'];
+  parallels.forEach((lat, idx) => {
+    const y = ((90 - lat) / 180) * h;
+    ctx.strokeStyle = lat === 0 ? 'rgba(121, 168, 91, 0.35)' : 'rgba(40, 54, 42, 0.45)';
+    ctx.beginPath();
+    ctx.moveTo(-w, y);
+    ctx.lineTo(w * 2, y);
+    ctx.stroke();
+
+    ctx.font = '7px "JetBrains Mono"';
+    ctx.fillStyle = lat === 0 ? '#79A85B' : '#415243';
+    ctx.textAlign = 'left';
+    ctx.fillText(parLabels[idx], 8, y - 3);
+  });
+
+  const meridians = [-150, -120, -90, -60, -30, 0, 30, 60, 90, 120, 150];
+  meridians.forEach(lon => {
+    const x = ((lon + 180) / 360) * w;
+    ctx.strokeStyle = lon === 0 ? 'rgba(121, 168, 91, 0.35)' : 'rgba(40, 54, 42, 0.45)';
+    ctx.beginPath();
+    ctx.moveTo(x, -h);
+    ctx.lineTo(x, h * 2);
+    ctx.stroke();
+
+    ctx.font = '7px "JetBrains Mono"';
+    ctx.fillStyle = lon === 0 ? '#79A85B' : '#415243';
+    ctx.textAlign = 'center';
+    ctx.fillText(`${Math.abs(lon)}°${lon < 0 ? 'W' : (lon > 0 ? 'E' : ' PRIME')}`, x, h - 6);
+  });
+
+  ctx.setLineDash([]);
+
+  // Draw World Continents
+  WORLD_CONTINENTS.forEach(poly => {
+    ctx.beginPath();
+    poly.forEach(([lon, lat], i) => {
+      const x = ((lon + 180) / 360) * w;
+      const y = ((90 - lat) / 180) * h;
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    });
+    ctx.closePath();
+    ctx.fillStyle = '#111913';
+    ctx.fill();
+    ctx.strokeStyle = '#28362A';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  });
+
+  // Telecommunication Arcs
+  const hq = GLOBAL_TACTICAL_NODES[0];
+  const hqX = ((hq.lon + 180) / 360) * w;
+  const hqY = ((90 - hq.lat) / 180) * h;
+
+  GLOBAL_TACTICAL_NODES.slice(1).forEach((node, i) => {
+    const nx = ((node.lon + 180) / 360) * w;
+    const ny = ((90 - node.lat) / 180) * h;
+
+    const midX = (hqX + nx) / 2;
+    const midY = Math.min(hqY, ny) - 30;
+
+    ctx.beginPath();
+    ctx.moveTo(hqX, hqY);
+    ctx.quadraticCurveTo(midX, midY, nx, ny);
+    ctx.strokeStyle = 'rgba(121, 168, 91, 0.28)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    const t = ((pulseTick * 0.015 + i * 0.2) % 1);
+    const px = (1 - t) * (1 - t) * hqX + 2 * (1 - t) * t * midX + t * t * nx;
+    const py = (1 - t) * (1 - t) * hqY + 2 * (1 - t) * t * midY + t * t * ny;
+
+    ctx.beginPath();
+    ctx.arc(px, py, 2, 0, Math.PI * 2);
+    ctx.fillStyle = '#A3E635';
+    ctx.shadowColor = '#A3E635';
+    ctx.shadowBlur = 4;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+  });
+
+  // Tactical Point Nodes
+  GLOBAL_TACTICAL_NODES.forEach(node => {
+    const nx = ((node.lon + 180) / 360) * w;
+    const ny = ((90 - node.lat) / 180) * h;
+    const isHQ = node.type === 'PRIMARY';
+
+    if (isHQ) {
+      const pulseSize = 6 + (pulseTick % 40) * 0.35;
+      const alpha = Math.max(0, 1 - (pulseTick % 40) / 40);
+      ctx.beginPath();
+      ctx.arc(nx, ny, pulseSize, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(163, 230, 53, ${alpha * 0.8})`;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+
+    ctx.beginPath();
+    ctx.arc(nx, ny, isHQ ? 4.5 : 3, 0, Math.PI * 2);
+    ctx.fillStyle = node.color;
+    ctx.shadowColor = node.color;
+    ctx.shadowBlur = isHQ ? 8 : 4;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+
+    ctx.strokeStyle = node.color;
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(nx - 7, ny); ctx.lineTo(nx - 4, ny);
+    ctx.moveTo(nx + 4, ny); ctx.lineTo(nx + 7, ny);
+    ctx.moveTo(nx, ny - 7); ctx.lineTo(nx, ny - 4);
+    ctx.moveTo(nx, ny + 4); ctx.lineTo(nx, ny + 7);
+    ctx.stroke();
+
+    ctx.font = isHQ ? 'bold 8px "JetBrains Mono"' : '7px "JetBrains Mono"';
+    ctx.fillStyle = isHQ ? '#A3E635' : '#9AA79C';
+    ctx.textAlign = 'left';
+    ctx.fillText(node.id, nx + 9, ny - 2);
+
+    if (isHQ) {
+      ctx.font = '7px "JetBrains Mono"';
+      ctx.fillStyle = '#79A85B';
+      ctx.fillText('ROOT C4ISR // KOTA MIDHUN', nx + 9, ny + 7);
+    }
+  });
+
+  ctx.restore();
+
+  if (hoveredNode) {
+    const { screenX, screenY, name, sub, lat, lon, ping, status } = hoveredNode;
+    const tipW = 190;
+    const tipH = 68;
+    const tipX = Math.min(w - tipW - 10, Math.max(10, screenX + 12));
+    const tipY = Math.min(h - tipH - 10, Math.max(10, screenY - 20));
+
+    ctx.fillStyle = 'rgba(11, 17, 13, 0.95)';
+    ctx.strokeStyle = 'rgba(121, 168, 91, 0.6)';
+    ctx.lineWidth = 1;
+    ctx.fillRect(tipX, tipY, tipW, tipH);
+    ctx.strokeRect(tipX, tipY, tipW, tipH);
+
+    ctx.font = 'bold 9px "JetBrains Mono"';
+    ctx.fillStyle = '#A3E635';
+    ctx.textAlign = 'left';
+    ctx.fillText(name, tipX + 8, tipY + 14);
+
+    ctx.font = '8px "Inter"';
+    ctx.fillStyle = '#9AA79C';
+    ctx.fillText(sub, tipX + 8, tipY + 28);
+
+    ctx.font = '8px "JetBrains Mono"';
+    ctx.fillStyle = '#64765E';
+    ctx.fillText(`POS: ${lat.toFixed(2)}°N, ${lon.toFixed(2)}°E`, tipX + 8, tipY + 42);
+
+    ctx.fillStyle = '#75C878';
+    ctx.fillText(`LATENCY: ${ping} | ${status}`, tipX + 8, tipY + 56);
+  }
 }
 
 // ==================== 11. SIGNATURE PILLAR 2: INTERACTIVE INTELLIGENCE GRAPH ====================

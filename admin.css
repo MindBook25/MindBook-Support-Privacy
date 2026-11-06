@@ -1,58 +1,56 @@
 /* ==============================================================================
-   MIND BOOK ATLAS // CENTRAL INTELLIGENCE & PLATFORM OPERATIONS SYSTEM
-   Design System & Enterprise Architectural Stylesheet
-   Inspirations: Anduril Lattice + Palantir Gotham + Linear + NASA Mission Control
+   MIND BOOK ATLAS // ADVANCED MILITARY INTELLIGENCE & COMMAND CONTROL INTERFACE
+   Division: Strategic Intelligence & Command Operations | System: ATLAS // CIC-01
+   Desktop-First Military Command Station Specification (1920x1080 Baseline)
    ============================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap');
 
 :root {
-  /* ==================== 01. COLOR PALETTE ==================== */
-  --atlas-bg-primary: #080B09;
-  --atlas-bg-secondary: #0D120F;
-  --atlas-bg-sidebar: #0A100C;
-  --atlas-bg-panel: #111914;
-  --atlas-bg-elevated: #172119;
-  --atlas-bg-input: #0B110D;
-  --atlas-bg-hover: rgba(163, 230, 53, 0.04);
-  --atlas-bg-active: rgba(163, 230, 53, 0.08);
+  /* ==================== 01. MILITARY COLOUR SYSTEM ==================== */
+  --c2-bg-primary: #070B08;           /* Primary tactical black canvas */
+  --c2-bg-secondary: #0B110D;         /* Secondary backing */
+  --c2-bg-sidebar: #0A100C;           /* Command sidebar surface */
+  --c2-bg-panel: #111913;             /* Structural operational panel */
+  --c2-bg-elevated: #172119;          /* Elevated operational surface */
+  --c2-bg-input: #0A100D;             /* Terminal inputs */
 
-  /* Accents */
-  --atlas-accent-primary: #A3E635;   /* Lime Tactical Green */
-  --atlas-accent-secondary: #668B51; /* Muted Tactical Olive */
-  --atlas-army-green: #294532;       /* Deep Army Forest Green */
-  --atlas-border: #253129;           /* 1px Structural Border */
-  --atlas-border-subtle: #19241C;    /* Inner Hairline Divider */
-  --atlas-border-focus: #A3E635;
+  /* Military Tactical Accents */
+  --c2-military-olive: #394B31;       /* Structural military olive */
+  --c2-army-green: #294532;           /* Deep army forest green */
+  --c2-tactical-green: #79A85B;       /* Tactical radar phosphor green */
+  --c2-radioactive: #A3E635;          /* Radioactive primary accent */
+  --c2-muted-green: #64765E;          /* Muted foliage green */
+  --c2-border: #28362A;               /* 1px technical structural border */
+  --c2-border-subtle: #19241C;        /* Hairline divider */
+  --c2-border-active: #79A85B;
 
   /* Typography Colors */
-  --atlas-text-primary: #E8EEE9;
-  --atlas-text-secondary: #98A49B;
-  --atlas-text-muted: #68766C;
+  --c2-text-primary: #E6EDE6;         /* Clear off-white */
+  --c2-text-secondary: #9AA79C;       /* Neutral telemetry grey */
+  --c2-text-muted: #667368;           /* Muted coordinates & metadata */
 
   /* Status Colors */
-  --atlas-status-success: #71C879;   /* Operational / Active */
-  --atlas-status-info: #69A9DD;      /* Ingress / Telemetry */
-  --atlas-status-warning: #E5AD4A;   /* Caution / Investigation */
-  --atlas-status-critical: #E35D5D;  /* Threat / Incident */
+  --c2-status-operational: #75C878;   /* System Nominal / Operational */
+  --c2-status-standby: #A2A99A;       /* Standby / Armed */
+  --c2-status-warning: #E5AD47;       /* Master Caution / Warning */
+  --c2-status-critical: #E05252;      /* Critical Threat / Defense Breach */
+  --c2-status-info: #69A9D9;          /* Telemetry / Carrier Ingress */
 
   /* ==================== 02. TYPOGRAPHY ==================== */
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
   --font-telemetry: 'IBM Plex Mono', monospace;
 
-  /* ==================== 03. LAYOUT & DIMENSIONS ==================== */
-  --header-height: 60px;
-  --sidebar-width: 250px;
-  --status-bar-height: 28px;
-  --radius-xs: 2px;
-  --radius-sm: 4px;
-  --radius-md: 6px;
-  --transition-fast: 0.15s cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-smooth: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  /* ==================== 03. DESKTOP DIMENSIONS ==================== */
+  --c2-header-height: 70px;
+  --c2-sidebar-width: 255px;
+  --c2-status-bar-height: 28px;
+  --c2-radius: 2px;
+  --transition-tactical: 0.16s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ==================== RESET & BASE ==================== */
+/* ==================== BASE RESET ==================== */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -62,152 +60,152 @@
 html, body {
   width: 100%;
   height: 100%;
-  background-color: var(--atlas-bg-primary);
-  color: var(--atlas-text-primary);
+  background-color: var(--c2-bg-primary);
+  color: var(--c2-text-primary);
   font-family: var(--font-sans);
   font-size: 13px;
-  line-height: 1.5;
+  line-height: 1.45;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow: hidden;
+  overflow: hidden; /* Desktop view with internal controlled scrolling */
 }
 
-/* Subtle Tactical Dot Matrix Canvas */
+/* Subtle Tactical Coordinate Graticule Grid */
 body::before {
   content: '';
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background-image: radial-gradient(rgba(163, 230, 53, 0.035) 1px, transparent 1px);
+  background-image: 
+    linear-gradient(to right, rgba(121, 168, 91, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(121, 168, 91, 0.03) 1px, transparent 1px);
   background-size: 32px 32px;
   pointer-events: none;
   z-index: 0;
 }
 
-/* Scrollbars */
+/* Custom Scrollbars for Data Terminals */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--atlas-bg-primary);
+  background: var(--c2-bg-primary);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--atlas-border);
-  border-radius: var(--radius-xs);
+  background: var(--c2-border);
+  border-radius: 1px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--atlas-accent-secondary);
+  background: var(--c2-tactical-green);
 }
 
-/* ==================== AUTH GATE CLEARANCE OVERLAY ==================== */
+/* ==================== AUTH GATE OVERLAY ==================== */
 .auth-gate-overlay {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: radial-gradient(circle at center, #0F1712 0%, #080B09 100%);
+  background: radial-gradient(circle at center, #0F1713 0%, #070B08 100%);
   z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 24px;
 }
 
 .auth-gate-card {
   width: 100%;
-  max-width: 440px;
-  background: var(--atlas-bg-panel);
-  border: 1px solid var(--atlas-border);
-  border-radius: var(--radius-md);
-  padding: 32px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  max-width: 460px;
+  background: var(--c2-bg-panel);
+  border: 1px solid var(--c2-border);
+  border-radius: var(--c2-radius);
+  padding: 36px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85);
   position: relative;
 }
+
+/* Tactical Corner Reticles */
+.tactical-corner {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: var(--c2-tactical-green);
+  border-style: solid;
+}
+.tactical-corner.tl { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+.tactical-corner.tr { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+.tactical-corner.bl { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
+.tactical-corner.br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
 
 .auth-gate-card::before {
   content: '';
   position: absolute;
-  top: -1px; left: -1px; right: -1px;
+  top: -1px; left: 10%; right: 10%;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--atlas-accent-primary), transparent);
+  background: linear-gradient(90deg, transparent, var(--c2-radioactive), transparent);
 }
 
-.auth-gate-header {
+.auth-header {
   text-align: center;
   margin-bottom: 24px;
 }
 
-.auth-atlas-emblem {
-  width: 48px;
-  height: 48px;
-  margin: 0 auto 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--atlas-border);
-  border-radius: var(--radius-sm);
-  background: var(--atlas-bg-elevated);
-}
-
-.auth-atlas-emblem svg {
-  width: 28px;
-  height: 28px;
-  fill: none;
-  stroke: var(--atlas-accent-primary);
-  stroke-width: 1.8;
+.auth-insignia {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 14px;
 }
 
 .auth-title {
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  color: var(--atlas-text-primary);
+  font-family: var(--font-mono);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--c2-text-primary);
 }
 
-.auth-subtitle {
-  font-size: 11px;
+.auth-sub {
   font-family: var(--font-mono);
-  color: var(--atlas-accent-secondary);
-  letter-spacing: 1px;
+  font-size: 11px;
+  color: var(--c2-tactical-green);
+  letter-spacing: 1.2px;
   margin-top: 4px;
   text-transform: uppercase;
 }
 
 .auth-credentials-banner {
-  background: var(--atlas-bg-secondary);
-  border: 1px dashed var(--atlas-border);
-  border-radius: var(--radius-xs);
+  background: var(--c2-bg-secondary);
+  border: 1px dashed var(--c2-border);
+  border-radius: var(--c2-radius);
   padding: 10px 14px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--atlas-text-secondary);
-}
-
-.auth-credentials-banner strong {
-  color: var(--atlas-accent-primary);
+  color: var(--c2-text-secondary);
+  display: flex;
+  justify-content: space-between;
 }
 
 .btn-instant-override {
   width: 100%;
   background: rgba(163, 230, 53, 0.08);
-  border: 1px solid var(--atlas-accent-primary);
-  color: var(--atlas-accent-primary);
+  border: 1px solid var(--c2-radioactive);
+  color: var(--c2-radioactive);
   font-family: var(--font-mono);
   font-size: 11px;
-  font-weight: 600;
-  padding: 10px;
-  border-radius: var(--radius-xs);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 11px;
+  border-radius: var(--c2-radius);
   cursor: pointer;
   margin-bottom: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  transition: all var(--transition-fast);
+  transition: all var(--transition-tactical);
 }
-
 .btn-instant-override:hover {
-  background: var(--atlas-accent-primary);
-  color: #080B09;
+  background: var(--c2-radioactive);
+  color: #070B08;
 }
 
 .auth-divider {
@@ -216,29 +214,24 @@ body::before {
   margin: 16px 0;
   font-size: 10px;
   font-family: var(--font-mono);
-  color: var(--atlas-text-muted);
+  color: var(--c2-text-muted);
 }
 .auth-divider::before, .auth-divider::after {
   content: '';
   flex: 1;
   height: 1px;
-  background: var(--atlas-border-subtle);
+  background: var(--c2-border-subtle);
 }
-.auth-divider span {
-  padding: 0 10px;
-}
+.auth-divider span { padding: 0 10px; }
 
-.form-field {
-  margin-bottom: 16px;
-}
-
+.form-field { margin-bottom: 16px; }
 .form-label {
   display: block;
   font-family: var(--font-mono);
   font-size: 10px;
-  font-weight: 600;
-  color: var(--atlas-text-secondary);
-  letter-spacing: 0.5px;
+  font-weight: 700;
+  color: var(--c2-text-secondary);
+  letter-spacing: 0.8px;
   margin-bottom: 6px;
   text-transform: uppercase;
 }
@@ -246,42 +239,40 @@ body::before {
 .form-input {
   width: 100%;
   height: 38px;
-  background: var(--atlas-bg-input);
-  border: 1px solid var(--atlas-border);
-  border-radius: var(--radius-xs);
+  background: var(--c2-bg-input);
+  border: 1px solid var(--c2-border);
+  border-radius: var(--c2-radius);
   padding: 0 12px;
-  color: var(--atlas-text-primary);
+  color: var(--c2-text-primary);
   font-family: var(--font-mono);
   font-size: 12px;
   outline: none;
-  transition: border-color var(--transition-fast);
+  transition: border-color var(--transition-tactical);
 }
-
 .form-input:focus {
-  border-color: var(--atlas-border-focus);
+  border-color: var(--c2-radioactive);
 }
 
 .btn-primary-auth {
   width: 100%;
-  height: 40px;
-  background: var(--atlas-accent-primary);
-  border: none;
-  border-radius: var(--radius-xs);
-  color: #080B09;
+  height: 42px;
+  background: var(--c2-army-green);
+  border: 1px solid var(--c2-tactical-green);
+  color: var(--c2-text-primary);
   font-family: var(--font-mono);
   font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.8px;
   cursor: pointer;
   margin-top: 8px;
-  transition: all var(--transition-fast);
+  transition: all var(--transition-tactical);
 }
-
 .btn-primary-auth:hover {
-  background: #b6f24b;
+  background: var(--c2-tactical-green);
+  color: #070B08;
 }
 
-/* ==================== APPLICATION SHELL ==================== */
+/* ==================== 06. ADVANCED COMMAND HEADER (70px) ==================== */
 .atlas-shell {
   position: relative;
   width: 100%;
@@ -291,17 +282,26 @@ body::before {
   z-index: 1;
 }
 
-/* ==================== 04. TOP COMMAND BAR ==================== */
 .atlas-header {
-  height: var(--header-height);
-  background: var(--atlas-bg-sidebar);
-  border-bottom: 1px solid var(--atlas-border);
+  height: var(--c2-header-height);
+  background: var(--c2-bg-sidebar);
+  border-bottom: 1px solid var(--c2-border);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 18px;
-  z-index: 20;
+  padding: 0 20px;
   flex-shrink: 0;
+  position: relative;
+  z-index: 20;
+}
+
+/* Subordinate Thin Tactical Status Line underneath */
+.atlas-header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--c2-army-green), var(--c2-tactical-green), var(--c2-radioactive), var(--c2-tactical-green), var(--c2-army-green));
 }
 
 .header-left {
@@ -310,282 +310,198 @@ body::before {
   gap: 14px;
 }
 
-.btn-sidebar-toggle {
-  background: transparent;
-  border: 1px solid var(--atlas-border);
-  color: var(--atlas-text-secondary);
-  width: 32px;
-  height: 32px;
-  border-radius: var(--radius-xs);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-.btn-sidebar-toggle:hover {
-  border-color: var(--atlas-accent-primary);
-  color: var(--atlas-accent-primary);
-}
-
-.brand-emblem-wrap {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-}
-
-.brand-emblem-icon {
-  width: 28px;
-  height: 28px;
-  border: 1px solid var(--atlas-border);
-  background: var(--atlas-bg-panel);
-  border-radius: var(--radius-xs);
+.header-insignia-badge {
+  width: 44px;
+  height: 44px;
+  background: var(--c2-bg-panel);
+  border: 1px solid var(--c2-border);
+  border-radius: var(--c2-radius);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.brand-emblem-icon svg {
-  width: 18px;
-  height: 18px;
-  stroke: var(--atlas-accent-primary);
-  fill: none;
-  stroke-width: 2;
-}
-
-.brand-title-group {
+.brand-title-wrap {
   display: flex;
   flex-direction: column;
 }
 
-.brand-title {
-  font-family: var(--font-sans);
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  color: var(--atlas-text-primary);
+.brand-main-title {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--c2-text-primary);
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
-.brand-tag {
+.system-id-pill {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--c2-radioactive);
+  background: rgba(163, 230, 53, 0.08);
+  border: 1px solid rgba(163, 230, 53, 0.25);
+  padding: 1px 6px;
+  border-radius: 1px;
+}
+
+.brand-division-subtitle {
   font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 600;
-  color: var(--atlas-accent-primary);
-  background: rgba(163, 230, 53, 0.1);
-  padding: 1px 5px;
-  border-radius: 2px;
-  border: 1px solid rgba(163, 230, 53, 0.2);
-}
-
-.brand-department {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  color: var(--atlas-text-muted);
+  color: var(--c2-tactical-green);
   letter-spacing: 0.8px;
   text-transform: uppercase;
 }
 
-/* Centre: Global Search with Ctrl + K */
+/* Header Centre: Global Search & Command Palette */
 .header-centre {
   flex: 1;
-  max-width: 480px;
-  margin: 0 20px;
+  max-width: 520px;
+  margin: 0 24px;
 }
 
 .atlas-search-box {
   width: 100%;
-  height: 34px;
-  background: var(--atlas-bg-input);
-  border: 1px solid var(--atlas-border);
-  border-radius: var(--radius-xs);
+  height: 38px;
+  background: var(--c2-bg-input);
+  border: 1px solid var(--c2-border);
+  border-radius: var(--c2-radius);
   display: flex;
   align-items: center;
-  padding: 0 10px;
-  gap: 8px;
+  padding: 0 12px;
+  gap: 10px;
   cursor: pointer;
-  transition: border-color var(--transition-fast);
+  transition: border-color var(--transition-tactical);
 }
-
 .atlas-search-box:hover {
-  border-color: var(--atlas-accent-secondary);
+  border-color: var(--c2-tactical-green);
 }
 
-.search-icon-svg {
-  width: 14px;
-  height: 14px;
-  stroke: var(--atlas-text-muted);
-  stroke-width: 2;
-  fill: none;
-}
-
-.search-placeholder-text {
+.search-placeholder {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--atlas-text-muted);
+  color: var(--c2-text-muted);
   flex: 1;
 }
 
-.search-hotkey-pill {
+.search-hotkey {
   font-family: var(--font-mono);
-  font-size: 9px;
-  font-weight: 600;
-  color: var(--atlas-text-secondary);
-  background: var(--atlas-bg-elevated);
-  border: 1px solid var(--atlas-border);
-  padding: 2px 5px;
-  border-radius: 2px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--c2-text-secondary);
+  background: var(--c2-bg-elevated);
+  border: 1px solid var(--c2-border);
+  padding: 2px 6px;
+  border-radius: 1px;
 }
 
-/* Header Right: Telemetry & Controls */
+/* Header Right: Status, Dual Clock, Profile */
 .header-right {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-.telemetry-cell {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 8px;
-  background: var(--atlas-bg-panel);
-  border: 1px solid var(--atlas-border);
-  border-radius: var(--radius-xs);
+.hud-pill-cell {
+  background: var(--c2-bg-panel);
+  border: 1px solid var(--c2-border);
+  border-radius: var(--c2-radius);
+  padding: 5px 10px;
   font-family: var(--font-mono);
   font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
 }
 
-.telemetry-dot {
+.hud-pulse-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--atlas-status-success);
-  box-shadow: 0 0 6px var(--atlas-status-success);
+  background: var(--c2-status-operational);
+  box-shadow: 0 0 6px var(--c2-status-operational);
+  animation: pulseDot 2s infinite ease-in-out;
 }
 
-.telemetry-dot.pulse {
-  animation: telemetryPulse 2s infinite ease-in-out;
-}
-
-@keyframes telemetryPulse {
+@keyframes pulseDot {
   0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.85); }
+  50% { opacity: 0.4; transform: scale(0.8); }
 }
 
-.telemetry-clock {
+.hud-clock-readout {
   font-family: var(--font-telemetry);
-  font-size: 11px;
-  color: var(--atlas-text-primary);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.clock-label {
-  color: var(--atlas-text-muted);
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 600;
+  color: var(--c2-radioactive);
 }
 
-.clock-time {
-  color: var(--atlas-accent-primary);
-  font-weight: 600;
-}
-
-.btn-header-tool {
-  background: var(--atlas-bg-panel);
-  border: 1px solid var(--atlas-border);
-  color: var(--atlas-text-secondary);
-  height: 30px;
+.btn-header-action {
+  background: var(--c2-bg-panel);
+  border: 1px solid var(--c2-border);
+  color: var(--c2-text-secondary);
+  height: 32px;
   padding: 0 10px;
-  border-radius: var(--radius-xs);
+  border-radius: var(--c2-radius);
   font-family: var(--font-mono);
   font-size: 11px;
+  font-weight: 600;
   display: flex;
   align-items: center;
   gap: 6px;
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: all var(--transition-tactical);
+}
+.btn-header-action:hover {
+  border-color: var(--c2-tactical-green);
+  color: var(--c2-text-primary);
 }
 
-.btn-header-tool:hover {
-  border-color: var(--atlas-accent-primary);
-  color: var(--atlas-accent-primary);
-}
-
-.badge-beacon {
-  background: var(--atlas-status-critical);
-  color: #fff;
-  font-size: 9px;
-  font-weight: 700;
-  padding: 1px 4px;
-  border-radius: 2px;
-}
-
-.operator-profile-card {
+.operator-profile-box {
   display: flex;
   align-items: center;
   gap: 8px;
   padding-left: 10px;
-  border-left: 1px solid var(--atlas-border);
+  border-left: 1px solid var(--c2-border);
 }
 
-.operator-avatar {
-  width: 26px;
-  height: 26px;
-  border-radius: var(--radius-xs);
-  background: var(--atlas-army-green);
-  border: 1px solid var(--atlas-accent-primary);
-  color: var(--atlas-accent-primary);
+.operator-tag-avatar {
+  width: 28px;
+  height: 28px;
+  background: var(--c2-army-green);
+  border: 1px solid var(--c2-tactical-green);
+  color: var(--c2-radioactive);
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: var(--c2-radius);
 }
 
-.operator-info {
+.operator-details {
   display: flex;
   flex-direction: column;
 }
 
-.operator-name {
+.operator-name-str {
+  font-family: var(--font-mono);
   font-size: 11px;
-  font-weight: 600;
-  color: var(--atlas-text-primary);
-  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--c2-text-primary);
 }
 
-.operator-clearance {
+.operator-clearance-str {
+  font-family: var(--font-mono);
   font-size: 9px;
-  color: var(--atlas-accent-primary);
-  font-family: var(--font-mono);
+  color: var(--c2-tactical-green);
 }
 
-.btn-logout-tool {
-  background: transparent;
-  border: 1px solid var(--atlas-border);
-  color: var(--atlas-text-muted);
-  width: 28px;
-  height: 28px;
-  border-radius: var(--radius-xs);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-}
-
-.btn-logout-tool:hover {
-  border-color: var(--atlas-status-critical);
-  color: var(--atlas-status-critical);
-}
-
-/* ==================== WORKSPACE CONTAINER ==================== */
+/* ==================== 07. ADVANCED MILITARY SIDEBAR (255px) ==================== */
 .atlas-main-body {
   display: flex;
   flex: 1;
@@ -593,11 +509,10 @@ body::before {
   position: relative;
 }
 
-/* ==================== 05. LEFT NAVIGATION SIDEBAR (245px) ==================== */
 .atlas-sidebar {
-  width: var(--sidebar-width);
-  background: var(--atlas-bg-sidebar);
-  border-right: 1px solid var(--atlas-border);
+  width: var(--c2-sidebar-width);
+  background: var(--c2-bg-sidebar);
+  border-right: 1px solid var(--c2-border);
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
@@ -606,19 +521,40 @@ body::before {
   z-index: 15;
 }
 
-.sidebar-nav-container {
-  padding: 12px 8px;
+.sidebar-header-callout {
+  padding: 12px 16px;
+  background: var(--c2-bg-panel);
+  border-bottom: 1px solid var(--c2-border);
   display: flex;
-  flex-direction: column;
-  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.nav-group-header {
+.classification-stamp {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: var(--c2-status-warning);
+  background: rgba(229, 173, 71, 0.08);
+  border: 1px solid rgba(229, 173, 71, 0.3);
+  padding: 2px 6px;
+  border-radius: 1px;
+}
+
+.sidebar-nav-groups {
+  padding: 10px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.division-header-line {
   font-family: var(--font-mono);
   font-size: 10px;
-  font-weight: 700;
-  color: var(--atlas-text-muted);
+  font-weight: 800;
   letter-spacing: 1px;
+  color: var(--c2-muted-green);
   padding: 4px 10px;
   text-transform: uppercase;
   display: flex;
@@ -626,14 +562,14 @@ body::before {
   justify-content: space-between;
 }
 
-.nav-list {
+.division-items-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 1px;
 }
 
-.nav-item-btn {
+.c2-nav-btn {
   width: 100%;
   display: flex;
   align-items: center;
@@ -641,30 +577,30 @@ body::before {
   padding: 7px 10px;
   background: transparent;
   border: 1px solid transparent;
-  border-radius: var(--radius-xs);
-  color: var(--atlas-text-secondary);
-  font-family: var(--font-sans);
-  font-size: 12px;
-  font-weight: 500;
+  border-left: 2px solid transparent;
+  border-radius: var(--c2-radius);
+  color: var(--c2-text-secondary);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
   cursor: pointer;
   text-align: left;
-  transition: all var(--transition-fast);
+  transition: all var(--transition-tactical);
+}
+.c2-nav-btn:hover {
+  background: rgba(121, 168, 91, 0.06);
+  color: var(--c2-text-primary);
+  border-left-color: var(--c2-muted-green);
 }
 
-.nav-item-btn:hover {
-  background: var(--atlas-bg-hover);
-  color: var(--atlas-text-primary);
-  border-color: var(--atlas-border-subtle);
+.c2-nav-btn.active {
+  background: rgba(163, 230, 53, 0.08);
+  color: var(--c2-radioactive);
+  border-left-color: var(--c2-radioactive);
+  border-color: rgba(163, 230, 53, 0.2);
 }
 
-.nav-item-btn.active {
-  background: var(--atlas-bg-active);
-  color: var(--atlas-accent-primary);
-  border-color: rgba(163, 230, 53, 0.3);
-  font-weight: 600;
-}
-
-.nav-label-with-icon {
+.c2-nav-label {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -673,445 +609,421 @@ body::before {
   white-space: nowrap;
 }
 
-.nav-icon-svg {
-  width: 14px;
-  height: 14px;
+.c2-nav-icon {
+  width: 15px;
+  height: 15px;
   stroke: currentColor;
   stroke-width: 1.8;
   fill: none;
   flex-shrink: 0;
 }
 
-.nav-pill-counter {
+.c2-nav-badge {
   font-family: var(--font-mono);
   font-size: 9px;
   padding: 1px 5px;
-  border-radius: 2px;
-  border: 1px solid var(--atlas-border);
-  background: var(--atlas-bg-panel);
-  color: var(--atlas-text-secondary);
+  border-radius: 1px;
+  border: 1px solid var(--c2-border);
+  background: var(--c2-bg-panel);
 }
-
-.nav-pill-counter.lime {
-  color: var(--atlas-accent-primary);
+.c2-nav-badge.active {
+  color: var(--c2-radioactive);
   border-color: rgba(163, 230, 53, 0.3);
 }
-
-.nav-pill-counter.crimson {
-  color: var(--atlas-status-critical);
-  border-color: rgba(227, 93, 93, 0.3);
+.c2-nav-badge.critical {
+  color: var(--c2-status-critical);
+  border-color: rgba(224, 82, 82, 0.4);
 }
 
-.sidebar-footer-meter {
+.sidebar-status-footer {
   margin-top: auto;
   padding: 12px 14px;
-  border-top: 1px solid var(--atlas-border);
-  background: var(--atlas-bg-panel);
+  border-top: 1px solid var(--c2-border);
+  background: var(--c2-bg-panel);
   font-family: var(--font-mono);
   font-size: 10px;
-  color: var(--atlas-text-muted);
-}
-
-.meter-title-row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 4px;
-}
-
-.meter-bar-track {
-  width: 100%;
-  height: 3px;
-  background: var(--atlas-bg-primary);
-  border-radius: 1px;
-  overflow: hidden;
-}
-
-.meter-bar-fill {
-  height: 100%;
-  background: var(--atlas-accent-primary);
-}
-
-/* ==================== 06. MAIN WORKSPACE AREA ==================== */
-.atlas-workspace {
-  flex: 1;
-  background: var(--atlas-bg-primary);
-  overflow-y: auto;
-  overflow-x: hidden;
-  position: relative;
+  color: var(--c2-text-muted);
   display: flex;
   flex-direction: column;
-}
-
-.workspace-view-section {
-  display: none;
-  padding: 24px 28px;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.workspace-view-section.active {
-  display: flex;
-}
-
-/* Breadcrumb Header */
-.workspace-breadcrumb-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--atlas-border-subtle);
-}
-
-.breadcrumb-path {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--atlas-text-muted);
-  display: flex;
-  align-items: center;
   gap: 6px;
 }
 
-.breadcrumb-current {
-  color: var(--atlas-accent-primary);
-  font-weight: 600;
-}
-
-.breadcrumb-actions {
+/* ==================== 08. COMMAND CENTRE – PRIMARY WORKSPACE ==================== */
+.atlas-workspace {
+  flex: 1;
+  background: var(--c2-bg-primary);
+  overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
-  align-items: center;
-  gap: 8px;
+  flex-direction: column;
+  position: relative;
 }
 
-.workspace-title-row {
+.workspace-section {
+  display: none;
+  padding: 24px;
+  flex-direction: column;
+  gap: 20px;
+}
+.workspace-section.active {
+  display: flex;
+}
+
+/* Page Header */
+.c2-page-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 4px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--c2-border-subtle);
 }
 
-.workspace-page-title {
+.c2-header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.c2-header-title {
+  font-family: var(--font-mono);
   font-size: 22px;
-  font-weight: 700;
-  letter-spacing: -0.3px;
-  color: var(--atlas-text-primary);
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--c2-text-primary);
 }
 
-.workspace-page-subtitle {
-  font-size: 13px;
-  color: var(--atlas-text-secondary);
+.c2-header-subtitle {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--c2-text-secondary);
   margin-top: 2px;
 }
 
 /* Action Buttons */
-.btn-atlas-action {
+.btn-c2-action {
   height: 32px;
   padding: 0 12px;
-  background: var(--atlas-bg-panel);
-  border: 1px solid var(--atlas-border);
-  border-radius: var(--radius-xs);
-  color: var(--atlas-text-primary);
+  background: var(--c2-bg-panel);
+  border: 1px solid var(--c2-border);
+  border-radius: var(--c2-radius);
+  color: var(--c2-text-primary);
   font-family: var(--font-mono);
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 700;
   display: inline-flex;
   align-items: center;
   gap: 6px;
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: all var(--transition-tactical);
+}
+.btn-c2-action:hover {
+  border-color: var(--c2-tactical-green);
+  color: var(--c2-radioactive);
+}
+.btn-c2-action.primary {
+  background: var(--c2-army-green);
+  border-color: var(--c2-radioactive);
+  color: var(--c2-radioactive);
+}
+.btn-c2-action.primary:hover {
+  background: var(--c2-radioactive);
+  color: #070B08;
+}
+.btn-c2-action.danger {
+  border-color: rgba(224, 82, 82, 0.4);
+  color: var(--c2-status-critical);
+}
+.btn-c2-action.danger:hover {
+  background: rgba(224, 82, 82, 0.12);
 }
 
-.btn-atlas-action:hover {
-  border-color: var(--atlas-accent-primary);
-  color: var(--atlas-accent-primary);
-}
-
-.btn-atlas-action.primary {
-  background: var(--atlas-accent-primary);
-  color: #080B09;
-  border-color: var(--atlas-accent-primary);
-  font-weight: 700;
-}
-
-.btn-atlas-action.primary:hover {
-  background: #b6f24b;
-}
-
-.btn-atlas-action.danger {
-  border-color: rgba(227, 93, 93, 0.4);
-  color: var(--atlas-status-critical);
-}
-
-.btn-atlas-action.danger:hover {
-  background: rgba(227, 93, 93, 0.1);
-  border-color: var(--atlas-status-critical);
-}
-
-/* ==================== 07. EXECUTIVE METRICS GRID (8 KPIS) ==================== */
-.atlas-metrics-grid-8 {
+/* ==================== 09. MILITARY-STYLE KPI PANELS (8 CARDS) ==================== */
+.c2-kpi-grid-8 {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 12px;
-}
-
-.metric-panel-card {
-  background: var(--atlas-bg-panel);
-  border: 1px solid var(--atlas-border);
-  border-radius: var(--radius-xs);
-  padding: 14px 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: border-color var(--transition-fast);
-  position: relative;
-}
-
-.metric-panel-card:hover {
-  border-color: var(--atlas-accent-secondary);
-}
-
-.metric-header-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 8px;
-}
-
-.metric-title-text {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 600;
-  color: var(--atlas-text-secondary);
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-}
-
-.metric-icon-wrap svg {
-  width: 14px;
-  height: 14px;
-  stroke: var(--atlas-text-muted);
-  stroke-width: 2;
-  fill: none;
-}
-
-.metric-main-value {
-  font-family: var(--font-mono);
-  font-size: 26px;
-  font-weight: 700;
-  color: var(--atlas-text-primary);
-  letter-spacing: -0.5px;
-  line-height: 1.1;
-}
-
-.metric-footer-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 8px;
-  font-family: var(--font-mono);
-  font-size: 10px;
-}
-
-.metric-trend-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  font-weight: 600;
-}
-
-.metric-trend-tag.positive {
-  color: var(--atlas-accent-primary);
-}
-
-.metric-trend-tag.neutral {
-  color: var(--atlas-text-secondary);
-}
-
-.metric-trend-tag.alert {
-  color: var(--atlas-status-critical);
-}
-
-.metric-sublabel {
-  color: var(--atlas-text-muted);
-}
-
-/* ==================== 08. PLATFORM INTELLIGENCE ANALYTICS ==================== */
-.atlas-card-container {
-  background: var(--atlas-bg-panel);
-  border: 1px solid var(--atlas-border);
-  border-radius: var(--radius-xs);
-  padding: 18px 20px;
-  display: flex;
-  flex-direction: column;
+  grid-template-columns: repeat(4, 1fr);
   gap: 14px;
 }
 
-.card-top-bar {
+@media (max-width: 1440px) {
+  .c2-kpi-grid-8 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (max-width: 1280px) {
+  .c2-kpi-grid-8 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.c2-kpi-panel {
+  background: var(--c2-bg-panel);
+  border: 1px solid var(--c2-border);
+  border-radius: var(--c2-radius);
+  padding: 14px 16px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: border-color var(--transition-tactical);
+}
+.c2-kpi-panel:hover {
+  border-color: var(--c2-military-olive);
+}
+
+.kpi-top-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
 }
 
-.card-title-h3 {
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.2px;
-  color: var(--atlas-text-primary);
+.kpi-military-id {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: var(--c2-text-muted);
 }
 
-.card-desc-p {
-  font-size: 11px;
-  color: var(--atlas-text-muted);
-  margin-top: 1px;
+.kpi-main-val {
+  font-family: var(--font-mono);
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--c2-text-primary);
+  margin: 6px 0 2px 0;
 }
 
-.filter-pills-cluster {
-  display: inline-flex;
-  background: var(--atlas-bg-input);
-  border: 1px solid var(--atlas-border);
-  border-radius: var(--radius-xs);
-  padding: 2px;
-}
-
-.filter-pill-btn {
-  background: transparent;
-  border: none;
-  color: var(--atlas-text-secondary);
+.kpi-label-str {
   font-family: var(--font-mono);
   font-size: 10px;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 2px;
-  cursor: pointer;
-  transition: all var(--transition-fast);
+  font-weight: 700;
+  color: var(--c2-text-secondary);
+  letter-spacing: 0.5px;
 }
 
-.filter-pill-btn:hover {
-  color: var(--atlas-text-primary);
+.kpi-footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  padding-top: 6px;
+  border-top: 1px solid var(--c2-border-subtle);
+  font-family: var(--font-mono);
+  font-size: 9px;
 }
 
-.filter-pill-btn.active {
-  background: var(--atlas-bg-elevated);
-  color: var(--atlas-accent-primary);
-  border: 1px solid var(--atlas-border);
+/* ==================== 10 & 11. STRATEGIC RADAR & GLOBAL MAP WORKSPACE ==================== */
+.strategic-intelligence-split {
+  display: grid;
+  grid-template-columns: 360px 1fr 340px;
+  gap: 16px;
 }
 
-.chart-canvas-wrapper {
-  width: 100%;
-  height: 240px;
+@media (max-width: 1600px) {
+  .strategic-intelligence-split {
+    grid-template-columns: 320px 1fr 300px;
+  }
+}
+@media (max-width: 1366px) {
+  .strategic-intelligence-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+.c2-panel-card {
+  background: var(--c2-bg-panel);
+  border: 1px solid var(--c2-border);
+  border-radius: var(--c2-radius);
+  padding: 16px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-/* ==================== 09. SPLIT GRIDS & TIMELINES ==================== */
-.atlas-grid-split-2 {
+.panel-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panel-title-text {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--c2-text-primary);
+}
+
+.panel-coord-tag {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--c2-text-muted);
+}
+
+/* Circular Tactical Radar Screen */
+.radar-screen-wrap {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  background: var(--c2-bg-secondary);
+  border: 1px solid var(--c2-border);
+  border-radius: var(--c2-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+#tacticalRadarCanvas {
+  width: 100%;
+  height: 100%;
+}
+
+.radar-sweep-needle {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 130px;
+  height: 130px;
+  transform-origin: 0% 0%;
+  background: conic-gradient(from 0deg at 0% 0%, rgba(163, 230, 53, 0.28) 0deg, transparent 45deg);
+  animation: radarRotate 4s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes radarRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.radar-coords-label {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: var(--c2-muted-green);
+  pointer-events: none;
+}
+.radar-coords-label.n { top: 6px; left: 50%; transform: translateX(-50%); }
+.radar-coords-label.s { bottom: 6px; left: 50%; transform: translateX(-50%); }
+.radar-coords-label.w { left: 8px; top: 50%; transform: translateY(-50%); }
+.radar-coords-label.e { right: 8px; top: 50%; transform: translateY(-50%); }
+
+/* Global Tactical Map */
+.tactical-map-container {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  background: var(--c2-bg-secondary);
+  border: 1px solid var(--c2-border);
+  border-radius: var(--c2-radius);
+  overflow: hidden;
+}
+
+#globalMapCanvas {
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+}
+
+.map-hud-controls {
+  position: absolute;
+  top: 12px; right: 12px;
+  display: flex;
+  gap: 4px;
+  z-index: 5;
+}
+
+.map-legend-bar {
+  position: absolute;
+  bottom: 10px; left: 12px;
+  background: rgba(11, 17, 13, 0.88);
+  border: 1px solid var(--c2-border);
+  padding: 4px 10px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--c2-text-secondary);
+  display: flex;
+  gap: 12px;
+  z-index: 5;
+}
+
+/* ==================== 12. ANALYTICS & TIMELINE ==================== */
+.analytics-timeline-split {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
 
-@media (max-width: 1100px) {
-  .atlas-grid-split-2 {
+@media (max-width: 1200px) {
+  .analytics-timeline-split {
     grid-template-columns: 1fr;
   }
 }
 
-.timeline-feed-list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  max-height: 380px;
-  overflow-y: auto;
+.chart-stage-box {
+  width: 100%;
+  height: 250px;
+  position: relative;
 }
 
-.timeline-entry-row {
+/* Live Operational Log */
+.ops-log-terminal {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 280px;
+  overflow-y: auto;
+  font-family: var(--font-telemetry);
+  font-size: 11px;
+}
+
+.ops-log-row {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  padding: 10px 12px;
-  background: var(--atlas-bg-secondary);
-  border: 1px solid var(--atlas-border-subtle);
-  border-radius: var(--radius-xs);
-  font-size: 12px;
+  gap: 10px;
+  padding: 8px 10px;
+  background: var(--c2-bg-secondary);
+  border: 1px solid var(--c2-border-subtle);
+  border-radius: 1px;
 }
 
-.timeline-time-col {
-  font-family: var(--font-telemetry);
-  font-size: 10px;
-  color: var(--atlas-text-muted);
-  width: 60px;
-  flex-shrink: 0;
-  padding-top: 1px;
-}
-
-.timeline-content-col {
-  flex: 1;
-}
-
-.timeline-title-line {
+/* ==================== 14. COMMAND AND CONTROL PANEL (RIGHT) ==================== */
+.c2-status-nodes-list {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 2px;
-}
-
-.timeline-tag {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  padding: 1px 5px;
-  border-radius: 2px;
-  border: 1px solid var(--atlas-border);
-}
-
-.timeline-tag.auth { color: var(--atlas-accent-primary); border-color: rgba(163,230,53,0.3); }
-.timeline-tag.post { color: var(--atlas-status-info); border-color: rgba(105,169,221,0.3); }
-.timeline-tag.report { color: var(--atlas-status-critical); border-color: rgba(227,93,93,0.3); }
-.timeline-tag.support { color: var(--atlas-status-warning); border-color: rgba(229,173,74,0.3); }
-
-/* System Health Micro-Grid */
-.health-nodes-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  flex-direction: column;
   gap: 8px;
 }
 
-.health-node-box {
-  background: var(--atlas-bg-secondary);
-  border: 1px solid var(--atlas-border-subtle);
-  border-radius: var(--radius-xs);
-  padding: 10px;
+.c2-node-row {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.health-node-name {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--atlas-text-muted);
-  text-transform: uppercase;
-}
-
-.health-node-state {
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 10px;
+  background: var(--c2-bg-secondary);
+  border: 1px solid var(--c2-border-subtle);
   font-family: var(--font-mono);
   font-size: 11px;
-  font-weight: 600;
+}
+
+.status-indicator-tag {
   display: flex;
   align-items: center;
   gap: 5px;
+  font-weight: 700;
+  font-size: 10px;
 }
+.status-indicator-tag.ok { color: var(--c2-status-operational); }
+.status-indicator-tag.warn { color: var(--c2-status-warning); }
+.status-indicator-tag.crit { color: var(--c2-status-critical); }
 
-.health-node-state.operational { color: var(--atlas-status-success); }
-.health-node-state.degraded { color: var(--atlas-status-warning); }
-
-/* ==================== 10. INTELLIGENCE GRAPH CANVAS ==================== */
-.graph-stage-box {
+/* ==================== 16. RELATIONSHIP INTELLIGENCE GRAPH ==================== */
+.graph-stage-full {
   position: relative;
   width: 100%;
-  height: 520px;
-  background: var(--atlas-bg-secondary);
-  border: 1px solid var(--atlas-border);
-  border-radius: var(--radius-xs);
+  height: 560px;
+  background: var(--c2-bg-secondary);
+  border: 1px solid var(--c2-border);
+  border-radius: var(--c2-radius);
   overflow: hidden;
 }
 
@@ -1120,66 +1032,19 @@ body::before {
   height: 100%;
   cursor: grab;
 }
-
 #intelligenceGraphCanvas:active {
   cursor: grabbing;
 }
 
-.graph-floating-controls {
+/* Contextual Node Detail Panel */
+.graph-side-drawer {
   position: absolute;
-  top: 14px;
-  right: 14px;
-  display: flex;
-  gap: 6px;
-  z-index: 5;
-}
-
-.graph-legend-overlay {
-  position: absolute;
-  bottom: 14px;
-  left: 14px;
-  background: rgba(13, 18, 15, 0.85);
-  backdrop-filter: blur(8px);
-  border: 1px solid var(--atlas-border);
-  border-radius: var(--radius-xs);
-  padding: 8px 12px;
-  display: flex;
-  gap: 12px;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  z-index: 5;
-}
-
-.graph-legend-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.legend-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-}
-
-.legend-dot.root { background: #A3E635; box-shadow: 0 0 6px #A3E635; }
-.legend-dot.company { background: #E5AD4A; }
-.legend-dot.user { background: #69A9DD; }
-.legend-dot.post { background: #71C879; }
-.legend-dot.incident { background: #E35D5D; }
-
-/* Contextual Node Inspector Drawer */
-.graph-inspector-drawer {
-  position: absolute;
-  top: 14px;
-  bottom: 14px;
-  right: 14px;
+  top: 14px; bottom: 14px; right: 14px;
   width: 320px;
-  background: var(--atlas-bg-panel);
-  border: 1px solid var(--atlas-border);
-  border-radius: var(--radius-xs);
+  background: var(--c2-bg-panel);
+  border: 1px solid var(--c2-border);
   padding: 16px;
-  box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.7);
   display: none;
   flex-direction: column;
   gap: 12px;
@@ -1187,98 +1052,66 @@ body::before {
   overflow-y: auto;
 }
 
-/* ==================== 11. DATA TABLES & REPOSITORIES ==================== */
-.atlas-table-wrapper {
+/* ==================== 15. DENSE MILITARY DATA TABLES ==================== */
+.c2-table-wrapper {
   width: 100%;
   overflow-x: auto;
-  border: 1px solid var(--atlas-border);
-  border-radius: var(--radius-xs);
+  border: 1px solid var(--c2-border);
 }
 
-.atlas-table {
+.c2-dense-table {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
-  font-size: 12px;
-}
-
-.atlas-table thead {
-  background: var(--atlas-bg-secondary);
-  border-bottom: 1px solid var(--atlas-border);
-}
-
-.atlas-table th {
-  padding: 10px 14px;
   font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 600;
-  color: var(--atlas-text-secondary);
+  font-size: 11px;
+}
+
+.c2-dense-table thead {
+  background: var(--c2-bg-secondary);
+  border-bottom: 1px solid var(--c2-border);
+}
+
+.c2-dense-table th {
+  padding: 9px 12px;
+  color: var(--c2-text-secondary);
+  font-weight: 700;
   letter-spacing: 0.5px;
   text-transform: uppercase;
 }
 
-.atlas-table td {
-  padding: 10px 14px;
-  border-bottom: 1px solid var(--atlas-border-subtle);
-  color: var(--atlas-text-primary);
+.c2-dense-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--c2-border-subtle);
+  color: var(--c2-text-primary);
   vertical-align: middle;
 }
 
-.atlas-table tbody tr {
-  background: var(--atlas-bg-panel);
-  transition: background var(--transition-fast);
+.c2-dense-table tbody tr {
+  background: var(--c2-bg-panel);
+  transition: background var(--transition-tactical);
+}
+.c2-dense-table tbody tr:hover {
+  background: var(--c2-bg-elevated);
 }
 
-.atlas-table tbody tr:hover {
-  background: var(--atlas-bg-elevated);
-}
-
-.table-uuid-cell {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--atlas-accent-primary);
-  background: rgba(163, 230, 53, 0.05);
-  padding: 2px 6px;
-  border-radius: 2px;
-  border: 1px solid rgba(163, 230, 53, 0.15);
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.role-badge {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  font-weight: 700;
-  padding: 2px 6px;
-  border-radius: 2px;
-  border: 1px solid var(--atlas-border);
-  text-transform: uppercase;
-}
-.role-badge.root { color: #fff; background: var(--atlas-army-green); border-color: var(--atlas-accent-primary); }
-.role-badge.company { color: #E5AD4A; background: rgba(229,173,74,0.1); border-color: #E5AD4A; }
-.role-badge.verified { color: var(--atlas-accent-primary); border-color: var(--atlas-accent-primary); }
-.role-badge.citizen { color: var(--atlas-text-muted); }
-
-/* ==================== 12. SPLIT-VIEW CONTENT & COMMUNICATIONS ==================== */
-.split-view-3col {
+/* ==================== 19. COMMUNICATIONS TERMINAL (3-COLUMN) ==================== */
+.terminal-3col-grid {
   display: grid;
-  grid-template-columns: 280px 1fr 300px;
+  grid-template-columns: 300px 1fr 300px;
   gap: 16px;
-  height: 600px;
+  height: 620px;
 }
 
-@media (max-width: 1200px) {
-  .split-view-3col {
-    grid-template-columns: 1fr;
-    height: auto;
+@media (max-width: 1440px) {
+  .terminal-3col-grid {
+    grid-template-columns: 260px 1fr 260px;
   }
 }
 
-.col-pane {
-  background: var(--atlas-bg-panel);
-  border: 1px solid var(--atlas-border);
-  border-radius: var(--radius-xs);
+.terminal-col-card {
+  background: var(--c2-bg-panel);
+  border: 1px solid var(--c2-border);
   padding: 14px;
   display: flex;
   flex-direction: column;
@@ -1286,26 +1119,26 @@ body::before {
   overflow-y: auto;
 }
 
-/* ==================== 13. BOTTOM OPERATIONAL STATUS BAR ==================== */
+/* ==================== 21. BOTTOM OPERATIONAL STATUS BAR ==================== */
 .atlas-status-bar {
-  height: var(--status-bar-height);
-  background: var(--atlas-bg-sidebar);
-  border-top: 1px solid var(--atlas-border);
+  height: var(--c2-status-bar-height);
+  background: var(--c2-bg-sidebar);
+  border-top: 1px solid var(--c2-border);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 16px;
+  padding: 0 18px;
   font-family: var(--font-mono);
   font-size: 10px;
-  color: var(--atlas-text-muted);
+  color: var(--c2-text-muted);
   flex-shrink: 0;
   z-index: 10;
 }
 
-.status-bar-left, .status-bar-right {
+.status-bar-group {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
 }
 
 .status-bar-item {
@@ -1313,146 +1146,33 @@ body::before {
   align-items: center;
   gap: 5px;
 }
-
 .status-bar-item.active {
-  color: var(--atlas-accent-primary);
+  color: var(--c2-radioactive);
 }
 
-/* ==================== 14. MODAL DIALOGS ==================== */
+/* ==================== 23. COMMAND PALETTE MODAL ==================== */
 .atlas-modal-backdrop {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(8, 11, 9, 0.85);
-  backdrop-filter: blur(6px);
+  background: rgba(7, 11, 8, 0.88);
+  backdrop-filter: blur(8px);
   z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 24px;
 }
 
 .atlas-modal-card {
   width: 100%;
-  max-width: 560px;
-  background: var(--atlas-bg-panel);
-  border: 1px solid var(--atlas-border);
-  border-radius: var(--radius-sm);
+  max-width: 600px;
+  background: var(--c2-bg-panel);
+  border: 1px solid var(--c2-border);
+  border-radius: var(--c2-radius);
   padding: 20px;
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 14px;
-}
-
-.modal-header-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--atlas-border-subtle);
-}
-
-.modal-title-text {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--atlas-text-primary);
-  text-transform: uppercase;
-}
-
-.modal-close-btn {
-  background: transparent;
-  border: none;
-  color: var(--atlas-text-muted);
-  font-size: 16px;
-  cursor: pointer;
-}
-.modal-close-btn:hover {
-  color: var(--atlas-text-primary);
-}
-
-/* Command Palette Specifics */
-.cmd-palette-input {
-  width: 100%;
-  height: 42px;
-  background: var(--atlas-bg-input);
-  border: 1px solid var(--atlas-border);
-  border-radius: var(--radius-xs);
-  padding: 0 14px;
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--atlas-text-primary);
-  outline: none;
-}
-.cmd-palette-input:focus {
-  border-color: var(--atlas-accent-primary);
-}
-
-.cmd-results-list {
-  max-height: 320px;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.cmd-result-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px 12px;
-  border-radius: var(--radius-xs);
-  background: var(--atlas-bg-secondary);
-  border: 1px solid transparent;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-}
-
-.cmd-result-item:hover, .cmd-result-item.focused {
-  background: var(--atlas-bg-elevated);
-  border-color: var(--atlas-accent-primary);
-}
-
-.cmd-title {
-  font-weight: 600;
-  color: var(--atlas-text-primary);
-}
-
-.cmd-category {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  color: var(--atlas-accent-primary);
-  background: rgba(163, 230, 53, 0.08);
-  padding: 1px 4px;
-  border-radius: 2px;
-}
-
-/* ==================== 15. RESPONSIVE BREAKPOINTS ==================== */
-@media (max-width: 992px) {
-  .btn-sidebar-toggle {
-    display: flex;
-  }
-  .atlas-sidebar {
-    position: fixed;
-    top: var(--header-height);
-    bottom: 0;
-    left: -260px;
-    transition: left var(--transition-smooth);
-    box-shadow: 10px 0 30px rgba(0,0,0,0.6);
-  }
-  .atlas-sidebar.mobile-open {
-    left: 0;
-  }
-  .header-centre {
-    max-width: 280px;
-  }
-}
-
-@media (max-width: 680px) {
-  .header-centre {
-    display: none;
-  }
-  .telemetry-cell {
-    display: none;
-  }
 }
