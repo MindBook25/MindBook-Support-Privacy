@@ -7,7 +7,7 @@
   <meta name="description" content="Centralized Cyber Security Operations Center (SOC) & Live PostgreSQL Database Studio for MindBook 2.0. Real-time user monitoring, content quarantine, and zero-trust telemetry.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
   <base href="/admin/">
   <link rel="stylesheet" href="/admin/admin.css">
   <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
@@ -95,10 +95,10 @@
   <!-- ================= MAIN CYBER COMMAND SHELL ================= -->
   <div id="adminAppShell" class="cyber-shell" style="display: none;">
 
-    <!-- TOP HUD BAR -->
+    <!-- TOP COMMAND RIBBON (C4ISR SEGMENTED TELEMETRY HEADER) -->
     <header class="cyber-hud-topbar">
-      <div class="hud-left">
-        <!-- Mobile Sidebar Drawer Toggle -->
+      <!-- Segment 1: Brand & Nav Toggle -->
+      <div class="hud-cell hud-cell-brand">
         <button class="btn-sidebar-toggle" id="btnSidebarToggle" onclick="toggleCyberSidebar()" title="Toggle Tactical Navigation" aria-label="Toggle navigation">
           <span class="hamburger-bar"></span>
           <span class="hamburger-bar"></span>
@@ -107,7 +107,7 @@
 
         <div class="hud-brand">
           <div class="brand-shield-glow">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="var(--neon-cyan)">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="var(--neon-cyan)">
               <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
             </svg>
           </div>
@@ -116,45 +116,62 @@
             <div class="brand-sub">LIVE DATABASE & DEFENSE CONSOLE</div>
           </div>
         </div>
+      </div>
 
+      <!-- Segment 2: DEFCON Alert Metric -->
+      <div class="hud-cell hud-cell-defcon">
         <div class="hud-defcon-badge" id="hudDefconBadge">
-          <span class="defcon-led pulse-green"></span>
-          <span class="defcon-text">DEFCON 5 // SYSTEM NOMINAL</span>
+          <span class="defcon-led pulse-red" style="background:#FF2E4C; box-shadow:0 0 8px #FF2E4C;"></span>
+          <span class="defcon-text" style="color:#FF2E4C;">DEFCON 4 // 2 ANOMALIES</span>
         </div>
       </div>
 
-      <div class="hud-center">
+      <!-- Segment 3: Live Database Sync Telemetry Ticker -->
+      <div class="hud-cell hud-cell-ticker">
         <div class="hud-ticker">
           <span class="ticker-label">DATABASE SYNC:</span>
-          <span id="hudTickerText" class="ticker-content">CONNECTING TO SUPABASE POSTGRESQL (vduwdnlchbelxvrqoioj.supabase.co)...</span>
+          <span id="hudTickerText" class="ticker-content">QUERYING SUPABASE POSTGRESQL (vduwdnlchbelxvrqoioj.supabase.co)...</span>
         </div>
       </div>
 
-      <div class="hud-right">
-        <div class="hud-metric-pill" title="Real-time WebSocket & Polling Sync Interval" style="border-color: var(--neon-cyan);">
+      <!-- Segment 4: Sync Interval Dropdown -->
+      <div class="hud-cell hud-cell-interval">
+        <div class="hud-metric-pill" title="Real-time WebSocket & Polling Sync Interval">
           <span class="pill-label">SYNC:</span>
-          <select id="autoSyncIntervalSelect" onchange="updateAutoSyncInterval(this.value)" style="background:transparent; border:none; color:var(--neon-cyan); font-family:var(--font-mono); font-size:0.75rem; cursor:pointer; outline:none;">
-            <option value="2000" style="background:#040711; color:#fff;">2s (High Frequency)</option>
-            <option value="5000" selected style="background:#040711; color:#fff;">5s (Optimal Recommended)</option>
-            <option value="10000" style="background:#040711; color:#fff;">10s (Standard)</option>
-            <option value="0" style="background:#040711; color:#fff;">Manual Only</option>
+          <select id="autoSyncIntervalSelect" onchange="updateAutoSyncInterval(this.value)">
+            <option value="2000">2s Interval</option>
+            <option value="5000" selected>5s Sync Interval</option>
+            <option value="10000">10s Interval</option>
+            <option value="0">Manual Only</option>
           </select>
         </div>
+      </div>
 
+      <!-- Segment 5: Latency Telemetry -->
+      <div class="hud-cell hud-cell-latency">
         <div class="hud-metric-pill">
-          <span class="pill-label">LATENCY</span>
-          <span id="hudLatency" class="pill-val">16ms</span>
+          <span class="pill-label">LATENCY:</span>
+          <span id="hudLatency" class="pill-val">17ms</span>
         </div>
+      </div>
 
+      <!-- Segment 6: Audio Synthesizer Status -->
+      <div class="hud-cell hud-cell-audio">
         <button class="btn-cyber-hud" id="btnSoundToggle" onclick="toggleAudioFx()" title="Toggle Tactical Audio Feedback">
           <span id="soundIcon">🔊</span>
           <span id="soundStatusText">AUDIO: ON</span>
         </button>
+      </div>
 
+      <!-- Segment 7: Tactical Sync Now Trigger -->
+      <div class="hud-cell hud-cell-sync-btn">
         <button class="btn-cyber-hud alert-btn" onclick="refreshFromLiveDatabase()" title="Force Refresh Real Supabase Database">
           <span>🔄 SYNC NOW</span>
         </button>
+      </div>
 
+      <!-- Segment 8: Operator Credentials & Session Lock -->
+      <div class="hud-cell hud-cell-operator">
         <div class="operator-profile">
           <div class="operator-avatar" id="operatorInitials">OP</div>
           <div class="operator-info">
@@ -162,7 +179,7 @@
             <span class="op-rank">SYSADMIN // SEC-OPS</span>
           </div>
           <button class="btn-op-logout" onclick="handleAdminLogout()" title="Terminate Terminal Session">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg>
           </button>
         </div>
       </div>
@@ -267,76 +284,97 @@
       <!-- MAIN TACTICAL VIEWPORT -->
       <main class="cyber-main-viewport">
 
-        <!-- ================= TAB: LIVE DATABASE STUDIO (PRIMARY REQUEST) ================= -->
+        <!-- ================= TAB: LIVE DATABASE STUDIO (C4ISR OPERATIONS CONSOLE) ================= -->
         <section id="tab-database" class="cyber-tab active">
-          <div class="cyber-card">
+          <div class="cyber-card tactical-studio-card">
             
-            <div class="card-header-tactical flex-wrap">
-              <div>
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <span style="font-size:1.3rem;">🗄️</span>
-                  <h3>LIVE DATABASE STUDIO & RECORD MONITOR</h3>
-                  <span class="tag-status live" id="dbLiveConnectionStatus">🟢 CONNECTED TO POSTGRESQL</span>
+            <!-- Tactical 2-Row Control Bar -->
+            <div class="tactical-control-toolbar">
+              <!-- Row 1: Workspace Title + Table Selector Tabs -->
+              <div class="control-toolbar-row-1">
+                <div class="workspace-title-box">
+                  <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="font-size:1.2rem;">🗄️</span>
+                    <h3 class="workspace-heading-title">LIVE DATABASE STUDIO & RECORD MONITOR</h3>
+                    <span class="tag-status live" id="dbLiveConnectionStatus">🟢 CONNECTED TO POSTGRESQL</span>
+                  </div>
+                  <p class="card-subtitle">Real-time inspection of every single user, feed post, and comment directly in your Supabase database</p>
                 </div>
-                <p class="card-subtitle">Real-time inspection of every single user, feed post, and comment directly in your Supabase database</p>
+
+                <!-- Database Table Switcher Tabs -->
+                <div class="tactical-filter-group">
+                  <button class="filter-tab active" data-dbtab="profiles" onclick="switchDbTable('profiles', this)">
+                    👥 public.profiles (<span id="countDbProfiles">...</span>)
+                  </button>
+                  <button class="filter-tab" data-dbtab="posts" onclick="switchDbTable('posts', this)">
+                    📝 public.posts (<span id="countDbPosts">...</span>)
+                  </button>
+                  <button class="filter-tab" data-dbtab="comments" onclick="switchDbTable('comments', this)">
+                    💬 public.comments (<span id="countDbComments">...</span>)
+                  </button>
+                </div>
               </div>
 
-              <!-- Database Table Switcher Tabs -->
-              <div class="tactical-filter-group">
-                <button class="filter-tab active" data-dbtab="profiles" onclick="switchDbTable('profiles', this)">
-                  👥 public.profiles (<span id="countDbProfiles">...</span>)
-                </button>
-                <button class="filter-tab" data-dbtab="posts" onclick="switchDbTable('posts', this)">
-                  📝 public.posts (<span id="countDbPosts">...</span>)
-                </button>
-                <button class="filter-tab" data-dbtab="comments" onclick="switchDbTable('comments', this)">
-                  💬 public.comments (<span id="countDbComments">...</span>)
-                </button>
-              </div>
-            </div>
-
-            <!-- Database Search & Filter Toolbar -->
-            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
-              <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+              <!-- Row 2: Search Input + Safe Destructive Action Separation Buttons -->
+              <div class="control-toolbar-row-2">
                 <div class="cyber-search-input responsive-search">
                   <span class="search-lens">🔍</span>
                   <input type="text" id="dbSearchInput" placeholder="Filter records by UUID, username, or text..." oninput="handleDbFilter(this.value)">
                 </div>
 
-                <!-- Fresh Launch View Toggle -->
-                <button type="button" class="btn-cyber-micro" id="btnToggleFreshMode" onclick="toggleFreshLaunchMode()" style="border-color: #ffd700; color: #ffd700;" title="Toggle between clean real accounts only and demo seed records">
-                  ✨ FRESH LAUNCH VIEW (REAL ONLY)
-                </button>
-              </div>
+                <div class="tactical-action-buttons-group">
+                  <!-- Tactical Cyan: Sync & Export -->
+                  <button class="btn-tactical-action" onclick="refreshFromLiveDatabase()" title="Force Refresh Real Supabase Database">
+                    🔄 SYNC DATABASE
+                  </button>
+                  <button class="btn-tactical-action" onclick="exportCurrentTableJson()" title="Export Filtered Table to JSON">
+                    💾 EXPORT TABLE JSON
+                  </button>
 
-              <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                <button class="btn-cyber-micro danger" onclick="purgeAllDemoSeedProfiles()" title="Purge dummy seed profiles (user_sophia, user_elena, user_marcus, user_mind_01) to make database brand new" style="border-color: var(--neon-red); color: #ff6699;">
-                  🧹 PURGE DEMO PROFILES
-                </button>
-                <button class="btn-cyber-micro" onclick="refreshFromLiveDatabase()">
-                  🔄 SYNC DATABASE
-                </button>
-                <button class="btn-cyber-micro" onclick="exportCurrentTableJson()">
-                  💾 EXPORT TABLE JSON
-                </button>
+                  <!-- Caution Amber: Fresh Launch View -->
+                  <button type="button" class="btn-tactical-action btn-caution-launch" id="btnToggleFreshMode" onclick="toggleFreshLaunchMode()" title="Toggle between clean real accounts only and demo seed records">
+                    ✨ FRESH LAUNCH VIEW (REAL ONLY)
+                  </button>
+
+                  <!-- Isolated Tactical Crimson on Far Right: Purge -->
+                  <div class="destructive-action-divider"></div>
+                  <button class="btn-tactical-action btn-danger-purge" onclick="purgeAllDemoSeedProfiles()" title="Purge dummy seed profiles (user_sophia, user_elena, user_marcus, user_mind_01) to make database brand new">
+                    🧹 PURGE DEMO PROFILES
+                  </button>
+                </div>
               </div>
             </div>
 
-            <!-- Database Grid Container -->
-            <div class="cyber-table-container">
-              <table class="cyber-table" id="dbStudioTable">
-                <thead id="dbStudioThead">
-                  <!-- Injected dynamically based on active table -->
-                </thead>
-                <tbody id="dbStudioTbody">
-                  <tr>
-                    <td colspan="7" style="text-align:center; padding:30px; font-family:var(--font-mono); color:var(--neon-cyan);">
-                      <div class="defcon-led pulse-green" style="margin: 0 auto 10px; width:12px; height:12px;"></div>
-                      CONNECTING TO SUPABASE DATABASE...
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+            <!-- Database Grid Viewport with 6px L-shaped Corner Reticles -->
+            <div class="table-viewport-reticle">
+              <div class="reticle-bracket top-left"></div>
+              <div class="reticle-bracket top-right"></div>
+              <div class="reticle-bracket bottom-left"></div>
+              <div class="reticle-bracket bottom-right"></div>
+
+              <div class="cyber-table-container">
+                <table class="cyber-table" id="dbStudioTable">
+                  <thead id="dbStudioThead">
+                    <tr>
+                      <th style="width: 280px;">USER / DISPLAY NAME</th>
+                      <th>DATABASE UUID</th>
+                      <th>ROLE / STATUS</th>
+                      <th>POSTS</th>
+                      <th>VERIFIED</th>
+                      <th>CREATED AT</th>
+                      <th style="text-align: right; width: 170px;">DATABASE ACTIONS</th>
+                    </tr>
+                  </thead>
+                  <tbody id="dbStudioTbody">
+                    <tr>
+                      <td colspan="7" style="text-align:center; padding:50px 20px;">
+                        <div class="tactical-radar-spinner-48"></div>
+                        <div class="tactical-status-text">CONNECTING TO SUPABASE DATABASE...</div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
 
           </div>

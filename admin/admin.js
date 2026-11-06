@@ -454,13 +454,13 @@ function toggleFreshLaunchMode() {
   const btn = document.getElementById('btnToggleFreshMode');
   if (btn) {
     if (socState.freshModeOnly) {
-      btn.style.borderColor = '#ffd700';
-      btn.style.color = '#ffd700';
+      btn.style.borderColor = '#FFB300';
+      btn.style.color = '#FFB300';
       btn.textContent = '✨ FRESH LAUNCH VIEW (REAL ONLY)';
       appendTelemetryLog('sys', 'FRESH_VIEW: Active. Hiding legacy demo seed records.');
     } else {
-      btn.style.borderColor = 'var(--neon-cyan)';
-      btn.style.color = 'var(--neon-cyan)';
+      btn.style.borderColor = 'var(--tactical-cyan)';
+      btn.style.color = 'var(--tactical-cyan)';
       btn.textContent = '👁️ SHOWING ALL (INCLUDING DEMO SEEDS)';
       appendTelemetryLog('sys', 'FRESH_VIEW: Showing all database rows including demo seeds.');
     }
@@ -1436,9 +1436,9 @@ function renderKpis() {
   const defconEl = document.getElementById('hudDefconBadge');
   if (defconEl) {
     if (pendingCount > 0) {
-      defconEl.innerHTML = `<span class="defcon-led pulse-red" style="background:#ff0055; box-shadow:0 0 10px #ff0055;"></span><span class="defcon-text" style="color:#ff80aa;">DEFCON 4 // ${pendingCount} ANOMALIES</span>`;
+      defconEl.innerHTML = `<span class="defcon-led pulse-red" style="background:#FF2E4C; box-shadow:0 0 8px #FF2E4C;"></span><span class="defcon-text" style="color:#FF2E4C;">DEFCON 4 // ${pendingCount} ANOMALIES</span>`;
     } else {
-      defconEl.innerHTML = `<span class="defcon-led pulse-green"></span><span class="defcon-text">DEFCON 5 // NOMINAL</span>`;
+      defconEl.innerHTML = `<span class="defcon-led pulse-green" style="background:#00E676; box-shadow:0 0 8px #00E676;"></span><span class="defcon-text" style="color:#00E676;">DEFCON 5 // SYSTEM NOMINAL</span>`;
     }
   }
 }
