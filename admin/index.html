@@ -6,10 +6,10 @@
   <title>MIND BOOK ATLAS // Strategic Intelligence & Command Operations (ATLAS // CIC-01)</title>
   <meta name="description" content="MindBook Atlas — Advanced Military Intelligence & Command Control Station. Strategic Operations, Tactical Radar, Global Activity Mapping, Relationship Topology, and System Observatory.">
 
-  <!-- Core Google Fonts -->
+  <!-- Core Google Fonts: Chakra Petch, Space Grotesk, JetBrains Mono, IBM Plex Mono, Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="/assets/favicon.png">
@@ -33,12 +33,22 @@
 
       <div class="auth-header">
         <div class="auth-insignia">
-          <svg viewBox="0 0 40 40" style="width: 100%; height: 100%;">
-            <circle cx="20" cy="20" r="18" fill="none" stroke="#28362A" stroke-width="1.5"/>
-            <circle cx="20" cy="20" r="14" fill="none" stroke="#79A85B" stroke-dasharray="2,3" stroke-width="1"/>
-            <circle cx="20" cy="20" r="3" fill="#A3E635"/>
-            <path d="M20 2 L20 38 M2 20 L38 20" stroke="#79A85B" stroke-width="0.8" stroke-dasharray="4,4"/>
-            <polygon points="20,4 23,17 36,20 23,23 20,36 17,23 4,20 17,17" fill="#294532" stroke="#A3E635" stroke-width="1.2"/>
+          <svg viewBox="0 0 44 44" style="width: 100%; height: 100%;">
+            <defs>
+              <radialGradient id="authInsigniaGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#A3E635" stop-opacity="0.35"/>
+                <stop offset="100%" stop-color="#A3E635" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <circle cx="22" cy="22" r="21" fill="none" stroke="#1E3322" stroke-width="1.5"/>
+            <circle cx="22" cy="22" r="17" fill="url(#authInsigniaGlow)" stroke="#79A85B" stroke-dasharray="3,3" stroke-width="1"/>
+            <circle cx="22" cy="22" r="12" fill="none" stroke="#294532" stroke-width="1"/>
+            <line x1="22" y1="2" x2="22" y2="7" stroke="#A3E635" stroke-width="1.5"/>
+            <line x1="22" y1="37" x2="22" y2="42" stroke="#A3E635" stroke-width="1.5"/>
+            <line x1="2" y1="22" x2="7" y2="22" stroke="#A3E635" stroke-width="1.5"/>
+            <line x1="37" y1="22" x2="42" y2="22" stroke="#A3E635" stroke-width="1.5"/>
+            <polygon points="22,6 24.5,18.5 37,22 24.5,25.5 22,38 19.5,25.5 7,22 19.5,18.5" fill="#17281B" stroke="#A3E635" stroke-width="1.5"/>
+            <circle cx="22" cy="22" r="3" fill="#A3E635"/>
           </svg>
         </div>
         <h1 class="auth-title">MIND BOOK ATLAS</h1>
@@ -86,12 +96,16 @@
       <!-- Left Section: Emblem, Title & Identification -->
       <div class="header-left">
         <div class="header-insignia-badge">
-          <svg viewBox="0 0 40 40" style="width: 34px; height: 34px;">
-            <circle cx="20" cy="20" r="18" fill="none" stroke="#28362A" stroke-width="1.5"/>
-            <circle cx="20" cy="20" r="14" fill="none" stroke="#79A85B" stroke-dasharray="2,3" stroke-width="1"/>
-            <circle cx="20" cy="20" r="3" fill="#A3E635"/>
-            <path d="M20 2 L20 38 M2 20 L38 20" stroke="#79A85B" stroke-width="0.8" stroke-dasharray="4,4"/>
-            <polygon points="20,4 23,17 36,20 23,23 20,36 17,23 4,20 17,17" fill="#294532" stroke="#A3E635" stroke-width="1.2"/>
+          <svg viewBox="0 0 44 44" style="width: 34px; height: 34px;">
+            <circle cx="22" cy="22" r="21" fill="none" stroke="#1E3322" stroke-width="1.5"/>
+            <circle cx="22" cy="22" r="17" fill="none" stroke="#79A85B" stroke-dasharray="3,3" stroke-width="1"/>
+            <circle cx="22" cy="22" r="12" fill="none" stroke="#294532" stroke-width="1"/>
+            <line x1="22" y1="2" x2="22" y2="7" stroke="#A3E635" stroke-width="1.5"/>
+            <line x1="22" y1="37" x2="22" y2="42" stroke="#A3E635" stroke-width="1.5"/>
+            <line x1="2" y1="22" x2="7" y2="22" stroke="#A3E635" stroke-width="1.5"/>
+            <line x1="37" y1="22" x2="42" y2="22" stroke="#A3E635" stroke-width="1.5"/>
+            <polygon points="22,6 24.5,18.5 37,22 24.5,25.5 22,38 19.5,25.5 7,22 19.5,18.5" fill="#17281B" stroke="#A3E635" stroke-width="1.5"/>
+            <circle cx="22" cy="22" r="3" fill="#A3E635"/>
           </svg>
         </div>
 
@@ -113,7 +127,7 @@
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
-          <span class="search-placeholder">Search personnel, transmissions, threat vectors, or jump to terminal...</span>
+          <span class="search-placeholder">Search operations, personnel, threats (Ctrl+K)...</span>
           <span class="search-hotkey">CTRL + K</span>
         </div>
       </div>
@@ -171,10 +185,10 @@
         <!-- Top Metadata Callout -->
         <div class="sidebar-header-callout">
           <div>
-            <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: var(--c2-text-primary);">MIND BOOK ATLAS</div>
-            <div style="font-family: var(--font-mono); font-size: 9px; color: var(--c2-tactical-green);">COMMAND SYSTEM</div>
+            <div style="font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: 0.8px; color: var(--c2-radioactive);">TACTICAL C2 MATRIX</div>
+            <div style="font-family: var(--font-telemetry); font-size: 9px; color: var(--c2-tactical-green); letter-spacing: 0.5px;">ACTIVE DIVISIONS [01-08]</div>
           </div>
-          <span class="classification-stamp">ADMIN ACCESS</span>
+          <span class="classification-stamp">AUTHORIZED</span>
         </div>
 
         <!-- Navigation Divisions [01] to [08] -->
@@ -189,7 +203,7 @@
               <li>
                 <button class="c2-nav-btn active" data-tab="overview" onclick="switchAdminTab('overview')">
                   <span class="c2-nav-label">
-                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><circle cx="12" cy="12" r="9"/><line x1="12" y1="3" x2="12" y2="7"/><line x1="12" y1="17" x2="12" y2="21"/><line x1="3" y1="12" x2="7" y2="12"/><line x1="17" y1="12" x2="21" y2="12"/><circle cx="12" cy="12" r="2"/></svg>
+                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><polygon points="12 2 21 7 21 17 12 22 3 17 3 7 12 2"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="7"/><line x1="12" y1="17" x2="12" y2="22"/><line x1="3" y1="12" x2="7" y2="12"/><line x1="17" y1="12" x2="21" y2="12"/></svg>
                     <span>Command Centre</span>
                   </span>
                   <span class="c2-nav-badge active">PRI-1</span>
@@ -198,7 +212,7 @@
               <li>
                 <button class="c2-nav-btn" data-tab="operations" onclick="switchAdminTab('operations')">
                   <span class="c2-nav-label">
-                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><path d="M2 12h4l3-8 4 16 3-10 2 5 4-3h2"/><circle cx="13" cy="20" r="1.5"/></svg>
                     <span>Operations Overview</span>
                   </span>
                 </button>
@@ -206,7 +220,7 @@
               <li>
                 <button class="c2-nav-btn" data-tab="activity" onclick="switchAdminTab('activity')">
                   <span class="c2-nav-label">
-                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><circle cx="12" cy="12" r="9"/><polygon points="12 6 15 11 12 10 9 11 12 6"/><line x1="12" y1="12" x2="12" y2="17"/></svg>
                     <span>Mission Activity</span>
                   </span>
                 </button>
@@ -223,7 +237,7 @@
               <li>
                 <button class="c2-nav-btn" data-tab="database" onclick="switchAdminTab('database')">
                   <span class="c2-nav-label">
-                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg>
                     <span>Personnel Intelligence</span>
                   </span>
                   <span class="c2-nav-badge" id="sidebarDbBadge">7 USERS</span>
@@ -232,7 +246,7 @@
               <li>
                 <button class="c2-nav-btn" data-tab="user-analytics" onclick="switchAdminTab('user-analytics')">
                   <span class="c2-nav-label">
-                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><circle cx="12" cy="12" r="3"/><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/></svg>
+                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><polygon points="12 2 19 6 19 18 12 22 5 18 5 6 12 2"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="5" y1="6" x2="19" y2="18"/><line x1="5" y1="18" x2="19" y2="6"/></svg>
                     <span>User Analytics</span>
                   </span>
                 </button>
@@ -240,7 +254,7 @@
               <li>
                 <button class="c2-nav-btn" data-tab="content-intelligence" onclick="switchAdminTab('content-intelligence')">
                   <span class="c2-nav-label">
-                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>
+                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><polygon points="6 2 18 2 22 7 12 22 2 7 6 2"/><line x1="2" y1="7" x2="22" y2="7"/><line x1="12" y1="22" x2="7" y2="7"/><line x1="12" y1="22" x2="17" y2="7"/></svg>
                     <span>Content Intelligence</span>
                   </span>
                 </button>
@@ -248,7 +262,7 @@
               <li>
                 <button class="c2-nav-btn" data-tab="engagement" onclick="switchAdminTab('engagement')">
                   <span class="c2-nav-label">
-                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><rect x="3" y="14" width="4" height="7"/><rect x="10" y="8" width="4" height="13"/><rect x="17" y="3" width="4" height="18"/><path d="M5 11l6-5 6 3"/></svg>
                     <span>Engagement Analysis</span>
                   </span>
                 </button>
@@ -256,7 +270,7 @@
               <li>
                 <button class="c2-nav-btn" data-tab="intelligence-graph" onclick="switchAdminTab('intelligence-graph')">
                   <span class="c2-nav-label">
-                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="12" cy="18" r="3"/><line x1="8.5" y1="7" x2="15.5" y2="7"/><line x1="7.5" y1="8.5" x2="10.5" y2="15.5"/><line x1="16.5" y1="8.5" x2="13.5" y2="15.5"/></svg>
                     <span>Relationship Analysis</span>
                   </span>
                   <span class="c2-nav-badge active">GRAPH</span>
@@ -274,7 +288,7 @@
               <li>
                 <button class="c2-nav-btn" data-tab="live-ops" onclick="switchAdminTab('live-ops')">
                   <span class="c2-nav-label">
-                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><circle cx="12" cy="12" r="9"/><path d="M12 12l6 -6"/><circle cx="12" cy="12" r="4"/></svg>
+                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><circle cx="12" cy="12" r="9"/><line x1="12" y1="12" x2="19" y2="5"/><path d="M12 3a9 9 0 0 1 9 9"/></svg>
                     <span>Live Operations Feed</span>
                   </span>
                   <span class="c2-nav-badge active">STREAM</span>
@@ -283,7 +297,7 @@
               <li>
                 <button class="c2-nav-btn" data-tab="content-stream" onclick="switchAdminTab('content-stream')">
                   <span class="c2-nav-label">
-                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><rect x="2" y="3" width="20" height="14" rx="1"/><polygon points="10 7 15 10 10 13 10 7"/><line x1="4" y1="21" x2="20" y2="21"/></svg>
                     <span>Content Monitoring</span>
                   </span>
                 </button>
@@ -291,7 +305,7 @@
               <li>
                 <button class="c2-nav-btn" data-tab="comments" onclick="switchAdminTab('comments')">
                   <span class="c2-nav-label">
-                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="8" y1="9" x2="16" y2="9"/><line x1="8" y1="13" x2="13" y2="13"/></svg>
                     <span>Interactions & Comments</span>
                   </span>
                 </button>
@@ -299,7 +313,7 @@
               <li>
                 <button class="c2-nav-btn" data-tab="timeline" onclick="switchAdminTab('timeline')">
                   <span class="c2-nav-label">
-                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/><circle cx="12" cy="12" r="2"/></svg>
                     <span>Activity Timeline</span>
                   </span>
                 </button>
@@ -316,7 +330,7 @@
               <li>
                 <button class="c2-nav-btn" data-tab="security" onclick="switchAdminTab('security')">
                   <span class="c2-nav-label">
-                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><circle cx="12" cy="11" r="2.5" fill="#A3E635"/></svg>
+                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><path d="M12 2L3 6v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V6l-9-4z"/><circle cx="12" cy="11" r="2"/><line x1="12" y1="13" x2="12" y2="16"/></svg>
                     <span>Security Centre</span>
                   </span>
                 </button>
@@ -324,7 +338,7 @@
               <li>
                 <button class="c2-nav-btn" data-tab="auth-events" onclick="switchAdminTab('auth-events')">
                   <span class="c2-nav-label">
-                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><rect x="3" y="10" width="18" height="12" rx="1"/><path d="M7 10V6a5 5 0 0 1 10 0v4"/><circle cx="12" cy="15" r="1.5"/><line x1="12" y1="16.5" x2="12" y2="18.5"/></svg>
                     <span>Authentication Events</span>
                   </span>
                 </button>
@@ -332,7 +346,7 @@
               <li>
                 <button class="c2-nav-btn" data-tab="iam" onclick="switchAdminTab('iam')">
                   <span class="c2-nav-label">
-                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/><line x1="12" y1="7" x2="12" y2="17"/><line x1="7" y1="12" x2="17" y2="12"/></svg>
                     <span>Access Control</span>
                   </span>
                 </button>
@@ -340,7 +354,7 @@
               <li>
                 <button class="c2-nav-btn" data-tab="suspicious-activity" onclick="switchAdminTab('suspicious-activity')">
                   <span class="c2-nav-label">
-                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><polygon points="12 2 23 21 1 21 12 2"/><line x1="12" y1="9" x2="12" y2="14"/><circle cx="12" cy="17.5" r="1"/></svg>
                     <span>Security Incidents</span>
                   </span>
                 </button>
@@ -357,7 +371,7 @@
               <li>
                 <button class="c2-nav-btn" data-tab="reports" onclick="switchAdminTab('reports')">
                   <span class="c2-nav-label">
-                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><circle cx="12" cy="12" r="9"/><polygon points="12 3 15 12 12 9 9 12 12 3"/><line x1="12" y1="12" x2="12" y2="18"/></svg>
                     <span>Incoming Reports</span>
                   </span>
                 </button>
@@ -365,7 +379,7 @@
               <li>
                 <button class="c2-nav-btn" data-tab="moderation" onclick="switchAdminTab('moderation')">
                   <span class="c2-nav-label">
-                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><circle cx="12" cy="12" r="9"/><line x1="5.6" y1="5.6" x2="18.4" y2="18.4"/><circle cx="12" cy="12" r="4"/></svg>
                     <span>Moderation Centre</span>
                   </span>
                   <span class="c2-nav-badge critical" id="sidebarBadgeReports">2</span>
@@ -374,7 +388,7 @@
               <li>
                 <button class="c2-nav-btn" data-tab="open-incidents" onclick="switchAdminTab('open-incidents')">
                   <span class="c2-nav-label">
-                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg>
+                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="3" x2="12" y2="7"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
                     <span>Active Investigations</span>
                   </span>
                 </button>
@@ -382,7 +396,7 @@
               <li>
                 <button class="c2-nav-btn" data-tab="resolved-incidents" onclick="switchAdminTab('resolved-incidents')">
                   <span class="c2-nav-label">
-                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><polygon points="12 2 20 6 20 18 12 22 4 18 4 6 12 2"/><polyline points="8 12 11 15 16 9"/></svg>
                     <span>Resolved Cases</span>
                   </span>
                 </button>
@@ -399,7 +413,7 @@
               <li>
                 <button class="c2-nav-btn" data-tab="support" onclick="switchAdminTab('support')">
                   <span class="c2-nav-label">
-                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49M7.76 7.76a6 6 0 0 0 0 8.49M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><path d="M3 11a9 9 0 0 1 18 0v6a3 3 0 0 1-3 3h-2v-6h3v-3a7 7 0 0 0-14 0v3h3v6H6a3 3 0 0 1-3-3v-6z"/></svg>
                     <span>Support Operations</span>
                   </span>
                 </button>
@@ -407,7 +421,7 @@
               <li>
                 <button class="c2-nav-btn" data-tab="inquiries" onclick="switchAdminTab('inquiries')">
                   <span class="c2-nav-label">
-                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><rect x="2" y="4" width="20" height="15" rx="1"/><polyline points="2 7 12 13 22 7"/></svg>
                     <span>Communications Log</span>
                   </span>
                 </button>
@@ -415,7 +429,7 @@
               <li>
                 <button class="c2-nav-btn" data-tab="broadcasts" onclick="switchAdminTab('broadcasts')">
                   <span class="c2-nav-label">
-                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><polygon points="11 4 6 8 2 8 2 16 6 16 11 20 11 4"/><path d="M16 8a5 5 0 0 1 0 8"/><path d="M19 5a9 9 0 0 1 0 14"/></svg>
                     <span>Announcements</span>
                   </span>
                 </button>
@@ -423,7 +437,7 @@
               <li>
                 <button class="c2-nav-btn" data-tab="company" onclick="switchAdminTab('company')">
                   <span class="c2-nav-label">
-                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 10h2M13 10h2M9 14h2M13 14h2M10 21v-4h4v4"/></svg>
+                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><rect x="3" y="7" width="18" height="14" rx="1"/><polygon points="12 2 21 7 3 7 12 2"/><line x1="8" y1="12" x2="8" y2="16"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="16" y1="12" x2="16" y2="16"/></svg>
                     <span>Company Account HQ</span>
                   </span>
                 </button>
@@ -440,7 +454,7 @@
               <li>
                 <button class="c2-nav-btn" data-tab="system" onclick="switchAdminTab('system')">
                   <span class="c2-nav-label">
-                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><ellipse cx="12" cy="12" rx="9" ry="4"/><ellipse cx="12" cy="12" rx="4" ry="9"/><circle cx="12" cy="12" r="2"/></svg>
                     <span>System Observatory</span>
                   </span>
                 </button>
@@ -448,7 +462,7 @@
               <li>
                 <button class="c2-nav-btn" data-tab="db-monitor" onclick="switchAdminTab('db-monitor')">
                   <span class="c2-nav-label">
-                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 11v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"/></svg>
                     <span>Database Status</span>
                   </span>
                 </button>
@@ -456,7 +470,7 @@
               <li>
                 <button class="c2-nav-btn" data-tab="api-monitor" onclick="switchAdminTab('api-monitor')">
                   <span class="c2-nav-label">
-                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><path d="M2 12h3l2-6 4 13 3-9 2 4 2-2h4"/></svg>
+                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><path d="M4 15l4-8 4 6 4-10 4 12"/></svg>
                     <span>API Monitoring</span>
                   </span>
                 </button>
@@ -464,7 +478,7 @@
               <li>
                 <button class="c2-nav-btn" data-tab="terminal" onclick="switchAdminTab('terminal')">
                   <span class="c2-nav-label">
-                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><rect x="2" y="3" width="20" height="16" rx="1"/><polyline points="5 8 9 11 5 14"/><line x1="11" y1="14" x2="16" y2="14"/></svg>
                     <span>Technical Logs</span>
                   </span>
                 </button>
@@ -472,16 +486,16 @@
             </ul>
           </div>
 
-          <!-- [08] ADMINISTRATION -->
+          <!-- [08] STRATEGIC ADMINISTRATION -->
           <div>
             <div class="division-header-line">
-              <span>[08] ADMINISTRATION</span>
+              <span>[08] STRATEGIC ADMINISTRATION</span>
             </div>
             <ul class="division-items-list">
               <li>
                 <button class="c2-nav-btn" data-tab="admin-accounts" onclick="switchAdminTab('admin-accounts')">
                   <span class="c2-nav-label">
-                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><polygon points="12 2 15 8 22 9 17 14 18 21 12 17 6 21 7 14 2 9 9 8 12 2"/></svg>
                     <span>Administrator Accounts</span>
                   </span>
                 </button>
@@ -489,7 +503,7 @@
               <li>
                 <button class="c2-nav-btn" data-tab="roles" onclick="switchAdminTab('roles')">
                   <span class="c2-nav-label">
-                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
                     <span>Roles & Permissions</span>
                   </span>
                 </button>
@@ -497,7 +511,7 @@
               <li>
                 <button class="c2-nav-btn" data-tab="settings" onclick="switchAdminTab('settings')">
                   <span class="c2-nav-label">
-                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    <svg viewBox="0 0 24 24" class="c2-nav-icon"><circle cx="12" cy="12" r="3"/><polygon points="12 1 14 4 18 3 18 7 22 8 20 12 22 16 18 17 18 21 14 20 12 23 10 20 6 21 6 17 2 16 4 12 2 8 6 7 6 3 10 4 12 1"/></svg>
                     <span>Configuration</span>
                   </span>
                 </button>

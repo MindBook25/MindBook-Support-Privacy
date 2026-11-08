@@ -1,49 +1,52 @@
 /* ==============================================================================
    MIND BOOK ATLAS // ADVANCED MILITARY INTELLIGENCE & COMMAND CONTROL INTERFACE
    Division: Strategic Intelligence & Command Operations | System: ATLAS // CIC-01
-   Desktop-First Military Command Station Specification (1920x1080 Baseline)
+   World-Unique Aerospace C4ISR Console Specification (Desktop Baseline 1920x1080)
    ============================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
 
 :root {
-  /* ==================== 01. MILITARY COLOUR SYSTEM ==================== */
-  --c2-bg-primary: #070B08;           /* Primary tactical black canvas */
-  --c2-bg-secondary: #0B110D;         /* Secondary backing */
-  --c2-bg-sidebar: #0A100C;           /* Command sidebar surface */
-  --c2-bg-panel: #111913;             /* Structural operational panel */
-  --c2-bg-elevated: #172119;          /* Elevated operational surface */
-  --c2-bg-input: #0A100D;             /* Terminal inputs */
+  /* ==================== 01. WORLD-UNIQUE C4ISR PALETTE ==================== */
+  --c2-bg-primary: #040705;           /* Obsidian void deep canvas */
+  --c2-bg-secondary: #080E0A;         /* Secondary void backing */
+  --c2-bg-sidebar: #060B08;           /* Stealth command sidebar */
+  --c2-bg-panel: #0C150F;             /* Titanium operational panel */
+  --c2-bg-elevated: #121F16;          /* Luminous elevated surface */
+  --c2-bg-input: #070D09;             /* Terminal input chassis */
 
   /* Military Tactical Accents */
-  --c2-military-olive: #394B31;       /* Structural military olive */
-  --c2-army-green: #294532;           /* Deep army forest green */
-  --c2-tactical-green: #79A85B;       /* Tactical radar phosphor green */
-  --c2-radioactive: #A3E635;          /* Radioactive primary accent */
-  --c2-muted-green: #64765E;          /* Muted foliage green */
-  --c2-border: #28362A;               /* 1px technical structural border */
-  --c2-border-subtle: #19241C;        /* Hairline divider */
-  --c2-border-active: #79A85B;
+  --c2-military-olive: #33452C;       /* Structural military olive */
+  --c2-army-green: #203B27;           /* Deep army forest green */
+  --c2-tactical-green: #68A34F;       /* Tactical radar phosphor green */
+  --c2-radioactive: #A3E635;          /* Signature Radioactive Phosphor */
+  --c2-c4isr-cyan: #00E5FF;           /* Quantum C4ISR Tactical Cyan */
+  --c2-muted-green: #52664E;          /* Muted coordinates */
+  --c2-border: #1B2B1F;               /* 1px laser-etched border */
+  --c2-border-subtle: #121E15;        /* Hairline divider */
+  --c2-border-active: #A3E635;        /* Active laser focus */
 
   /* Typography Colors */
-  --c2-text-primary: #E6EDE6;         /* Clear off-white */
-  --c2-text-secondary: #9AA79C;       /* Neutral telemetry grey */
-  --c2-text-muted: #667368;           /* Muted coordinates & metadata */
+  --c2-text-primary: #F0F6F0;         /* Clear luminous off-white */
+  --c2-text-secondary: #9DB0A0;       /* Neutral telemetry grey */
+  --c2-text-muted: #5E7060;           /* Muted coordinates & metadata */
 
   /* Status Colors */
-  --c2-status-operational: #75C878;   /* System Nominal / Operational */
+  --c2-status-operational: #00E676;   /* Radar Phosphor Green */
   --c2-status-standby: #A2A99A;       /* Standby / Armed */
-  --c2-status-warning: #E5AD47;       /* Master Caution / Warning */
-  --c2-status-critical: #E05252;      /* Critical Threat / Defense Breach */
-  --c2-status-info: #69A9D9;          /* Telemetry / Carrier Ingress */
+  --c2-status-warning: #FFB300;       /* Master Caution Amber */
+  --c2-status-critical: #FF334B;      /* Tactical Crimson Alert */
+  --c2-status-info: #00E5FF;          /* Telemetry / C4ISR Cyan */
 
-  /* ==================== 02. TYPOGRAPHY ==================== */
+  /* ==================== 02. WORLD-UNIQUE TYPOGRAPHY ==================== */
+  --font-display: 'Chakra Petch', sans-serif;
+  --font-brand: 'Space Grotesk', sans-serif;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
   --font-telemetry: 'IBM Plex Mono', monospace;
 
   /* ==================== 03. DESKTOP DIMENSIONS ==================== */
-  --c2-header-height: 70px;
+  --c2-header-height: 64px;
   --c2-sidebar-width: 255px;
   --c2-status-bar-height: 28px;
   --c2-radius: 2px;
@@ -330,13 +333,15 @@ body::before {
   flex-direction: column;
   justify-content: center;
   white-space: nowrap;
+  overflow: hidden;
+  max-width: 320px;
 }
 
 .brand-main-title {
-  font-family: var(--font-mono);
-  font-size: 14px;
-  font-weight: 800;
-  letter-spacing: 0.8px;
+  font-family: var(--font-brand);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
   color: var(--c2-text-primary);
   display: flex;
   align-items: center;
@@ -359,15 +364,17 @@ body::before {
 }
 
 .brand-division-subtitle {
-  font-family: var(--font-mono);
-  font-size: 9px;
+  font-family: var(--font-telemetry);
+  font-size: 8.5px;
   font-weight: 600;
   color: var(--c2-tactical-green);
-  letter-spacing: 0.6px;
+  letter-spacing: 0.8px;
   text-transform: uppercase;
   white-space: nowrap;
   line-height: 1.2;
-  margin-top: 2px;
+  margin-top: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Header Centre: Global Search & Command Palette */
@@ -604,10 +611,10 @@ body::before {
 }
 
 .division-header-line {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 1px;
+  font-family: var(--font-display);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
   color: var(--c2-muted-green);
   padding: 4px 10px;
   text-transform: uppercase;
@@ -634,24 +641,26 @@ body::before {
   border-left: 2px solid transparent;
   border-radius: var(--c2-radius);
   color: var(--c2-text-secondary);
-  font-family: var(--font-mono);
-  font-size: 11px;
+  font-family: var(--font-display);
+  font-size: 11.5px;
   font-weight: 600;
+  letter-spacing: 0.5px;
   cursor: pointer;
   text-align: left;
   transition: all var(--transition-tactical);
 }
 .c2-nav-btn:hover {
-  background: rgba(121, 168, 91, 0.06);
+  background: rgba(163, 230, 53, 0.05);
   color: var(--c2-text-primary);
-  border-left-color: var(--c2-muted-green);
+  border-left-color: var(--c2-tactical-green);
 }
 
 .c2-nav-btn.active {
-  background: rgba(163, 230, 53, 0.08);
+  background: linear-gradient(90deg, rgba(163, 230, 53, 0.12), rgba(163, 230, 53, 0.02));
   color: var(--c2-radioactive);
   border-left-color: var(--c2-radioactive);
-  border-color: rgba(163, 230, 53, 0.2);
+  border-color: rgba(163, 230, 53, 0.25);
+  box-shadow: inset 1px 0 0 var(--c2-radioactive);
 }
 
 .c2-nav-label {
@@ -739,56 +748,66 @@ body::before {
 }
 
 .c2-header-title {
-  font-family: var(--font-mono);
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: 0.5px;
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 1px;
   color: var(--c2-text-primary);
+  text-shadow: 0 0 12px rgba(163, 230, 53, 0.15);
 }
 
 .c2-header-subtitle {
   font-family: var(--font-mono);
   font-size: 11px;
   color: var(--c2-text-secondary);
-  margin-top: 2px;
+  letter-spacing: 0.3px;
+  margin-top: 3px;
 }
 
-/* Action Buttons */
+/* Action Buttons with Aerospace Chamfers */
 .btn-c2-action {
   height: 32px;
-  padding: 0 12px;
+  padding: 0 14px;
   background: var(--c2-bg-panel);
   border: 1px solid var(--c2-border);
-  border-radius: var(--c2-radius);
   color: var(--c2-text-primary);
-  font-family: var(--font-mono);
+  font-family: var(--font-display);
   font-size: 11px;
   font-weight: 700;
+  letter-spacing: 0.8px;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 7px;
   cursor: pointer;
+  clip-path: polygon(0 6px, 6px 0, calc(100% - 6px) 0, 100% 6px, 100% calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%, 0 calc(100% - 6px));
   transition: all var(--transition-tactical);
 }
 .btn-c2-action:hover {
-  border-color: var(--c2-tactical-green);
-  color: var(--c2-radioactive);
-}
-.btn-c2-action.primary {
-  background: var(--c2-army-green);
+  background: var(--c2-bg-elevated);
   border-color: var(--c2-radioactive);
   color: var(--c2-radioactive);
+  box-shadow: 0 0 14px rgba(163, 230, 53, 0.22);
+}
+.btn-c2-action.primary {
+  background: rgba(163, 230, 53, 0.12);
+  border-color: var(--c2-radioactive);
+  color: var(--c2-radioactive);
+  box-shadow: 0 0 10px rgba(163, 230, 53, 0.15);
 }
 .btn-c2-action.primary:hover {
   background: var(--c2-radioactive);
-  color: #070B08;
+  color: #040705;
+  box-shadow: 0 0 22px rgba(163, 230, 53, 0.45);
 }
 .btn-c2-action.danger {
-  border-color: rgba(224, 82, 82, 0.4);
+  background: rgba(255, 51, 75, 0.1);
+  border-color: rgba(255, 51, 75, 0.5);
   color: var(--c2-status-critical);
 }
 .btn-c2-action.danger:hover {
-  background: rgba(224, 82, 82, 0.12);
+  background: var(--c2-status-critical);
+  color: #040705;
+  box-shadow: 0 0 16px rgba(255, 51, 75, 0.4);
 }
 
 /* ==================== 09. MILITARY-STYLE KPI PANELS (8 CARDS) ==================== */
@@ -812,16 +831,18 @@ body::before {
 .c2-kpi-panel {
   background: var(--c2-bg-panel);
   border: 1px solid var(--c2-border);
-  border-radius: var(--c2-radius);
   padding: 14px 16px;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: border-color var(--transition-tactical);
+  clip-path: polygon(0 8px, 8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px));
+  transition: all var(--transition-tactical);
 }
 .c2-kpi-panel:hover {
-  border-color: var(--c2-military-olive);
+  border-color: var(--c2-radioactive);
+  background: var(--c2-bg-elevated);
+  box-shadow: 0 0 20px rgba(163, 230, 53, 0.08);
 }
 
 .kpi-top-row {
@@ -831,28 +852,31 @@ body::before {
 }
 
 .kpi-military-id {
-  font-family: var(--font-mono);
-  font-size: 9px;
+  font-family: var(--font-display);
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.8px;
-  color: var(--c2-text-muted);
+  letter-spacing: 1px;
+  color: var(--c2-text-secondary);
 }
 
 .kpi-main-val {
-  font-family: var(--font-mono);
-  font-size: 26px;
-  font-weight: 800;
-  letter-spacing: -0.5px;
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 0px;
   color: var(--c2-text-primary);
+  line-height: 1.1;
   margin: 6px 0 2px 0;
+  text-shadow: 0 0 12px rgba(163, 230, 53, 0.18);
 }
 
 .kpi-label-str {
   font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 700;
-  color: var(--c2-text-secondary);
-  letter-spacing: 0.5px;
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  color: var(--c2-text-muted);
+  text-transform: uppercase;
 }
 
 .kpi-footer-row {
