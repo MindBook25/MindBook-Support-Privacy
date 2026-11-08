@@ -8,7 +8,7 @@ const SUPABASE_URL = 'https://vduwdnlchbelxvrqoioj.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_4EqicUq6a1-iq6473YMAvg_rg4LD7Wc';
 const ADMIN_STORAGE_KEY = 'mindbook_atlas_root_session';
 
-// ==================== 01. TACTICAL AUDIO SYNTHESIZER ====================
+// ==================== 01. EXECUTIVE AUDIO FEEDBACK ====================
 let audioContext = null;
 let audioFxEnabled = true;
 
@@ -52,7 +52,7 @@ function playCyberSound(type = 'blip') {
       osc.start(now);
       osc.stop(now + 0.18);
     } else if (type === 'alert') {
-      osc.type = 'sawtooth';
+      osc.type = 'sine';
       osc.frequency.setValueAtTime(440, now);
       osc.frequency.setValueAtTime(330, now + 0.07);
       osc.frequency.setValueAtTime(220, now + 0.14);
@@ -61,7 +61,7 @@ function playCyberSound(type = 'blip') {
       osc.start(now);
       osc.stop(now + 0.22);
     } else if (type === 'purge') {
-      osc.type = 'square';
+      osc.type = 'triangle';
       osc.frequency.setValueAtTime(220, now);
       osc.frequency.exponentialRampToValueAtTime(55, now + 0.12);
       gain.gain.setValueAtTime(0.14, now);
@@ -78,10 +78,10 @@ function toggleAudioFx() {
   if (audioFxEnabled) {
     if (icon) icon.textContent = '🔊';
     playCyberSound('confirm');
-    appendTelemetryLog('sys', 'Tactical acoustic telemetry synthesizer enabled');
+    appendTelemetryLog('sys', 'Studio audio feedback enabled');
   } else {
     if (icon) icon.textContent = '🔇';
-    appendTelemetryLog('sys', 'Tactical acoustic telemetry muted');
+    appendTelemetryLog('sys', 'Studio audio feedback muted');
   }
 }
 
@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
   startLiveDigitalClock();
   initCommandPaletteKeyboardShortcut();
   initGraphCanvasInteraction();
-  initTacticalRadar();
+  initStudioRadar();
   initGlobalMap();
 });
 
@@ -407,7 +407,7 @@ function switchAdminTab(tabName) {
     setTimeout(renderIntelligenceGraph, 50);
   } else if (tabName === 'overview') {
     setTimeout(() => {
-      drawTacticalRadar();
+      drawStudioRadar();
       drawGlobalMap();
     }, 50);
   }
@@ -480,7 +480,7 @@ const ATLAS_COMMAND_REGISTRY = [
   { id: 'tab-roles', title: 'Roles & Permissions Matrix', desc: 'RBAC clearance hierarchies and access boundaries', category: 'ADMINISTRATION', action: () => switchAdminTab('roles') },
   { id: 'tab-settings', title: 'Platform Configuration', desc: 'Global system parameters and operational settings', category: 'ADMINISTRATION', action: () => switchAdminTab('settings') },
 
-  // Tactical Actions
+  // Studio Actions
   { id: 'act-sync', title: 'Synchronize Live Database', desc: 'Pull latest records from Supabase PostgreSQL (0ms)', category: 'TACTICAL ACTION', action: () => refreshFromLiveDatabase() },
   { id: 'act-fresh', title: 'Toggle Fresh Launch View', desc: 'Filter out legacy dummy seed profiles', category: 'TACTICAL ACTION', action: () => toggleFreshLaunchMode() },
   { id: 'act-purge-demo', title: 'Purge Demo Seed Profiles', desc: 'Remove mock seeds leaving only Kota Midhun & MindBook Official', category: 'TACTICAL ACTION', action: () => purgeAllDemoSeedProfiles() },
@@ -640,7 +640,7 @@ async function fetchLiveDatabaseData(isSilent = false) {
 
 function refreshFromLiveDatabase() {
   playCyberSound('confirm');
-  appendTelemetryLog('sys', 'OPERATOR_REFRESH: Triggered manual live database synchronization');
+  appendTelemetryLog('sys', 'STUDIO_SYNC: Manual Supabase database synchronization triggered');
   fetchLiveDatabaseData(false);
 }
 
@@ -648,7 +648,7 @@ function switchDbTable(tableName, btnElement) {
   playCyberSound('blip');
   atlasState.activeDbTable = tableName;
 
-  document.querySelectorAll('.tactical-filter-group .filter-tab').forEach(b => {
+  document.querySelectorAll('.studio-filter-group .filter-tab').forEach(b => {
     b.classList.remove('active');
   });
   if (btnElement) {
@@ -1281,7 +1281,7 @@ function renderAllAtlasPanels() {
   renderApiMonitoring();
   renderTelemetryStreams();
   renderIntelligenceGraph();
-  drawTacticalRadar();
+  drawStudioRadar();
   drawGlobalMap();
 }
 
@@ -1469,8 +1469,8 @@ let radarState = {
   ]
 };
 
-function initTacticalRadar() {
-  const canvas = document.getElementById('tacticalRadarCanvas');
+function initStudioRadar() {
+  const canvas = document.getElementById('studioRadarCanvas');
   if (!canvas) return;
 
   radarState.canvas = canvas;
@@ -1486,7 +1486,7 @@ function initTacticalRadar() {
       radarState.ctx.setTransform(1, 0, 0, 1, 0, 0);
       radarState.ctx.scale(dpr, dpr);
     }
-    drawTacticalRadar();
+    drawStudioRadar();
   }
 
   window.addEventListener('resize', resizeRadar);
@@ -1494,7 +1494,7 @@ function initTacticalRadar() {
 
   function loopRadar() {
     radarState.sweepAngle = (radarState.sweepAngle + 0.02) % (Math.PI * 2);
-    drawTacticalRadar();
+    drawStudioRadar();
     radarState.animId = requestAnimationFrame(loopRadar);
   }
   if (!radarState.animId) {
@@ -1502,7 +1502,7 @@ function initTacticalRadar() {
   }
 }
 
-function drawTacticalRadar() {
+function drawStudioRadar() {
   const { canvas, ctx, sweepAngle, contacts } = radarState;
   if (!canvas || !ctx) return;
 
@@ -1611,7 +1611,7 @@ function drawTacticalRadar() {
   ctx.fillStyle = '#A3E635';
   ctx.fill();
 
-  // Render tactical target blips
+  // Render studio target blips
   contacts.forEach(c => {
     const contactX = cx + Math.cos(c.angle) * (maxRadius * c.distNorm);
     const contactY = cy + Math.sin(c.angle) * (maxRadius * c.distNorm);
@@ -1670,7 +1670,7 @@ let globalMapState = {
 };
 
 const GLOBAL_TACTICAL_NODES = [
-  { id: 'HQ-HYDERABAD', name: 'HYDERABAD PRIMARY HQ', sub: 'FOUNDER KOTA MIDHUN // C4ISR', lat: 17.3850, lon: 78.4867, type: 'PRIMARY', color: '#A3E635', ping: '12ms', status: 'ACTIVE' },
+  { id: 'HQ-HYDERABAD', name: 'HYDERABAD PRIMARY HQ', sub: 'FOUNDER KOTA MIDHUN // PLATFORM OPS', lat: 17.3850, lon: 78.4867, type: 'PRIMARY', color: '#A3E635', ping: '12ms', status: 'ACTIVE' },
   { id: 'SIGINT-01', name: 'US-EAST (VIRGINIA)', sub: 'SUPABASE POSTGRESQL PRIMARY', lat: 38.9072, lon: -77.0369, type: 'RELAY', color: '#79A85B', ping: '38ms', status: 'SYNCHRONIZED' },
   { id: 'SIGINT-02', name: 'EU-CENTRAL (FRANKFURT)', sub: 'CONTINENTAL GATEWAY RELAY', lat: 50.1109, lon: 8.6821, type: 'RELAY', color: '#79A85B', ping: '26ms', status: 'OPERATIONAL' },
   { id: 'SIGINT-03', name: 'AP-SOUTHEAST (SINGAPORE)', sub: 'ASIA REALTIME EDGE CLUSTER', lat: 1.3521, lon: 103.8198, type: 'RELAY', color: '#79A85B', ping: '18ms', status: 'STREAMING' },
@@ -1910,7 +1910,7 @@ function drawGlobalMap() {
     ctx.shadowBlur = 0;
   });
 
-  // Tactical Point Nodes
+  // Studio Point Nodes
   GLOBAL_TACTICAL_NODES.forEach(node => {
     const nx = ((node.lon + 180) / 360) * w;
     const ny = ((90 - node.lat) / 180) * h;
@@ -1951,7 +1951,7 @@ function drawGlobalMap() {
     if (isHQ) {
       ctx.font = '7px "JetBrains Mono"';
       ctx.fillStyle = '#79A85B';
-      ctx.fillText('ROOT C4ISR // KOTA MIDHUN', nx + 9, ny + 7);
+      ctx.fillText('ROOT FOUNDER // KOTA MIDHUN', nx + 9, ny + 7);
     }
   });
 
@@ -2611,7 +2611,7 @@ function renderUserTable() {
 function filterReports(status, btnElement) {
   playCyberSound('blip');
   atlasState.activeReportFilter = status;
-  document.querySelectorAll('.tactical-filter-group .filter-tab').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.studio-filter-group .filter-tab').forEach(b => b.classList.remove('active'));
   if (btnElement) btnElement.classList.add('active');
   renderQuarantineReports();
 }
@@ -2962,7 +2962,7 @@ function exportAuditLogs() {
   appendTelemetryLog('sys', 'AUDIT_EXPORT: Successfully downloaded Atlas audit telemetry');
 }
 
-// Tactical Simulations
+// Studio Simulations
 function simulatePenetrationTestSequence() {
   playCyberSound('alert');
   appendTelemetryLog('threat', 'SIMULATION_START: Simulating distributed credential stuffing vector from 16 rogue IPs...');

@@ -1,56 +1,70 @@
 /* ==============================================================================
-   MIND BOOK ATLAS // ADVANCED MILITARY INTELLIGENCE & COMMAND CONTROL INTERFACE
-   Division: Strategic Intelligence & Command Operations | System: ATLAS // CIC-01
-   World-Unique Aerospace C4ISR Console Specification (Desktop Baseline 1920x1080)
+   MINDBOOK STUDIO // EXECUTIVE PLATFORM OPERATIONS & CREATOR ANALYTICS
+   Design Direction: Ultra-Premium Luxury Obsidian Aurora & Spatial Glassmorphism
+   Typography: Plus Jakarta Sans, Inter, JetBrains Mono
    ============================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 :root {
-  /* ==================== 01. WORLD-UNIQUE C4ISR PALETTE ==================== */
-  --c2-bg-primary: #040705;           /* Obsidian void deep canvas */
-  --c2-bg-secondary: #080E0A;         /* Secondary void backing */
-  --c2-bg-sidebar: #060B08;           /* Stealth command sidebar */
-  --c2-bg-panel: #0C150F;             /* Titanium operational panel */
-  --c2-bg-elevated: #121F16;          /* Luminous elevated surface */
-  --c2-bg-input: #070D09;             /* Terminal input chassis */
+  /* ==================== 01. LUXURY OBSIDIAN & AURORA PALETTE ==================== */
+  --c2-bg-primary: #080B11;           /* Deep Luxury Obsidian */
+  --c2-bg-secondary: #0D121D;         /* Frosted backing */
+  --c2-bg-sidebar: #0A0E17;           /* Elegant dark sidebar */
+  --c2-bg-panel: #111726;             /* Polished frosted panel */
+  --c2-bg-elevated: #161F33;          /* Luminous elevated surface */
+  --c2-bg-input: #0E1422;             /* Search & input container */
 
-  /* Military Tactical Accents */
-  --c2-military-olive: #33452C;       /* Structural military olive */
-  --c2-army-green: #203B27;           /* Deep army forest green */
-  --c2-tactical-green: #68A34F;       /* Tactical radar phosphor green */
-  --c2-radioactive: #A3E635;          /* Signature Radioactive Phosphor */
-  --c2-c4isr-cyan: #00E5FF;           /* Quantum C4ISR Tactical Cyan */
-  --c2-muted-green: #52664E;          /* Muted coordinates */
-  --c2-border: #1B2B1F;               /* 1px laser-etched border */
-  --c2-border-subtle: #121E15;        /* Hairline divider */
-  --c2-border-active: #A3E635;        /* Active laser focus */
+  /* MindBook Signature Brand Accents */
+  --brand-indigo: #4F46E5;
+  --brand-violet: #8B5CF6;
+  --brand-pink: #EC4899;
+  --brand-blue: #3B82F6;
+  --brand-cyan: #06B6D4;
+  --brand-emerald: #10B981;
+  --brand-amber: #F59E0B;
+  --brand-rose: #F43F5E;
+
+  /* Aliased Theme Tokens */
+  --c2-tactical-green: #10B981;       /* Sage / Emerald active */
+  --c2-radioactive: #6366F1;          /* Electric Indigo primary */
+  --c2-c4isr-cyan: #38BDF8;           /* Azure highlight */
+  --c2-military-olive: #1E293B;       /* Slate border/container */
+  --c2-army-green: #1E1B4B;           /* Deep Indigo backing */
+  --c2-muted-green: #64748B;          /* Slate 500 */
+  --c2-border: rgba(255, 255, 255, 0.08); /* Frosted hairline border */
+  --c2-border-subtle: rgba(255, 255, 255, 0.04);
+  --c2-border-active: #6366F1;
 
   /* Typography Colors */
-  --c2-text-primary: #F0F6F0;         /* Clear luminous off-white */
-  --c2-text-secondary: #9DB0A0;       /* Neutral telemetry grey */
-  --c2-text-muted: #5E7060;           /* Muted coordinates & metadata */
+  --c2-text-primary: #F8FAFC;         /* Crisp Snow White */
+  --c2-text-secondary: #94A3B8;       /* Slate 400 */
+  --c2-text-muted: #64748B;           /* Slate 500 */
 
   /* Status Colors */
-  --c2-status-operational: #00E676;   /* Radar Phosphor Green */
-  --c2-status-standby: #A2A99A;       /* Standby / Armed */
-  --c2-status-warning: #FFB300;       /* Master Caution Amber */
-  --c2-status-critical: #FF334B;      /* Tactical Crimson Alert */
-  --c2-status-info: #00E5FF;          /* Telemetry / C4ISR Cyan */
+  --c2-status-operational: #10B981;   /* Emerald Active */
+  --c2-status-standby: #94A3B8;       /* Slate Standby */
+  --c2-status-warning: #F59E0B;       /* Honey Amber */
+  --c2-status-critical: #F43F5E;      /* Rose Coral Alert */
+  --c2-status-info: #38BDF8;          /* Sky Blue */
 
-  /* ==================== 02. WORLD-UNIQUE TYPOGRAPHY ==================== */
-  --font-display: 'Chakra Petch', sans-serif;
-  --font-brand: 'Space Grotesk', sans-serif;
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  /* ==================== 02. TYPOGRAPHY SYSTEM ==================== */
+  --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-brand: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-  --font-telemetry: 'IBM Plex Mono', monospace;
+  --font-telemetry: 'JetBrains Mono', monospace;
 
-  /* ==================== 03. DESKTOP DIMENSIONS ==================== */
-  --c2-header-height: 64px;
+  /* ==================== 03. DIMENSIONS & RADII ==================== */
+  --c2-header-height: 62px;
   --c2-sidebar-width: 255px;
   --c2-status-bar-height: 28px;
-  --c2-radius: 2px;
-  --transition-tactical: 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+  --c2-radius: 10px;                  /* Modern rounded corners */
+  --c2-radius-sm: 6px;
+  --c2-radius-pill: 9999px;
+  --transition-tactical: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  --aurora-gradient: linear-gradient(135deg, #4F46E5 0%, #8B5CF6 50%, #EC4899 100%);
+  --panel-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.45);
 }
 
 /* ==================== BASE RESET ==================== */
@@ -67,46 +81,46 @@ html, body {
   color: var(--c2-text-primary);
   font-family: var(--font-sans);
   font-size: 13px;
-  line-height: 1.45;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow: hidden; /* Desktop view with internal controlled scrolling */
+  overflow: hidden;
 }
 
-/* Subtle Tactical Coordinate Graticule Grid */
+/* Radiant Ambient Aurora Background Glow */
 body::before {
   content: '';
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background-image: 
-    linear-gradient(to right, rgba(121, 168, 91, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(121, 168, 91, 0.03) 1px, transparent 1px);
-  background-size: 32px 32px;
+  background: 
+    radial-gradient(circle at 15% 10%, rgba(99, 102, 241, 0.10) 0%, transparent 45%),
+    radial-gradient(circle at 85% 85%, rgba(236, 72, 153, 0.06) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.03) 0%, transparent 60%);
   pointer-events: none;
   z-index: 0;
 }
 
-/* Custom Scrollbars for Data Terminals */
+/* Refined Minimalist Scrollbar */
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--c2-bg-primary);
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--c2-border);
-  border-radius: 1px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: var(--c2-radius-pill);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--c2-tactical-green);
+  background: rgba(255, 255, 255, 0.22);
 }
 
 /* ==================== AUTH GATE OVERLAY ==================== */
 .auth-gate-overlay {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: radial-gradient(circle at center, #0F1713 0%, #070B08 100%);
+  background: radial-gradient(circle at center, #101726 0%, #060910 100%);
   z-index: 9999;
   display: flex;
   align-items: center;
@@ -116,34 +130,22 @@ body::before {
 
 .auth-gate-card {
   width: 100%;
-  max-width: 460px;
+  max-width: 440px;
   background: var(--c2-bg-panel);
   border: 1px solid var(--c2-border);
-  border-radius: var(--c2-radius);
+  border-radius: 16px;
   padding: 36px;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(99, 102, 241, 0.12);
   position: relative;
+  overflow: hidden;
 }
-
-/* Tactical Corner Reticles */
-.tactical-corner {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  border-color: var(--c2-tactical-green);
-  border-style: solid;
-}
-.tactical-corner.tl { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
-.tactical-corner.tr { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
-.tactical-corner.bl { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
-.tactical-corner.br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
 
 .auth-gate-card::before {
   content: '';
   position: absolute;
-  top: -1px; left: 10%; right: 10%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--c2-radioactive), transparent);
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--aurora-gradient);
 }
 
 .auth-header {
@@ -154,29 +156,34 @@ body::before {
 .auth-insignia {
   width: 56px;
   height: 56px;
-  margin: 0 auto 14px;
+  margin: 0 auto 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.15), rgba(236, 72, 153, 0.15));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.2);
 }
 
 .auth-title {
-  font-family: var(--font-mono);
-  font-size: 20px;
-  font-weight: 800;
-  letter-spacing: 1px;
+  font-family: var(--font-brand);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
   color: var(--c2-text-primary);
 }
 
 .auth-sub {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--c2-tactical-green);
-  letter-spacing: 1.2px;
+  font-size: 12px;
+  color: var(--c2-text-secondary);
   margin-top: 4px;
-  text-transform: uppercase;
+  font-weight: 500;
 }
 
 .auth-credentials-banner {
-  background: var(--c2-bg-secondary);
-  border: 1px dashed var(--c2-border);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--c2-border);
   border-radius: var(--c2-radius);
   padding: 10px 14px;
   margin-bottom: 18px;
@@ -189,13 +196,12 @@ body::before {
 
 .btn-instant-override {
   width: 100%;
-  background: rgba(163, 230, 53, 0.08);
-  border: 1px solid var(--c2-radioactive);
-  color: var(--c2-radioactive);
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.15), rgba(139, 92, 246, 0.15));
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  color: #A5B4FC;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
   padding: 11px;
   border-radius: var(--c2-radius);
   cursor: pointer;
@@ -207,16 +213,16 @@ body::before {
   transition: all var(--transition-tactical);
 }
 .btn-instant-override:hover {
-  background: var(--c2-radioactive);
-  color: #070B08;
+  background: linear-gradient(135deg, #4F46E5, #7C3AED);
+  color: #FFFFFF;
+  box-shadow: 0 4px 16px rgba(79, 70, 229, 0.35);
 }
 
 .auth-divider {
   display: flex;
   align-items: center;
   margin: 16px 0;
-  font-size: 10px;
-  font-family: var(--font-mono);
+  font-size: 11px;
   color: var(--c2-text-muted);
 }
 .auth-divider::before, .auth-divider::after {
@@ -230,52 +236,49 @@ body::before {
 .form-field { margin-bottom: 16px; }
 .form-label {
   display: block;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 700;
+  font-size: 11px;
+  font-weight: 600;
   color: var(--c2-text-secondary);
-  letter-spacing: 0.8px;
   margin-bottom: 6px;
-  text-transform: uppercase;
 }
 
 .form-input {
   width: 100%;
-  height: 38px;
+  height: 40px;
   background: var(--c2-bg-input);
   border: 1px solid var(--c2-border);
   border-radius: var(--c2-radius);
-  padding: 0 12px;
+  padding: 0 14px;
   color: var(--c2-text-primary);
-  font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 13px;
   outline: none;
   transition: border-color var(--transition-tactical);
 }
 .form-input:focus {
-  border-color: var(--c2-radioactive);
+  border-color: var(--brand-indigo);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
 }
 
 .btn-primary-auth {
   width: 100%;
   height: 42px;
-  background: var(--c2-army-green);
-  border: 1px solid var(--c2-tactical-green);
-  color: var(--c2-text-primary);
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.8px;
+  background: var(--aurora-gradient);
+  border: none;
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 600;
   cursor: pointer;
   margin-top: 8px;
+  border-radius: var(--c2-radius);
+  box-shadow: 0 4px 16px rgba(79, 70, 229, 0.3);
   transition: all var(--transition-tactical);
 }
 .btn-primary-auth:hover {
-  background: var(--c2-tactical-green);
-  color: #070B08;
+  filter: brightness(1.1);
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.45);
 }
 
-/* ==================== 06. ADVANCED COMMAND HEADER (70px) ==================== */
+/* ==================== 04. EXECUTIVE HEADER (62px) ==================== */
 .atlas-shell {
   position: relative;
   width: 100%;
@@ -286,26 +289,26 @@ body::before {
 }
 
 .atlas-header {
-  height: 64px;
+  height: var(--c2-header-height);
   background: var(--c2-bg-sidebar);
   border-bottom: 1px solid var(--c2-border);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 16px;
+  padding: 0 20px;
   flex-shrink: 0;
   position: relative;
   z-index: 20;
   overflow: hidden;
+  backdrop-filter: blur(12px);
 }
 
-/* Subordinate Thin Tactical Status Line underneath */
 .atlas-header::after {
   content: '';
   position: absolute;
-  bottom: -1px; left: 0; right: 0;
+  bottom: 0; left: 0; right: 0;
   height: 1px;
-  background: linear-gradient(90deg, var(--c2-army-green), var(--c2-tactical-green), var(--c2-radioactive), var(--c2-tactical-green), var(--c2-army-green));
+  background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.3), rgba(236, 72, 153, 0.2), transparent);
 }
 
 .header-left {
@@ -317,11 +320,11 @@ body::before {
 }
 
 .header-insignia-badge {
-  width: 40px;
-  height: 40px;
-  background: var(--c2-bg-panel);
-  border: 1px solid var(--c2-border);
-  border-radius: var(--c2-radius);
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.2), rgba(236, 72, 153, 0.15));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -334,14 +337,13 @@ body::before {
   justify-content: center;
   white-space: nowrap;
   overflow: hidden;
-  max-width: 320px;
 }
 
 .brand-main-title {
   font-family: var(--font-brand);
   font-size: 15px;
   font-weight: 700;
-  letter-spacing: 1px;
+  letter-spacing: -0.3px;
   color: var(--c2-text-primary);
   display: flex;
   align-items: center;
@@ -351,38 +353,35 @@ body::before {
 }
 
 .system-id-pill {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  font-weight: 700;
-  color: var(--c2-radioactive);
-  background: rgba(163, 230, 53, 0.08);
-  border: 1px solid rgba(163, 230, 53, 0.25);
-  padding: 1px 6px;
-  border-radius: 1px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #A5B4FC;
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  padding: 2px 7px;
+  border-radius: var(--c2-radius-pill);
   white-space: nowrap;
   flex-shrink: 0;
 }
 
 .brand-division-subtitle {
-  font-family: var(--font-telemetry);
-  font-size: 8.5px;
-  font-weight: 600;
-  color: var(--c2-tactical-green);
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--c2-text-secondary);
   white-space: nowrap;
   line-height: 1.2;
-  margin-top: 3px;
+  margin-top: 2px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* Header Centre: Global Search & Command Palette */
+/* Header Centre: Global Search */
 .header-centre {
   flex: 1;
-  max-width: 460px;
-  min-width: 140px;
+  max-width: 440px;
+  min-width: 160px;
   margin: 0 16px;
+  overflow: hidden;
 }
 
 .atlas-search-box {
@@ -390,22 +389,23 @@ body::before {
   height: 36px;
   background: var(--c2-bg-input);
   border: 1px solid var(--c2-border);
-  border-radius: var(--c2-radius);
+  border-radius: var(--c2-radius-pill);
   display: flex;
   align-items: center;
-  padding: 0 10px;
+  padding: 0 12px;
   gap: 8px;
   cursor: pointer;
   overflow: hidden;
-  transition: border-color var(--transition-tactical);
+  white-space: nowrap;
+  transition: all var(--transition-tactical);
 }
 .atlas-search-box:hover {
-  border-color: var(--c2-tactical-green);
+  border-color: rgba(99, 102, 241, 0.4);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .search-placeholder {
-  font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   color: var(--c2-text-muted);
   flex: 1;
   white-space: nowrap;
@@ -416,33 +416,32 @@ body::before {
 
 .search-hotkey {
   font-family: var(--font-mono);
-  font-size: 9px;
-  font-weight: 700;
+  font-size: 10px;
+  font-weight: 600;
   color: var(--c2-text-secondary);
-  background: var(--c2-bg-elevated);
+  background: rgba(255, 255, 255, 0.06);
   border: 1px solid var(--c2-border);
-  padding: 2px 6px;
-  border-radius: 1px;
+  padding: 1px 6px;
+  border-radius: 4px;
   white-space: nowrap;
   flex-shrink: 0;
 }
 
-/* Header Right: Status, Dual Clock, Profile */
+/* Header Right: Status, Clock, Profile */
 .header-right {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   flex-shrink: 0;
   white-space: nowrap;
 }
 
 .hud-pill-cell {
-  background: var(--c2-bg-panel);
+  background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--c2-border);
-  border-radius: var(--c2-radius);
-  padding: 4px 8px;
-  font-family: var(--font-mono);
-  font-size: 10px;
+  border-radius: var(--c2-radius-pill);
+  padding: 5px 10px;
+  font-size: 11px;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -451,34 +450,33 @@ body::before {
 }
 
 .hud-pulse-dot {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background: var(--c2-status-operational);
-  box-shadow: 0 0 6px var(--c2-status-operational);
+  box-shadow: 0 0 8px var(--c2-status-operational);
   animation: pulseDot 2s infinite ease-in-out;
 }
 
 @keyframes pulseDot {
   0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.8); }
+  50% { opacity: 0.4; transform: scale(0.85); }
 }
 
 .hud-clock-readout {
   font-family: var(--font-telemetry);
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--c2-radioactive);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--c2-text-secondary);
 }
 
 .btn-header-action {
-  background: var(--c2-bg-panel);
+  background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--c2-border);
   color: var(--c2-text-secondary);
-  height: 32px;
-  padding: 0 10px;
-  border-radius: var(--c2-radius);
-  font-family: var(--font-mono);
+  height: 34px;
+  padding: 0 12px;
+  border-radius: var(--c2-radius-pill);
   font-size: 11px;
   font-weight: 600;
   display: flex;
@@ -488,31 +486,31 @@ body::before {
   transition: all var(--transition-tactical);
 }
 .btn-header-action:hover {
-  border-color: var(--c2-tactical-green);
+  border-color: rgba(99, 102, 241, 0.4);
   color: var(--c2-text-primary);
+  background: rgba(255, 255, 255, 0.07);
 }
 
 .operator-profile-box {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding-left: 10px;
+  gap: 10px;
+  padding-left: 12px;
   border-left: 1px solid var(--c2-border);
 }
 
 .operator-tag-avatar {
-  width: 28px;
-  height: 28px;
-  background: var(--c2-army-green);
-  border: 1px solid var(--c2-tactical-green);
-  color: var(--c2-radioactive);
-  font-family: var(--font-mono);
-  font-size: 11px;
+  width: 32px;
+  height: 32px;
+  background: var(--aurora-gradient);
+  color: #FFFFFF;
+  font-size: 12px;
   font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--c2-radius);
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
 }
 
 .operator-details {
@@ -521,19 +519,18 @@ body::before {
 }
 
 .operator-name-str {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 700;
+  font-size: 12px;
+  font-weight: 600;
   color: var(--c2-text-primary);
 }
 
 .operator-clearance-str {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  color: var(--c2-tactical-green);
+  font-size: 10px;
+  color: #A5B4FC;
+  font-weight: 500;
 }
 
-/* ==================== 07. ADVANCED MILITARY SIDEBAR (255px) ==================== */
+/* ==================== 05. EXECUTIVE SIDEBAR (255px) ==================== */
 .atlas-main-body {
   display: flex;
   flex: 1;
@@ -554,8 +551,8 @@ body::before {
 }
 
 .sidebar-header-callout {
-  padding: 10px 14px;
-  background: var(--c2-bg-panel);
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.02);
   border-bottom: 1px solid var(--c2-border);
   display: flex;
   align-items: center;
@@ -564,117 +561,80 @@ body::before {
 }
 
 .classification-stamp {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.8px;
-  color: var(--c2-status-warning);
-  background: rgba(229, 173, 71, 0.08);
-  border: 1px solid rgba(229, 173, 71, 0.3);
-  padding: 2px 6px;
-  border-radius: 1px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #A5B4FC;
+  background: rgba(99, 102, 241, 0.12);
+  padding: 2px 8px;
+  border-radius: var(--c2-radius-pill);
 }
 
 .sidebar-nav-groups {
-  padding: 10px 8px;
+  padding: 12px 0;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-}
-
-/* ==================== 24. RESPONSIVE VIEWPORT SAFETY RULES ==================== */
-@media (max-width: 1550px) {
-  .hud-pill-cell.hide-compact {
-    display: none !important;
-  }
-}
-
-@media (max-width: 1380px) {
-  .hud-pill-cell.hide-narrow {
-    display: none !important;
-  }
-  .brand-division-subtitle {
-    display: none !important;
-  }
-  .header-centre {
-    max-width: 320px;
-  }
-}
-
-@media (max-width: 1100px) {
-  .operator-details {
-    display: none !important;
-  }
-  .header-centre {
-    max-width: 200px;
-  }
+  gap: 12px;
+  flex: 1;
 }
 
 .division-header-line {
-  font-family: var(--font-display);
-  font-size: 9.5px;
+  padding: 6px 16px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 1.5px;
-  color: var(--c2-muted-green);
-  padding: 4px 10px;
+  letter-spacing: 0.8px;
+  color: var(--c2-text-muted);
   text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
 .division-items-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: 2px;
+  padding: 0 8px;
 }
 
 .c2-nav-btn {
   width: 100%;
+  min-height: 36px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--c2-radius-sm);
+  color: var(--c2-text-secondary);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 7px 10px;
-  background: transparent;
-  border: 1px solid transparent;
-  border-left: 2px solid transparent;
-  border-radius: var(--c2-radius);
-  color: var(--c2-text-secondary);
-  font-family: var(--font-display);
-  font-size: 11.5px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
+  padding: 0 10px;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-weight: 500;
   cursor: pointer;
   text-align: left;
   transition: all var(--transition-tactical);
 }
 .c2-nav-btn:hover {
-  background: rgba(163, 230, 53, 0.05);
+  background: rgba(255, 255, 255, 0.04);
   color: var(--c2-text-primary);
-  border-left-color: var(--c2-tactical-green);
 }
-
 .c2-nav-btn.active {
-  background: linear-gradient(90deg, rgba(163, 230, 53, 0.12), rgba(163, 230, 53, 0.02));
-  color: var(--c2-radioactive);
-  border-left-color: var(--c2-radioactive);
-  border-color: rgba(163, 230, 53, 0.25);
-  box-shadow: inset 1px 0 0 var(--c2-radioactive);
+  background: rgba(99, 102, 241, 0.12);
+  color: #C7D2FE;
+  border-color: rgba(99, 102, 241, 0.25);
+  font-weight: 600;
 }
 
 .c2-nav-label {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .c2-nav-icon {
-  width: 15px;
-  height: 15px;
+  width: 16px;
+  height: 16px;
   stroke: currentColor;
   stroke-width: 1.8;
   fill: none;
@@ -682,44 +642,41 @@ body::before {
 }
 
 .c2-nav-badge {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  padding: 1px 5px;
-  border-radius: 1px;
-  border: 1px solid var(--c2-border);
-  background: var(--c2-bg-panel);
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: var(--c2-radius-pill);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--c2-text-secondary);
 }
 .c2-nav-badge.active {
-  color: var(--c2-radioactive);
-  border-color: rgba(163, 230, 53, 0.3);
+  background: rgba(99, 102, 241, 0.2);
+  color: #A5B4FC;
 }
 .c2-nav-badge.critical {
+  background: rgba(244, 63, 94, 0.15);
   color: var(--c2-status-critical);
-  border-color: rgba(224, 82, 82, 0.4);
 }
 
 .sidebar-status-footer {
-  margin-top: auto;
-  padding: 12px 14px;
+  padding: 14px 16px;
   border-top: 1px solid var(--c2-border);
-  background: var(--c2-bg-panel);
-  font-family: var(--font-mono);
-  font-size: 10px;
+  background: rgba(255, 255, 255, 0.015);
+  font-size: 11px;
   color: var(--c2-text-muted);
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-/* ==================== 08. COMMAND CENTRE – PRIMARY WORKSPACE ==================== */
-.atlas-workspace {
+/* ==================== 06. WORKSPACE VIEWPORT ==================== */
+.atlas-viewport {
   flex: 1;
-  background: var(--c2-bg-primary);
   overflow-y: auto;
   overflow-x: hidden;
+  background: var(--c2-bg-primary);
   display: flex;
   flex-direction: column;
-  position: relative;
 }
 
 .workspace-section {
@@ -737,467 +694,314 @@ body::before {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding-bottom: 14px;
+  padding-bottom: 16px;
   border-bottom: 1px solid var(--c2-border-subtle);
 }
 
-.c2-header-left {
+.c2-header-title {
+  font-family: var(--font-brand);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--c2-text-primary);
+  letter-spacing: -0.4px;
+}
+
+.c2-header-sub {
+  font-size: 12px;
+  color: var(--c2-text-secondary);
+  margin-top: 4px;
+}
+
+.c2-header-actions {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
 }
 
-.c2-header-title {
-  font-family: var(--font-display);
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: var(--c2-text-primary);
-  text-shadow: 0 0 12px rgba(163, 230, 53, 0.15);
-}
-
-.c2-header-subtitle {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--c2-text-secondary);
-  letter-spacing: 0.3px;
-  margin-top: 3px;
-}
-
-/* Action Buttons with Aerospace Chamfers */
+/* Modern Action Buttons */
 .btn-c2-action {
-  height: 32px;
-  padding: 0 14px;
-  background: var(--c2-bg-panel);
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--c2-border);
   color: var(--c2-text-primary);
-  font-family: var(--font-display);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.8px;
+  padding: 8px 14px;
+  border-radius: var(--c2-radius-sm);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  cursor: pointer;
-  clip-path: polygon(0 6px, 6px 0, calc(100% - 6px) 0, 100% 6px, 100% calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%, 0 calc(100% - 6px));
+  gap: 6px;
   transition: all var(--transition-tactical);
 }
 .btn-c2-action:hover {
-  background: var(--c2-bg-elevated);
-  border-color: var(--c2-radioactive);
-  color: var(--c2-radioactive);
-  box-shadow: 0 0 14px rgba(163, 230, 53, 0.22);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 .btn-c2-action.primary {
-  background: rgba(163, 230, 53, 0.12);
-  border-color: var(--c2-radioactive);
-  color: var(--c2-radioactive);
-  box-shadow: 0 0 10px rgba(163, 230, 53, 0.15);
+  background: var(--aurora-gradient);
+  border: none;
+  color: #FFFFFF;
+  box-shadow: 0 2px 10px rgba(79, 70, 229, 0.3);
 }
 .btn-c2-action.primary:hover {
-  background: var(--c2-radioactive);
-  color: #040705;
-  box-shadow: 0 0 22px rgba(163, 230, 53, 0.45);
+  filter: brightness(1.1);
+  box-shadow: 0 4px 16px rgba(79, 70, 229, 0.45);
+}
+.btn-c2-action.warning {
+  background: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.35);
+  color: var(--c2-status-warning);
 }
 .btn-c2-action.danger {
-  background: rgba(255, 51, 75, 0.1);
-  border-color: rgba(255, 51, 75, 0.5);
+  background: rgba(244, 63, 94, 0.12);
+  border-color: rgba(244, 63, 94, 0.35);
   color: var(--c2-status-critical);
 }
-.btn-c2-action.danger:hover {
-  background: var(--c2-status-critical);
-  color: #040705;
-  box-shadow: 0 0 16px rgba(255, 51, 75, 0.4);
-}
 
-/* ==================== 09. MILITARY-STYLE KPI PANELS (8 CARDS) ==================== */
-.c2-kpi-grid-8 {
+/* ==================== 07. METRIC KPI CARDS ==================== */
+.kpi-grid-row {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-}
-
-@media (max-width: 1440px) {
-  .c2-kpi-grid-8 {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-@media (max-width: 1280px) {
-  .c2-kpi-grid-8 {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
 }
 
 .c2-kpi-panel {
   background: var(--c2-bg-panel);
   border: 1px solid var(--c2-border);
-  padding: 14px 16px;
-  position: relative;
+  border-radius: var(--c2-radius);
+  padding: 18px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  clip-path: polygon(0 8px, 8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px));
+  box-shadow: var(--panel-shadow);
   transition: all var(--transition-tactical);
+  position: relative;
+  overflow: hidden;
 }
 .c2-kpi-panel:hover {
-  border-color: var(--c2-radioactive);
-  background: var(--c2-bg-elevated);
-  box-shadow: 0 0 20px rgba(163, 230, 53, 0.08);
+  border-color: rgba(99, 102, 241, 0.3);
+  transform: translateY(-2px);
 }
 
-.kpi-top-row {
+.kpi-top-meta {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px;
 }
 
-.kpi-military-id {
-  font-family: var(--font-display);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 1px;
+.kpi-index-label {
+  font-size: 11px;
+  font-weight: 600;
   color: var(--c2-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.kpi-status-badge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: var(--c2-radius-pill);
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--c2-status-operational);
+}
+.kpi-status-badge.warning {
+  background: rgba(245, 158, 11, 0.12);
+  color: var(--c2-status-warning);
+}
+.kpi-status-badge.critical {
+  background: rgba(244, 63, 94, 0.12);
+  color: var(--c2-status-critical);
 }
 
 .kpi-main-val {
-  font-family: var(--font-display);
-  font-size: 32px;
+  font-family: var(--font-brand);
+  font-size: 28px;
   font-weight: 700;
-  letter-spacing: 0px;
   color: var(--c2-text-primary);
   line-height: 1.1;
-  margin: 6px 0 2px 0;
-  text-shadow: 0 0 12px rgba(163, 230, 53, 0.18);
+  letter-spacing: -0.5px;
 }
 
-.kpi-label-str {
-  font-family: var(--font-mono);
-  font-size: 9.5px;
-  font-weight: 600;
-  letter-spacing: 0.8px;
+.kpi-trend-meta {
+  font-size: 11px;
   color: var(--c2-text-muted);
-  text-transform: uppercase;
-}
-
-.kpi-footer-row {
+  margin-top: 8px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-top: 10px;
-  padding-top: 6px;
-  border-top: 1px solid var(--c2-border-subtle);
-  font-family: var(--font-mono);
-  font-size: 9px;
+  gap: 4px;
 }
 
-/* ==================== 10 & 11. STRATEGIC RADAR & GLOBAL MAP WORKSPACE ==================== */
-.strategic-intelligence-split {
-  display: grid;
-  grid-template-columns: 360px 1fr 340px;
-  gap: 16px;
-}
-
-@media (max-width: 1600px) {
-  .strategic-intelligence-split {
-    grid-template-columns: 320px 1fr 300px;
-  }
-}
-@media (max-width: 1366px) {
-  .strategic-intelligence-split {
-    grid-template-columns: 1fr;
-  }
-}
-
-.c2-panel-card {
+/* ==================== 08. DATA PANELS & TERMINALS ==================== */
+.data-panel-card {
   background: var(--c2-bg-panel);
   border: 1px solid var(--c2-border);
   border-radius: var(--c2-radius);
-  padding: 16px;
-  position: relative;
+  padding: 20px;
+  box-shadow: var(--panel-shadow);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
-.panel-header-row {
+.panel-header-line {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--c2-border-subtle);
 }
 
-.panel-title-text {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
+.panel-title {
+  font-family: var(--font-brand);
+  font-size: 14px;
+  font-weight: 600;
   color: var(--c2-text-primary);
 }
 
-.panel-coord-tag {
-  font-family: var(--font-mono);
-  font-size: 9px;
+.panel-subtitle {
+  font-size: 11px;
   color: var(--c2-text-muted);
 }
 
-/* Circular Tactical Radar Screen */
-.radar-screen-wrap {
-  position: relative;
-  width: 100%;
-  height: 280px;
-  background: var(--c2-bg-secondary);
-  border: 1px solid var(--c2-border);
-  border-radius: var(--c2-radius);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-#tacticalRadarCanvas {
-  width: 100%;
-  height: 100%;
-}
-
-.radar-sweep-needle {
-  position: absolute;
-  top: 50%; left: 50%;
-  width: 130px;
-  height: 130px;
-  transform-origin: 0% 0%;
-  background: conic-gradient(from 0deg at 0% 0%, rgba(163, 230, 53, 0.28) 0deg, transparent 45deg);
-  animation: radarRotate 4s linear infinite;
-  pointer-events: none;
-}
-
-@keyframes radarRotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.radar-coords-label {
-  position: absolute;
-  font-family: var(--font-mono);
-  font-size: 8px;
-  color: var(--c2-muted-green);
-  pointer-events: none;
-}
-.radar-coords-label.n { top: 6px; left: 50%; transform: translateX(-50%); }
-.radar-coords-label.s { bottom: 6px; left: 50%; transform: translateX(-50%); }
-.radar-coords-label.w { left: 8px; top: 50%; transform: translateY(-50%); }
-.radar-coords-label.e { right: 8px; top: 50%; transform: translateY(-50%); }
-
-/* Global Tactical Map */
-.tactical-map-container {
-  position: relative;
-  width: 100%;
-  height: 380px;
-  background: var(--c2-bg-secondary);
-  border: 1px solid var(--c2-border);
-  border-radius: var(--c2-radius);
-  overflow: hidden;
-}
-
-#globalMapCanvas {
-  width: 100%;
-  height: 100%;
-  cursor: crosshair;
-}
-
-.map-hud-controls {
-  position: absolute;
-  top: 12px; right: 12px;
-  display: flex;
-  gap: 4px;
-  z-index: 5;
-}
-
-.map-legend-bar {
-  position: absolute;
-  bottom: 10px; left: 12px;
-  background: rgba(11, 17, 13, 0.88);
-  border: 1px solid var(--c2-border);
-  padding: 4px 10px;
-  font-family: var(--font-mono);
-  font-size: 9px;
-  color: var(--c2-text-secondary);
-  display: flex;
-  gap: 12px;
-  z-index: 5;
-}
-
-/* ==================== 12. ANALYTICS & TIMELINE ==================== */
-.analytics-timeline-split {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
-@media (max-width: 1200px) {
-  .analytics-timeline-split {
-    grid-template-columns: 1fr;
-  }
-}
-
-.chart-stage-box {
-  width: 100%;
-  height: 250px;
-  position: relative;
-}
-
-/* Live Operational Log */
-.ops-log-terminal {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  max-height: 280px;
-  overflow-y: auto;
-  font-family: var(--font-telemetry);
-  font-size: 11px;
-}
-
-.ops-log-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 8px 10px;
-  background: var(--c2-bg-secondary);
-  border: 1px solid var(--c2-border-subtle);
-  border-radius: 1px;
-}
-
-/* ==================== 14. COMMAND AND CONTROL PANEL (RIGHT) ==================== */
-.c2-status-nodes-list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.c2-node-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 10px;
-  background: var(--c2-bg-secondary);
-  border: 1px solid var(--c2-border-subtle);
-  font-family: var(--font-mono);
-  font-size: 11px;
-}
-
-.status-indicator-tag {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-weight: 700;
-  font-size: 10px;
-}
-.status-indicator-tag.ok { color: var(--c2-status-operational); }
-.status-indicator-tag.warn { color: var(--c2-status-warning); }
-.status-indicator-tag.crit { color: var(--c2-status-critical); }
-
-/* ==================== 16. RELATIONSHIP INTELLIGENCE GRAPH ==================== */
-.graph-stage-full {
-  position: relative;
-  width: 100%;
-  height: 560px;
-  background: var(--c2-bg-secondary);
-  border: 1px solid var(--c2-border);
-  border-radius: var(--c2-radius);
-  overflow: hidden;
-}
-
-#intelligenceGraphCanvas {
-  width: 100%;
-  height: 100%;
-  cursor: grab;
-}
-#intelligenceGraphCanvas:active {
-  cursor: grabbing;
-}
-
-/* Contextual Node Detail Panel */
-.graph-side-drawer {
-  position: absolute;
-  top: 14px; bottom: 14px; right: 14px;
-  width: 320px;
-  background: var(--c2-bg-panel);
-  border: 1px solid var(--c2-border);
-  padding: 16px;
-  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.7);
-  display: none;
-  flex-direction: column;
-  gap: 12px;
-  z-index: 10;
-  overflow-y: auto;
-}
-
-/* ==================== 15. DENSE MILITARY DATA TABLES ==================== */
+/* Tables */
 .c2-table-wrapper {
   width: 100%;
   overflow-x: auto;
   border: 1px solid var(--c2-border);
+  border-radius: var(--c2-radius-sm);
+  background: var(--c2-bg-panel);
 }
 
-.c2-dense-table {
+.c2-table {
   width: 100%;
   border-collapse: collapse;
+  font-size: 12.5px;
   text-align: left;
-  font-family: var(--font-mono);
-  font-size: 11px;
 }
 
-.c2-dense-table thead {
+.c2-table th {
   background: var(--c2-bg-secondary);
+  color: var(--c2-text-secondary);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 10px 14px;
   border-bottom: 1px solid var(--c2-border);
 }
 
-.c2-dense-table th {
-  padding: 9px 12px;
-  color: var(--c2-text-secondary);
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-}
-
-.c2-dense-table td {
-  padding: 8px 12px;
+.c2-table td {
+  padding: 12px 14px;
   border-bottom: 1px solid var(--c2-border-subtle);
   color: var(--c2-text-primary);
-  vertical-align: middle;
 }
 
-.c2-dense-table tbody tr {
-  background: var(--c2-bg-panel);
-  transition: background var(--transition-tactical);
-}
-.c2-dense-table tbody tr:hover {
-  background: var(--c2-bg-elevated);
+.c2-table tr:hover td {
+  background: rgba(99, 102, 241, 0.04);
 }
 
-/* ==================== 19. COMMUNICATIONS TERMINAL (3-COLUMN) ==================== */
-.terminal-3col-grid {
-  display: grid;
-  grid-template-columns: 300px 1fr 300px;
-  gap: 16px;
-  height: 620px;
+/* ==================== 09. FILTER BUTTONS ==================== */
+.tactical-filter-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 4px;
+  border-radius: var(--c2-radius-sm);
+  border: 1px solid var(--c2-border);
 }
 
-@media (max-width: 1440px) {
-  .terminal-3col-grid {
-    grid-template-columns: 260px 1fr 260px;
-  }
+.filter-tab {
+  background: transparent;
+  border: none;
+  color: var(--c2-text-secondary);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 11.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-tactical);
+}
+.filter-tab:hover {
+  color: var(--c2-text-primary);
+}
+.filter-tab.active {
+  background: rgba(99, 102, 241, 0.2);
+  color: #C7D2FE;
+  font-weight: 600;
 }
 
-.terminal-col-card {
+/* ==================== 10. TIMELINE ENTRIES ==================== */
+.timeline-entry-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--c2-border-subtle);
+}
+
+.timeline-time-col {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--c2-text-muted);
+  width: 70px;
+  flex-shrink: 0;
+}
+
+.timeline-content-col {
+  flex: 1;
+}
+
+.timeline-title-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.timeline-tag {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+.timeline-tag.auth { background: rgba(99, 102, 241, 0.15); color: #A5B4FC; }
+.timeline-tag.post { background: rgba(16, 185, 129, 0.15); color: var(--c2-status-operational); }
+.timeline-tag.support { background: rgba(245, 158, 11, 0.15); color: var(--c2-status-warning); }
+.timeline-tag.report { background: rgba(244, 63, 94, 0.15); color: var(--c2-status-critical); }
+.timeline-tag.reg { background: rgba(6, 182, 212, 0.15); color: var(--c2-status-info); }
+
+/* ==================== 11. MODAL DIALOGS ==================== */
+.atlas-modal-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(4, 6, 10, 0.8);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.atlas-modal-card {
+  width: 100%;
+  max-width: 600px;
   background: var(--c2-bg-panel);
   border: 1px solid var(--c2-border);
-  padding: 14px;
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  overflow-y: auto;
+  gap: 16px;
 }
 
-/* ==================== 21. BOTTOM OPERATIONAL STATUS BAR ==================== */
+/* ==================== 12. BOTTOM STATUS BAR ==================== */
 .atlas-status-bar {
   height: var(--c2-status-bar-height);
   background: var(--c2-bg-sidebar);
@@ -1225,37 +1029,15 @@ body::before {
   gap: 5px;
 }
 .status-bar-item.active {
-  color: var(--c2-radioactive);
+  color: var(--c2-status-operational);
 }
 
-/* ==================== 23. COMMAND PALETTE MODAL ==================== */
-.atlas-modal-backdrop {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(7, 11, 8, 0.88);
-  backdrop-filter: blur(8px);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
+/* Hide legacy reticles */
+.tactical-corner {
+  display: none !important;
 }
 
-.atlas-modal-card {
-  width: 100%;
-  max-width: 600px;
-  background: var(--c2-bg-panel);
-  border: 1px solid var(--c2-border);
-  border-radius: var(--c2-radius);
-  padding: 20px;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-/* ==================== 24. RESPONSIVE VIEWPORT SAFETY RULES ==================== */
+/* ==================== 13. RESPONSIVE SAFETY RULES ==================== */
 @media (max-width: 1550px) {
   .hud-pill-cell.hide-compact {
     display: none !important;
@@ -1280,5 +1062,8 @@ body::before {
   }
   .header-centre {
     max-width: 200px;
+  }
+  .atlas-sidebar {
+    width: 220px;
   }
 }
