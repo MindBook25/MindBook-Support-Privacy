@@ -283,16 +283,17 @@ body::before {
 }
 
 .atlas-header {
-  height: var(--c2-header-height);
+  height: 64px;
   background: var(--c2-bg-sidebar);
   border-bottom: 1px solid var(--c2-border);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 0 16px;
   flex-shrink: 0;
   position: relative;
   z-index: 20;
+  overflow: hidden;
 }
 
 /* Subordinate Thin Tactical Status Line underneath */
@@ -307,74 +308,88 @@ body::before {
 .header-left {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
+  flex-shrink: 0;
+  min-width: 0;
 }
 
 .header-insignia-badge {
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   background: var(--c2-bg-panel);
   border: 1px solid var(--c2-border);
   border-radius: var(--c2-radius);
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .brand-title-wrap {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  white-space: nowrap;
 }
 
 .brand-main-title {
   font-family: var(--font-mono);
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 800;
-  letter-spacing: 1px;
+  letter-spacing: 0.8px;
   color: var(--c2-text-primary);
   display: flex;
   align-items: center;
   gap: 8px;
+  white-space: nowrap;
+  line-height: 1.2;
 }
 
 .system-id-pill {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 700;
   color: var(--c2-radioactive);
   background: rgba(163, 230, 53, 0.08);
   border: 1px solid rgba(163, 230, 53, 0.25);
   padding: 1px 6px;
   border-radius: 1px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .brand-division-subtitle {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 600;
   color: var(--c2-tactical-green);
-  letter-spacing: 0.8px;
+  letter-spacing: 0.6px;
   text-transform: uppercase;
+  white-space: nowrap;
+  line-height: 1.2;
+  margin-top: 2px;
 }
 
 /* Header Centre: Global Search & Command Palette */
 .header-centre {
   flex: 1;
-  max-width: 520px;
-  margin: 0 24px;
+  max-width: 460px;
+  min-width: 140px;
+  margin: 0 16px;
 }
 
 .atlas-search-box {
   width: 100%;
-  height: 38px;
+  height: 36px;
   background: var(--c2-bg-input);
   border: 1px solid var(--c2-border);
   border-radius: var(--c2-radius);
   display: flex;
   align-items: center;
-  padding: 0 12px;
-  gap: 10px;
+  padding: 0 10px;
+  gap: 8px;
   cursor: pointer;
+  overflow: hidden;
   transition: border-color var(--transition-tactical);
 }
 .atlas-search-box:hover {
@@ -386,36 +401,46 @@ body::before {
   font-size: 11px;
   color: var(--c2-text-muted);
   flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 36px;
 }
 
 .search-hotkey {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 700;
   color: var(--c2-text-secondary);
   background: var(--c2-bg-elevated);
   border: 1px solid var(--c2-border);
   padding: 2px 6px;
   border-radius: 1px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 /* Header Right: Status, Dual Clock, Profile */
 .header-right {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .hud-pill-cell {
   background: var(--c2-bg-panel);
   border: 1px solid var(--c2-border);
   border-radius: var(--c2-radius);
-  padding: 5px 10px;
+  padding: 4px 8px;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 10px;
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .hud-pulse-dot {
@@ -522,12 +547,13 @@ body::before {
 }
 
 .sidebar-header-callout {
-  padding: 12px 16px;
+  padding: 10px 14px;
   background: var(--c2-bg-panel);
   border-bottom: 1px solid var(--c2-border);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  white-space: nowrap;
 }
 
 .classification-stamp {
@@ -547,6 +573,34 @@ body::before {
   display: flex;
   flex-direction: column;
   gap: 14px;
+}
+
+/* ==================== 24. RESPONSIVE VIEWPORT SAFETY RULES ==================== */
+@media (max-width: 1550px) {
+  .hud-pill-cell.hide-compact {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1380px) {
+  .hud-pill-cell.hide-narrow {
+    display: none !important;
+  }
+  .brand-division-subtitle {
+    display: none !important;
+  }
+  .header-centre {
+    max-width: 320px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .operator-details {
+    display: none !important;
+  }
+  .header-centre {
+    max-width: 200px;
+  }
 }
 
 .division-header-line {
@@ -1175,4 +1229,32 @@ body::before {
   display: flex;
   flex-direction: column;
   gap: 14px;
+}
+
+/* ==================== 24. RESPONSIVE VIEWPORT SAFETY RULES ==================== */
+@media (max-width: 1550px) {
+  .hud-pill-cell.hide-compact {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1380px) {
+  .hud-pill-cell.hide-narrow {
+    display: none !important;
+  }
+  .brand-division-subtitle {
+    display: none !important;
+  }
+  .header-centre {
+    max-width: 320px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .operator-details {
+    display: none !important;
+  }
+  .header-centre {
+    max-width: 200px;
+  }
 }

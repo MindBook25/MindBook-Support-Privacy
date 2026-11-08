@@ -91,7 +91,7 @@ let atlasState = {
   activeTab: 'overview',
   activeDbTable: 'profiles', // 'profiles' | 'posts' | 'comments'
   dbSearchTerm: '',
-  freshModeOnly: true, // Filter out dummy seeds by default
+  freshModeOnly: false, // Live view: show all live Supabase database records by default
   activeJsonRecord: null,
   activeChartPeriod: '7d',
   activeActivityFilter: 'all',
@@ -395,8 +395,8 @@ function switchAdminTab(tabName) {
     targetEl = document.getElementById(targetTabId);
   }
 
-  // Update tabs
-  document.querySelectorAll('.workspace-view-section').forEach(tab => {
+  // Update tabs across both workspace-section and workspace-view-section classes
+  document.querySelectorAll('.workspace-section, .workspace-view-section').forEach(tab => {
     tab.classList.toggle('active', tab.id === targetTabId);
   });
 
