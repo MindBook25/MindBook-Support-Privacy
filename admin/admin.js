@@ -436,21 +436,21 @@ function toggleCyberSidebar(force) {
 
 const ATLAS_COMMAND_REGISTRY = [
   // Overview
-  { id: 'tab-overview', title: 'Executive Overview', desc: 'Centralized KPIs, vector activity analytics, and live operations', category: 'COMMAND CENTRE', action: () => switchAdminTab('overview') },
-  { id: 'tab-operations', title: 'Operations Dashboard', desc: 'Real-time throughput metrics, queue status, and active database jobs', category: 'COMMAND CENTRE', action: () => switchAdminTab('operations') },
+  { id: 'tab-overview', title: 'Executive Overview', desc: 'Centralized KPIs, vector activity analytics, and live operations', category: 'OVERVIEW', action: () => switchAdminTab('overview') },
+  { id: 'tab-operations', title: 'Operations Dashboard', desc: 'Real-time throughput metrics, queue status, and active database jobs', category: 'OVERVIEW', action: () => switchAdminTab('operations') },
 
   // Community
-  { id: 'tab-database', title: 'Personnel Database Studio', desc: 'Direct PostgreSQL inspection of profiles, posts, comments', category: 'INTELLIGENCE', action: () => switchAdminTab('database') },
-  { id: 'tab-intelligence-graph', title: 'Intelligence Graph', desc: 'Interactive relationship topology visualizer (Palantir Gotham HUD)', category: 'INTELLIGENCE', action: () => switchAdminTab('intelligence-graph') },
-  { id: 'tab-user-analytics', title: 'User Analytics & Demographics', desc: 'Audience distribution, verified creator ratios, dwell times', category: 'INTELLIGENCE', action: () => switchAdminTab('user-analytics') },
-  { id: 'tab-content-intelligence', title: 'Content Intelligence Workspace', desc: 'Split-view multi-column examination of published content', category: 'INTELLIGENCE', action: () => switchAdminTab('content-intelligence') },
-  { id: 'tab-engagement', title: 'Engagement Analytics', desc: 'Daily/monthly active users, publishing cadence, interaction rates', category: 'INTELLIGENCE', action: () => switchAdminTab('engagement') },
+  { id: 'tab-database', title: 'Personnel Database Studio', desc: 'Direct PostgreSQL inspection of profiles, posts, comments', category: 'COMMUNITY', action: () => switchAdminTab('database') },
+  { id: 'tab-intelligence-graph', title: 'Intelligence Graph', desc: 'Interactive relationship topology visualizer (Interactive Node Topology)', category: 'COMMUNITY', action: () => switchAdminTab('intelligence-graph') },
+  { id: 'tab-user-analytics', title: 'User Analytics & Demographics', desc: 'Audience distribution, verified creator ratios, dwell times', category: 'COMMUNITY', action: () => switchAdminTab('user-analytics') },
+  { id: 'tab-content-intelligence', title: 'Content Intelligence Workspace', desc: 'Split-view multi-column examination of published content', category: 'COMMUNITY', action: () => switchAdminTab('content-intelligence') },
+  { id: 'tab-engagement', title: 'Engagement Analytics', desc: 'Daily/monthly active users, publishing cadence, interaction rates', category: 'COMMUNITY', action: () => switchAdminTab('engagement') },
 
   // Content
-  { id: 'tab-activity', title: 'Platform Activity Monitoring', desc: 'Chronological timeline of system interactions and events', category: 'ACTIVITY OPERATIONS', action: () => switchAdminTab('activity') },
-  { id: 'tab-content-stream', title: 'Posts & Stories Stream', desc: 'Live publications feed with instant moderation strike actions', category: 'ACTIVITY OPERATIONS', action: () => switchAdminTab('content-stream') },
-  { id: 'tab-comments', title: 'Comments & Engagement', desc: 'Live comments inspection across community publications', category: 'ACTIVITY OPERATIONS', action: () => switchAdminTab('comments') },
-  { id: 'tab-timeline', title: 'Activity Timeline', desc: 'Sub-second event logging across user registrations and security', category: 'ACTIVITY OPERATIONS', action: () => switchAdminTab('timeline') },
+  { id: 'tab-activity', title: 'Platform Activity Monitoring', desc: 'Chronological timeline of system interactions and events', category: 'CONTENT & FEED', action: () => switchAdminTab('activity') },
+  { id: 'tab-content-stream', title: 'Posts & Stories Stream', desc: 'Live publications feed with instant moderation strike actions', category: 'CONTENT & FEED', action: () => switchAdminTab('content-stream') },
+  { id: 'tab-comments', title: 'Comments & Engagement', desc: 'Live comments inspection across community publications', category: 'CONTENT & FEED', action: () => switchAdminTab('comments') },
+  { id: 'tab-timeline', title: 'Activity Timeline', desc: 'Sub-second event logging across user registrations and security', category: 'CONTENT & FEED', action: () => switchAdminTab('timeline') },
 
   // Trust & Safety
   { id: 'tab-security', title: 'Security Overview & Threat Matrix', desc: 'Zero-trust defense status and firewall telemetry', category: 'SECURITY CENTRE', action: () => switchAdminTab('security') },
@@ -482,13 +482,13 @@ const ATLAS_COMMAND_REGISTRY = [
   { id: 'tab-settings', title: 'Platform Configuration', desc: 'Global system parameters and operational settings', category: 'ADMINISTRATION', action: () => switchAdminTab('settings') },
 
   // Studio Actions
-  { id: 'act-sync', title: 'Synchronize Live Database', desc: 'Pull latest records from Supabase PostgreSQL (0ms)', category: 'TACTICAL ACTION', action: () => refreshFromLiveDatabase() },
-  { id: 'act-fresh', title: 'Toggle Fresh Launch View', desc: 'Filter out legacy dummy seed profiles', category: 'TACTICAL ACTION', action: () => toggleFreshLaunchMode() },
-  { id: 'act-purge-demo', title: 'Purge Demo Seed Profiles', desc: 'Remove mock seeds leaving only Kota Midhun & MindBook Official', category: 'TACTICAL ACTION', action: () => purgeAllDemoSeedProfiles() },
-  { id: 'act-export-json', title: 'Export Table JSON', desc: 'Download local JSON archive of active table', category: 'TACTICAL ACTION', action: () => exportCurrentTableJson() },
-  { id: 'act-broadcast', title: 'Transmit Global Announcement', desc: 'Open dispatch transmitter for community-wide message', category: 'TACTICAL ACTION', action: () => openNewBroadcastModal() },
-  { id: 'act-audit', title: 'Export Audit Telemetry Log', desc: 'Download JSON security audit trail', category: 'TACTICAL ACTION', action: () => exportAuditLogs() },
-  { id: 'act-pentest', title: 'Run Security Penetration Test', desc: 'Simulate vulnerability scan across all endpoints', category: 'TACTICAL ACTION', action: () => simulatePenetrationTestSequence() }
+  { id: 'act-sync', title: 'Synchronize Live Database', desc: 'Pull latest records from Supabase PostgreSQL (0ms)', category: 'STUDIO ACTION', action: () => refreshFromLiveDatabase() },
+  { id: 'act-fresh', title: 'Toggle Fresh Launch View', desc: 'Filter out legacy dummy seed profiles', category: 'STUDIO ACTION', action: () => toggleFreshLaunchMode() },
+  { id: 'act-purge-demo', title: 'Purge Demo Seed Profiles', desc: 'Remove mock seeds leaving only Kota Midhun & MindBook Official', category: 'STUDIO ACTION', action: () => purgeAllDemoSeedProfiles() },
+  { id: 'act-export-json', title: 'Export Table JSON', desc: 'Download local JSON archive of active table', category: 'STUDIO ACTION', action: () => exportCurrentTableJson() },
+  { id: 'act-broadcast', title: 'Transmit Global Announcement', desc: 'Open dispatch transmitter for community-wide message', category: 'STUDIO ACTION', action: () => openNewBroadcastModal() },
+  { id: 'act-audit', title: 'Export Audit Telemetry Log', desc: 'Download JSON security audit trail', category: 'STUDIO ACTION', action: () => exportAuditLogs() },
+  { id: 'act-pentest', title: 'Run Security Penetration Test', desc: 'Simulate vulnerability scan across all endpoints', category: 'STUDIO ACTION', action: () => simulatePenetrationTestSequence() }
 ];
 
 function initCommandPaletteKeyboardShortcut() {
@@ -789,7 +789,7 @@ function renderProfilesTable(thead, tbody, rows, totalCount) {
             <div>
               <div style="font-weight: 600; color: var(--atlas-text-primary); font-size: 13px;">
                 ${escapeHtml(u.display_name || u.username || 'Unnamed User')}
-                ${isCompany ? '<span style="color:#E5AD4A;" title="Official MindBook Company Node">🏢</span>' : (isRoot ? '<span style="color:#A3E635;" title="Founder & Root Admin">👑</span>' : '')}
+                ${isCompany ? '<span style="color:#E5AD4A;" title="Official MindBook Company Node">🏢</span>' : (isRoot ? '<span style="color:#6366F1;" title="Founder & Root Admin">👑</span>' : '')}
               </div>
               <div style="font-size: 11px; color: var(--atlas-accent-primary); font-family: var(--font-mono);">
                 @${escapeHtml(u.username || 'anonymous')}
@@ -1399,7 +1399,7 @@ function renderGlobalActivityChart(period = '7d') {
   const circles = coords.map(c => `
     <g style="cursor: pointer;">
       <circle cx="${c.x}" cy="${c.y}" r="8" fill="rgba(163,230,53,0.1)" stroke="none" />
-      <circle cx="${c.x}" cy="${c.y}" r="3.5" fill="#A3E635" stroke="#080B09" stroke-width="2" />
+      <circle cx="${c.x}" cy="${c.y}" r="3.5" fill="#6366F1" stroke="#080B09" stroke-width="2" />
       <text x="${c.x}" y="${c.y - 10}" fill="#E8EEE9" font-family="'JetBrains Mono', monospace" font-weight="600" font-size="10" text-anchor="middle">${c.val}</text>
     </g>
   `).join('');
@@ -1408,7 +1408,7 @@ function renderGlobalActivityChart(period = '7d') {
     <svg viewBox="0 0 ${svgWidth} ${svgHeight}" preserveAspectRatio="none" style="width:100%; height:230px; overflow:visible;">
       <defs>
         <linearGradient id="atlasActivityGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#A3E635" stop-opacity="0.25"/>
+          <stop offset="0%" stop-color="#6366F1" stop-opacity="0.25"/>
           <stop offset="60%" stop-color="#294532" stop-opacity="0.08"/>
           <stop offset="100%" stop-color="#080B09" stop-opacity="0.0"/>
         </linearGradient>
@@ -1416,7 +1416,7 @@ function renderGlobalActivityChart(period = '7d') {
       ${gridLines}
       <line x1="${padLeft}" y1="${padTop + chartH}" x2="${padLeft + chartW}" y2="${padTop + chartH}" stroke="#253129" stroke-width="1" />
       <path d="${areaD}" fill="url(#atlasActivityGrad)" />
-      <path d="${pathD}" fill="none" stroke="#A3E635" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="${pathD}" fill="none" stroke="#6366F1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
       ${xLabels}
       ${circles}
     </svg>
@@ -1451,205 +1451,167 @@ function renderLiveOpsStream() {
 }
 
 
-let radarState = {
+let pulseState = {
   canvas: null,
   ctx: null,
   animId: null,
-  sweepAngle: 0,
-  contacts: [
-    { id: 'TGT-01', distNorm: 0.28, angle: 1.15, type: 'ROOT', label: 'KM-777', color: '#A3E635', ping: 1.0 },
-    { id: 'TGT-02', distNorm: 0.62, angle: 2.70, type: 'RELAY', label: 'SIGINT-01', color: '#79A85B', ping: 0.8 },
-    { id: 'TGT-03', distNorm: 0.48, angle: 4.35, type: 'GATEWAY', label: 'EU-CENTRAL', color: '#79A85B', ping: 0.6 },
-    { id: 'TGT-04', distNorm: 0.82, angle: 5.50, type: 'USER', label: 'AP-SOUTH', color: '#79A85B', ping: 0.9 },
-    { id: 'TGT-05', distNorm: 0.72, angle: 3.40, type: 'SENSOR', label: 'MONITOR-05', color: '#E5AD47', ping: 0.7 }
+  tick: 0,
+  packets: [
+    { x: 0.1, speed: 0.004, wave: 0, label: 'POST /posts', latency: '14ms', color: '#6366F1' },
+    { x: 0.35, speed: 0.003, wave: 1, label: 'GET /profiles', latency: '9ms', color: '#38BDF8' },
+    { x: 0.6, speed: 0.005, wave: 0, label: 'WS /stream', latency: '4ms', color: '#10B981' },
+    { x: 0.85, speed: 0.0035, wave: 2, label: 'AUTH /verify', latency: '18ms', color: '#EC4899' }
   ]
 };
 
 function initStudioRadar() {
-  const canvas = document.getElementById('studioRadarCanvas');
+  const canvas = document.getElementById('platformPulseCanvas') || document.getElementById('studioRadarCanvas');
   if (!canvas) return;
 
-  radarState.canvas = canvas;
-  radarState.ctx = canvas.getContext('2d');
+  pulseState.canvas = canvas;
+  pulseState.ctx = canvas.getContext('2d');
 
-  function resizeRadar() {
+  function resizePulse() {
     if (!canvas.parentElement) return;
     const rect = canvas.parentElement.getBoundingClientRect();
     const dpr = window.devicePixelRatio || 1;
     canvas.width = rect.width * dpr;
     canvas.height = rect.height * dpr;
-    if (radarState.ctx) {
-      radarState.ctx.setTransform(1, 0, 0, 1, 0, 0);
-      radarState.ctx.scale(dpr, dpr);
+    if (pulseState.ctx) {
+      pulseState.ctx.setTransform(1, 0, 0, 1, 0, 0);
+      pulseState.ctx.scale(dpr, dpr);
     }
     drawStudioRadar();
   }
 
-  window.addEventListener('resize', resizeRadar);
-  setTimeout(resizeRadar, 80);
+  window.addEventListener('resize', resizePulse);
+  setTimeout(resizePulse, 80);
 
-  function loopRadar() {
-    radarState.sweepAngle = (radarState.sweepAngle + 0.02) % (Math.PI * 2);
+  function loopPulse() {
+    pulseState.tick += 1;
     drawStudioRadar();
-    radarState.animId = requestAnimationFrame(loopRadar);
+    pulseState.animId = requestAnimationFrame(loopPulse);
   }
-  if (!radarState.animId) {
-    radarState.animId = requestAnimationFrame(loopRadar);
+  if (!pulseState.animId) {
+    pulseState.animId = requestAnimationFrame(loopPulse);
   }
 }
 
 function drawStudioRadar() {
-  const { canvas, ctx, sweepAngle, contacts } = radarState;
+  const { canvas, ctx, tick, packets } = pulseState;
   if (!canvas || !ctx) return;
 
   const dpr = window.devicePixelRatio || 1;
   const w = canvas.width / dpr;
   const h = canvas.height / dpr;
-  const cx = w / 2;
-  const cy = h / 2;
-  const maxRadius = Math.min(cx, cy) - 16;
-  if (maxRadius <= 10) return;
+  if (w <= 10 || h <= 10) return;
 
   ctx.clearRect(0, 0, w, h);
 
-  // Background radar screen radial vignette
-  const bgGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, maxRadius);
-  bgGrad.addColorStop(0, '#0B140E');
-  bgGrad.addColorStop(0.85, '#070B08');
-  bgGrad.addColorStop(1, '#050806');
-  ctx.fillStyle = bgGrad;
-  ctx.beginPath();
-  ctx.arc(cx, cy, maxRadius, 0, Math.PI * 2);
-  ctx.fill();
+  // Background subtle technical grid
+  ctx.fillStyle = '#07090E';
+  ctx.fillRect(0, 0, w, h);
 
-  // Radar outer boundary
-  ctx.strokeStyle = '#294532';
-  ctx.lineWidth = 1.5;
-  ctx.stroke();
-
-  // Range rings (25km, 50km, 75km, 100km)
-  const ringSteps = [0.25, 0.50, 0.75, 1.0];
-  const ringLabels = ['25KM', '50KM', '75KM', '100KM'];
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.03)';
   ctx.lineWidth = 1;
-  ctx.setLineDash([3, 4]);
-
-  ringSteps.forEach((step, idx) => {
-    const r = maxRadius * step;
+  const gridSpacing = 32;
+  for (let x = 0; x < w; x += gridSpacing) {
     ctx.beginPath();
-    ctx.arc(cx, cy, r, 0, Math.PI * 2);
-    ctx.strokeStyle = idx === 3 ? '#394B31' : 'rgba(41, 69, 50, 0.6)';
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, h);
     ctx.stroke();
-
-    const labelX = cx + Math.cos(Math.PI / 4) * r;
-    const labelY = cy - Math.sin(Math.PI / 4) * r;
-    ctx.font = '8px "JetBrains Mono"';
-    ctx.fillStyle = '#64765E';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(ringLabels[idx], labelX, labelY);
-  });
-
-  ctx.setLineDash([]);
-
-  // Azimuth Crosshairs
-  ctx.strokeStyle = 'rgba(121, 168, 91, 0.25)';
-  ctx.lineWidth = 1;
-
-  // Vertical (000 - 180)
-  ctx.beginPath();
-  ctx.moveTo(cx, cy - maxRadius);
-  ctx.lineTo(cx, cy + maxRadius);
-  ctx.stroke();
-
-  // Horizontal (270 - 090)
-  ctx.beginPath();
-  ctx.moveTo(cx - maxRadius, cy);
-  ctx.lineTo(cx + maxRadius, cy);
-  ctx.stroke();
-
-  // Radial tick marks every 30 degrees
-  for (let a = 0; a < Math.PI * 2; a += Math.PI / 6) {
-    const r1 = maxRadius - 6;
-    const r2 = maxRadius;
+  }
+  for (let y = 0; y < h; y += gridSpacing) {
     ctx.beginPath();
-    ctx.moveTo(cx + Math.cos(a) * r1, cy + Math.sin(a) * r1);
-    ctx.lineTo(cx + Math.cos(a) * r2, cy + Math.sin(a) * r2);
-    ctx.strokeStyle = '#394B31';
+    ctx.moveTo(0, y);
+    ctx.lineTo(w, y);
     ctx.stroke();
   }
 
-  // Draw sweep sector with phosphor glow trail
-  ctx.save();
-  ctx.beginPath();
-  ctx.moveTo(cx, cy);
-  ctx.arc(cx, cy, maxRadius, sweepAngle - 0.45, sweepAngle);
-  ctx.closePath();
-  const sweepGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, maxRadius);
-  sweepGrad.addColorStop(0, 'rgba(163, 230, 53, 0.25)');
-  sweepGrad.addColorStop(1, 'rgba(121, 168, 91, 0.02)');
-  ctx.fillStyle = sweepGrad;
-  ctx.fill();
+  // Draw 3 dynamic sine waveforms
+  const waves = [
+    { freq: 0.015, amp: 38, speed: 0.025, color: '#6366F1', alpha: 0.15, strokeAlpha: 0.8 },
+    { freq: 0.022, amp: 24, speed: 0.035, color: '#38BDF8', alpha: 0.1, strokeAlpha: 0.7 },
+    { freq: 0.010, amp: 16, speed: 0.015, color: '#10B981', alpha: 0.08, strokeAlpha: 0.9 }
+  ];
 
-  // Leading sweep beam
-  ctx.beginPath();
-  ctx.moveTo(cx, cy);
-  ctx.lineTo(cx + Math.cos(sweepAngle) * maxRadius, cy + Math.sin(sweepAngle) * maxRadius);
-  ctx.strokeStyle = 'rgba(163, 230, 53, 0.85)';
-  ctx.lineWidth = 1.5;
-  ctx.shadowColor = '#A3E635';
-  ctx.shadowBlur = 6;
-  ctx.stroke();
-  ctx.restore();
+  const midY = h / 2;
 
-  // Center radar hub reticle
-  ctx.beginPath();
-  ctx.arc(cx, cy, 3, 0, Math.PI * 2);
-  ctx.fillStyle = '#A3E635';
-  ctx.fill();
-
-  // Render studio target blips
-  contacts.forEach(c => {
-    const contactX = cx + Math.cos(c.angle) * (maxRadius * c.distNorm);
-    const contactY = cy + Math.sin(c.angle) * (maxRadius * c.distNorm);
-
-    let angleDiff = sweepAngle - c.angle;
-    while (angleDiff < 0) angleDiff += Math.PI * 2;
-    while (angleDiff >= Math.PI * 2) angleDiff -= Math.PI * 2;
-
-    if (angleDiff < 0.2) {
-      c.ping = 1.0;
-    } else {
-      c.ping = Math.max(0.2, c.ping - 0.005);
-    }
-
-    if (c.ping > 0.4) {
-      const ringRadius = 4 + (1.0 - c.ping) * 14;
-      ctx.beginPath();
-      ctx.arc(contactX, contactY, ringRadius, 0, Math.PI * 2);
-      ctx.strokeStyle = `rgba(163, 230, 53, ${c.ping * 0.7})`;
-      ctx.lineWidth = 1;
-      ctx.stroke();
-    }
-
+  waves.forEach((wave, idx) => {
     ctx.beginPath();
-    ctx.arc(contactX, contactY, 3, 0, Math.PI * 2);
-    ctx.fillStyle = c.color;
-    ctx.shadowColor = c.color;
-    ctx.shadowBlur = c.ping > 0.5 ? 8 : 2;
+    ctx.moveTo(0, h);
+
+    for (let x = 0; x <= w; x += 4) {
+      const y = midY + Math.sin(x * wave.freq + tick * wave.speed) * wave.amp
+                     + Math.cos(x * 0.008 + tick * 0.01) * (wave.amp * 0.4);
+      if (x === 0) ctx.lineTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+
+    ctx.lineTo(w, h);
+    ctx.closePath();
+
+    const grad = ctx.createLinearGradient(0, midY - wave.amp, 0, h);
+    grad.addColorStop(0, wave.color + Math.round(wave.alpha * 255).toString(16).padStart(2, '0'));
+    grad.addColorStop(1, 'transparent');
+    ctx.fillStyle = grad;
+    ctx.fill();
+
+    // Line stroke
+    ctx.beginPath();
+    for (let x = 0; x <= w; x += 4) {
+      const y = midY + Math.sin(x * wave.freq + tick * wave.speed) * wave.amp
+                     + Math.cos(x * 0.008 + tick * 0.01) * (wave.amp * 0.4);
+      if (x === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.strokeStyle = wave.color;
+    ctx.lineWidth = 1.8;
+    ctx.stroke();
+  });
+
+  // Draw packets traversing the waveform
+  packets.forEach(p => {
+    p.x = (p.x + p.speed) % 1.0;
+    const px = p.x * w;
+    const wave = waves[p.wave % waves.length];
+    const py = midY + Math.sin(px * wave.freq + tick * wave.speed) * wave.amp
+                    + Math.cos(px * 0.008 + tick * 0.01) * (wave.amp * 0.4);
+
+    // Glowing packet circle
+    ctx.beginPath();
+    ctx.arc(px, py, 4, 0, Math.PI * 2);
+    ctx.fillStyle = p.color;
+    ctx.shadowColor = p.color;
+    ctx.shadowBlur = 8;
     ctx.fill();
     ctx.shadowBlur = 0;
 
-    ctx.font = '8px "JetBrains Mono"';
-    ctx.fillStyle = c.ping > 0.6 ? '#E6EDE6' : '#9AA79C';
-    ctx.textAlign = 'left';
-    ctx.fillText(`${c.label} [${c.id}]`, contactX + 6, contactY - 3);
+    // Small ripple pulse around packet
+    const ripple = ((tick * 0.04) % 1.0);
+    ctx.beginPath();
+    ctx.arc(px, py, 4 + ripple * 8, 0, Math.PI * 2);
+    ctx.strokeStyle = p.color;
+    ctx.lineWidth = 1 - ripple;
+    ctx.stroke();
 
-    ctx.font = '7px "JetBrains Mono"';
-    ctx.fillStyle = '#64765E';
-    ctx.fillText(`BRG ${(c.angle * 180 / Math.PI).toFixed(0).padStart(3, '0')}° RNG ${(c.distNorm * 100).toFixed(0)}KM`, contactX + 6, contactY + 6);
+    // Packet annotation
+    ctx.font = '8px "JetBrains Mono", monospace';
+    ctx.fillStyle = '#CBD5E1';
+    ctx.textAlign = 'center';
+    ctx.fillText(p.label + ' [' + p.latency + ']', px, py - 10);
   });
-}
 
+  // Top metric overlays
+  ctx.font = '9px "JetBrains Mono", monospace';
+  ctx.fillStyle = '#64748B';
+  ctx.textAlign = 'left';
+  ctx.fillText('REALTIME THROUGHPUT: 420 REQ/SEC', 12, 20);
+
+  ctx.textAlign = 'right';
+  ctx.fillStyle = '#10B981';
+  ctx.fillText('EDGE LATENCY: 18ms // 99.99% HEALTHY', w - 12, 20);
+}
 
 let globalMapState = {
   canvas: null,
@@ -1665,14 +1627,14 @@ let globalMapState = {
   animId: null
 };
 
-const GLOBAL_TACTICAL_NODES = [
-  { id: 'HQ-HYDERABAD', name: 'HYDERABAD PRIMARY HQ', sub: 'FOUNDER KOTA MIDHUN // PLATFORM OPS', lat: 17.3850, lon: 78.4867, type: 'PRIMARY', color: '#A3E635', ping: '12ms', status: 'ACTIVE' },
-  { id: 'SIGINT-01', name: 'US-EAST (VIRGINIA)', sub: 'SUPABASE POSTGRESQL PRIMARY', lat: 38.9072, lon: -77.0369, type: 'RELAY', color: '#79A85B', ping: '38ms', status: 'SYNCHRONIZED' },
-  { id: 'SIGINT-02', name: 'EU-CENTRAL (FRANKFURT)', sub: 'CONTINENTAL GATEWAY RELAY', lat: 50.1109, lon: 8.6821, type: 'RELAY', color: '#79A85B', ping: '26ms', status: 'OPERATIONAL' },
-  { id: 'SIGINT-03', name: 'AP-SOUTHEAST (SINGAPORE)', sub: 'ASIA REALTIME EDGE CLUSTER', lat: 1.3521, lon: 103.8198, type: 'RELAY', color: '#79A85B', ping: '18ms', status: 'STREAMING' },
-  { id: 'SIGINT-04', name: 'US-WEST (CALIFORNIA)', sub: 'PACIFIC REALTIME EDGE', lat: 37.7749, lon: -122.4194, type: 'RELAY', color: '#79A85B', ping: '54ms', status: 'OPERATIONAL' },
-  { id: 'SIGINT-05', name: 'UK-LONDON (UK-SOUTH)', sub: 'ATLANTIC HIGH-SPEED DISPATCH', lat: 51.5074, lon: -0.1278, type: 'RELAY', color: '#79A85B', ping: '32ms', status: 'OPERATIONAL' },
-  { id: 'SIGINT-06', name: 'JP-TOKYO (ASIA-EAST)', sub: 'FAR-EAST REALTIME HUB', lat: 35.6762, lon: 139.6503, type: 'RELAY', color: '#79A85B', ping: '44ms', status: 'OPERATIONAL' }
+const GLOBAL_EDGE_NODES = [
+  { id: 'HQ-HYDERABAD', name: 'HYDERABAD PRIMARY HQ', sub: 'FOUNDER KOTA MIDHUN // PLATFORM OPS', lat: 17.3850, lon: 78.4867, type: 'PRIMARY', color: '#6366F1', ping: '12ms', status: 'ACTIVE' },
+  { id: 'EDGE-US-EAST', name: 'US-EAST (VIRGINIA)', sub: 'SUPABASE POSTGRESQL PRIMARY', lat: 38.9072, lon: -77.0369, type: 'RELAY', color: '#10B981', ping: '38ms', status: 'SYNCHRONIZED' },
+  { id: 'EDGE-EU-CENTRAL', name: 'EU-CENTRAL (FRANKFURT)', sub: 'CONTINENTAL GATEWAY RELAY', lat: 50.1109, lon: 8.6821, type: 'RELAY', color: '#10B981', ping: '26ms', status: 'OPERATIONAL' },
+  { id: 'EDGE-AP-SINGAPORE', name: 'AP-SOUTHEAST (SINGAPORE)', sub: 'ASIA REALTIME EDGE CLUSTER', lat: 1.3521, lon: 103.8198, type: 'RELAY', color: '#10B981', ping: '18ms', status: 'STREAMING' },
+  { id: 'EDGE-US-WEST', name: 'US-WEST (CALIFORNIA)', sub: 'PACIFIC REALTIME EDGE', lat: 37.7749, lon: -122.4194, type: 'RELAY', color: '#10B981', ping: '54ms', status: 'OPERATIONAL' },
+  { id: 'EDGE-UK-LONDON', name: 'UK-LONDON (UK-SOUTH)', sub: 'ATLANTIC HIGH-SPEED DISPATCH', lat: 51.5074, lon: -0.1278, type: 'RELAY', color: '#10B981', ping: '32ms', status: 'OPERATIONAL' },
+  { id: 'EDGE-JP-TOKYO', name: 'JP-TOKYO (ASIA-EAST)', sub: 'FAR-EAST REALTIME HUB', lat: 35.6762, lon: 139.6503, type: 'RELAY', color: '#10B981', ping: '44ms', status: 'OPERATIONAL' }
 ];
 
 const WORLD_CONTINENTS = [
@@ -1785,7 +1747,7 @@ function checkMapHover(mx, my) {
   const h = canvas.height / dpr;
 
   let found = null;
-  GLOBAL_TACTICAL_NODES.forEach(node => {
+  GLOBAL_EDGE_NODES.forEach(node => {
     const rawX = ((node.lon + 180) / 360) * w;
     const rawY = ((90 - node.lat) / 180) * h;
     const screenX = rawX * scale + offsetX;
@@ -1813,7 +1775,7 @@ function drawGlobalMap() {
 
   ctx.clearRect(0, 0, w, h);
 
-  ctx.fillStyle = '#070B08';
+  ctx.fillStyle = '#07090E';
   ctx.fillRect(0, 0, w, h);
 
   ctx.save();
@@ -1828,14 +1790,14 @@ function drawGlobalMap() {
   const parLabels = ['60°S', '30°S', '00°00\' EQUATOR', '30°N', '60°N'];
   parallels.forEach((lat, idx) => {
     const y = ((90 - lat) / 180) * h;
-    ctx.strokeStyle = lat === 0 ? 'rgba(121, 168, 91, 0.35)' : 'rgba(40, 54, 42, 0.45)';
+    ctx.strokeStyle = lat === 0 ? 'rgba(99, 102, 241, 0.25)' : 'rgba(255, 255, 255, 0.05)';
     ctx.beginPath();
     ctx.moveTo(-w, y);
     ctx.lineTo(w * 2, y);
     ctx.stroke();
 
     ctx.font = '7px "JetBrains Mono"';
-    ctx.fillStyle = lat === 0 ? '#79A85B' : '#415243';
+    ctx.fillStyle = lat === 0 ? '#10B981' : '#415243';
     ctx.textAlign = 'left';
     ctx.fillText(parLabels[idx], 8, y - 3);
   });
@@ -1843,14 +1805,14 @@ function drawGlobalMap() {
   const meridians = [-150, -120, -90, -60, -30, 0, 30, 60, 90, 120, 150];
   meridians.forEach(lon => {
     const x = ((lon + 180) / 360) * w;
-    ctx.strokeStyle = lon === 0 ? 'rgba(121, 168, 91, 0.35)' : 'rgba(40, 54, 42, 0.45)';
+    ctx.strokeStyle = lon === 0 ? 'rgba(99, 102, 241, 0.25)' : 'rgba(255, 255, 255, 0.05)';
     ctx.beginPath();
     ctx.moveTo(x, -h);
     ctx.lineTo(x, h * 2);
     ctx.stroke();
 
     ctx.font = '7px "JetBrains Mono"';
-    ctx.fillStyle = lon === 0 ? '#79A85B' : '#415243';
+    ctx.fillStyle = lon === 0 ? '#10B981' : '#415243';
     ctx.textAlign = 'center';
     ctx.fillText(`${Math.abs(lon)}°${lon < 0 ? 'W' : (lon > 0 ? 'E' : ' PRIME')}`, x, h - 6);
   });
@@ -1867,19 +1829,19 @@ function drawGlobalMap() {
       else ctx.lineTo(x, y);
     });
     ctx.closePath();
-    ctx.fillStyle = '#111913';
+    ctx.fillStyle = '#0F172A';
     ctx.fill();
-    ctx.strokeStyle = '#28362A';
+    ctx.strokeStyle = 'rgba(99, 102, 241, 0.25)';
     ctx.lineWidth = 1;
     ctx.stroke();
   });
 
   // Telecommunication Arcs
-  const hq = GLOBAL_TACTICAL_NODES[0];
+  const hq = GLOBAL_EDGE_NODES[0];
   const hqX = ((hq.lon + 180) / 360) * w;
   const hqY = ((90 - hq.lat) / 180) * h;
 
-  GLOBAL_TACTICAL_NODES.slice(1).forEach((node, i) => {
+  GLOBAL_EDGE_NODES.slice(1).forEach((node, i) => {
     const nx = ((node.lon + 180) / 360) * w;
     const ny = ((90 - node.lat) / 180) * h;
 
@@ -1889,7 +1851,7 @@ function drawGlobalMap() {
     ctx.beginPath();
     ctx.moveTo(hqX, hqY);
     ctx.quadraticCurveTo(midX, midY, nx, ny);
-    ctx.strokeStyle = 'rgba(121, 168, 91, 0.28)';
+    ctx.strokeStyle = 'rgba(99, 102, 241, 0.35)';
     ctx.lineWidth = 1;
     ctx.stroke();
 
@@ -1899,15 +1861,15 @@ function drawGlobalMap() {
 
     ctx.beginPath();
     ctx.arc(px, py, 2, 0, Math.PI * 2);
-    ctx.fillStyle = '#A3E635';
-    ctx.shadowColor = '#A3E635';
+    ctx.fillStyle = '#6366F1';
+    ctx.shadowColor = '#6366F1';
     ctx.shadowBlur = 4;
     ctx.fill();
     ctx.shadowBlur = 0;
   });
 
   // Studio Point Nodes
-  GLOBAL_TACTICAL_NODES.forEach(node => {
+  GLOBAL_EDGE_NODES.forEach(node => {
     const nx = ((node.lon + 180) / 360) * w;
     const ny = ((90 - node.lat) / 180) * h;
     const isHQ = node.type === 'PRIMARY';
@@ -1940,13 +1902,13 @@ function drawGlobalMap() {
     ctx.stroke();
 
     ctx.font = isHQ ? 'bold 8px "JetBrains Mono"' : '7px "JetBrains Mono"';
-    ctx.fillStyle = isHQ ? '#A3E635' : '#9AA79C';
+    ctx.fillStyle = isHQ ? '#6366F1' : '#9AA79C';
     ctx.textAlign = 'left';
     ctx.fillText(node.id, nx + 9, ny - 2);
 
     if (isHQ) {
       ctx.font = '7px "JetBrains Mono"';
-      ctx.fillStyle = '#79A85B';
+      ctx.fillStyle = '#10B981';
       ctx.fillText('ROOT FOUNDER // KOTA MIDHUN', nx + 9, ny + 7);
     }
   });
@@ -1967,7 +1929,7 @@ function drawGlobalMap() {
     ctx.strokeRect(tipX, tipY, tipW, tipH);
 
     ctx.font = 'bold 9px "JetBrains Mono"';
-    ctx.fillStyle = '#A3E635';
+    ctx.fillStyle = '#6366F1';
     ctx.textAlign = 'left';
     ctx.fillText(name, tipX + 8, tipY + 14);
 
@@ -2077,7 +2039,7 @@ function buildGraphTopology() {
   const cy = h / 2;
 
   graphState.nodes = [
-    { id: 'midhun777', label: 'Kota Midhun', sub: '@midhun777', type: 'root', color: '#A3E635', radius: 24, x: cx, y: cy },
+    { id: 'midhun777', label: 'Kota Midhun', sub: '@midhun777', type: 'root', color: '#6366F1', radius: 24, x: cx, y: cy },
     { id: 'mindbook', label: 'MindBook Official', sub: '@mindbook', type: 'company', color: '#E5AD4A', radius: 18, x: cx - 140, y: cy + 90 },
     { id: 'sophia', label: 'Sophia Vance', sub: '@sophia_v', type: 'user', color: '#69A9DD', radius: 14, x: cx + 160, y: cy - 90 },
     { id: 'marcus', label: 'Marcus Chen', sub: '@marcus_c', type: 'user', color: '#69A9DD', radius: 14, x: cx + 180, y: cy + 80 },

@@ -518,11 +518,11 @@
           </div>
           <div style="display: flex; justify-content: space-between;">
             <span>DATABASE:</span>
-            <span style="color: var(--c2-radioactive); font-weight: 700;">CONNECTED</span>
+            <span style="color: var(--c2-indigo); font-weight: 700;">CONNECTED</span>
           </div>
           <div style="display: flex; justify-content: space-between;">
             <span>SESSION:</span>
-            <span style="color: var(--c2-tactical-green); font-weight: 700;">AUTHORIZED</span>
+            <span style="color: var(--c2-emerald); font-weight: 700;">AUTHORIZED</span>
           </div>
         </div>
       </aside>
@@ -566,12 +566,12 @@
               
               <div class="kpi-top-row">
                 <span class="kpi-index-label">01 / TOTAL MEMBERS</span>
-                <span style="color: var(--c2-tactical-green); font-size: 10px;">AT-01</span>
+                <span style="color: var(--c2-emerald); font-size: 10px;">EDGE-01</span>
               </div>
               <div class="kpi-main-val" id="statTotalUsers">7</div>
               <div class="kpi-label-str">TOTAL REGISTERED PERSONNEL</div>
               <div class="kpi-footer-row">
-                <span style="color: var(--c2-radioactive);">▲ 100% POSTGRESQL</span>
+                <span style="color: var(--c2-indigo);">▲ 100% POSTGRESQL</span>
                 <span style="color: var(--c2-status-operational);">STATUS: NOMINAL</span>
               </div>
             </div>
@@ -584,12 +584,12 @@
               
               <div class="kpi-top-row">
                 <span class="kpi-index-label">02 / ACTIVE MEMBERS (DAU)</span>
-                <span style="color: var(--c2-tactical-green); font-size: 10px;">AT-02</span>
+                <span style="color: var(--c2-emerald); font-size: 10px;">EDGE-02</span>
               </div>
               <div class="kpi-main-val" id="statActiveUsers">5</div>
               <div class="kpi-label-str">ACTIVE FORCES (REPORTING PERIOD)</div>
               <div class="kpi-footer-row">
-                <span style="color: var(--c2-radioactive);">71.4% ENGAGEMENT</span>
+                <span style="color: var(--c2-indigo);">71.4% ENGAGEMENT</span>
                 <span style="color: var(--c2-status-operational);">STATUS: ACTIVE</span>
               </div>
             </div>
@@ -602,7 +602,7 @@
               
               <div class="kpi-top-row">
                 <span class="kpi-index-label">03 / ONLINE NOW</span>
-                <span style="color: var(--c2-tactical-green); font-size: 10px;">AT-03</span>
+                <span style="color: var(--c2-emerald); font-size: 10px;">EDGE-03</span>
               </div>
               <div class="kpi-main-val" id="statOnlineUsers">3</div>
               <div class="kpi-label-str">ONLINE IDENTITIES NOW</div>
@@ -620,12 +620,12 @@
               
               <div class="kpi-top-row">
                 <span class="kpi-index-label">04 / NEW REGISTRATIONS</span>
-                <span style="color: var(--c2-tactical-green); font-size: 10px;">AT-04</span>
+                <span style="color: var(--c2-emerald); font-size: 10px;">EDGE-04</span>
               </div>
               <div class="kpi-main-val" id="statNewRegistrations">+2</div>
               <div class="kpi-label-str">NEW IDENTITIES (7 DAYS)</div>
               <div class="kpi-footer-row">
-                <span style="color: var(--c2-radioactive);">+28.5% VELOCITY</span>
+                <span style="color: var(--c2-indigo);">+28.5% VELOCITY</span>
                 <span style="color: var(--c2-status-operational);">STATUS: EXPANDING</span>
               </div>
             </div>
@@ -638,7 +638,7 @@
               
               <div class="kpi-top-row">
                 <span class="kpi-index-label">05 / TOTAL REFLECTIONS</span>
-                <span style="color: var(--c2-tactical-green); font-size: 10px;">AT-05</span>
+                <span style="color: var(--c2-emerald); font-size: 10px;">EDGE-05</span>
               </div>
               <div class="kpi-main-val" id="statTotalPosts">1</div>
               <div class="kpi-label-str">TOTAL PUBLICATIONS & MEDIA</div>
@@ -714,23 +714,18 @@
               
 
               <div class="panel-header-row">
-                <span class="panel-title-text">TACTICAL RADAR RECONNAISSANCE</span>
-                <span class="panel-coord-tag">SECTOR 04 // 360° SWEEP</span>
+                <span class="panel-title-text">EDGE TELEMETRY & NETWORK PULSE</span>
+                <span class="panel-coord-tag">GLOBAL CDN // REALTIME</span>
               </div>
 
-              <div class="radar-screen-wrap">
-                <canvas id="tacticalRadarCanvas"></canvas>
-                <div class="radar-sweep-needle"></div>
-                <div class="radar-coords-label n">000° NORTH</div>
-                <div class="radar-coords-label s">180° SOUTH</div>
-                <div class="radar-coords-label w">270° WEST</div>
-                <div class="radar-coords-label e">090° EAST</div>
+              <div class="telemetry-screen-wrap" style="position: relative; width: 100%; height: 260px; background: rgba(10, 14, 23, 0.6); border: 1px solid var(--c2-border); border-radius: var(--c2-radius-md); overflow: hidden;">
+                <canvas id="platformPulseCanvas" style="width: 100%; height: 100%; display: block;"></canvas>
               </div>
 
-              <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 9px; color: var(--c2-text-muted);">
-                <span>TARGET ACQUISITION: ACTIVE</span>
-                <span>RANGE: 5000 KM</span>
-                <span style="color: var(--c2-radioactive);">CARRIER: NOMINAL</span>
+              <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 10px; color: var(--c2-text-muted); margin-top: 8px;">
+                <span>EDGE LATENCY: 18ms</span>
+                <span>AVAILABILITY: 99.99%</span>
+                <span style="color: #10B981;">POOL: 32 ACTIVE</span>
               </div>
             </div>
 
@@ -743,7 +738,7 @@
 
               <div class="panel-header-row">
                 <div>
-                  <span class="panel-title-text">GLOBAL PLATFORM ACTIVITY // TACTICAL MAP</span>
+                  <span class="panel-title-text">GLOBAL REACH & USER TRAFFIC</span>
                   <div style="font-family: var(--font-mono); font-size: 10px; color: var(--c2-text-muted); margin-top: 1px;">
                     Geospatial telemetry and distribution of legitimate platform access.
                   </div>
@@ -756,7 +751,7 @@
                 </div>
               </div>
 
-              <div class="tactical-map-container">
+              <div class="traffic-map-container">
                 <canvas id="globalMapCanvas"></canvas>
                 <div class="map-legend-bar">
                   <span>● PRIMARY NODE: ASIA-PACIFIC / IN</span>
@@ -822,7 +817,7 @@
 
               <div style="margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--c2-border-subtle); display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 10px;">
                 <span style="color: var(--c2-text-muted);">ROOT OPERATOR:</span>
-                <span style="color: var(--c2-radioactive); font-weight: 700;">Kota Midhun (@midhun777)</span>
+                <span style="color: var(--c2-indigo); font-weight: 700;">Kota Midhun (@midhun777)</span>
               </div>
             </div>
 
@@ -842,7 +837,7 @@
                 <div>
                   <span class="panel-title-text">STRATEGIC INTELLIGENCE ANALYTICS</span>
                   <div style="font-family: var(--font-mono); font-size: 10px; color: var(--c2-text-muted); margin-top: 1px;">
-                    Platform publication and registration frequency over tactical periods.
+                    Platform publication and registration frequency over active timeframes.
                   </div>
                 </div>
 
@@ -868,7 +863,7 @@
                 <div>
                   <span class="panel-title-text">LIVE OPERATIONAL ACTIVITY LOG</span>
                   <div style="font-family: var(--font-mono); font-size: 10px; color: var(--c2-text-muted); margin-top: 1px;">
-                    Sub-second tactical communication ledger and administrative triggers.
+                    Chronological system communication ledger and operational event stream.
                   </div>
                 </div>
                 <span class="hud-pill-cell" style="font-size: 9px; padding: 2px 6px;">STREAM: LIVE</span>
@@ -921,7 +916,7 @@
             <!-- Contextual Node Inspector Drawer -->
             <div class="graph-side-drawer" id="graphNodeInspector">
               <div style="display: flex; justify-content: space-between; align-items: center;">
-                <h4 style="font-family: var(--font-mono); font-size: 12px; color: var(--c2-radioactive);">NODE INSPECTOR</h4>
+                <h4 style="font-family: var(--font-mono); font-size: 12px; color: var(--c2-indigo);">NODE INSPECTOR</h4>
                 <button class="btn-header-action" onclick="closeGraphInspector()" style="width: 24px; height: 24px; padding: 0;">✕</button>
               </div>
               <div id="graphNodeInspectorBody" style="font-size: 11px;"></div>
@@ -950,7 +945,7 @@
           <!-- Controls Toolbar -->
           <div class="c2-panel-card" style="padding: 10px 14px;">
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-              <div class="filter-pills-cluster tactical-filter-group">
+              <div class="filter-pills-cluster filter-pills-wrap">
                 <button class="filter-pill-btn filter-tab active" data-dbtab="profiles" onclick="switchDbTable('profiles', this)">
                   public.profiles (<span id="countDbProfiles">7</span>)
                 </button>
@@ -1144,7 +1139,7 @@
           </div>
 
           <div class="c2-panel-card" style="padding: 10px 14px;">
-            <div class="filter-pills-cluster tactical-filter-group">
+            <div class="filter-pills-cluster filter-pills-wrap">
               <button class="filter-pill-btn filter-tab active" onclick="filterReports('all', this)">ALL INCIDENTS</button>
               <button class="filter-pill-btn filter-tab" onclick="filterReports('pending', this)">PENDING (<span id="countPendingFilter">2</span>)</button>
               <button class="filter-pill-btn filter-tab" onclick="filterReports('resolved', this)">RESOLVED</button>
@@ -1257,10 +1252,10 @@
           </div>
           <div class="c2-panel-card">
             <div style="display: flex; align-items: center; gap: 14px;">
-              <img src="/assets/favicon.png" alt="MindBook" style="width: 44px; height: 44px; border-radius: 2px; border: 1px solid var(--c2-radioactive);">
+              <img src="/assets/favicon.png" alt="MindBook" style="width: 44px; height: 44px; border-radius: 2px; border: 1px solid var(--c2-indigo);">
               <div>
                 <h3 style="color: var(--c2-text-primary); font-size: 15px;">MindBook Official 👑</h3>
-                <div style="color: var(--c2-radioactive); font-family: var(--font-mono); font-size: 11px;">@mindbook • ID: mindbook_official</div>
+                <div style="color: var(--c2-indigo); font-family: var(--font-mono); font-size: 11px;">@mindbook • ID: mindbook_official</div>
                 <div style="color: var(--c2-status-operational); font-family: var(--font-mono); font-size: 10px; margin-top: 2px;">✓ Verified Root Creator Node Active</div>
               </div>
             </div>
@@ -1363,7 +1358,7 @@
               <tbody>
                 <tr>
                   <td><strong>Kota Midhun</strong></td>
-                  <td><code style="color: var(--c2-radioactive);">@midhun777</code></td>
+                  <td><code style="color: var(--c2-indigo);">@midhun777</code></td>
                   <td><span class="role-badge root">FOUNDER & ROOT SUPER ADMIN</span></td>
                   <td><span class="hud-pulse-dot" style="display:inline-block; margin-right:4px;"></span>ONLINE</td>
                   <td>ACTIVE C2 TERMINAL</td>
@@ -1401,7 +1396,7 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><strong style="color: var(--c2-radioactive);">SUPER ADMIN (ROOT)</strong></td>
+                  <td><strong style="color: var(--c2-indigo);">SUPER ADMIN (ROOT)</strong></td>
                   <td style="color: var(--c2-status-operational);">FULL READ/WRITE</td>
                   <td style="color: var(--c2-status-operational);">FULL STRIKE/PURGE</td>
                   <td style="color: var(--c2-status-operational);">AUTHORIZE/REVOKE</td>
@@ -1438,7 +1433,7 @@
             <div style="display: flex; flex-direction: column; gap: 10px; font-family: var(--font-mono); font-size: 11px;">
               <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--c2-border-subtle);">
                 <span style="color: var(--c2-text-secondary);">SUPABASE PROJECT URL</span>
-                <span style="color: var(--c2-radioactive);">https://vduwdnlchbelxvrqoioj.supabase.co</span>
+                <span style="color: var(--c2-indigo);">https://vduwdnlchbelxvrqoioj.supabase.co</span>
               </div>
               <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--c2-border-subtle);">
                 <span style="color: var(--c2-text-secondary);">HOSTING INFRASTRUCTURE</span>
@@ -1446,7 +1441,7 @@
               </div>
               <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--c2-border-subtle);">
                 <span style="color: var(--c2-text-secondary);">SUPER ADMIN OPERATOR</span>
-                <span style="color: var(--c2-radioactive);">Kota Midhun (@midhun777)</span>
+                <span style="color: var(--c2-indigo);">Kota Midhun (@midhun777)</span>
               </div>
               <div style="display: flex; justify-content: space-between; padding: 6px 0;">
                 <span style="color: var(--c2-text-secondary);">SYSTEM SPECIFICATION</span>
@@ -1538,7 +1533,7 @@
         <span style="font-family: var(--font-mono); font-size: 12px; font-weight: 800;" id="jsonModalTitle">RAW DATABASE RECORD (JSON)</span>
         <button class="btn-header-action" onclick="closeJsonInspector()" style="width: 24px; height: 24px; padding: 0;">✕</button>
       </div>
-      <pre id="jsonModalCode" style="background: var(--c2-bg-primary); border: 1px solid var(--c2-border); padding: 12px; max-height: 380px; overflow: auto; font-family: var(--font-mono); font-size: 11px; color: var(--c2-radioactive);"></pre>
+      <pre id="jsonModalCode" style="background: var(--c2-bg-primary); border: 1px solid var(--c2-border); padding: 12px; max-height: 380px; overflow: auto; font-family: var(--font-mono); font-size: 11px; color: var(--c2-indigo);"></pre>
       <div style="display: flex; justify-content: flex-end;">
         <button class="btn-c2-action" onclick="copyJsonModalContent()">📋 COPY JSON</button>
       </div>

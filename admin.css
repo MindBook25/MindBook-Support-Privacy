@@ -25,12 +25,12 @@
   --brand-rose: #f43f5e;
 
   /* Aliased System Colors */
-  --c2-tactical-green: #10b981;
-  --c2-radioactive: #6366f1;
-  --c2-c4isr-cyan: #38bdf8;
-  --c2-military-olive: #1e293b;
-  --c2-army-green: #1e1b4b;
-  --c2-muted-green: #64748b;
+  --c2-emerald: #10b981;
+  --c2-indigo: #6366f1;
+  --c2-sky: #38bdf8;
+  --c2-slate-800: #1e293b;
+  --c2-slate-900: #1e1b4b;
+  --c2-slate-500: #64748b;
   --c2-border: rgba(255, 255, 255, 0.08);
   --c2-border-subtle: rgba(255, 255, 255, 0.04);
   --c2-border-active: #6366f1;
@@ -61,7 +61,7 @@
   --c2-radius: 10px;
   --c2-radius-sm: 6px;
   --c2-radius-pill: 9999px;
-  --transition-tactical: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
   --aurora-gradient: linear-gradient(135deg, #4f46e5 0%, #8b5cf6 50%, #ec4899 100%);
   --panel-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 12px 32px -4px rgba(0, 0, 0, 0.5);
 }
@@ -201,7 +201,7 @@ body::before {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  transition: all var(--transition-tactical);
+  transition: all var(--transition-smooth);
 }
 .btn-instant-override:hover {
   background: linear-gradient(135deg, #4f46e5, #7c3aed);
@@ -243,7 +243,7 @@ body::before {
   color: var(--c2-text-primary);
   font-size: 13px;
   outline: none;
-  transition: border-color var(--transition-tactical);
+  transition: border-color var(--transition-smooth);
 }
 .form-input:focus {
   border-color: var(--brand-indigo);
@@ -262,7 +262,7 @@ body::before {
   margin-top: 8px;
   border-radius: var(--c2-radius);
   box-shadow: 0 4px 16px rgba(79, 70, 229, 0.3);
-  transition: all var(--transition-tactical);
+  transition: all var(--transition-smooth);
 }
 .btn-primary-auth:hover {
   filter: brightness(1.1);
@@ -380,7 +380,7 @@ body::before {
   cursor: pointer;
   overflow: hidden;
   white-space: nowrap;
-  transition: all var(--transition-tactical);
+  transition: all var(--transition-smooth);
 }
 .atlas-search-box:hover {
   border-color: rgba(99, 102, 241, 0.4);
@@ -472,7 +472,7 @@ kbd {
   align-items: center;
   gap: 6px;
   cursor: pointer;
-  transition: all var(--transition-tactical);
+  transition: all var(--transition-smooth);
 }
 .btn-header-action:hover {
   border-color: rgba(99, 102, 241, 0.4);
@@ -599,7 +599,7 @@ kbd {
   font-weight: 500;
   cursor: pointer;
   text-align: left;
-  transition: all var(--transition-tactical);
+  transition: all var(--transition-smooth);
 }
 .c2-nav-btn:hover {
   background: rgba(255, 255, 255, 0.04);
@@ -722,7 +722,7 @@ kbd {
   align-items: center;
   gap: 6px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  transition: all var(--transition-tactical);
+  transition: all var(--transition-smooth);
 }
 .btn-c2-action:hover {
   background: rgba(255, 255, 255, 0.1);
@@ -769,7 +769,7 @@ kbd {
   flex-direction: column;
   justify-content: space-between;
   box-shadow: var(--panel-shadow);
-  transition: all var(--transition-tactical);
+  transition: all var(--transition-smooth);
   position: relative;
   overflow: hidden;
 }
@@ -898,7 +898,7 @@ kbd {
 }
 
 /* Filter Controls */
-.tactical-filter-group {
+.filter-pills-wrap {
   display: flex;
   align-items: center;
   gap: 4px;
@@ -917,7 +917,7 @@ kbd {
   font-size: 11.5px;
   font-weight: 500;
   cursor: pointer;
-  transition: all var(--transition-tactical);
+  transition: all var(--transition-smooth);
 }
 .filter-tab:hover {
   color: var(--c2-text-primary);
