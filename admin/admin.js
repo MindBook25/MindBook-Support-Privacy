@@ -353,6 +353,7 @@ function handleAdminLogin(e) {
 }
 
 // 1-Click Instant Access Bypass
+function quickAdminLogin() { launchDemoAdminSession(); }
 function launchDemoAdminSession() {
   const operator = {
     email: 'midhun777@mindbook.in',
