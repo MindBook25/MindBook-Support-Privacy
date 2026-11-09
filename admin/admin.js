@@ -1,14 +1,14 @@
-// ==============================================================================
+
 // MIND BOOK ATLAS // CENTRAL INTELLIGENCE & PLATFORM OPERATIONS SYSTEM
 // Enterprise JavaScript Architecture & Realtime PostgreSQL Engine
 // Product: MindBook | Identity: MindBook Atlas | Classification: Enterprise Ops
-// ==============================================================================
+
 
 const SUPABASE_URL = 'https://vduwdnlchbelxvrqoioj.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_4EqicUq6a1-iq6473YMAvg_rg4LD7Wc';
 const ADMIN_STORAGE_KEY = 'mindbook_atlas_root_session';
 
-// ==================== 01. EXECUTIVE AUDIO FEEDBACK ====================
+
 let audioContext = null;
 let audioFxEnabled = true;
 
@@ -85,7 +85,7 @@ function toggleAudioFx() {
   }
 }
 
-// ==================== 02. STATE MANAGEMENT ====================
+
 let atlasState = {
   currentUser: null,
   activeTab: 'overview',
@@ -179,7 +179,7 @@ let atlasState = {
   ]
 };
 
-// ==================== 03. INITIALIZATION ====================
+
 document.addEventListener('DOMContentLoaded', () => {
   checkExistingSession();
   startLatencySimulation();
@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initGlobalMap();
 });
 
-// ==================== 04. LIVE DIGITAL CLOCK (ZULU + LOCAL) ====================
+
 function startLiveDigitalClock() {
   const clockEl = document.getElementById('hudLiveClock');
   if (!clockEl) return;
@@ -212,7 +212,7 @@ function startLiveDigitalClock() {
   setInterval(update, 1000);
 }
 
-// ==================== 05. SESSION MANAGEMENT ====================
+
 function checkExistingSession() {
   const session = localStorage.getItem(ADMIN_STORAGE_KEY) || localStorage.getItem('mindbook_cic_root_session') || localStorage.getItem('mindbook_cyber_soc_session');
   if (session) {
@@ -317,7 +317,7 @@ function initSupabaseRealtime() {
   }
 }
 
-// ==================== 06. AUTHENTICATION HANDLERS ====================
+
 function handleAdminLogin(e) {
   if (e && e.preventDefault) e.preventDefault();
 
@@ -376,7 +376,7 @@ function handleAdminLogout() {
   lockAtlasDashboard();
 }
 
-// ==================== 07. TAB SWITCHING (ALL 28 VIEWS) ====================
+
 function switchAdminTab(tabName) {
   playCyberSound('blip');
   atlasState.activeTab = tabName;
@@ -432,50 +432,50 @@ function toggleCyberSidebar(force) {
   }
 }
 
-// ==================== 08. COMMAND PALETTE (CTRL + K) ====================
+
 const ATLAS_COMMAND_REGISTRY = [
-  // 01. COMMAND CENTRE
+  // Overview
   { id: 'tab-overview', title: 'Executive Overview', desc: 'Centralized KPIs, vector activity analytics, and live operations', category: 'COMMAND CENTRE', action: () => switchAdminTab('overview') },
   { id: 'tab-operations', title: 'Operations Dashboard', desc: 'Real-time throughput metrics, queue status, and active database jobs', category: 'COMMAND CENTRE', action: () => switchAdminTab('operations') },
 
-  // 02. INTELLIGENCE
+  // Community
   { id: 'tab-database', title: 'Personnel Database Studio', desc: 'Direct PostgreSQL inspection of profiles, posts, comments', category: 'INTELLIGENCE', action: () => switchAdminTab('database') },
   { id: 'tab-intelligence-graph', title: 'Intelligence Graph', desc: 'Interactive relationship topology visualizer (Palantir Gotham HUD)', category: 'INTELLIGENCE', action: () => switchAdminTab('intelligence-graph') },
   { id: 'tab-user-analytics', title: 'User Analytics & Demographics', desc: 'Audience distribution, verified creator ratios, dwell times', category: 'INTELLIGENCE', action: () => switchAdminTab('user-analytics') },
   { id: 'tab-content-intelligence', title: 'Content Intelligence Workspace', desc: 'Split-view multi-column examination of published content', category: 'INTELLIGENCE', action: () => switchAdminTab('content-intelligence') },
   { id: 'tab-engagement', title: 'Engagement Analytics', desc: 'Daily/monthly active users, publishing cadence, interaction rates', category: 'INTELLIGENCE', action: () => switchAdminTab('engagement') },
 
-  // 03. ACTIVITY OPERATIONS
+  // Content
   { id: 'tab-activity', title: 'Platform Activity Monitoring', desc: 'Chronological timeline of system interactions and events', category: 'ACTIVITY OPERATIONS', action: () => switchAdminTab('activity') },
   { id: 'tab-content-stream', title: 'Posts & Stories Stream', desc: 'Live publications feed with instant moderation strike actions', category: 'ACTIVITY OPERATIONS', action: () => switchAdminTab('content-stream') },
   { id: 'tab-comments', title: 'Comments & Engagement', desc: 'Live comments inspection across community publications', category: 'ACTIVITY OPERATIONS', action: () => switchAdminTab('comments') },
   { id: 'tab-timeline', title: 'Activity Timeline', desc: 'Sub-second event logging across user registrations and security', category: 'ACTIVITY OPERATIONS', action: () => switchAdminTab('timeline') },
 
-  // 04. SECURITY CENTRE
+  // Trust & Safety
   { id: 'tab-security', title: 'Security Overview & Threat Matrix', desc: 'Zero-trust defense status and firewall telemetry', category: 'SECURITY CENTRE', action: () => switchAdminTab('security') },
   { id: 'tab-auth-events', title: 'Authentication Events Audit', desc: 'Inspect sign-ins, token requests, clearance checks', category: 'SECURITY CENTRE', action: () => switchAdminTab('auth-events') },
   { id: 'tab-iam', title: 'Access Management (IAM)', desc: 'User privilege levels, verification shields, role matrix', category: 'SECURITY CENTRE', action: () => switchAdminTab('iam') },
   { id: 'tab-suspicious-activity', title: 'Suspicious Activity Detector', desc: 'Anomalous access attempts and rate limit breaches', category: 'SECURITY CENTRE', action: () => switchAdminTab('suspicious-activity') },
 
-  // 05. INCIDENT MANAGEMENT
+  // Moderation
   { id: 'tab-reports', title: 'User Reports & Complaints', desc: 'User grievance intake and policy enforcement', category: 'INCIDENT MANAGEMENT', action: () => switchAdminTab('reports') },
   { id: 'tab-moderation', title: 'Content Quarantine Desk', desc: 'Review flagged posts and security quarantine', category: 'INCIDENT MANAGEMENT', action: () => switchAdminTab('moderation') },
   { id: 'tab-open-incidents', title: 'Open Incidents Workflow', desc: 'Incidents in RECEIVED, UNDER REVIEW, or ACTION REQUIRED', category: 'INCIDENT MANAGEMENT', action: () => switchAdminTab('open-incidents') },
   { id: 'tab-resolved-incidents', title: 'Resolved Incidents Archive', desc: 'Neutralized and dismissed violations audit trail', category: 'INCIDENT MANAGEMENT', action: () => switchAdminTab('resolved-incidents') },
 
-  // 06. COMMUNICATIONS
+  // Communications
   { id: 'tab-support', title: 'Support Operations Desk', desc: '3-Column customer support and identity verification workflow', category: 'COMMUNICATIONS', action: () => switchAdminTab('support') },
   { id: 'tab-inquiries', title: 'User Inquiries Desk', desc: 'Direct user questions and feature suggestions', category: 'COMMUNICATIONS', action: () => switchAdminTab('inquiries') },
   { id: 'tab-broadcasts', title: 'Global Announcements & Dispatches', desc: 'Broadcast notifications to user mobile feeds', category: 'COMMUNICATIONS', action: () => switchAdminTab('broadcasts') },
   { id: 'tab-company', title: 'Official Company Account HQ', desc: 'MindBook Official (@mindbook) node administration', category: 'COMMUNICATIONS', action: () => switchAdminTab('company') },
 
-  // 07. SYSTEM OBSERVATORY
+  // Infrastructure
   { id: 'tab-system', title: 'Infrastructure Health & Zero-Trust', desc: 'Diagnostic health across endpoints, SSL, DNS', category: 'SYSTEM OBSERVATORY', action: () => switchAdminTab('system') },
   { id: 'tab-db-monitor', title: 'Database Monitoring', desc: 'PostgreSQL connection pools, latency, quota meters', category: 'SYSTEM OBSERVATORY', action: () => switchAdminTab('db-monitor') },
   { id: 'tab-api-monitor', title: 'API Monitoring', desc: 'REST endpoint response times and status codes', category: 'SYSTEM OBSERVATORY', action: () => switchAdminTab('api-monitor') },
   { id: 'tab-terminal', title: 'System Diagnostics & Logs', desc: 'Streaming audit logs, real-time command terminal', category: 'SYSTEM OBSERVATORY', action: () => switchAdminTab('terminal') },
 
-  // 08. ADMINISTRATION
+  // Governance
   { id: 'tab-admin-accounts', title: 'Administrator Accounts', desc: 'Manage privileged root and security officer credentials', category: 'ADMINISTRATION', action: () => switchAdminTab('admin-accounts') },
   { id: 'tab-roles', title: 'Roles & Permissions Matrix', desc: 'RBAC clearance hierarchies and access boundaries', category: 'ADMINISTRATION', action: () => switchAdminTab('roles') },
   { id: 'tab-settings', title: 'Platform Configuration', desc: 'Global system parameters and operational settings', category: 'ADMINISTRATION', action: () => switchAdminTab('settings') },
@@ -566,7 +566,7 @@ function executeCommandPaletteAction(cmdId) {
   }
 }
 
-// ==================== 09. LIVE DATABASE STUDIO (POSTGRESQL) ====================
+
 
 async function fetchLiveDatabaseData(isSilent = false) {
   const statusEl = document.getElementById('dbLiveConnectionStatus');
@@ -583,19 +583,17 @@ async function fetchLiveDatabaseData(isSilent = false) {
   };
 
   try {
-    // 1. Fetch public.profiles
+    // Fetch public.profiles
     const pRes = await fetch(`${SUPABASE_URL}/rest/v1/profiles?select=*&order=created_at.desc`, { headers });
     if (pRes.ok) {
       atlasState.dbData.profiles = await pRes.json();
     }
-
-    // 2. Fetch public.posts
+    // Fetch public.posts
     const postRes = await fetch(`${SUPABASE_URL}/rest/v1/posts?select=*&order=created_at.desc`, { headers });
     if (postRes.ok) {
       atlasState.dbData.posts = await postRes.json();
     }
-
-    // 3. Fetch public.comments
+    // Fetch public.comments
     const cRes = await fetch(`${SUPABASE_URL}/rest/v1/comments?select=*&order=created_at.desc`, { headers });
     if (cRes.ok) {
       atlasState.dbData.comments = await cRes.json();
@@ -746,8 +744,7 @@ function renderDbTable() {
     renderCommentsTable(thead, tbody, filtered, list.length);
   }
 }
-
-// 1. PROFILES TABLE
+// Profiles Table
 function renderProfilesTable(thead, tbody, rows, totalCount) {
   thead.innerHTML = `
     <tr>
@@ -841,8 +838,7 @@ function renderProfilesTable(thead, tbody, rows, totalCount) {
     `;
   }).join('');
 }
-
-// 2. POSTS TABLE
+// Posts Table
 let currentActiveMediaUrl = '';
 let currentActivePostId = '';
 
@@ -993,8 +989,7 @@ function renderPostsTable(thead, tbody, rows, totalCount) {
     `;
   }).join('');
 }
-
-// 3. COMMENTS TABLE
+// Comments Table
 function renderCommentsTable(thead, tbody, rows, totalCount) {
   thead.innerHTML = `
     <tr>
@@ -1253,7 +1248,7 @@ SELECT tablename, rowsecurity FROM pg_tables WHERE schemaname = 'public';
   alert("📋 Fresh Database Launch SQL Script copied to clipboard!\n\nPaste into Supabase SQL Editor and click 'Run'.");
 }
 
-// ==================== 10. SIGNATURE PILLAR 1: COMMAND CENTRE & KPIS ====================
+
 
 function renderAllAtlasPanels() {
   renderKpis();
@@ -1454,7 +1449,7 @@ function renderLiveOpsStream() {
   `).join('');
 }
 
-// ==================== TACTICAL RADAR RECONNAISSANCE ====================
+
 let radarState = {
   canvas: null,
   ctx: null,
@@ -1654,7 +1649,7 @@ function drawStudioRadar() {
   });
 }
 
-// ==================== GLOBAL TACTICAL MAP ====================
+
 let globalMapState = {
   canvas: null,
   ctx: null,
@@ -1988,7 +1983,7 @@ function drawGlobalMap() {
   }
 }
 
-// ==================== 11. SIGNATURE PILLAR 2: INTERACTIVE INTELLIGENCE GRAPH ====================
+
 
 let graphState = {
   canvas: null,
@@ -2119,8 +2114,7 @@ function drawGraph() {
   ctx.save();
   ctx.translate(offsetX, offsetY);
   ctx.scale(scale, scale);
-
-  // 1. Draw Edges
+  // Draw Edges
   edges.forEach(e => {
     const fromNode = nodes.find(n => n.id === e.from);
     const toNode = nodes.find(n => n.id === e.to);
@@ -2141,8 +2135,7 @@ function drawGraph() {
     ctx.textAlign = 'center';
     ctx.fillText(e.label, mx, my - 3);
   });
-
-  // 2. Draw Nodes
+  // Draw Nodes
   nodes.forEach(n => {
     const isSelected = selectedNode && selectedNode.id === n.id;
 
@@ -2216,7 +2209,7 @@ function closeGraphInspector() {
   drawGraph();
 }
 
-// ==================== 12. SPLIT-VIEW CONTENT INTELLIGENCE ====================
+
 
 function renderContentIntelligence() {
   const listPane = document.getElementById('contentIntelListItems');
@@ -2301,7 +2294,7 @@ function selectContentIntelPost(postId) {
   }
 }
 
-// ==================== 13. COMMUNICATIONS 3-COLUMN DESK ====================
+
 
 function renderSupportWorkspace() {
   const listPane = document.getElementById('supportTicketsListPane');
@@ -2361,7 +2354,7 @@ function selectSupportTicket(ticketId) {
   // Select logic handled
 }
 
-// ==================== 14. ALL OTHER WORKING CONSOLES ====================
+
 
 function renderUserBreakdown() {
   const container = document.getElementById('analyticsUserBreakdown');
